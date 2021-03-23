@@ -1,0 +1,42 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/ADR/CLionProjects/Flowent/Block.h
+vector
+-
+
+/Users/ADR/CLionProjects/Flowent/Grid.h
+vector
+-
+Block.h
+/Users/ADR/CLionProjects/Flowent/Block.h
+
+/Users/ADR/CLionProjects/Flowent/main.cpp
+iostream
+-
+Grid.h
+/Users/ADR/CLionProjects/Flowent/Grid.h
+setup.h
+/Users/ADR/CLionProjects/Flowent/setup.h
+
+/Users/ADR/CLionProjects/Flowent/setup.cpp
+fstream
+-
+regex
+-
+iostream
+-
+setup.h
+/Users/ADR/CLionProjects/Flowent/setup.h
+
+/Users/ADR/CLionProjects/Flowent/setup.h
+string
+-
+Grid.h
+/Users/ADR/CLionProjects/Flowent/Grid.h
+
