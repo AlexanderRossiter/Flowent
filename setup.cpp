@@ -70,6 +70,10 @@ void setup::calculate_grid_geometries(Grid &g) {
     float delZa;
     float delZb;
 
+    std::vector<float> s1;
+    std::vector<float> s2;
+    std::vector<float> s3;
+
     for (Block& b : g.blocks) {
         for (int i = 0; i < b.ni-1; i++) {
             for (int j = 0; j < b.nj-1; j++) {
@@ -84,9 +88,9 @@ void setup::calculate_grid_geometries(Grid &g) {
                     delZa = b.z[i][j+1][k+1] - b.z[i][j][k];
                     delZb = b.z[i][j+1][k]   - b.z[i][j][k+1];
 
-                    std::vector<float> s1{0.5f * (delZa*delYb - delYa*delZb),
-                                          0.5f * (delXa*delZb - delZa*delXb),
-                                          0.5f * (delYa*delXb - delXa*delYb)};
+                    s1 = {0.5f * (delZa*delYb - delYa*delZb),
+                          0.5f * (delXa*delZb - delZa*delXb),
+                          0.5f * (delYa*delXb - delXa*delYb)};
 
                     delXa = b.x[i+1][j+1][k] - b.x[i][j][k];
                     delXb = b.x[i][j+1][k]   - b.x[i+1][j][k];
@@ -97,9 +101,9 @@ void setup::calculate_grid_geometries(Grid &g) {
                     delZa = b.z[i+1][j+1][k] - b.z[i][j][k];
                     delZb = b.z[i][j+1][k]   - b.z[i+1][j][k];
 
-                    std::vector<float> s2{0.5f * (delZa*delYb - delYa*delZb),
-                                          0.5f * (delXa*delZb - delZa*delXb),
-                                          0.5f * (delYa*delXb - delXa*delYb)};
+                    s2 = {0.5f * (delZa*delYb - delYa*delZb),
+                          0.5f * (delXa*delZb - delZa*delXb),
+                          0.5f * (delYa*delXb - delXa*delYb)};
 
                     delXa = b.x[i+1][j][k+1] - b.x[i][j][k];
                     delXb = b.x[i][j][k+1]   - b.x[i+1][j][k];
@@ -110,9 +114,9 @@ void setup::calculate_grid_geometries(Grid &g) {
                     delZa = b.z[i+1][j][k+1] - b.z[i][j][k];
                     delZb = b.z[i][j][k+1]   - b.z[i+1][j][k];
 
-                    std::vector<float> s3{0.5f * (delZa*delYb - delYa*delZb),
-                                          0.5f * (delXa*delZb - delZa*delXb),
-                                          0.5f * (delYa*delXb - delXa*delYb)};
+                    s3 = {0.5f * (delZa*delYb - delYa*delZb),
+                          0.5f * (delXa*delZb - delZa*delXb),
+                          0.5f * (delYa*delXb - delXa*delYb)};
 
                     b.geom[i][j][k] = Cell(s1, s2, s3);
                     std::cout << b.geom[i][j][k].Ai << ", " << b.geom[i][j][k].Aj << ", " << b.geom[i][j][k].Ak << std::endl;
