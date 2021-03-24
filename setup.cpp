@@ -54,8 +54,74 @@ Grid setup::read_grid_testcase(std::string testcase) {
     }
     Block b = Block(x, y, z);
     Grid g;
-    g.blocks.push_back(b);
+    g.add_block(b);
 
     return g;
 }
+
+void setup::calculate_grid_geometries(Grid &g) {
+    // Calculates the grid cell volumes and normal vectors for the
+    // finite volume method.
+
+    float delXa;
+    float delXb;
+    float delYa;
+    float delYb;
+    float delZa;
+    float delZb;
+
+    for (Block& b : g.blocks) {
+        for (int i = 0; i < b.ni-1; i++) {
+            for (int j = 0; j < b.nj-1; j++) {
+                for (int k = 0; k < b.nk-1; k++) {
+
+                    delXa = b.x[i][j+1][k+1] - b.x[i][j][k];
+                    delXb = b.x[i][j+1][k]   - b.x[i][j][k+1];
+
+                    delYa = b.y[i][j+1][k+1] - b.y[i][j][k];
+                    delYb = b.y[i][j+1][k]   - b.y[i][j][k+1];
+
+                    delZa = b.z[i][j+1][k+1] - b.z[i][j][k];
+                    delZb = b.z[i][j+1][k]   - b.z[i][j][k+1];
+
+                    std::vector<float> s1{0.5f * (delZa*delYb - delYa*delZb),
+                                          0.5f * (delXa*delZb - delZa*delXb),
+                                          0.5f * (delYa*delXb - delXa*delYb)};
+
+                    delXa = b.x[i+1][j+1][k] - b.x[i][j][k];
+                    delXb = b.x[i][j+1][k]   - b.x[i+1][j][k];
+
+                    delYa = b.y[i+1][j+1][k] - b.y[i][j][k];
+                    delYb = b.y[i][j+1][k]   - b.y[i+1][j][k];
+
+                    delZa = b.z[i+1][j+1][k] - b.z[i][j][k];
+                    delZb = b.z[i][j+1][k]   - b.z[i+1][j][k];
+
+                    std::vector<float> s2{0.5f * (delZa*delYb - delYa*delZb),
+                                          0.5f * (delXa*delZb - delZa*delXb),
+                                          0.5f * (delYa*delXb - delXa*delYb)};
+
+                    delXa = b.x[i+1][j][k+1] - b.x[i][j][k];
+                    delXb = b.x[i][j][k+1]   - b.x[i+1][j][k];
+
+                    delYa = b.y[i+1][j][k+1] - b.y[i][j][k];
+                    delYb = b.y[i][j][k+1]   - b.y[i+1][j][k];
+
+                    delZa = b.z[i+1][j][k+1] - b.z[i][j][k];
+                    delZb = b.z[i][j][k+1]   - b.z[i+1][j][k];
+
+                    std::vector<float> s3{0.5f * (delZa*delYb - delYa*delZb),
+                                          0.5f * (delXa*delZb - delZa*delXb),
+                                          0.5f * (delYa*delXb - delXa*delYb)};
+
+                    b.geom[i][j][k] = Cell(s1, s2, s3);
+                    std::cout << b.geom[i][j][k].Ai << ", " << b.geom[i][j][k].Aj << ", " << b.geom[i][j][k].Ak << std::endl;
+
+                }
+            }
+        }
+    }
+}
+
+
 

@@ -86,6 +86,12 @@
 		<Unit filename="/Users/ADR/CLionProjects/Flowent/Block.h">
 			<Option target="Flowent"/>
 		</Unit>
+		<Unit filename="/Users/ADR/CLionProjects/Flowent/Cell.cpp">
+			<Option target="Flowent"/>
+		</Unit>
+		<Unit filename="/Users/ADR/CLionProjects/Flowent/Cell.h">
+			<Option target="Flowent"/>
+		</Unit>
 		<Unit filename="/Users/ADR/CLionProjects/Flowent/Gas.cpp">
 			<Option target="Flowent"/>
 		</Unit>

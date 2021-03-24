@@ -13,6 +13,9 @@ class Grid {
 
 public:
     std::vector<Block> blocks;
+    int nb;
+
+    void add_block(Block& b);
 };
 
 

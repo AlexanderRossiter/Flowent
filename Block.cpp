@@ -13,4 +13,6 @@ Block::Block(std::vector<std::vector<std::vector<float>>> x_, std::vector<std::v
     nj = x[0].size();
     nk = x[0][0].size();
 
+    std::vector<std::vector<std::vector<Cell>>> tmp(ni, std::vector<std::vector<Cell>>(nj, std::vector<Cell>(nk)));
+    geom = tmp;
 }

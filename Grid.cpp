@@ -4,3 +4,7 @@
 
 #include "Grid.h"
 
+void Grid::add_block(Block &b) {
+    blocks.push_back(b);
+    nb = blocks.size();
+}

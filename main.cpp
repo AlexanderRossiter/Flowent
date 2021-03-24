@@ -8,6 +8,7 @@ int main() {
     Grid g = setup::read_grid_testcase("gaussian_bump.txt");
     //std::cout << g.blocks[0].ni << ", " << g.blocks[0].nj << ", " << g.blocks[0].nk << std::endl;
 
+    setup::calculate_grid_geometries(g);
     // Read input data
 
     // Run grid setup

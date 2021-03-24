@@ -170,6 +170,33 @@ Block.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/Block.cpp.s
 .PHONY : Block.cpp.s
 
+Cell.o: Cell.cpp.o
+
+.PHONY : Cell.o
+
+# target to build an object file
+Cell.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/Cell.cpp.o
+.PHONY : Cell.cpp.o
+
+Cell.i: Cell.cpp.i
+
+.PHONY : Cell.i
+
+# target to preprocess a source file
+Cell.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/Cell.cpp.i
+.PHONY : Cell.cpp.i
+
+Cell.s: Cell.cpp.s
+
+.PHONY : Cell.s
+
+# target to generate assembly for a file
+Cell.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/Cell.cpp.s
+.PHONY : Cell.cpp.s
+
 Gas.o: Gas.cpp.o
 
 .PHONY : Gas.o
@@ -317,6 +344,9 @@ help:
 	@echo "... Block.o"
 	@echo "... Block.i"
 	@echo "... Block.s"
+	@echo "... Cell.o"
+	@echo "... Cell.i"
+	@echo "... Cell.s"
 	@echo "... Gas.o"
 	@echo "... Gas.i"
 	@echo "... Gas.s"
