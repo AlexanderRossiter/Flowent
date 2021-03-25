@@ -6,13 +6,14 @@
 #include <regex>
 #include <iostream>
 #include "setup.h"
+#include "util.h"
 //Grid setup::read_grid() {
 //
 //}
 
 Grid setup::read_grid_testcase(std::string testcase) {
     //std::ifstream file("/Users/ADR/CLionProjects/Flowent/test_cases/" + testcase);
-    std::ifstream file("..\\test_cases\\" + testcase);
+    std::ifstream file("../test_cases/" + testcase);
     if (file.fail()) {
         std::cout << "Failed to open file." << std::endl;
         throw std::exception();
@@ -35,10 +36,9 @@ Grid setup::read_grid_testcase(std::string testcase) {
     //std::cout << ni << ", " << nj << ", " << nk << std::endl;
 
     // Initialise x, y, z
-    std::vector<std::vector<std::vector<float>>> x(ni, std::vector<std::vector<float>>(nj, std::vector<float>(nk)));
-    std::vector<std::vector<std::vector<float>>> y(ni, std::vector<std::vector<float>>(nj, std::vector<float>(nk)));
-    std::vector<std::vector<std::vector<float>>> z(ni, std::vector<std::vector<float>>(nj, std::vector<float>(nk)));
-
+    vector3d<float> x(boost::extents[ni][nj][nk]);
+    vector3d<float> y(boost::extents[ni][nj][nk]);
+    vector3d<float> z(boost::extents[ni][nj][nk]);
 
     for (int i = 0; i < ni; i++) {
         for (int j = 0; j < nj; j++) {
@@ -75,84 +75,90 @@ void setup::calculate_grid_geometries(Grid &g) {
 
     for (Block& b : g.blocks) {
         // All cells except external faces.
-        for (int i = 0; i < b.ni-1; i++) {
-            for (int j = 0; j < b.nj-1; j++) {
-                for (int k = 0; k < b.nk-1; k++) {
+        std::cout << "Calculating surface vectors..." << std::endl;
+        setup::calculate_block_face_vectors(b);
+        setup::calculate_block_volumes(b);
+    }
+}
 
-                    v1 = {i, j, k};
-                    v2 = {i, j+1, k+1};
-                    v3 = {i, j, k+1};
-                    v4 = {i, j+1, k};
-                    si = setup::calculate_face_vector(v1, v2, v3, v4, b);
+void setup::calculate_block_face_vectors(Block& b) {
+    std::vector<float> si;
+    std::vector<float> sj;
+    std::vector<float> sk;
 
-                    v1 = {i, j, k};
-                    v2 = {i+1, j+1, k};
-                    v3 = {i+1, j, k};
-                    v4 = {i, j+1, k};
-                    sk = setup::calculate_face_vector(v1, v2, v3, v4, b);
-
-                    v1 = {i, j, k};
-                    v2 = {i+1, j, k+1};
-                    v3 = {i+1, j, k};
-                    v4 = {i, j, k+1};
-                    sj = setup::calculate_face_vector(v1, v2, v3, v4, b);
-
-                    b.geom[i][j][k] = Cell(si, sj, sk);
-                }
-            }
-        }
-
-        // i=const end face
-        int i = b.ni-1;
+    std::vector<int> v1;
+    std::vector<int> v2;
+    std::vector<int> v3;
+    std::vector<int> v4;
+    for (int i = 0; i < b.ni-1; i++) {
         for (int j = 0; j < b.nj-1; j++) {
             for (int k = 0; k < b.nk-1; k++) {
-                std::cout << i << " " << j << " " << k << std::endl;
 
                 v1 = {i, j, k};
                 v2 = {i, j+1, k+1};
                 v3 = {i, j, k+1};
                 v4 = {i, j+1, k};
                 si = setup::calculate_face_vector(v1, v2, v3, v4, b);
-                sj = {0, 0, 0};
-                sk = {0, 0, 0};
-                b.geom[i][j][k] = Cell(si, sj, sk);
-            }
-        }
 
-        // j=const end face
-        int j = b.nj-1;
-        for (int i= 0; i < b.ni-1; i++) {
-            for (int k = 0; k < b.nk-1; k++) {
-                v1 = {i, j, k};
-                v2 = {i+1, j, k+1};
-                v3 = {i+1, j, k};
-                v4 = {i, j, k+1};
-                sj = setup::calculate_face_vector(v1, v2, v3, v4, b);
-                si = {0, 0, 0};
-                sk = {0, 0, 0};
-                b.geom[i][j][k] = Cell(si, sj, sk);
-            }
-        }
-        // k=const end face
-        int k = b.nk-1;
-        for (int i = 0; i < b.ni-1; i++) {
-            for (int j = 0; j < b.nj-1; j++) {
                 v1 = {i, j, k};
                 v2 = {i+1, j+1, k};
                 v3 = {i+1, j, k};
                 v4 = {i, j+1, k};
                 sk = setup::calculate_face_vector(v1, v2, v3, v4, b);
-                si = {0, 0, 0};
-                sj = {0, 0, 0};
+
+                v1 = {i, j, k};
+                v2 = {i+1, j, k+1};
+                v3 = {i+1, j, k};
+                v4 = {i, j, k+1};
+                sj = setup::calculate_face_vector(v1, v2, v3, v4, b);
+
                 b.geom[i][j][k] = Cell(si, sj, sk);
             }
         }
-//        k = 0;
-//        for (int i = 0; i < b.ni; i++) {
-//            for (int j = 0; j < b.nj; j++) {
-//                std::cout << b.geom[i][j][k].Ai << ", " << b.geom[i][j][k].Aj << ", " << b.geom[i][j][k].Ak << std::endl;
-//            }
-//        }
+    }
+
+    // i=const end face
+    int i = b.ni-1;
+    for (int j = 0; j < b.nj-1; j++) {
+        for (int k = 0; k < b.nk-1; k++) {
+            v1 = {i, j, k};
+            v2 = {i, j+1, k+1};
+            v3 = {i, j, k+1};
+            v4 = {i, j+1, k};
+            si = setup::calculate_face_vector(v1, v2, v3, v4, b);
+            sj = {0, 0, 0};
+            sk = {0, 0, 0};
+            b.geom[i][j][k] = Cell(si, sj, sk);
+        }
+    }
+
+    // j=const end face
+    int j = b.nj-1;
+    for (int i= 0; i < b.ni-1; i++) {
+        for (int k = 0; k < b.nk-1; k++) {
+            v1 = {i, j, k};
+            v2 = {i+1, j, k+1};
+            v3 = {i+1, j, k};
+            v4 = {i, j, k+1};
+            sj = setup::calculate_face_vector(v1, v2, v3, v4, b);
+            si = {0, 0, 0};
+            sk = {0, 0, 0};
+            b.geom[i][j][k] = Cell(si, sj, sk);
+        }
+    }
+    // k=const end face
+    int k = b.nk-1;
+    for (int i = 0; i < b.ni-1; i++) {
+        for (int j = 0; j < b.nj-1; j++) {
+            v1 = {i, j, k};
+            v2 = {i+1, j+1, k};
+            v3 = {i+1, j, k};
+            v4 = {i, j+1, k};
+            sk = setup::calculate_face_vector(v1, v2, v3, v4, b);
+            si = {0, 0, 0};
+            sj = {0, 0, 0};
+            b.geom[i][j][k] = Cell(si, sj, sk);
+        }
     }
 }
 
@@ -173,6 +179,61 @@ std::vector<float> setup::calculate_face_vector(std::vector<int>& v1, std::vecto
                              0.5f * (delYa*delXb - delXa*delYb)};
 
     return s1;
+}
+
+void setup::calculate_block_volumes(Block& b) {
+    float v;
+    util::point r{};
+    util::point ro{};
+
+    for (int i = 0; i < b.ni-1; i++) {
+        for (int j = 0; j < b.nj-1; j++) {
+            for (int k = 0; k < b.nk-1; k++) {
+                v = 0.f;
+                ro.x = b.x[i][j][k];
+                ro.y = b.y[i][j][k];
+                ro.z = b.z[i][j][k];
+
+                // Three faces that are stored in this cell.
+                // i-face
+                r.x = 0.25f * (b.x[i][j][k] + b.x[i][j+1][k] + b.x[i][j][k+1] + b.x[i][j+1][k+1]);
+                r.y = 0.25f * (b.y[i][j][k] + b.y[i][j+1][k] + b.y[i][j][k+1] + b.y[i][j+1][k+1]);
+                r.z = 0.25f * (b.z[i][j][k] + b.z[i][j+1][k] + b.z[i][j][k+1] + b.z[i][j+1][k+1]);
+                v += (r.x-ro.x)*b.geom[i][j][k].Si[0] + (r.y-ro.y)*b.geom[i][j][k].Si[1] + (r.z-ro.z)*b.geom[i][j][k].Si[2];
+                // j-face
+                r.x = 0.25f * (b.x[i][j][k] + b.x[i+1][j][k] + b.x[i][j][k+1] + b.x[i+1][j][k+1]);
+                r.y = 0.25f * (b.y[i][j][k] + b.x[i+1][j][k] + b.y[i][j][k+1] + b.y[i+1][j][k+1]);
+                r.z = 0.25f * (b.z[i][j][k] + b.z[i+1][j][k] + b.z[i][j][k+1] + b.z[i+1][j][k+1]);
+                v += (r.x-ro.x)*b.geom[i][j][k].Sj[0] + (r.y-ro.y)*b.geom[i][j][k].Sj[1] + (r.z-ro.z)*b.geom[i][j][k].Sj[2];
+                // k-face
+                r.x = 0.25f * (b.x[i][j][k] + b.x[i+1][j][k] + b.x[i][j+1][k] + b.x[i+1][j+1][k]);
+                r.y = 0.25f * (b.y[i][j][k] + b.y[i+1][j][k] + b.y[i][j+1][k] + b.y[i+1][j+1][k]);
+                r.z = 0.25f * (b.z[i][j][k] + b.z[i+1][j][k] + b.z[i][j+1][k] + b.z[i+1][j+1][k]);
+                v += (r.x-ro.x)*b.geom[i][j][k].Sk[0] + (r.y-ro.y)*b.geom[i][j][k].Sk[1] + (r.z-ro.z)*b.geom[i][j][k].Sk[2];
+
+                // Faces that are stored in adjacent cells.
+                // i-face stored in next cell
+                r.x = 0.25f * (b.x[i+1][j][k] + b.x[i+1][j+1][k] + b.x[i+1][j][k+1] + b.x[i+1][j+1][k+1]);
+                r.y = 0.25f * (b.y[i+1][j][k] + b.y[i+1][j+1][k] + b.y[i+1][j][k+1] + b.y[i+1][j+1][k+1]);
+                r.z = 0.25f * (b.z[i+1][j][k] + b.z[i+1][j+1][k] + b.z[i+1][j][k+1] + b.z[i+1][j+1][k+1]);
+                v += -(r.x-ro.x)*b.geom[i+1][j][k].Si[0] - (r.y-ro.y)*b.geom[i+1][j][k].Si[1] - (r.y-ro.y)*b.geom[i+1][j][k].Si[2];
+                // j-face stored in next cell
+                r.x = 0.25f * (b.x[i][j+1][k] + b.x[i+1][j+1][k] + b.x[i][j+1][k+1] + b.x[i+1][j+1][k+1]);
+                r.y = 0.25f * (b.y[i][j+1][k] + b.x[i+1][j+1][k] + b.y[i][j+1][k+1] + b.y[i+1][j+1][k+1]);
+                r.z = 0.25f * (b.z[i][j+1][k] + b.z[i+1][j+1][k] + b.z[i][j+1][k+1] + b.z[i+1][j+1][k+1]);
+                v += -(r.x-ro.x)*b.geom[i][j+1][k].Sj[0] - (r.y-ro.y)*b.geom[i][j+1][k].Sj[1] - (r.z-ro.z)*b.geom[i][j+1][k].Sj[2];
+                // k-face stored in next cell
+                r.x = 0.25f * (b.x[i][j][k+1] + b.x[i+1][j][k+1] + b.x[i][j+1][k+1] + b.x[i+1][j+1][k+1]);
+                r.y = 0.25f * (b.y[i][j][k+1] + b.y[i+1][j][k+1] + b.y[i][j+1][k+1] + b.y[i+1][j+1][k+1]);
+                r.z = 0.25f * (b.z[i][j][k+1] + b.z[i+1][j][k+1] + b.z[i][j+1][k+1] + b.z[i+1][j+1][k+1]);
+                v += -(r.x-ro.x)*b.geom[i][j][k+1].Sk[0] - (r.y-ro.y)*b.geom[i][j][k+1].Sk[1] - (r.z-ro.z)*b.geom[i][j][k+1].Sk[2];
+
+
+                b.volume[i][j][k] = 0.333333333f * v;
+                std::cout << b.volume[i][j][k] << std::endl;
+            }
+        }
+    }
 }
 
 

@@ -44,6 +44,7 @@
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
+					<Add directory="/usr/local/boost_1_75_0"/>
 					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
 					<Add directory="/usr/local/include"/>
 					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/11.0.3/include"/>
@@ -65,6 +66,7 @@
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
+					<Add directory="/usr/local/boost_1_75_0"/>
 					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
 					<Add directory="/usr/local/include"/>
 					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/11.0.3/include"/>
@@ -117,6 +119,15 @@
 			<Option target="Flowent"/>
 		</Unit>
 		<Unit filename="/Users/ADR/CLionProjects/Flowent/setup.h">
+			<Option target="Flowent"/>
+		</Unit>
+		<Unit filename="/Users/ADR/CLionProjects/Flowent/typedefinitions.h">
+			<Option target="Flowent"/>
+		</Unit>
+		<Unit filename="/Users/ADR/CLionProjects/Flowent/util.cpp">
+			<Option target="Flowent"/>
+		</Unit>
+		<Unit filename="/Users/ADR/CLionProjects/Flowent/util.h">
 			<Option target="Flowent"/>
 		</Unit>
 		<Unit filename="/Users/ADR/CLionProjects/Flowent/CMakeLists.txt">

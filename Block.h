@@ -8,21 +8,29 @@
 
 #include <vector>
 #include "Cell.h"
+#include "boost/multi_array.hpp"
+#include "typedefinitions.h"
 
 class Block {
 
 public:
-    std::vector<std::vector<std::vector<float>>> x;
-    std::vector<std::vector<std::vector<float>>> y;
-    std::vector<std::vector<std::vector<float>>> z;
-    std::vector<std::vector<std::vector<Cell>>> geom; // Face vectors.
+    vector3d<float> x;
+    vector3d<float> y;
+    vector3d<float> z;
+    vector3d<float> volume;
+    vector3d<Cell> geom;
+
+//    std::vector<std::vector<std::vector<float>>> x;
+//    std::vector<std::vector<std::vector<float>>> y;
+//    std::vector<std::vector<std::vector<float>>> z;
+//    std::vector<std::vector<std::vector<Cell>>> geom; // Face vectors.
+//    std::vector<std::vector<std::vector<float>>> volume; // Face vectors.
+
     int ni;
     int nj;
     int nk;
 
-    Block(std::vector<std::vector<std::vector<float>>> x_,
-          std::vector<std::vector<std::vector<float>>> y_,
-          std::vector<std::vector<std::vector<float>>> z_);
+    Block(vector3d<float> x_, vector3d<float> y_, vector3d<float> z_);
 
 
 };
