@@ -11,7 +11,8 @@
 //}
 
 Grid setup::read_grid_testcase(std::string testcase) {
-    std::ifstream file("/Users/ADR/CLionProjects/Flowent/test_cases/" + testcase);
+    //std::ifstream file("/Users/ADR/CLionProjects/Flowent/test_cases/" + testcase);
+    std::ifstream file("..\\test_cases\\" + testcase);
     if (file.fail()) {
         std::cout << "Failed to open file." << std::endl;
         throw std::exception();
@@ -63,68 +64,115 @@ void setup::calculate_grid_geometries(Grid &g) {
     // Calculates the grid cell volumes and normal vectors for the
     // finite volume method.
 
-    float delXa;
-    float delXb;
-    float delYa;
-    float delYb;
-    float delZa;
-    float delZb;
+    std::vector<float> si;
+    std::vector<float> sj;
+    std::vector<float> sk;
 
-    std::vector<float> s1;
-    std::vector<float> s2;
-    std::vector<float> s3;
+    std::vector<int> v1;
+    std::vector<int> v2;
+    std::vector<int> v3;
+    std::vector<int> v4;
 
     for (Block& b : g.blocks) {
+        // All cells except external faces.
         for (int i = 0; i < b.ni-1; i++) {
             for (int j = 0; j < b.nj-1; j++) {
                 for (int k = 0; k < b.nk-1; k++) {
 
-                    delXa = b.x[i][j+1][k+1] - b.x[i][j][k];
-                    delXb = b.x[i][j+1][k]   - b.x[i][j][k+1];
+                    v1 = {i, j, k};
+                    v2 = {i, j+1, k+1};
+                    v3 = {i, j, k+1};
+                    v4 = {i, j+1, k};
+                    si = setup::calculate_face_vector(v1, v2, v3, v4, b);
 
-                    delYa = b.y[i][j+1][k+1] - b.y[i][j][k];
-                    delYb = b.y[i][j+1][k]   - b.y[i][j][k+1];
+                    v1 = {i, j, k};
+                    v2 = {i+1, j+1, k};
+                    v3 = {i+1, j, k};
+                    v4 = {i, j+1, k};
+                    sk = setup::calculate_face_vector(v1, v2, v3, v4, b);
 
-                    delZa = b.z[i][j+1][k+1] - b.z[i][j][k];
-                    delZb = b.z[i][j+1][k]   - b.z[i][j][k+1];
+                    v1 = {i, j, k};
+                    v2 = {i+1, j, k+1};
+                    v3 = {i+1, j, k};
+                    v4 = {i, j, k+1};
+                    sj = setup::calculate_face_vector(v1, v2, v3, v4, b);
 
-                    s1 = {0.5f * (delZa*delYb - delYa*delZb),
-                          0.5f * (delXa*delZb - delZa*delXb),
-                          0.5f * (delYa*delXb - delXa*delYb)};
-
-                    delXa = b.x[i+1][j+1][k] - b.x[i][j][k];
-                    delXb = b.x[i][j+1][k]   - b.x[i+1][j][k];
-
-                    delYa = b.y[i+1][j+1][k] - b.y[i][j][k];
-                    delYb = b.y[i][j+1][k]   - b.y[i+1][j][k];
-
-                    delZa = b.z[i+1][j+1][k] - b.z[i][j][k];
-                    delZb = b.z[i][j+1][k]   - b.z[i+1][j][k];
-
-                    s2 = {0.5f * (delZa*delYb - delYa*delZb),
-                          0.5f * (delXa*delZb - delZa*delXb),
-                          0.5f * (delYa*delXb - delXa*delYb)};
-
-                    delXa = b.x[i+1][j][k+1] - b.x[i][j][k];
-                    delXb = b.x[i][j][k+1]   - b.x[i+1][j][k];
-
-                    delYa = b.y[i+1][j][k+1] - b.y[i][j][k];
-                    delYb = b.y[i][j][k+1]   - b.y[i+1][j][k];
-
-                    delZa = b.z[i+1][j][k+1] - b.z[i][j][k];
-                    delZb = b.z[i][j][k+1]   - b.z[i+1][j][k];
-
-                    s3 = {0.5f * (delZa*delYb - delYa*delZb),
-                          0.5f * (delXa*delZb - delZa*delXb),
-                          0.5f * (delYa*delXb - delXa*delYb)};
-
-                    b.geom[i][j][k] = Cell(s1, s2, s3);
-                    std::cout << b.geom[i][j][k].Ai << ", " << b.geom[i][j][k].Aj << ", " << b.geom[i][j][k].Ak << std::endl;
-
+                    b.geom[i][j][k] = Cell(si, sj, sk);
                 }
             }
         }
+
+        // i=const end face
+        int i = b.ni-1;
+        for (int j = 0; j < b.nj-1; j++) {
+            for (int k = 0; k < b.nk-1; k++) {
+                std::cout << i << " " << j << " " << k << std::endl;
+
+                v1 = {i, j, k};
+                v2 = {i, j+1, k+1};
+                v3 = {i, j, k+1};
+                v4 = {i, j+1, k};
+                si = setup::calculate_face_vector(v1, v2, v3, v4, b);
+                sj = {0, 0, 0};
+                sk = {0, 0, 0};
+                b.geom[i][j][k] = Cell(si, sj, sk);
+            }
+        }
+
+        // j=const end face
+        int j = b.nj-1;
+        for (int i= 0; i < b.ni-1; i++) {
+            for (int k = 0; k < b.nk-1; k++) {
+                v1 = {i, j, k};
+                v2 = {i+1, j, k+1};
+                v3 = {i+1, j, k};
+                v4 = {i, j, k+1};
+                sj = setup::calculate_face_vector(v1, v2, v3, v4, b);
+                si = {0, 0, 0};
+                sk = {0, 0, 0};
+                b.geom[i][j][k] = Cell(si, sj, sk);
+            }
+        }
+        // k=const end face
+        int k = b.nk-1;
+        for (int i = 0; i < b.ni-1; i++) {
+            for (int j = 0; j < b.nj-1; j++) {
+                v1 = {i, j, k};
+                v2 = {i+1, j+1, k};
+                v3 = {i+1, j, k};
+                v4 = {i, j+1, k};
+                sk = setup::calculate_face_vector(v1, v2, v3, v4, b);
+                si = {0, 0, 0};
+                sj = {0, 0, 0};
+                b.geom[i][j][k] = Cell(si, sj, sk);
+            }
+        }
+//        k = 0;
+//        for (int i = 0; i < b.ni; i++) {
+//            for (int j = 0; j < b.nj; j++) {
+//                std::cout << b.geom[i][j][k].Ai << ", " << b.geom[i][j][k].Aj << ", " << b.geom[i][j][k].Ak << std::endl;
+//            }
+//        }
     }
+}
+
+std::vector<float> setup::calculate_face_vector(std::vector<int>& v1, std::vector<int>& v2,
+                                         std::vector<int>& v3, std::vector<int>& v4,
+                                         Block& b) {
+    float delXa = b.x[v2[0]][v2[1]][v2[2]] - b.x[v1[0]][v1[1]][v1[2]];
+    float delXb = b.x[v4[0]][v4[1]][v4[2]] - b.x[v3[0]][v3[1]][v3[2]];
+
+    float delYa = b.y[v2[0]][v2[1]][v2[2]] - b.y[v1[0]][v1[1]][v1[2]];
+    float delYb = b.y[v4[0]][v4[1]][v4[2]] - b.y[v3[0]][v3[1]][v3[2]];
+
+    float delZa = b.z[v2[0]][v2[1]][v2[2]] - b.z[v1[0]][v1[1]][v1[2]];
+    float delZb = b.z[v4[0]][v4[1]][v4[2]] - b.z[v3[0]][v3[1]][v3[2]];
+
+    std::vector<float> s1 = {0.5f * (delZa*delYb - delYa*delZb),
+                             0.5f * (delXa*delZb - delZa*delXb),
+                             0.5f * (delYa*delXb - delXa*delYb)};
+
+    return s1;
 }
 
 

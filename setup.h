@@ -16,7 +16,9 @@ namespace setup {
     params read_input_params();
     void calculate_grid_geometries(Grid& g);
     bool check_grid(Grid& g);
-
+    std::vector<float> calculate_face_vector(std::vector<int>& v1, std::vector<int>& v2,
+                                             std::vector<int>& v3, std::vector<int>& v4,
+                                             Block& b);
 }
 
 #endif //FLOWENT_SETUP_H
