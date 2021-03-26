@@ -12,7 +12,7 @@
 //
 //}
 
-Grid setup::read_grid_testcase(std::string testcase) {
+Grid setup::read_grid_testcase(std::string& testcase) {
     //std::ifstream file("/Users/ADR/CLionProjects/Flowent/test_cases/" + testcase);
     std::ifstream file("../test_cases/" + testcase);
     if (file.fail()) {

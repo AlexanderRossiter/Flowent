@@ -13,7 +13,7 @@ namespace setup {
     struct params{};
 
     Grid read_grid();
-    Grid read_grid_testcase(std::string testcase);
+    Grid read_grid_testcase(std::string& testcase);
     params read_input_params();
     void calculate_grid_geometries(Grid& g);
     bool check_grid(Grid& g);
