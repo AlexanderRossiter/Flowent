@@ -112,6 +112,9 @@
 		<Unit filename="/Users/ADR/CLionProjects/Flowent/algo.h">
 			<Option target="Flowent"/>
 		</Unit>
+		<Unit filename="/Users/ADR/CLionProjects/Flowent/cell_face_relation.h">
+			<Option target="Flowent"/>
+		</Unit>
 		<Unit filename="/Users/ADR/CLionProjects/Flowent/main.cpp">
 			<Option target="Flowent"/>
 		</Unit>

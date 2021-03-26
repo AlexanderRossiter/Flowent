@@ -7,6 +7,7 @@
 
 #include <string>
 #include "Grid.h"
+#include "util.h"
 
 namespace setup {
     struct params{};
@@ -21,6 +22,7 @@ namespace setup {
                                              Block& b);
     void calculate_block_face_vectors(Block& b);
     void calculate_block_volumes(Block& b);
+    util::point setup::get_face_mid_vector(int i, int j, int k, Block& b);
 }
 
 #endif //FLOWENT_SETUP_H
