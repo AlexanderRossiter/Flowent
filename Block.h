@@ -8,7 +8,6 @@
 
 #include <vector>
 #include "Cell.h"
-#include "boost/multi_array.hpp"
 #include "typedefinitions.h"
 
 class Block {

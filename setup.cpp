@@ -7,6 +7,7 @@
 #include <iostream>
 #include "setup.h"
 #include "util.h"
+#include "cell_face_relation.h"
 //Grid setup::read_grid() {
 //
 //}
@@ -85,47 +86,38 @@ void setup::calculate_block_face_vectors(Block& b) {
     std::vector<float> si;
     std::vector<float> sj;
     std::vector<float> sk;
+    std::vector<std::vector<float>> sijk;
 
     std::vector<int> v1;
     std::vector<int> v2;
     std::vector<int> v3;
     std::vector<int> v4;
+
+    std::vector<std::vector<int>> vertex_ijk;
     for (int i = 0; i < b.ni-1; i++) {
         for (int j = 0; j < b.nj-1; j++) {
             for (int k = 0; k < b.nk-1; k++) {
-
-                v1 = {i, j, k};
-                v2 = {i, j+1, k+1};
-                v3 = {i, j, k+1};
-                v4 = {i, j+1, k};
-                si = setup::calculate_face_vector(v1, v2, v3, v4, b);
-
-                v1 = {i, j, k};
-                v2 = {i+1, j+1, k};
-                v3 = {i+1, j, k};
-                v4 = {i, j+1, k};
-                sk = setup::calculate_face_vector(v1, v2, v3, v4, b);
-
-                v1 = {i, j, k};
-                v2 = {i+1, j, k+1};
-                v3 = {i+1, j, k};
-                v4 = {i, j, k+1};
-                sj = setup::calculate_face_vector(v1, v2, v3, v4, b);
-
-                b.geom[i][j][k] = Cell(si, sj, sk);
+                for (int faceId = 0; faceId < 3; faceId++) {
+                    // Loop through the 3 faces that are stored in this cell.
+                    // face_verts[faceId][vertex][index]
+                    // faceId - 0:iface, 1:jface, 2:kface
+                    vertex_ijk = setup::get_vertex_ijk_vectors(faceId, i, j, k);
+                    sijk[0] = setup::calculate_face_vector(vertex_ijk[0], vertex_ijk[1],
+                                                           vertex_ijk[2], vertex_ijk[3], b);
+                }
+                b.geom[i][j][k] = Cell(sijk[0], sijk[1], sijk[2]);
             }
         }
     }
 
     // i=const end face
     int i = b.ni-1;
+    int faceId = 0;
     for (int j = 0; j < b.nj-1; j++) {
         for (int k = 0; k < b.nk-1; k++) {
-            v1 = {i, j, k};
-            v2 = {i, j+1, k+1};
-            v3 = {i, j, k+1};
-            v4 = {i, j+1, k};
-            si = setup::calculate_face_vector(v1, v2, v3, v4, b);
+            vertex_ijk = setup::get_vertex_ijk_vectors(faceId, i, j, k);
+            si = setup::calculate_face_vector(vertex_ijk[0], vertex_ijk[1],
+                                              vertex_ijk[2], vertex_ijk[3], b);
             sj = {0, 0, 0};
             sk = {0, 0, 0};
             b.geom[i][j][k] = Cell(si, sj, sk);
@@ -134,13 +126,12 @@ void setup::calculate_block_face_vectors(Block& b) {
 
     // j=const end face
     int j = b.nj-1;
+    faceId = 1;
     for (int i= 0; i < b.ni-1; i++) {
         for (int k = 0; k < b.nk-1; k++) {
-            v1 = {i, j, k};
-            v2 = {i+1, j, k+1};
-            v3 = {i+1, j, k};
-            v4 = {i, j, k+1};
-            sj = setup::calculate_face_vector(v1, v2, v3, v4, b);
+            vertex_ijk = setup::get_vertex_ijk_vectors(faceId, i, j, k);
+            sj = setup::calculate_face_vector(vertex_ijk[0], vertex_ijk[1],
+                                              vertex_ijk[2], vertex_ijk[3], b);
             si = {0, 0, 0};
             sk = {0, 0, 0};
             b.geom[i][j][k] = Cell(si, sj, sk);
@@ -148,13 +139,12 @@ void setup::calculate_block_face_vectors(Block& b) {
     }
     // k=const end face
     int k = b.nk-1;
+    faceId = 2;
     for (int i = 0; i < b.ni-1; i++) {
         for (int j = 0; j < b.nj-1; j++) {
-            v1 = {i, j, k};
-            v2 = {i+1, j+1, k};
-            v3 = {i+1, j, k};
-            v4 = {i, j+1, k};
-            sk = setup::calculate_face_vector(v1, v2, v3, v4, b);
+            vertex_ijk = setup::get_vertex_ijk_vectors(faceId, i, j, k);
+            sk = setup::calculate_face_vector(vertex_ijk[0], vertex_ijk[1],
+                                              vertex_ijk[2], vertex_ijk[3], b);
             si = {0, 0, 0};
             sj = {0, 0, 0};
             b.geom[i][j][k] = Cell(si, sj, sk);
@@ -179,6 +169,20 @@ std::vector<float> setup::calculate_face_vector(std::vector<int>& v1, std::vecto
                              0.5f * (delYa*delXb - delXa*delYb)};
 
     return s1;
+}
+
+std::vector<std::vector<int>> setup::get_vertex_ijk_vectors(int faceId, int i, int j, int k) {
+    std::vector<int> v1;
+    std::vector<int> v2;
+    std::vector<int> v3;
+    std::vector<int> v4;
+
+    v1 = {face_verts[faceId][0][0] + i, face_verts[faceId][0][1] + j, face_verts[faceId][0][2] + k};
+    v2 = {face_verts[faceId][2][0] + i, face_verts[faceId][2][1] + j, face_verts[faceId][2][2] + k};
+    v3 = {face_verts[faceId][3][0] + i, face_verts[faceId][3][1] + j, face_verts[faceId][3][2] + k};
+    v4 = {face_verts[faceId][1][0] + i, face_verts[faceId][1][1] + j, face_verts[faceId][1][2] + k};
+
+    return std::vector<std::vector<int>> {v1,v2,v3,v4};
 }
 
 void setup::calculate_block_volumes(Block& b) {
