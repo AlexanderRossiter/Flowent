@@ -4,8 +4,9 @@
 
 #ifndef FLOWENT_TYPEDEFINITIONS_H
 #define FLOWENT_TYPEDEFINITIONS_H
+#include "boost/multi_array.hpp"
 template<typename T>
 using vector3d = boost::multi_array<T, 3>;
 template<typename T, int N>
-using vectornd = boost::multi_array<T, N> ;
+using vectornd = boost::multi_array<T, N>;
 #endif //FLOWENT_TYPEDEFINITIONS_H

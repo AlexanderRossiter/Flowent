@@ -11,8 +11,6 @@ vector
 -
 Cell.h
 /Users/ADR/CLionProjects/Flowent/Cell.h
-boost/multi_array.hpp
-/Users/ADR/CLionProjects/Flowent/boost/multi_array.hpp
 typedefinitions.h
 /Users/ADR/CLionProjects/Flowent/typedefinitions.h
 
@@ -26,6 +24,8 @@ vector
 Block.h
 /Users/ADR/CLionProjects/Flowent/Block.h
 
+/Users/ADR/CLionProjects/Flowent/cell_face_relation.h
+
 /Users/ADR/CLionProjects/Flowent/setup.cpp
 fstream
 -
@@ -37,18 +37,20 @@ setup.h
 /Users/ADR/CLionProjects/Flowent/setup.h
 util.h
 /Users/ADR/CLionProjects/Flowent/util.h
+cell_face_relation.h
+/Users/ADR/CLionProjects/Flowent/cell_face_relation.h
 
 /Users/ADR/CLionProjects/Flowent/setup.h
 string
 -
 Grid.h
 /Users/ADR/CLionProjects/Flowent/Grid.h
-
-/Users/ADR/CLionProjects/Flowent/typedefinitions.h
-
-/Users/ADR/CLionProjects/Flowent/util.cpp
 util.h
 /Users/ADR/CLionProjects/Flowent/util.h
+
+/Users/ADR/CLionProjects/Flowent/typedefinitions.h
+boost/multi_array.hpp
+/Users/ADR/CLionProjects/Flowent/boost/multi_array.hpp
 
 /Users/ADR/CLionProjects/Flowent/util.h
 

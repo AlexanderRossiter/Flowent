@@ -86,7 +86,7 @@ void setup::calculate_block_face_vectors(Block& b) {
     std::vector<float> si;
     std::vector<float> sj;
     std::vector<float> sk;
-    std::vector<std::vector<float>> sijk;
+    std::vector<std::vector<float>> sijk(3, std::vector<float>(3));
 
     std::vector<int> v1;
     std::vector<int> v2;
@@ -102,10 +102,14 @@ void setup::calculate_block_face_vectors(Block& b) {
                     // face_verts[faceId][vertex][index]
                     // faceId - 0:iface, 1:jface, 2:kface
                     vertex_ijk = setup::get_vertex_ijk_vectors(faceId, i, j, k);
-                    sijk[0] = setup::calculate_face_vector(vertex_ijk[0], vertex_ijk[1],
+                    sijk[faceId] = setup::calculate_face_vector(vertex_ijk[0], vertex_ijk[1],
                                                            vertex_ijk[2], vertex_ijk[3], b);
                 }
                 b.geom[i][j][k] = Cell(sijk[0], sijk[1], sijk[2]);
+                //std::cout << b.geom[i][j][k].Ai << ", " << b.geom[i][j][k].Aj << ", " << b.geom[i][j][k].Ak << std::endl;
+                std::cout << "(" << b.geom[i][j][k].Si[0] << ", " << b.geom[i][j][k].Si[1] << ", " << b.geom[i][j][k].Si[2] << "), ";
+                std::cout << "(" << b.geom[i][j][k].Sj[0] << ", " << b.geom[i][j][k].Sj[1] << ", " << b.geom[i][j][k].Sj[2] << "), ";
+                std::cout << "(" << b.geom[i][j][k].Sk[0] << ", " << b.geom[i][j][k].Sk[1] << ", " << b.geom[i][j][k].Sk[2] << ")" << std::endl;
             }
         }
     }
@@ -116,7 +120,7 @@ void setup::calculate_block_face_vectors(Block& b) {
     for (int j = 0; j < b.nj-1; j++) {
         for (int k = 0; k < b.nk-1; k++) {
             vertex_ijk = setup::get_vertex_ijk_vectors(faceId, i, j, k);
-            sijk[0] = setup::calculate_face_vector(vertex_ijk[0], vertex_ijk[1],
+            sijk[faceId] = setup::calculate_face_vector(vertex_ijk[0], vertex_ijk[1],
                                               vertex_ijk[2], vertex_ijk[3], b);
             sijk[1] = {0, 0, 0};
             sijk[2] = {0, 0, 0};
@@ -129,8 +133,9 @@ void setup::calculate_block_face_vectors(Block& b) {
     faceId = 1;
     for (int i= 0; i < b.ni-1; i++) {
         for (int k = 0; k < b.nk-1; k++) {
+
             vertex_ijk = setup::get_vertex_ijk_vectors(faceId, i, j, k);
-            sijk[1] = setup::calculate_face_vector(vertex_ijk[0], vertex_ijk[1],
+            sijk[faceId] = setup::calculate_face_vector(vertex_ijk[0], vertex_ijk[1],
                                               vertex_ijk[2], vertex_ijk[3], b);
             sijk[0] = {0, 0, 0};
             sijk[2] = {0, 0, 0};
@@ -143,11 +148,11 @@ void setup::calculate_block_face_vectors(Block& b) {
     for (int i = 0; i < b.ni-1; i++) {
         for (int j = 0; j < b.nj-1; j++) {
             vertex_ijk = setup::get_vertex_ijk_vectors(faceId, i, j, k);
-            sijk[2] = setup::calculate_face_vector(vertex_ijk[0], vertex_ijk[1],
+            sijk[faceId] = setup::calculate_face_vector(vertex_ijk[0], vertex_ijk[1],
                                               vertex_ijk[2], vertex_ijk[3], b);
             sijk[0] = {0, 0, 0};
             sijk[1] = {0, 0, 0};
-            b.geom[i][j][k] = Cell(si, sj, sk);
+            b.geom[i][j][k] = Cell(sijk[0], sijk[1], sijk[2]);
         }
     }
 }
@@ -170,7 +175,6 @@ std::vector<float> setup::calculate_face_vector(std::vector<int>& v1, std::vecto
     std::vector<float> s1 = {0.5f * (delZa*delYb - delYa*delZb),
                              0.5f * (delXa*delZb - delZa*delXb),
                              0.5f * (delYa*delXb - delXa*delYb)};
-
     return s1;
 }
 
@@ -212,38 +216,38 @@ void setup::calculate_block_volumes(Block& b) {
                 r.x = 0.25f * (b.x[i][j][k] + b.x[i][j+1][k] + b.x[i][j][k+1] + b.x[i][j+1][k+1]);
                 r.y = 0.25f * (b.y[i][j][k] + b.y[i][j+1][k] + b.y[i][j][k+1] + b.y[i][j+1][k+1]);
                 r.z = 0.25f * (b.z[i][j][k] + b.z[i][j+1][k] + b.z[i][j][k+1] + b.z[i][j+1][k+1]);
-                v += (r.x-ro.x)*b.geom[i][j][k].Si[0] + (r.y-ro.y)*b.geom[i][j][k].Si[1] + (r.z-ro.z)*b.geom[i][j][k].Si[2];
+                v += ((r.x-ro.x)*b.geom[i][j][k].Si[0] + (r.y-ro.y)*b.geom[i][j][k].Si[1] + (r.z-ro.z)*b.geom[i][j][k].Si[2])*b.geom[i][j][k].Ai;
                 // j-face
                 r.x = 0.25f * (b.x[i][j][k] + b.x[i+1][j][k] + b.x[i][j][k+1] + b.x[i+1][j][k+1]);
                 r.y = 0.25f * (b.y[i][j][k] + b.x[i+1][j][k] + b.y[i][j][k+1] + b.y[i+1][j][k+1]);
                 r.z = 0.25f * (b.z[i][j][k] + b.z[i+1][j][k] + b.z[i][j][k+1] + b.z[i+1][j][k+1]);
-                v += (r.x-ro.x)*b.geom[i][j][k].Sj[0] + (r.y-ro.y)*b.geom[i][j][k].Sj[1] + (r.z-ro.z)*b.geom[i][j][k].Sj[2];
+                v += ((r.x-ro.x)*b.geom[i][j][k].Sj[0] + (r.y-ro.y)*b.geom[i][j][k].Sj[1] + (r.z-ro.z)*b.geom[i][j][k].Sj[2])*b.geom[i][j][k].Aj;;
                 // k-face
                 r.x = 0.25f * (b.x[i][j][k] + b.x[i+1][j][k] + b.x[i][j+1][k] + b.x[i+1][j+1][k]);
                 r.y = 0.25f * (b.y[i][j][k] + b.y[i+1][j][k] + b.y[i][j+1][k] + b.y[i+1][j+1][k]);
                 r.z = 0.25f * (b.z[i][j][k] + b.z[i+1][j][k] + b.z[i][j+1][k] + b.z[i+1][j+1][k]);
-                v += (r.x-ro.x)*b.geom[i][j][k].Sk[0] + (r.y-ro.y)*b.geom[i][j][k].Sk[1] + (r.z-ro.z)*b.geom[i][j][k].Sk[2];
+                v += ((r.x-ro.x)*b.geom[i][j][k].Sk[0] + (r.y-ro.y)*b.geom[i][j][k].Sk[1] + (r.z-ro.z)*b.geom[i][j][k].Sk[2])*b.geom[i][j][k].Ak;;
 
                 // Faces that are stored in adjacent cells.
                 // i-face stored in next cell
                 r.x = 0.25f * (b.x[i+1][j][k] + b.x[i+1][j+1][k] + b.x[i+1][j][k+1] + b.x[i+1][j+1][k+1]);
                 r.y = 0.25f * (b.y[i+1][j][k] + b.y[i+1][j+1][k] + b.y[i+1][j][k+1] + b.y[i+1][j+1][k+1]);
                 r.z = 0.25f * (b.z[i+1][j][k] + b.z[i+1][j+1][k] + b.z[i+1][j][k+1] + b.z[i+1][j+1][k+1]);
-                v += -(r.x-ro.x)*b.geom[i+1][j][k].Si[0] - (r.y-ro.y)*b.geom[i+1][j][k].Si[1] - (r.y-ro.y)*b.geom[i+1][j][k].Si[2];
+                v += (-(r.x-ro.x)*b.geom[i+1][j][k].Si[0] - (r.y-ro.y)*b.geom[i+1][j][k].Si[1] - (r.y-ro.y)*b.geom[i+1][j][k].Si[2])*b.geom[i][j][k].Ai;;
                 // j-face stored in next cell
                 r.x = 0.25f * (b.x[i][j+1][k] + b.x[i+1][j+1][k] + b.x[i][j+1][k+1] + b.x[i+1][j+1][k+1]);
                 r.y = 0.25f * (b.y[i][j+1][k] + b.x[i+1][j+1][k] + b.y[i][j+1][k+1] + b.y[i+1][j+1][k+1]);
                 r.z = 0.25f * (b.z[i][j+1][k] + b.z[i+1][j+1][k] + b.z[i][j+1][k+1] + b.z[i+1][j+1][k+1]);
-                v += -(r.x-ro.x)*b.geom[i][j+1][k].Sj[0] - (r.y-ro.y)*b.geom[i][j+1][k].Sj[1] - (r.z-ro.z)*b.geom[i][j+1][k].Sj[2];
+                v += (-(r.x-ro.x)*b.geom[i][j+1][k].Sj[0] - (r.y-ro.y)*b.geom[i][j+1][k].Sj[1] - (r.z-ro.z)*b.geom[i][j+1][k].Sj[2])*b.geom[i][j][k].Aj;;
                 // k-face stored in next cell
                 r.x = 0.25f * (b.x[i][j][k+1] + b.x[i+1][j][k+1] + b.x[i][j+1][k+1] + b.x[i+1][j+1][k+1]);
                 r.y = 0.25f * (b.y[i][j][k+1] + b.y[i+1][j][k+1] + b.y[i][j+1][k+1] + b.y[i+1][j+1][k+1]);
                 r.z = 0.25f * (b.z[i][j][k+1] + b.z[i+1][j][k+1] + b.z[i][j+1][k+1] + b.z[i+1][j+1][k+1]);
-                v += -(r.x-ro.x)*b.geom[i][j][k+1].Sk[0] - (r.y-ro.y)*b.geom[i][j][k+1].Sk[1] - (r.z-ro.z)*b.geom[i][j][k+1].Sk[2];
+                v += (-(r.x-ro.x)*b.geom[i][j][k+1].Sk[0] - (r.y-ro.y)*b.geom[i][j][k+1].Sk[1] - (r.z-ro.z)*b.geom[i][j][k+1].Sk[2])*b.geom[i][j][k].Ak;;
 
 
                 b.volume[i][j][k] = 0.333333333f * v;
-                std::cout << b.volume[i][j][k] << std::endl;
+                std::cout << b.volume[i][j][k] << ", " << (b.x[1][0][0]-b.x[0][0][0]) * (b.y[0][1][0]-b.y[0][0][0]) * (b.z[0][0][1]-b.z[0][0][0]) << std::endl;
             }
         }
     }
