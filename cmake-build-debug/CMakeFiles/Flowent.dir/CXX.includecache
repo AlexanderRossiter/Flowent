@@ -53,6 +53,8 @@ boost/multi_array.hpp
 /Users/ADR/CLionProjects/Flowent/boost/multi_array.hpp
 
 /Users/ADR/CLionProjects/Flowent/util.h
+vector
+-
 
 /usr/local/boost_1_75_0/boost/array.hpp
 boost/detail/workaround.hpp

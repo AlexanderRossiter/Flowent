@@ -106,10 +106,10 @@ void setup::calculate_block_face_vectors(Block& b) {
                                                            vertex_ijk[2], vertex_ijk[3], b);
                 }
                 b.geom[i][j][k] = Cell(sijk[0], sijk[1], sijk[2]);
-                //std::cout << b.geom[i][j][k].Ai << ", " << b.geom[i][j][k].Aj << ", " << b.geom[i][j][k].Ak << std::endl;
-                std::cout << "(" << b.geom[i][j][k].Si[0] << ", " << b.geom[i][j][k].Si[1] << ", " << b.geom[i][j][k].Si[2] << "), ";
-                std::cout << "(" << b.geom[i][j][k].Sj[0] << ", " << b.geom[i][j][k].Sj[1] << ", " << b.geom[i][j][k].Sj[2] << "), ";
-                std::cout << "(" << b.geom[i][j][k].Sk[0] << ", " << b.geom[i][j][k].Sk[1] << ", " << b.geom[i][j][k].Sk[2] << ")" << std::endl;
+                //std::cout << b.geom[i][j][k].A[0] << ", " << b.geom[i][j][k].A[1] << ", " << b.geom[i][j][k].A[2] << std::endl;
+                std::cout << "(" << b.geom[i][j][k].S[0][0] << ", " << b.geom[i][j][k].S[0][1] << ", " << b.geom[i][j][k].S[0][2] << "), ";
+                std::cout << "(" << b.geom[i][j][k].S[1][0] << ", " << b.geom[i][j][k].S[1][1] << ", " << b.geom[i][j][k].S[1][2] << "), ";
+                std::cout << "(" << b.geom[i][j][k].S[2][0] << ", " << b.geom[i][j][k].S[2][1] << ", " << b.geom[i][j][k].S[2][2] << ")" << std::endl;
             }
         }
     }
@@ -200,57 +200,62 @@ std::vector<std::vector<int>> setup::get_vertex_ijk_vectors(int faceId, int i, i
 
 void setup::calculate_block_volumes(Block& b) {
     float v;
-    util::point r{};
-    util::point ro{};
+    std::vector<float> r;
+    std::vector<float> ro(3);
+    std::vector<float> r_star(3);
 
     for (int i = 0; i < b.ni-1; i++) {
         for (int j = 0; j < b.nj-1; j++) {
             for (int k = 0; k < b.nk-1; k++) {
                 v = 0.f;
-                ro.x = b.x[i][j][k];
-                ro.y = b.y[i][j][k];
-                ro.z = b.z[i][j][k];
+                ro[0] = b.x[i][j][k];
+                ro[1] = b.y[i][j][k];
+                ro[2] = b.z[i][j][k];
 
-                // Three faces that are stored in this cell.
-                // i-face
-                r.x = 0.25f * (b.x[i][j][k] + b.x[i][j+1][k] + b.x[i][j][k+1] + b.x[i][j+1][k+1]);
-                r.y = 0.25f * (b.y[i][j][k] + b.y[i][j+1][k] + b.y[i][j][k+1] + b.y[i][j+1][k+1]);
-                r.z = 0.25f * (b.z[i][j][k] + b.z[i][j+1][k] + b.z[i][j][k+1] + b.z[i][j+1][k+1]);
-                v += ((r.x-ro.x)*b.geom[i][j][k].Si[0] + (r.y-ro.y)*b.geom[i][j][k].Si[1] + (r.z-ro.z)*b.geom[i][j][k].Si[2])*b.geom[i][j][k].Ai;
-                // j-face
-                r.x = 0.25f * (b.x[i][j][k] + b.x[i+1][j][k] + b.x[i][j][k+1] + b.x[i+1][j][k+1]);
-                r.y = 0.25f * (b.y[i][j][k] + b.x[i+1][j][k] + b.y[i][j][k+1] + b.y[i+1][j][k+1]);
-                r.z = 0.25f * (b.z[i][j][k] + b.z[i+1][j][k] + b.z[i][j][k+1] + b.z[i+1][j][k+1]);
-                v += ((r.x-ro.x)*b.geom[i][j][k].Sj[0] + (r.y-ro.y)*b.geom[i][j][k].Sj[1] + (r.z-ro.z)*b.geom[i][j][k].Sj[2])*b.geom[i][j][k].Aj;;
-                // k-face
-                r.x = 0.25f * (b.x[i][j][k] + b.x[i+1][j][k] + b.x[i][j+1][k] + b.x[i+1][j+1][k]);
-                r.y = 0.25f * (b.y[i][j][k] + b.y[i+1][j][k] + b.y[i][j+1][k] + b.y[i+1][j+1][k]);
-                r.z = 0.25f * (b.z[i][j][k] + b.z[i+1][j][k] + b.z[i][j+1][k] + b.z[i+1][j+1][k]);
-                v += ((r.x-ro.x)*b.geom[i][j][k].Sk[0] + (r.y-ro.y)*b.geom[i][j][k].Sk[1] + (r.z-ro.z)*b.geom[i][j][k].Sk[2])*b.geom[i][j][k].Ak;;
-
-                // Faces that are stored in adjacent cells.
-                // i-face stored in next cell
-                r.x = 0.25f * (b.x[i+1][j][k] + b.x[i+1][j+1][k] + b.x[i+1][j][k+1] + b.x[i+1][j+1][k+1]);
-                r.y = 0.25f * (b.y[i+1][j][k] + b.y[i+1][j+1][k] + b.y[i+1][j][k+1] + b.y[i+1][j+1][k+1]);
-                r.z = 0.25f * (b.z[i+1][j][k] + b.z[i+1][j+1][k] + b.z[i+1][j][k+1] + b.z[i+1][j+1][k+1]);
-                v += (-(r.x-ro.x)*b.geom[i+1][j][k].Si[0] - (r.y-ro.y)*b.geom[i+1][j][k].Si[1] - (r.y-ro.y)*b.geom[i+1][j][k].Si[2])*b.geom[i][j][k].Ai;;
-                // j-face stored in next cell
-                r.x = 0.25f * (b.x[i][j+1][k] + b.x[i+1][j+1][k] + b.x[i][j+1][k+1] + b.x[i+1][j+1][k+1]);
-                r.y = 0.25f * (b.y[i][j+1][k] + b.x[i+1][j+1][k] + b.y[i][j+1][k+1] + b.y[i+1][j+1][k+1]);
-                r.z = 0.25f * (b.z[i][j+1][k] + b.z[i+1][j+1][k] + b.z[i][j+1][k+1] + b.z[i+1][j+1][k+1]);
-                v += (-(r.x-ro.x)*b.geom[i][j+1][k].Sj[0] - (r.y-ro.y)*b.geom[i][j+1][k].Sj[1] - (r.z-ro.z)*b.geom[i][j+1][k].Sj[2])*b.geom[i][j][k].Aj;;
-                // k-face stored in next cell
-                r.x = 0.25f * (b.x[i][j][k+1] + b.x[i+1][j][k+1] + b.x[i][j+1][k+1] + b.x[i+1][j+1][k+1]);
-                r.y = 0.25f * (b.y[i][j][k+1] + b.y[i+1][j][k+1] + b.y[i][j+1][k+1] + b.y[i+1][j+1][k+1]);
-                r.z = 0.25f * (b.z[i][j][k+1] + b.z[i+1][j][k+1] + b.z[i][j+1][k+1] + b.z[i+1][j+1][k+1]);
-                v += (-(r.x-ro.x)*b.geom[i][j][k+1].Sk[0] - (r.y-ro.y)*b.geom[i][j][k+1].Sk[1] - (r.z-ro.z)*b.geom[i][j][k+1].Sk[2])*b.geom[i][j][k].Ak;;
-
+                // Loop over the three faces stored with this cell.
+                for (int faceId = 0; faceId < 3; faceId++) {
+                    r = setup::get_face_midpoint_vector(faceId, i, j, k, b);
+                    r_star = util::vector_subtr(r, ro);
+                    v += util::vector_dot(r_star, b.geom[i][j][k].S[faceId]) * b.geom[i][j][k].A[faceId];
+                }
+                // Faces stored in adjacent cells. These vectors point in the wrong direction
+                // for this cell, so must subtract.
+                // i-face: stored in i+1th cell.
+                int faceId = 0;
+                r = setup::get_face_midpoint_vector(faceId, i+1, j, k, b);
+                r_star = util::vector_subtr(r, ro);
+                v -= util::vector_dot(r_star, b.geom[i+1][j][k].S[faceId]) * b.geom[i+1][j][k].A[faceId];
+                // j-face: stored in j+1th cell.
+                faceId = 1;
+                r = setup::get_face_midpoint_vector(faceId, i, j+1, k, b);
+                r_star = util::vector_subtr(r, ro);
+                v -= util::vector_dot(r_star, b.geom[i][j+1][k].S[faceId]) * b.geom[i][j+1][k].A[faceId];
+                // k-face: stored in k+1th cell.
+                faceId = 2;
+                r = setup::get_face_midpoint_vector(faceId, i, j, k+1, b);
+                r_star = util::vector_subtr(r, ro);
+                v -= util::vector_dot(r_star, b.geom[i][j][k+1].S[faceId]) * b.geom[i][j][k+1].A[faceId];
 
                 b.volume[i][j][k] = 0.333333333f * v;
-                std::cout << b.volume[i][j][k] << ", " << (b.x[1][0][0]-b.x[0][0][0]) * (b.y[0][1][0]-b.y[0][0][0]) * (b.z[0][0][1]-b.z[0][0][0]) << std::endl;
+                std::cout << b.volume[i][j][k] / ((b.x[1][0][0]-b.x[0][0][0]) * (b.y[0][1][0]-b.y[0][0][0]) * (b.z[0][0][1]-b.z[0][0][0])) << std::endl;
             }
         }
     }
+}
+
+std::vector<float> setup::get_face_midpoint_vector(int faceId, int i, int j, int k, Block& b) {
+    // Returns a vector for the midpoint of the current face.
+
+    std::vector<float> r(3); // Initialises to 0.
+    std::vector<std::vector<int>> face_verts_ijk = setup::get_vertex_ijk_vectors(faceId, i, j, k);
+
+    for (std::vector<int> vert : face_verts_ijk) {
+        r[0] += b.x[vert[0]][vert[1]][vert[2]];
+        r[1] += b.y[vert[0]][vert[1]][vert[2]];
+        r[2] += b.z[vert[0]][vert[1]][vert[2]];
+    }
+    for (float& f : r) {f *= 0.25f;}
+    return r;
 }
 
 

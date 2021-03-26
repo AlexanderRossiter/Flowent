@@ -24,6 +24,7 @@ namespace setup {
     void calculate_block_volumes(Block& b);
     //util::point setup::get_face_mid_vector(int i, int j, int k, Block& b);
     std::vector<std::vector<int>> get_vertex_ijk_vectors(int faceId, int i, int j, int k);
+    std::vector<float> get_face_midpoint_vector(int faceId, int i, int j, int k, Block& b);
 }
 
 #endif //FLOWENT_SETUP_H

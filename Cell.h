@@ -10,15 +10,12 @@
 
 class Cell {
 public:
-    float Ai;
-    float Aj;
-    float Ak;
-    std::vector<float> Si;
-    std::vector<float> Sj;
-    std::vector<float> Sk;
+    std::vector<std::vector<float>> S;
+    std::vector<float> A;
+
 
     Cell(std::vector<float> Si_, std::vector<float> Sj_, std::vector<float> Sk_);
-    Cell(): Ai{0}, Aj{0}, Ak{0}{};
+    Cell(): A{std::vector<float>(3)}{};
 };
 
 
