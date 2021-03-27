@@ -5,7 +5,7 @@
 int main() {
 
     // Read grid data
-    std::string tc = "gaussian_bump.txt";
+    std::string tc = "gaussian_bump";
     Grid g = setup::read_grid_testcase(tc);
 
     // Calculate grid cell normal vectors and volumes.

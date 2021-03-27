@@ -10,7 +10,7 @@
 
 
 Grid setup::read_grid_testcase(std::string& testcase) {
-    std::ifstream file("../test_cases/" + testcase);
+    std::ifstream file("../test_cases/" + testcase + ".grid");
     if (file.fail()) {
         std::cout << "Failed to open file." << std::endl;
         throw std::exception();
