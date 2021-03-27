@@ -13,6 +13,8 @@ Cell.h
 /Users/ADR/CLionProjects/Flowent/Grid/Cell.h
 ../typedefinitions.h
 /Users/ADR/CLionProjects/Flowent/typedefinitions.h
+Patch.h
+/Users/ADR/CLionProjects/Flowent/Grid/Patch.h
 
 /Users/ADR/CLionProjects/Flowent/Grid/Cell.h
 vector
@@ -30,17 +32,15 @@ iostream
 cell_face_relation.h
 /Users/ADR/CLionProjects/Flowent/Grid/cell_face_relation.h
 
+/Users/ADR/CLionProjects/Flowent/Grid/Patch.h
+vector
+-
+string
+-
+
 /Users/ADR/CLionProjects/Flowent/Grid/cell_face_relation.h
 vector
 -
-
-/Users/ADR/CLionProjects/Flowent/main.cpp
-iostream
--
-Grid/Grid.h
-/Users/ADR/CLionProjects/Flowent/Grid/Grid.h
-setup.h
-/Users/ADR/CLionProjects/Flowent/setup.h
 
 /Users/ADR/CLionProjects/Flowent/setup.cpp
 fstream
@@ -68,6 +68,10 @@ boost/multi_array.hpp
 
 /Users/ADR/CLionProjects/Flowent/util.h
 vector
+-
+string
+-
+sstream
 -
 
 /usr/local/boost_1_75_0/boost/array.hpp

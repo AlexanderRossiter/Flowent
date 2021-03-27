@@ -109,6 +109,12 @@
 		<Unit filename="/Users/ADR/CLionProjects/Flowent/Grid/Grid_setup.cpp">
 			<Option target="Flowent"/>
 		</Unit>
+		<Unit filename="/Users/ADR/CLionProjects/Flowent/Grid/Patch.cpp">
+			<Option target="Flowent"/>
+		</Unit>
+		<Unit filename="/Users/ADR/CLionProjects/Flowent/Grid/Patch.h">
+			<Option target="Flowent"/>
+		</Unit>
 		<Unit filename="/Users/ADR/CLionProjects/Flowent/Grid/cell_face_relation.cpp">
 			<Option target="Flowent"/>
 		</Unit>

@@ -5,13 +5,19 @@
 #ifndef FLOWENT_UTIL_H
 #define FLOWENT_UTIL_H
 #include <vector>
+#include <string>
+#include <sstream>
+
 namespace util {
     struct point {
             float x;
             float y;
             float z;
     };
-    template<typename T>
+    std::vector<std::string> str_split(const std::string& inputString, const std::string& delimiter);
+
+
+        template<typename T>
     std::vector<T> vector_add(std::vector<T> a, std::vector<T> b) {
         if (a.size() != b.size()) throw std::exception();
         int n = a.size();
@@ -45,6 +51,22 @@ namespace util {
             c += a[i]*b[i];
         }
         return c;
+    }
+
+    template<typename T>
+    std::string vector_to_string(const std::vector<T>& vector) {
+        std::ostringstream ss;
+        ss << "[";
+
+        for (int i = 0; i < vector.size(); i++) {
+            ss << vector.at(i);
+            if (i != vector.size()-1) {
+                ss << ", ";
+            }
+        }
+        ss << "]";
+
+        return ss.str();
     }
 
 }

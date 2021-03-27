@@ -278,6 +278,33 @@ Grid/Grid_setup.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/Grid/Grid_setup.cpp.s
 .PHONY : Grid/Grid_setup.cpp.s
 
+Grid/Patch.o: Grid/Patch.cpp.o
+
+.PHONY : Grid/Patch.o
+
+# target to build an object file
+Grid/Patch.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/Grid/Patch.cpp.o
+.PHONY : Grid/Patch.cpp.o
+
+Grid/Patch.i: Grid/Patch.cpp.i
+
+.PHONY : Grid/Patch.i
+
+# target to preprocess a source file
+Grid/Patch.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/Grid/Patch.cpp.i
+.PHONY : Grid/Patch.cpp.i
+
+Grid/Patch.s: Grid/Patch.cpp.s
+
+.PHONY : Grid/Patch.s
+
+# target to generate assembly for a file
+Grid/Patch.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/Grid/Patch.cpp.s
+.PHONY : Grid/Patch.cpp.s
+
 Grid/cell_face_relation.o: Grid/cell_face_relation.cpp.o
 
 .PHONY : Grid/cell_face_relation.o
@@ -437,6 +464,9 @@ help:
 	@echo "... Grid/Grid_setup.o"
 	@echo "... Grid/Grid_setup.i"
 	@echo "... Grid/Grid_setup.s"
+	@echo "... Grid/Patch.o"
+	@echo "... Grid/Patch.i"
+	@echo "... Grid/Patch.s"
 	@echo "... Grid/cell_face_relation.o"
 	@echo "... Grid/cell_face_relation.i"
 	@echo "... Grid/cell_face_relation.s"

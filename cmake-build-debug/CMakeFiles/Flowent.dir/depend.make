@@ -7,6 +7,7 @@ CMakeFiles/Flowent.dir/Gas.cpp.o: ../Gas.h
 CMakeFiles/Flowent.dir/Grid/Block.cpp.o: ../Grid/Block.cpp
 CMakeFiles/Flowent.dir/Grid/Block.cpp.o: ../Grid/Block.h
 CMakeFiles/Flowent.dir/Grid/Block.cpp.o: ../Grid/Cell.h
+CMakeFiles/Flowent.dir/Grid/Block.cpp.o: ../Grid/Patch.h
 CMakeFiles/Flowent.dir/Grid/Block.cpp.o: ../typedefinitions.h
 CMakeFiles/Flowent.dir/Grid/Block.cpp.o: /usr/local/boost_1_75_0/boost/array.hpp
 CMakeFiles/Flowent.dir/Grid/Block.cpp.o: /usr/local/boost_1_75_0/boost/assert.hpp
@@ -592,6 +593,7 @@ CMakeFiles/Flowent.dir/Grid/Grid.cpp.o: ../Grid/Block.h
 CMakeFiles/Flowent.dir/Grid/Grid.cpp.o: ../Grid/Cell.h
 CMakeFiles/Flowent.dir/Grid/Grid.cpp.o: ../Grid/Grid.cpp
 CMakeFiles/Flowent.dir/Grid/Grid.cpp.o: ../Grid/Grid.h
+CMakeFiles/Flowent.dir/Grid/Grid.cpp.o: ../Grid/Patch.h
 CMakeFiles/Flowent.dir/Grid/Grid.cpp.o: ../Grid/cell_face_relation.h
 CMakeFiles/Flowent.dir/Grid/Grid.cpp.o: ../typedefinitions.h
 CMakeFiles/Flowent.dir/Grid/Grid.cpp.o: ../util.h
@@ -1176,6 +1178,7 @@ CMakeFiles/Flowent.dir/Grid/Grid_setup.cpp.o: ../Grid/Block.h
 CMakeFiles/Flowent.dir/Grid/Grid_setup.cpp.o: ../Grid/Cell.h
 CMakeFiles/Flowent.dir/Grid/Grid_setup.cpp.o: ../Grid/Grid.h
 CMakeFiles/Flowent.dir/Grid/Grid_setup.cpp.o: ../Grid/Grid_setup.cpp
+CMakeFiles/Flowent.dir/Grid/Grid_setup.cpp.o: ../Grid/Patch.h
 CMakeFiles/Flowent.dir/Grid/Grid_setup.cpp.o: ../Grid/cell_face_relation.h
 CMakeFiles/Flowent.dir/Grid/Grid_setup.cpp.o: ../typedefinitions.h
 CMakeFiles/Flowent.dir/Grid/Grid_setup.cpp.o: ../util.h
@@ -1756,6 +1759,9 @@ CMakeFiles/Flowent.dir/Grid/Grid_setup.cpp.o: /usr/local/boost_1_75_0/boost/type
 CMakeFiles/Flowent.dir/Grid/Grid_setup.cpp.o: /usr/local/boost_1_75_0/boost/utility/enable_if.hpp
 CMakeFiles/Flowent.dir/Grid/Grid_setup.cpp.o: /usr/local/boost_1_75_0/boost/version.hpp
 
+CMakeFiles/Flowent.dir/Grid/Patch.cpp.o: ../Grid/Patch.cpp
+CMakeFiles/Flowent.dir/Grid/Patch.cpp.o: ../Grid/Patch.h
+
 CMakeFiles/Flowent.dir/Grid/cell_face_relation.cpp.o: ../Grid/cell_face_relation.cpp
 CMakeFiles/Flowent.dir/Grid/cell_face_relation.cpp.o: ../Grid/cell_face_relation.h
 
@@ -1765,6 +1771,7 @@ CMakeFiles/Flowent.dir/algo.cpp.o: ../algo.h
 CMakeFiles/Flowent.dir/main.cpp.o: ../Grid/Block.h
 CMakeFiles/Flowent.dir/main.cpp.o: ../Grid/Cell.h
 CMakeFiles/Flowent.dir/main.cpp.o: ../Grid/Grid.h
+CMakeFiles/Flowent.dir/main.cpp.o: ../Grid/Patch.h
 CMakeFiles/Flowent.dir/main.cpp.o: ../Grid/cell_face_relation.h
 CMakeFiles/Flowent.dir/main.cpp.o: ../main.cpp
 CMakeFiles/Flowent.dir/main.cpp.o: ../setup.h
@@ -2350,6 +2357,7 @@ CMakeFiles/Flowent.dir/main.cpp.o: /usr/local/boost_1_75_0/boost/version.hpp
 CMakeFiles/Flowent.dir/setup.cpp.o: ../Grid/Block.h
 CMakeFiles/Flowent.dir/setup.cpp.o: ../Grid/Cell.h
 CMakeFiles/Flowent.dir/setup.cpp.o: ../Grid/Grid.h
+CMakeFiles/Flowent.dir/setup.cpp.o: ../Grid/Patch.h
 CMakeFiles/Flowent.dir/setup.cpp.o: ../Grid/cell_face_relation.h
 CMakeFiles/Flowent.dir/setup.cpp.o: ../setup.cpp
 CMakeFiles/Flowent.dir/setup.cpp.o: ../setup.h
