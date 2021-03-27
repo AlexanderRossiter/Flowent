@@ -16,9 +16,12 @@ Block::Block(vector3d<float> x_, vector3d<float> y_,
     x = x_;
     y = y_;
     z = z_;
+    id = -1;
 
     geom.resize(boost::extents[ni][nj][nk]);
     volume.resize(boost::extents[ni][nj][nk]);
-//    geom = std::vector<std::vector<std::vector<Cell>>> (ni, std::vector<std::vector<Cell>>(nj, std::vector<Cell>(nk)));
-//    volume = std::vector<std::vector<std::vector<float>>>(ni, std::vector<std::vector<float>>(nj, std::vector<float>(nk)));
+}
+
+void Block::set_block_id(int id_) {
+    id = id_;
 }

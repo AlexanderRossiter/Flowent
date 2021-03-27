@@ -82,37 +82,43 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/Users/ADR/CLionProjects/Flowent/Block.cpp">
-			<Option target="Flowent"/>
-		</Unit>
-		<Unit filename="/Users/ADR/CLionProjects/Flowent/Block.h">
-			<Option target="Flowent"/>
-		</Unit>
-		<Unit filename="/Users/ADR/CLionProjects/Flowent/Cell.cpp">
-			<Option target="Flowent"/>
-		</Unit>
-		<Unit filename="/Users/ADR/CLionProjects/Flowent/Cell.h">
-			<Option target="Flowent"/>
-		</Unit>
 		<Unit filename="/Users/ADR/CLionProjects/Flowent/Gas.cpp">
 			<Option target="Flowent"/>
 		</Unit>
 		<Unit filename="/Users/ADR/CLionProjects/Flowent/Gas.h">
 			<Option target="Flowent"/>
 		</Unit>
-		<Unit filename="/Users/ADR/CLionProjects/Flowent/Grid.cpp">
+		<Unit filename="/Users/ADR/CLionProjects/Flowent/Grid/Block.cpp">
 			<Option target="Flowent"/>
 		</Unit>
-		<Unit filename="/Users/ADR/CLionProjects/Flowent/Grid.h">
+		<Unit filename="/Users/ADR/CLionProjects/Flowent/Grid/Block.h">
+			<Option target="Flowent"/>
+		</Unit>
+		<Unit filename="/Users/ADR/CLionProjects/Flowent/Grid/Cell.cpp">
+			<Option target="Flowent"/>
+		</Unit>
+		<Unit filename="/Users/ADR/CLionProjects/Flowent/Grid/Cell.h">
+			<Option target="Flowent"/>
+		</Unit>
+		<Unit filename="/Users/ADR/CLionProjects/Flowent/Grid/Grid.cpp">
+			<Option target="Flowent"/>
+		</Unit>
+		<Unit filename="/Users/ADR/CLionProjects/Flowent/Grid/Grid.h">
+			<Option target="Flowent"/>
+		</Unit>
+		<Unit filename="/Users/ADR/CLionProjects/Flowent/Grid/Grid_setup.cpp">
+			<Option target="Flowent"/>
+		</Unit>
+		<Unit filename="/Users/ADR/CLionProjects/Flowent/Grid/cell_face_relation.cpp">
+			<Option target="Flowent"/>
+		</Unit>
+		<Unit filename="/Users/ADR/CLionProjects/Flowent/Grid/cell_face_relation.h">
 			<Option target="Flowent"/>
 		</Unit>
 		<Unit filename="/Users/ADR/CLionProjects/Flowent/algo.cpp">
 			<Option target="Flowent"/>
 		</Unit>
 		<Unit filename="/Users/ADR/CLionProjects/Flowent/algo.h">
-			<Option target="Flowent"/>
-		</Unit>
-		<Unit filename="/Users/ADR/CLionProjects/Flowent/cell_face_relation.h">
 			<Option target="Flowent"/>
 		</Unit>
 		<Unit filename="/Users/ADR/CLionProjects/Flowent/main.cpp">

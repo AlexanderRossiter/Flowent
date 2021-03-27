@@ -143,60 +143,6 @@ Flowent/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/build
 .PHONY : Flowent/fast
 
-Block.o: Block.cpp.o
-
-.PHONY : Block.o
-
-# target to build an object file
-Block.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/Block.cpp.o
-.PHONY : Block.cpp.o
-
-Block.i: Block.cpp.i
-
-.PHONY : Block.i
-
-# target to preprocess a source file
-Block.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/Block.cpp.i
-.PHONY : Block.cpp.i
-
-Block.s: Block.cpp.s
-
-.PHONY : Block.s
-
-# target to generate assembly for a file
-Block.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/Block.cpp.s
-.PHONY : Block.cpp.s
-
-Cell.o: Cell.cpp.o
-
-.PHONY : Cell.o
-
-# target to build an object file
-Cell.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/Cell.cpp.o
-.PHONY : Cell.cpp.o
-
-Cell.i: Cell.cpp.i
-
-.PHONY : Cell.i
-
-# target to preprocess a source file
-Cell.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/Cell.cpp.i
-.PHONY : Cell.cpp.i
-
-Cell.s: Cell.cpp.s
-
-.PHONY : Cell.s
-
-# target to generate assembly for a file
-Cell.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/Cell.cpp.s
-.PHONY : Cell.cpp.s
-
 Gas.o: Gas.cpp.o
 
 .PHONY : Gas.o
@@ -224,32 +170,140 @@ Gas.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/Gas.cpp.s
 .PHONY : Gas.cpp.s
 
-Grid.o: Grid.cpp.o
+Grid/Block.o: Grid/Block.cpp.o
 
-.PHONY : Grid.o
+.PHONY : Grid/Block.o
 
 # target to build an object file
-Grid.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/Grid.cpp.o
-.PHONY : Grid.cpp.o
+Grid/Block.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/Grid/Block.cpp.o
+.PHONY : Grid/Block.cpp.o
 
-Grid.i: Grid.cpp.i
+Grid/Block.i: Grid/Block.cpp.i
 
-.PHONY : Grid.i
+.PHONY : Grid/Block.i
 
 # target to preprocess a source file
-Grid.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/Grid.cpp.i
-.PHONY : Grid.cpp.i
+Grid/Block.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/Grid/Block.cpp.i
+.PHONY : Grid/Block.cpp.i
 
-Grid.s: Grid.cpp.s
+Grid/Block.s: Grid/Block.cpp.s
 
-.PHONY : Grid.s
+.PHONY : Grid/Block.s
 
 # target to generate assembly for a file
-Grid.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/Grid.cpp.s
-.PHONY : Grid.cpp.s
+Grid/Block.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/Grid/Block.cpp.s
+.PHONY : Grid/Block.cpp.s
+
+Grid/Cell.o: Grid/Cell.cpp.o
+
+.PHONY : Grid/Cell.o
+
+# target to build an object file
+Grid/Cell.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/Grid/Cell.cpp.o
+.PHONY : Grid/Cell.cpp.o
+
+Grid/Cell.i: Grid/Cell.cpp.i
+
+.PHONY : Grid/Cell.i
+
+# target to preprocess a source file
+Grid/Cell.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/Grid/Cell.cpp.i
+.PHONY : Grid/Cell.cpp.i
+
+Grid/Cell.s: Grid/Cell.cpp.s
+
+.PHONY : Grid/Cell.s
+
+# target to generate assembly for a file
+Grid/Cell.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/Grid/Cell.cpp.s
+.PHONY : Grid/Cell.cpp.s
+
+Grid/Grid.o: Grid/Grid.cpp.o
+
+.PHONY : Grid/Grid.o
+
+# target to build an object file
+Grid/Grid.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/Grid/Grid.cpp.o
+.PHONY : Grid/Grid.cpp.o
+
+Grid/Grid.i: Grid/Grid.cpp.i
+
+.PHONY : Grid/Grid.i
+
+# target to preprocess a source file
+Grid/Grid.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/Grid/Grid.cpp.i
+.PHONY : Grid/Grid.cpp.i
+
+Grid/Grid.s: Grid/Grid.cpp.s
+
+.PHONY : Grid/Grid.s
+
+# target to generate assembly for a file
+Grid/Grid.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/Grid/Grid.cpp.s
+.PHONY : Grid/Grid.cpp.s
+
+Grid/Grid_setup.o: Grid/Grid_setup.cpp.o
+
+.PHONY : Grid/Grid_setup.o
+
+# target to build an object file
+Grid/Grid_setup.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/Grid/Grid_setup.cpp.o
+.PHONY : Grid/Grid_setup.cpp.o
+
+Grid/Grid_setup.i: Grid/Grid_setup.cpp.i
+
+.PHONY : Grid/Grid_setup.i
+
+# target to preprocess a source file
+Grid/Grid_setup.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/Grid/Grid_setup.cpp.i
+.PHONY : Grid/Grid_setup.cpp.i
+
+Grid/Grid_setup.s: Grid/Grid_setup.cpp.s
+
+.PHONY : Grid/Grid_setup.s
+
+# target to generate assembly for a file
+Grid/Grid_setup.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/Grid/Grid_setup.cpp.s
+.PHONY : Grid/Grid_setup.cpp.s
+
+Grid/cell_face_relation.o: Grid/cell_face_relation.cpp.o
+
+.PHONY : Grid/cell_face_relation.o
+
+# target to build an object file
+Grid/cell_face_relation.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/Grid/cell_face_relation.cpp.o
+.PHONY : Grid/cell_face_relation.cpp.o
+
+Grid/cell_face_relation.i: Grid/cell_face_relation.cpp.i
+
+.PHONY : Grid/cell_face_relation.i
+
+# target to preprocess a source file
+Grid/cell_face_relation.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/Grid/cell_face_relation.cpp.i
+.PHONY : Grid/cell_face_relation.cpp.i
+
+Grid/cell_face_relation.s: Grid/cell_face_relation.cpp.s
+
+.PHONY : Grid/cell_face_relation.s
+
+# target to generate assembly for a file
+Grid/cell_face_relation.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/Grid/cell_face_relation.cpp.s
+.PHONY : Grid/cell_face_relation.cpp.s
 
 algo.o: algo.cpp.o
 
@@ -368,18 +422,24 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... Flowent"
-	@echo "... Block.o"
-	@echo "... Block.i"
-	@echo "... Block.s"
-	@echo "... Cell.o"
-	@echo "... Cell.i"
-	@echo "... Cell.s"
 	@echo "... Gas.o"
 	@echo "... Gas.i"
 	@echo "... Gas.s"
-	@echo "... Grid.o"
-	@echo "... Grid.i"
-	@echo "... Grid.s"
+	@echo "... Grid/Block.o"
+	@echo "... Grid/Block.i"
+	@echo "... Grid/Block.s"
+	@echo "... Grid/Cell.o"
+	@echo "... Grid/Cell.i"
+	@echo "... Grid/Cell.s"
+	@echo "... Grid/Grid.o"
+	@echo "... Grid/Grid.i"
+	@echo "... Grid/Grid.s"
+	@echo "... Grid/Grid_setup.o"
+	@echo "... Grid/Grid_setup.i"
+	@echo "... Grid/Grid_setup.s"
+	@echo "... Grid/cell_face_relation.o"
+	@echo "... Grid/cell_face_relation.i"
+	@echo "... Grid/cell_face_relation.s"
 	@echo "... algo.o"
 	@echo "... algo.i"
 	@echo "... algo.s"

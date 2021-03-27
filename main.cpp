@@ -1,19 +1,18 @@
 #include <iostream>
-#include "Grid.h"
+#include "Grid/Grid.h"
 #include "setup.h"
 
 int main() {
 
     // Read grid data
-    Grid g = setup::read_grid_testcase("gaussian_bump.txt");
-    //std::cout << g.blocks[0].ni << ", " << g.blocks[0].nj << ", " << g.blocks[0].nk << std::endl;
+    std::string tc = "gaussian_bump.txt";
+    Grid g = setup::read_grid_testcase(tc);
 
-    setup::calculate_grid_geometries(g);
-    // Read input data
+    // Calculate grid cell normal vectors and volumes.
+    g.calculate_grid_geometries();
 
-    // Run grid setup
+    // Find walls.
 
-    // Check Grid
 
     // Run main loop
 
