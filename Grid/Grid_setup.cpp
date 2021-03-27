@@ -7,15 +7,6 @@ void Grid::calculate_grid_geometries() {
     // Calculates the grid cell volumes and normal vectors for the
     // finite volume method.
 
-    std::vector<float> si;
-    std::vector<float> sj;
-    std::vector<float> sk;
-
-    std::vector<int> v1;
-    std::vector<int> v2;
-    std::vector<int> v3;
-    std::vector<int> v4;
-
     for (Block& b : get_blocks()) {
         // All cells except external faces.
         std::cout << "Calculating surface vectors... ";

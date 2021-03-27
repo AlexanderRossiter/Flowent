@@ -6,10 +6,6 @@
 
 #IncludeRegexTransform: 
 
-/Users/ADR/CLionProjects/Flowent/Grid/Block.cpp
-Block.h
-/Users/ADR/CLionProjects/Flowent/Grid/Block.h
-
 /Users/ADR/CLionProjects/Flowent/Grid/Block.h
 vector
 -
@@ -18,21 +14,9 @@ Cell.h
 ../typedefinitions.h
 /Users/ADR/CLionProjects/Flowent/typedefinitions.h
 
-/Users/ADR/CLionProjects/Flowent/Grid/Cell.cpp
-Cell.h
-/Users/ADR/CLionProjects/Flowent/Grid/Cell.h
-cmath
--
-utility
--
-
 /Users/ADR/CLionProjects/Flowent/Grid/Cell.h
 vector
 -
-
-/Users/ADR/CLionProjects/Flowent/Grid/Grid.cpp
-Grid.h
-/Users/ADR/CLionProjects/Flowent/Grid/Grid.h
 
 /Users/ADR/CLionProjects/Flowent/Grid/Grid.h
 vector
@@ -50,21 +34,9 @@ cell_face_relation.h
 Grid.h
 /Users/ADR/CLionProjects/Flowent/Grid/Grid.h
 
-/Users/ADR/CLionProjects/Flowent/Grid/cell_face_relation.cpp
-cell_face_relation.h
-/Users/ADR/CLionProjects/Flowent/Grid/cell_face_relation.h
-
 /Users/ADR/CLionProjects/Flowent/Grid/cell_face_relation.h
 vector
 -
-
-/Users/ADR/CLionProjects/Flowent/main.cpp
-iostream
--
-Grid/Grid.h
-/Users/ADR/CLionProjects/Flowent/Grid/Grid.h
-setup.h
-/Users/ADR/CLionProjects/Flowent/setup.h
 
 /Users/ADR/CLionProjects/Flowent/setup.cpp
 fstream
