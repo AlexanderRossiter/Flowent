@@ -70,8 +70,8 @@ void setup::read_patches(Grid& g, std::string& fname) {
     std::string str;
     std::vector<std::string> patch_str_vec;
     char kind;
-    std::vector<int> extent;
-    std::vector<std::string> next_dir;
+    Extent extent{};
+    NextDir nextDir{};
     int bid;
 
     // Loop though lines in patch file.
@@ -83,33 +83,28 @@ void setup::read_patches(Grid& g, std::string& fname) {
         // Get block patch belongs to.
         bid = std::stoi(patch_str_vec[1]);
         // Get the patch extents.
-        for (int i = 2; i <= 7; i++)
-            extent.push_back(std::stoi(patch_str_vec[i]));
+        extent = {std::stoi(patch_str_vec[2]),
+                  std::stoi(patch_str_vec[3]),
+                  std::stoi(patch_str_vec[4]),
+                  std::stoi(patch_str_vec[5]),
+                  std::stoi(patch_str_vec[6])};
 
-        switch (kind) {
-            case 'P': {
-                next_dir = std::vector<std::string>(patch_str_vec.begin() + 9, patch_str_vec.end());
-                PeriodicPatch p = PeriodicPatch(bid, extent, std::stoi(patch_str_vec[8]), next_dir);
-                g.get_block_by_id(bid).patches.push_back(p);
-                break;
-            }
-            case 'I':
-                break;
-            case 'E':
-                break;
-        }
-
-//        for (Block& b: g.get_blocks()) {
-//            for (auto p : b.patches) {
-//                std::cout << p.bid << " " << p.ist << " " << p.ien << p.nexti << std::endl;
+//        switch (kind) {
+//            case 'P': {
+////                nextDir = {patch_str_vec[9], patch_str_vec[10], patch_str_vec[11]}
+////                auto *p = new PeriodicPatch(bid, extent, std::stoi(patch_str_vec[8]), nextDir);
+////                g.get_block_by_id(bid).patches.push_back(p);
+//                break;
 //            }
+//            case 'I':
+//                break;
+//            case 'E':
+//                break;
 //        }
+
         std::cout << util::vector_to_string(patch_str_vec) << std::endl;
     }
 
-    for (Block& b : g.get_blocks()) {
-        for (Patch& p)
-    }
 
 
 }

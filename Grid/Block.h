@@ -19,7 +19,7 @@ public:
     vector3d<float> z;
     vector3d<float> volume;
     vector3d<Cell> geom;
-    std::vector<Patch> patches;
+    //std::vector<Patch*> patches;
     int id;
     int ni;
     int nj;
