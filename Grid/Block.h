@@ -12,6 +12,10 @@
 
 class Block {
 
+private:
+    void fill_geometry_arrays(vector3d<float>& x_, vector3d<float>& y_,
+            vector3d<float>& z_);
+
 public:
     vector3d<float> x;
     vector3d<float> y;

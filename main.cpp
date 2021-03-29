@@ -15,6 +15,12 @@ int main(int argc, char **argv) {
         std::cout << p->to_string() << std::endl;
     }
 
+    for (Block& b : g.get_blocks()) {
+        for (int i = b.ist; i < b.ien; i++) {
+            std::cout << b.volume[i][b.jst][b.kst] << std::endl;
+        }
+    }
+
     // Find walls.
 
 

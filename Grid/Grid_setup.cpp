@@ -30,9 +30,9 @@ void Grid::calculate_block_face_vectors(Block& b) {
     std::vector<int> v4;
 
     std::vector<std::vector<int>> vertex_ijk;
-    for (int i = 0; i < b.ni-1; i++) {
-        for (int j = 0; j < b.nj-1; j++) {
-            for (int k = 0; k < b.nk-1; k++) {
+    for (int i = b.ist; i < b.ien-1; i++) {
+        for (int j = b.jst; j < b.jen-1; j++) {
+            for (int k = b.kst; k < b.ken-1; k++) {
                 for (int faceId = 0; faceId < 3; faceId++) {
                     // Loop through the 3 faces that are stored in this cell.
                     // face_verts[faceId][vertex][index]
@@ -51,10 +51,10 @@ void Grid::calculate_block_face_vectors(Block& b) {
     }
 
     // i=const end face
-    int i = b.ni-1;
+    int i = b.ien-1;
     int faceId = 0;
-    for (int j = 0; j < b.nj-1; j++) {
-        for (int k = 0; k < b.nk-1; k++) {
+    for (int j = b.jst; j < b.jen-1; j++) {
+        for (int k = b.kst; k < b.ken-1; k++) {
             vertex_ijk = get_vertex_ijk_vectors(faceId, i, j, k);
             sijk[faceId] = calculate_face_vector(vertex_ijk[0], vertex_ijk[1],
                                                         vertex_ijk[2], vertex_ijk[3], b);
@@ -65,10 +65,10 @@ void Grid::calculate_block_face_vectors(Block& b) {
     }
 
     // j=const end face
-    int j = b.nj-1;
+    int j = b.jen-1;
     faceId = 1;
-    for (int i= 0; i < b.ni-1; i++) {
-        for (int k = 0; k < b.nk-1; k++) {
+    for (int i= b.ist; i < b.ien-1; i++) {
+        for (int k = b.kst; k < b.ken-1; k++) {
 
             vertex_ijk = get_vertex_ijk_vectors(faceId, i, j, k);
             sijk[faceId] = calculate_face_vector(vertex_ijk[0], vertex_ijk[1],
@@ -79,10 +79,10 @@ void Grid::calculate_block_face_vectors(Block& b) {
         }
     }
     // k=const end face
-    int k = b.nk-1;
+    int k = b.ken-1;
     faceId = 2;
-    for (int i = 0; i < b.ni-1; i++) {
-        for (int j = 0; j < b.nj-1; j++) {
+    for (int i = b.ist; i < b.ien-1; i++) {
+        for (int j = b.jst; j < b.jen-1; j++) {
             vertex_ijk = get_vertex_ijk_vectors(faceId, i, j, k);
             sijk[faceId] = calculate_face_vector(vertex_ijk[0], vertex_ijk[1],
                                                         vertex_ijk[2], vertex_ijk[3], b);
@@ -140,9 +140,9 @@ void Grid::calculate_block_volumes(Block& b) {
     std::vector<float> ro(3);
     std::vector<float> r_star(3);
 
-    for (int i = 0; i < b.ni-1; i++) {
-        for (int j = 0; j < b.nj-1; j++) {
-            for (int k = 0; k < b.nk-1; k++) {
+    for (int i = b.ist; i < b.ien-1; i++) {
+        for (int j = b.jst; j < b.jen-1; j++) {
+            for (int k = b.kst; k < b.ken-1; k++) {
                 v = 0.f;
                 ro[0] = b.x[i][j][k];
                 ro[1] = b.y[i][j][k];
