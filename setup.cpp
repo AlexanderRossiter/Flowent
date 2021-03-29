@@ -99,26 +99,25 @@ void setup::read_patches(Grid& g, std::string& fname) {
             case 'P': {
                 nextDir = {patch_str_vec[9], patch_str_vec[10], patch_str_vec[11]};
                 nxbid = std::stoi(patch_str_vec[8]);
-                g.get_patches().push_back(new PeriodicPatch(bid, extent, nxbid, nextDir));
+                g.get_patches().push_back(std::make_unique<PeriodicPatch>(bid, extent, nxbid, nextDir));
                 break;
             }
-            case 'I':
-                inletConds = {std::stof(patch_str_vec[8]), std::stof(patch_str_vec[9]), std::stof(patch_str_vec[10]), std::stof(patch_str_vec[11])};
-                g.get_patches().push_back(new InletPatch(bid, extent, inletConds));
+            case 'I': {
+                inletConds = {std::stof(patch_str_vec[8]), std::stof(patch_str_vec[9]), std::stof(patch_str_vec[10]),
+                              std::stof(patch_str_vec[11])};
+                g.get_patches().push_back(std::make_unique<InletPatch>(bid, extent, inletConds));
                 break;
-            case 'E':
-                g.get_patches().push_back(new ExitPatch(bid, extent, std::stof(patch_str_vec[8])));
+            }
+            case 'E': {
+                g.get_patches().push_back(std::make_unique<ExitPatch>(bid, extent, std::stof(patch_str_vec[8])));
                 break;
+            }
+            default:
+                throw std::invalid_argument("Invalid patch type.");
         }
 
         std::cout << util::vector_to_string(patch_str_vec) << std::endl;
     }
-
-    for (Patch* p : g.get_patches()) {
-        std::cout << p->to_string() << std::endl;
-    }
-
-
 
 }
 

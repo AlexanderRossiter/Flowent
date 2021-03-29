@@ -2,7 +2,7 @@
 #include "Grid/Grid.h"
 #include "setup.h"
 
-int main() {
+int main(int argc, char **argv) {
 
     // Read grid data
     std::string tc = "gaussian_bump";
@@ -10,6 +10,10 @@ int main() {
 
     // Calculate grid cell normal vectors and volumes.
     g.calculate_grid_geometries();
+
+    for (std::unique_ptr<Patch>& p : g.get_patches()) {
+        std::cout << p->to_string() << std::endl;
+    }
 
     // Find walls.
 

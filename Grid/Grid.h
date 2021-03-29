@@ -18,7 +18,7 @@ class Patch;
 class Grid {
 private:
     std::vector<Block> blocks;
-    std::vector<Patch*> patches;
+    std::vector<std::unique_ptr<Patch>> patches;
     static std::vector<float> calculate_face_vector(std::vector<int>& v1, std::vector<int>& v2,
                                                     std::vector<int>& v3, std::vector<int>& v4,
                                                     Block& b);
@@ -32,7 +32,7 @@ public:
     void add_block(Block b);
     Block& get_block_by_id(int bid);
     std::vector<Block>&  get_blocks();
-    std::vector<Patch*>& get_patches();
+    std::vector<std::unique_ptr<Patch>>& get_patches();
     void calculate_grid_geometries();
 
 };

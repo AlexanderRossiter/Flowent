@@ -23,6 +23,6 @@ std::vector<Block>& Grid::get_blocks() {
     return blocks;
 }
 
-std::vector<Patch *>& Grid::get_patches() {
+std::vector<std::unique_ptr<Patch>>& Grid::get_patches() {
     return patches;
 }

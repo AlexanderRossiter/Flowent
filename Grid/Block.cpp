@@ -18,6 +18,15 @@ Block::Block(vector3d<float> x_, vector3d<float> y_,
     z = z_;
     id = -1;
 
+    // Set the array bounds assuming that we have a halo all around.
+    ist = 1;
+    ien = ni+1;
+    jst = 1;
+    jen = nj+1;
+    kst = 1;
+    ken = nk+1;
+
+
     geom.resize(boost::extents[ni][nj][nk]);
     volume.resize(boost::extents[ni][nj][nk]);
 }

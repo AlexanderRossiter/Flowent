@@ -24,6 +24,13 @@ public:
     int nj;
     int nk;
 
+    int ist;
+    int ien;
+    int jst;
+    int jen;
+    int kst;
+    int ken;
+
     Block(vector3d<float> x_, vector3d<float> y_, vector3d<float> z_);
     void set_block_id(int id_);
 
