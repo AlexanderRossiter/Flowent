@@ -140,6 +140,8 @@ void Grid::calculate_block_volumes(Block& b) {
     std::vector<float> ro(3);
     std::vector<float> r_star(3);
 
+    const std::vector<std::vector<int>> index_offsets = {{1,0,0},{0,1,0}, {0,0,1}};
+
     for (int i = b.ist; i < b.ien-1; i++) {
         for (int j = b.jst; j < b.jen-1; j++) {
             for (int k = b.kst; k < b.ken-1; k++) {
@@ -153,24 +155,28 @@ void Grid::calculate_block_volumes(Block& b) {
                     r = get_face_midpoint_vector(faceId, i, j, k, b);
                     r_star = util::vector_subtr(r, ro);
                     v += util::vector_dot(r_star, b.geom[i][j][k].S[faceId]) * b.geom[i][j][k].A[faceId];
+
+                    r = get_face_midpoint_vector(faceId, i+index_offsets[faceId][0], j+index_offsets[faceId][1], k+index_offsets[faceId][2], b);
+                    r_star = util::vector_subtr(r, ro);
+                    v -= util::vector_dot(r_star, b.geom[i+index_offsets[faceId][0]][j+index_offsets[faceId][1]][k+index_offsets[faceId][2]].S[faceId]) * b.geom[i+index_offsets[faceId][0]][j+index_offsets[faceId][1]][k+index_offsets[faceId][2]].A[faceId];
                 }
-                // Faces stored in adjacent cells. These vectors point in the wrong direction
-                // for this cell, so must subtract.
-                // i-face: stored in i+1th cell.
-                int faceId = 0;
-                r = get_face_midpoint_vector(faceId, i+1, j, k, b);
-                r_star = util::vector_subtr(r, ro);
-                v -= util::vector_dot(r_star, b.geom[i+1][j][k].S[faceId]) * b.geom[i+1][j][k].A[faceId];
-                // j-face: stored in j+1th cell.
-                faceId = 1;
-                r = get_face_midpoint_vector(faceId, i, j+1, k, b);
-                r_star = util::vector_subtr(r, ro);
-                v -= util::vector_dot(r_star, b.geom[i][j+1][k].S[faceId]) * b.geom[i][j+1][k].A[faceId];
-                // k-face: stored in k+1th cell.
-                faceId = 2;
-                r = get_face_midpoint_vector(faceId, i, j, k+1, b);
-                r_star = util::vector_subtr(r, ro);
-                v -= util::vector_dot(r_star, b.geom[i][j][k+1].S[faceId]) * b.geom[i][j][k+1].A[faceId];
+//                // Faces stored in adjacent cells. These vectors point in the wrong direction
+//                // for this cell, so must subtract.
+//                // i-face: stored in i+1th cell.
+//                int faceId = 0;
+//                r = get_face_midpoint_vector(faceId, i+1, j, k, b);
+//                r_star = util::vector_subtr(r, ro);
+//                v -= util::vector_dot(r_star, b.geom[i+1][j][k].S[faceId]) * b.geom[i+1][j][k].A[faceId];
+//                // j-face: stored in j+1th cell.
+//                faceId = 1;
+//                r = get_face_midpoint_vector(faceId, i, j+1, k, b);
+//                r_star = util::vector_subtr(r, ro);
+//                v -= util::vector_dot(r_star, b.geom[i][j+1][k].S[faceId]) * b.geom[i][j+1][k].A[faceId];
+//                // k-face: stored in k+1th cell.
+//                faceId = 2;
+//                r = get_face_midpoint_vector(faceId, i, j, k+1, b);
+//                r_star = util::vector_subtr(r, ro);
+//                v -= util::vector_dot(r_star, b.geom[i][j][k+1].S[faceId]) * b.geom[i][j][k+1].A[faceId];
 
                 b.volume[i][j][k] = 0.333333333f * v;
                 if (v < 0) {
