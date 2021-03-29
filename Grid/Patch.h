@@ -52,6 +52,8 @@ struct InletConds {
 };
 
 struct Patch {
+    Patch(){};
+    virtual ~Patch(){};
     int bid;
     Extent extent{};
     Patch(int bid, Extent extent) : bid{bid}, extent{extent} {};
@@ -61,10 +63,13 @@ struct Patch {
 };
 
 struct PeriodicPatch: Patch {
+    PeriodicPatch(){};
+    ~PeriodicPatch(){};
+    PeriodicPatch(int bid, Extent extent, int nxbid, NextDir nextDir_) : Patch(bid, extent), nxbid{nxbid}, nextDir{std::move(nextDir_)}{};
+
     int nxbid;
     NextDir nextDir{};
 
-    PeriodicPatch(int bid, Extent extent, int nxbid, NextDir nextDir_) : Patch(bid, extent), nxbid{nxbid}, nextDir{std::move(nextDir_)}{};
     void apply(Grid& g) override;
     std::string to_string() override {
         std::string str(std::string("Periodic: bid: ") + std::to_string(bid) + std::string(", nxbid: ") + std::to_string(nxbid) + std::string(", ") + extent.to_string() + std::string(", ") + nextDir.to_string());
@@ -74,8 +79,11 @@ struct PeriodicPatch: Patch {
 };
 
 struct InletPatch: Patch {
-    InletConds conditions{};
+    InletPatch(){};
+    ~InletPatch(){};
     InletPatch(int bid, Extent extent, InletConds conditions_) : Patch(bid, extent), conditions{conditions_}{};
+
+    InletConds conditions{};
 
     void apply(Grid& g) override;
     std::string to_string() override{
@@ -86,8 +94,11 @@ struct InletPatch: Patch {
 };
 
 struct ExitPatch: Patch {
-    float p_exit;
+    ExitPatch(){};
+    ~ExitPatch(){};
     ExitPatch(int bid, Extent extent, float p_exit) : Patch(bid, extent), p_exit{p_exit} {};
+
+    float p_exit;
 
     void apply(Grid& g) override;
     std::string to_string() override{

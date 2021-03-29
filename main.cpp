@@ -9,7 +9,6 @@ int main(int argc, char **argv) {
     Grid g = setup::read_grid_testcase(tc);
     g.move_patches_to_halo_grid();
 
-
     // Calculate grid cell normal vectors and volumes.
     g.calculate_grid_geometries();
 
@@ -19,7 +18,10 @@ int main(int argc, char **argv) {
 
     for (Block& b : g.get_blocks()) {
         for (int i = b.ist; i < b.ien; i++) {
-            std::cout << b.isWall[i][b.jst][b.kst] << " ";
+            for (int j = b.jst; j < b.jen; j++) {
+                std::cout << b.isWall[i][j][b.ken-1] << " ";
+            }
+            std::cout << "\n";
         }
     }
     std::cout << std::endl;
@@ -28,10 +30,12 @@ int main(int argc, char **argv) {
 
     for (Block& b : g.get_blocks()) {
         for (int i = b.ist; i < b.ien; i++) {
-            std::cout << b.isWall[i][b.jst][b.kst] << " ";
+            for (int j = b.jst; j < b.jen; j++) {
+                std::cout << b.isWall[i][j][b.ken-1] << " ";
+            }
+            std::cout << "\n";
         }
     }
-
     std::cout << std::endl;
 
     // Find walls.

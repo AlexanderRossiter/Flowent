@@ -56,13 +56,31 @@ void Block::set_block_id(int id_) {
 
 void Block::initialise_walls() {
     // We start by assuming all block boundaries are walls, when we read the patches we can then modify where necessary.
-    for (int i = ist; i < ien; i++) {
-        isWall[i][jst][kst] = true;
+    // k faces.
+    for (int k : std::vector<int>{kst, ken-1}) {
+        for (int i = ist; i < ien; i++) {
+            for (int j = jst; j < jen; j++) {
+                isWall[i][j][k] = true;
+            }
+        }
     }
-    for (int j = jst; j < jen; j++) {
-        isWall[ist][j][kst] = true;
+
+    // j faces.
+    for (int j : std::vector<int>{jst, jen-1}) {
+        for (int i = ist; i < ien; i++) {
+            for (int k = kst; k < ken; k++) {
+                isWall[i][j][k] = true;
+            }
+        }
     }
-    for (int k = kst; k < ken; k++) {
-        isWall[ist][jst][k] = true;
+
+    // i faces.
+    for (int i : std::vector<int>{ist, ien-1}) {
+        for (int j = jst; j < jen; j++) {
+            for (int k = kst; k < ken; k++) {
+                isWall[i][j][k] = true;
+            }
+        }
     }
+
 }
