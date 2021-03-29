@@ -8,8 +8,8 @@
 #include <utility>
 #include <vector>
 #include <string>
-#include "Grid.h"
 
+class Grid;
 
 struct Extent {
     int ist;
@@ -57,6 +57,7 @@ struct Patch {
     Patch(int bid, Extent extent) : bid{bid}, extent{extent} {};
     virtual void apply(Grid& g)=0;
     virtual std::string to_string()=0;
+    void shift_patch_extent(int ishift, int jshift, int kshift);
 };
 
 struct PeriodicPatch: Patch {

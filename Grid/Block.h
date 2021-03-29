@@ -15,6 +15,7 @@ class Block {
 private:
     void fill_geometry_arrays(vector3d<float>& x_, vector3d<float>& y_,
             vector3d<float>& z_);
+    void initialise_walls();
 
 public:
     vector3d<float> x;
@@ -22,8 +23,10 @@ public:
     vector3d<float> z;
     vector3d<float> volume;
     vector3d<Cell> geom;
-    //std::vector<Patch*> patches;
+    vector3d<bool> isWall;
+
     int id;
+
     int ni;
     int nj;
     int nk;
@@ -36,6 +39,8 @@ public:
     int ken;
 
     Block(vector3d<float> x_, vector3d<float> y_, vector3d<float> z_);
+    Block(){};
+    ~Block(){};
     void set_block_id(int id_);
 
 };

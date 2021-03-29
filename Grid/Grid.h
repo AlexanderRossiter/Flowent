@@ -11,20 +11,21 @@
 #include "../util.h"
 #include <iostream>
 #include "cell_face_relation.h"
-
-// Forward declaration
-class Patch;
+#include "Patch.h"
 
 class Grid {
 private:
     std::vector<Block> blocks;
     std::vector<std::unique_ptr<Patch>> patches;
+
+
+    // Abstraction for grid volume and surface vector calculations.
     static std::vector<float> calculate_face_vector(std::vector<int>& v1, std::vector<int>& v2,
                                                     std::vector<int>& v3, std::vector<int>& v4,
                                                     Block& b);
     void calculate_block_face_vectors(Block& b);
     void calculate_block_volumes(Block& b);
-    std::vector<std::vector<int>> get_vertex_ijk_vectors(int faceId, int i, int j, int k);
+    static std::vector<std::vector<int>> get_vertex_ijk_vectors(int faceId, int i, int j, int k);
     std::vector<float> get_face_midpoint_vector(int faceId, int i, int j, int k, Block& b);
 
 public:
@@ -34,6 +35,8 @@ public:
     std::vector<Block>&  get_blocks();
     std::vector<std::unique_ptr<Patch>>& get_patches();
     void calculate_grid_geometries();
+    void initialise_walls();
+    void move_patches_to_halo_grid();
 
 };
 

@@ -3,6 +3,7 @@
 //
 #include "Grid.h"
 
+
 void Grid::calculate_grid_geometries() {
     // Calculates the grid cell volumes and normal vectors for the
     // finite volume method.
@@ -202,5 +203,28 @@ std::vector<float> Grid::get_face_midpoint_vector(int faceId, int i, int j, int 
     for (float& f : r) {f *= 0.25f;}
     return r;
 }
+
+
+void Grid::move_patches_to_halo_grid() {
+    for (auto& p : get_patches()) { // using auto to reduce typing of unique_ptr
+        Block b = get_block_by_id(p->bid);
+        p->shift_patch_extent(b.ist, b.jst, b.kst);
+    }
+}
+
+void Grid::initialise_walls() {
+    // Go through all patches, anywhere patch sits is not a wall.
+    for (auto& p : patches) {
+        Block b = get_block_by_id(p->bid); // reference to b.
+        for (int i = p->extent.ist; i < p->extent.ien; i++) {
+            for (int j = p->extent.jst; j < p->extent.jen; j++) {
+                for (int k = p->extent.kst; k < p->extent.ken; k++) {
+                    b.isWall[i][j][k] = false;
+                }
+            }
+        }
+    }
+}
+
 
 

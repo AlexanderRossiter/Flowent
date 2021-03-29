@@ -7,6 +7,8 @@ int main(int argc, char **argv) {
     // Read grid data
     std::string tc = "gaussian_bump";
     Grid g = setup::read_grid_testcase(tc);
+    g.move_patches_to_halo_grid();
+
 
     // Calculate grid cell normal vectors and volumes.
     g.calculate_grid_geometries();
@@ -17,9 +19,20 @@ int main(int argc, char **argv) {
 
     for (Block& b : g.get_blocks()) {
         for (int i = b.ist; i < b.ien; i++) {
-            std::cout << b.volume[i][b.jst][b.kst] << std::endl;
+            std::cout << b.isWall[i][b.jst][b.kst] << " ";
         }
     }
+    std::cout << std::endl;
+
+    g.initialise_walls();
+
+    for (Block& b : g.get_blocks()) {
+        for (int i = b.ist; i < b.ien; i++) {
+            std::cout << b.isWall[i][b.jst][b.kst] << " ";
+        }
+    }
+
+    std::cout << std::endl;
 
     // Find walls.
 

@@ -10,13 +10,18 @@ Block::Block(vector3d<float> x_, vector3d<float> y_,
 
     id = -1;
 
+    // Number of nodes excluding halos.
     ni = x_.size();
     nj = x_[0].size();
     nk = x_[0][0].size();
+
+    // Array initialisation.
     x.resize(boost::extents[ni+2][nj+2][nk+2]);
     y.resize(boost::extents[ni+2][nj+2][nk+2]);
     z.resize(boost::extents[ni+2][nj+2][nk+2]);
-
+    isWall.resize(boost::extents[ni + 2][nj + 2][nk + 2]);
+    geom.resize(boost::extents[ni+2][nj+2][nk+2]);
+    volume.resize(boost::extents[ni+2][nj+2][nk+2]);
 
     // Set the array bounds assuming that we have a halo all around.
     ist = 1;
@@ -28,11 +33,8 @@ Block::Block(vector3d<float> x_, vector3d<float> y_,
 
     // Add the geometry to arrays leaving halos all around.
     fill_geometry_arrays(x_, y_, z_);
+    initialise_walls();
 
-
-
-    geom.resize(boost::extents[ni+2][nj+2][nk+2]);
-    volume.resize(boost::extents[ni+2][nj+2][nk+2]);
 }
 
 void Block::fill_geometry_arrays(vector3d<float>& x_, vector3d<float>& y_,
@@ -50,4 +52,17 @@ void Block::fill_geometry_arrays(vector3d<float>& x_, vector3d<float>& y_,
 
 void Block::set_block_id(int id_) {
     id = id_;
+}
+
+void Block::initialise_walls() {
+    // We start by assuming all block boundaries are walls, when we read the patches we can then modify where necessary.
+    for (int i = ist; i < ien; i++) {
+        isWall[i][jst][kst] = true;
+    }
+    for (int j = jst; j < jen; j++) {
+        isWall[ist][j][kst] = true;
+    }
+    for (int k = kst; k < ken; k++) {
+        isWall[ist][jst][k] = true;
+    }
 }
