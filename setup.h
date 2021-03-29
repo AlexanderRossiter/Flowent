@@ -8,6 +8,8 @@
 #include <string>
 #include "Grid/Grid.h"
 #include "util.h"
+#include "Grid/Patch.h"
+
 
 namespace setup {
     struct params{};

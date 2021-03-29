@@ -196,3 +196,5 @@ std::vector<float> Grid::get_face_midpoint_vector(int faceId, int i, int j, int 
     for (float& f : r) {f *= 0.25f;}
     return r;
 }
+
+

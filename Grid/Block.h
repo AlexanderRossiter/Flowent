@@ -9,7 +9,6 @@
 #include <vector>
 #include "Cell.h"
 #include "../typedefinitions.h"
-#include "Patch.h"
 
 class Block {
 

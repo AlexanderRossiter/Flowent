@@ -3,4 +3,15 @@
 //
 
 #include "Patch.h"
-#include "Grid.h"
+
+void PeriodicPatch::apply(Grid &g) {
+
+}
+
+void ExitPatch::apply(Grid &g) {
+
+}
+
+void InletPatch::apply(Grid &g) {
+
+}

@@ -22,3 +22,7 @@ Block& Grid::get_block_by_id(int desired_bid) {
 std::vector<Block>& Grid::get_blocks() {
     return blocks;
 }
+
+std::vector<Patch *>& Grid::get_patches() {
+    return patches;
+}
