@@ -332,6 +332,60 @@ Grid/cell_face_relation.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/Grid/cell_face_relation.cpp.s
 .PHONY : Grid/cell_face_relation.cpp.s
 
+GridWriter.o: GridWriter.cpp.o
+
+.PHONY : GridWriter.o
+
+# target to build an object file
+GridWriter.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/GridWriter.cpp.o
+.PHONY : GridWriter.cpp.o
+
+GridWriter.i: GridWriter.cpp.i
+
+.PHONY : GridWriter.i
+
+# target to preprocess a source file
+GridWriter.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/GridWriter.cpp.i
+.PHONY : GridWriter.cpp.i
+
+GridWriter.s: GridWriter.cpp.s
+
+.PHONY : GridWriter.s
+
+# target to generate assembly for a file
+GridWriter.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/GridWriter.cpp.s
+.PHONY : GridWriter.cpp.s
+
+Solver.o: Solver.cpp.o
+
+.PHONY : Solver.o
+
+# target to build an object file
+Solver.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/Solver.cpp.o
+.PHONY : Solver.cpp.o
+
+Solver.i: Solver.cpp.i
+
+.PHONY : Solver.i
+
+# target to preprocess a source file
+Solver.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/Solver.cpp.i
+.PHONY : Solver.cpp.i
+
+Solver.s: Solver.cpp.s
+
+.PHONY : Solver.s
+
+# target to generate assembly for a file
+Solver.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/Solver.cpp.s
+.PHONY : Solver.cpp.s
+
 algo.o: algo.cpp.o
 
 .PHONY : algo.o
@@ -470,6 +524,12 @@ help:
 	@echo "... Grid/cell_face_relation.o"
 	@echo "... Grid/cell_face_relation.i"
 	@echo "... Grid/cell_face_relation.s"
+	@echo "... GridWriter.o"
+	@echo "... GridWriter.i"
+	@echo "... GridWriter.s"
+	@echo "... Solver.o"
+	@echo "... Solver.i"
+	@echo "... Solver.s"
 	@echo "... algo.o"
 	@echo "... algo.i"
 	@echo "... algo.s"

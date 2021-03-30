@@ -71,10 +71,7 @@ struct PeriodicPatch: Patch {
     NextDir nextDir{};
 
     void apply(Grid& g) override;
-    std::string to_string() override {
-        std::string str(std::string("Periodic: bid: ") + std::to_string(bid) + std::string(", nxbid: ") + std::to_string(nxbid) + std::string(", ") + extent.to_string() + std::string(", ") + nextDir.to_string());
-        return str;
-    }
+    std::string to_string() override;
 
 };
 
@@ -86,10 +83,7 @@ struct InletPatch: Patch {
     InletConds conditions{};
 
     void apply(Grid& g) override;
-    std::string to_string() override{
-        std::string str(std::string("Inlet: bid: ") + std::to_string(bid) + std::string(" ") + extent.to_string() + std::string(" ") + conditions.to_string());
-        return str;
-    }
+    std::string to_string() override;
 
 };
 
@@ -101,9 +95,6 @@ struct ExitPatch: Patch {
     float p_exit;
 
     void apply(Grid& g) override;
-    std::string to_string() override{
-        std::string str(std::string("Exit: bid: ") + std::to_string(bid) + std::string(" ") + extent.to_string() + std::string(" p_exit: ") + std::to_string(p_exit));
-        return str;
-    }
+    std::string to_string() override;
 };
 #endif //FLOWENT_PATCH_H

@@ -121,6 +121,21 @@
 		<Unit filename="/Users/ADR/CLionProjects/Flowent/Grid/cell_face_relation.h">
 			<Option target="Flowent"/>
 		</Unit>
+		<Unit filename="/Users/ADR/CLionProjects/Flowent/GridWriter.cpp">
+			<Option target="Flowent"/>
+		</Unit>
+		<Unit filename="/Users/ADR/CLionProjects/Flowent/GridWriter.h">
+			<Option target="Flowent"/>
+		</Unit>
+		<Unit filename="/Users/ADR/CLionProjects/Flowent/SolutionParameters.h">
+			<Option target="Flowent"/>
+		</Unit>
+		<Unit filename="/Users/ADR/CLionProjects/Flowent/Solver.cpp">
+			<Option target="Flowent"/>
+		</Unit>
+		<Unit filename="/Users/ADR/CLionProjects/Flowent/Solver.h">
+			<Option target="Flowent"/>
+		</Unit>
 		<Unit filename="/Users/ADR/CLionProjects/Flowent/algo.cpp">
 			<Option target="Flowent"/>
 		</Unit>

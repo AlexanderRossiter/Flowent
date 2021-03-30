@@ -10,7 +10,7 @@
 
 
 Grid setup::read_grid_testcase(std::string& testcase) {
-    std::ifstream file("../test_cases/" + testcase + ".grid");
+    std::ifstream file(testcase + ".grid");
     if (file.fail()) {
         std::cout << "Failed to open grid file." << std::endl;
         throw std::exception();
@@ -68,27 +68,21 @@ void setup::read_patches(Grid& g, std::string& fname) {
 
     // Initialise storage variables.
     std::string str;
-    std::vector<std::string> patch_str_vec;
-    char kind;
-    Extent extent{};
-    NextDir nextDir{};
-    InletConds inletConds{};
-    int bid;
     int nxbid;
 
     // Loop though lines in patch file.
     while(std::getline(file, str)) {
-        patch_str_vec = util::str_split(str, " ");
+        std::vector<std::string> patch_str_vec = util::str_split(str, " ");
 
         // Get patch type.
         assert(patch_str_vec[0].size() == 1);
-        kind = patch_str_vec[0][0];
+        char kind = patch_str_vec[0][0];
 
         // Get block patch belongs to.
-        bid = std::stoi(patch_str_vec[1]);
+        int bid = std::stoi(patch_str_vec[1]);
 
         // Get the patch extents.
-        extent = {std::stoi(patch_str_vec[2]),
+        Extent extent = {std::stoi(patch_str_vec[2]),
                   std::stoi(patch_str_vec[3]),
                   std::stoi(patch_str_vec[4]),
                   std::stoi(patch_str_vec[5]),
@@ -97,13 +91,13 @@ void setup::read_patches(Grid& g, std::string& fname) {
 
         switch (kind) {
             case 'P': {
-                nextDir = {patch_str_vec[9], patch_str_vec[10], patch_str_vec[11]};
-                nxbid = std::stoi(patch_str_vec[8]);
+                NextDir nextDir = {patch_str_vec[9], patch_str_vec[10], patch_str_vec[11]};
+                int nxbid = std::stoi(patch_str_vec[8]);
                 g.get_patches().push_back(std::make_unique<PeriodicPatch>(bid, extent, nxbid, nextDir));
                 break;
             }
             case 'I': {
-                inletConds = {std::stof(patch_str_vec[8]), std::stof(patch_str_vec[9]), std::stof(patch_str_vec[10]),
+                InletConds inletConds = {std::stof(patch_str_vec[8]), std::stof(patch_str_vec[9]), std::stof(patch_str_vec[10]),
                               std::stof(patch_str_vec[11])};
                 g.get_patches().push_back(std::make_unique<InletPatch>(bid, extent, inletConds));
                 break;
@@ -116,9 +110,46 @@ void setup::read_patches(Grid& g, std::string& fname) {
                 throw std::invalid_argument("Invalid patch type.");
         }
 
-        std::cout << util::vector_to_string(patch_str_vec) << std::endl;
+        //std::cout << util::vector_to_string(patch_str_vec) << std::endl;
     }
 
+}
+
+Gas setup::read_gas(std::string& gasName) {
+    std::ifstream file("../resources/gases/" + gasName + ".flwntgas");
+    std::stringstream buffer;
+    buffer << file.rdbuf();
+
+    std::vector<std::string> gasPropStr = util::str_split(buffer.str(), "\n");
+    Gas gas;
+
+    for (std::string& str : gasPropStr) {
+        if (str.find("cp") != std::string::npos) {
+            gas.cp = std::stof(util::str_split(str, " ")[1]);
+        } else if (str.find("R") != std::string::npos) {
+            gas.R = std::stof(util::str_split(str, " ")[1]);
+        } else if (str.find("ga") != std::string::npos) {
+            gas.ga = std::stof(util::str_split(str, " ")[1]);
+        } else {
+            throw std::invalid_argument("Invalid gas property.");
+        }
+    }
+
+    return gas;
+
+}
+
+SolutionParameters setup::read_solution_params(std::string& directory) {
+    std::ifstream file( directory + "solnparams.flwntparam");
+    std::stringstream buffer;
+    buffer << file.rdbuf();
+
+    std::vector<std::string> solnPropStr = util::str_split(buffer.str(), " ");
+    SolutionParameters sf {std::stof(solnPropStr[0]),
+                           std::stof(solnPropStr[1]),
+                           std::stoi(solnPropStr[2])};
+
+    return sf;
 }
 
 

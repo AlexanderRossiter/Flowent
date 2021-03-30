@@ -7,7 +7,14 @@
 
 
 class Gas {
+public:
+    float cp;
+    float R;
+    float ga;
 
+    Gas(float cp_, float R_, float ga_): cp{cp_}, R{R_}, ga{ga_} {};
+    Gas(){};
+    ~Gas(){};
 };
 
 

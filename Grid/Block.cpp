@@ -22,6 +22,11 @@ Block::Block(vector3d<float> x_, vector3d<float> y_,
     isWall.resize(boost::extents[ni + 2][nj + 2][nk + 2]);
     geom.resize(boost::extents[ni+2][nj+2][nk+2]);
     volume.resize(boost::extents[ni+2][nj+2][nk+2]);
+    ro.resize(boost::extents[ni+2][nj+2][nk+2]);
+    rovx.resize(boost::extents[ni+2][nj+2][nk+2]);
+    rovy.resize(boost::extents[ni+2][nj+2][nk+2]);
+    rovz.resize(boost::extents[ni+2][nj+2][nk+2]);
+    roe.resize(boost::extents[ni+2][nj+2][nk+2]);
 
     // Set the array bounds assuming that we have a halo all around.
     ist = 1;

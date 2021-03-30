@@ -9,6 +9,8 @@
 #include "Grid/Grid.h"
 #include "util.h"
 #include "Grid/Patch.h"
+#include "Gas.h"
+#include "SolutionParameters.h"
 
 
 namespace setup {
@@ -18,6 +20,8 @@ namespace setup {
     Grid read_grid_testcase(std::string& testcase);
     params read_input_params();
     void read_patches(Grid& g, std::string& fname);
+    Gas read_gas(std::string& gasName);
+    SolutionParameters read_solution_params(std::string& directory);
 }
 
 #endif //FLOWENT_SETUP_H

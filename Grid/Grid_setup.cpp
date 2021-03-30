@@ -12,7 +12,7 @@ void Grid::calculate_grid_geometries() {
         // All cells except external faces.
         std::cout << "Calculating surface vectors... ";
         calculate_block_face_vectors(b);
-        std::cout << "Done.\n" << std::endl;
+        std::cout << "Done." << std::endl;
         std::cout << "Calculating volumes... ";
         calculate_block_volumes(b);
         std::cout << "Done." << std::endl;
@@ -20,15 +20,7 @@ void Grid::calculate_grid_geometries() {
 }
 
 void Grid::calculate_block_face_vectors(Block& b) {
-    std::vector<float> si;
-    std::vector<float> sj;
-    std::vector<float> sk;
     std::vector<std::vector<float>> sijk(3, std::vector<float>(3));
-
-    std::vector<int> v1;
-    std::vector<int> v2;
-    std::vector<int> v3;
-    std::vector<int> v4;
 
     std::vector<std::vector<int>> vertex_ijk;
     for (int i = b.ist; i < b.ien-1; i++) {
@@ -215,7 +207,7 @@ void Grid::move_patches_to_halo_grid() {
 void Grid::initialise_walls() {
     // Go through all patches, anywhere patch sits is not a wall.
     for (auto& p : patches) {
-        Block b = get_block_by_id(p->bid); // reference to b.
+        Block& b = get_block_by_id(p->bid); // reference to b.
         for (int i = p->extent.ist; i < p->extent.ien; i++) {
             for (int j = p->extent.jst; j < p->extent.jen; j++) {
                 for (int k = p->extent.kst; k < p->extent.ken; k++) {

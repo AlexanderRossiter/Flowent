@@ -18,12 +18,20 @@ private:
     void initialise_walls();
 
 public:
+    // Grid properties.
     vector3d<float> x;
     vector3d<float> y;
     vector3d<float> z;
     vector3d<float> volume;
-    vector3d<Cell> geom;
-    vector3d<bool> isWall;
+    vector3d<Cell>  geom;
+    vector3d<bool>  isWall;
+
+    // Flow variables.
+    vector3d<float> ro;
+    vector3d<float> rovx;
+    vector3d<float> rovy;
+    vector3d<float> rovz;
+    vector3d<float> roe;
 
     int id;
 

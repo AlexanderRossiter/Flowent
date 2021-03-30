@@ -6,6 +6,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/Flowent.dir/Grid/Grid_setup.cpp.o"
   "CMakeFiles/Flowent.dir/Grid/Patch.cpp.o"
   "CMakeFiles/Flowent.dir/Grid/cell_face_relation.cpp.o"
+  "CMakeFiles/Flowent.dir/GridWriter.cpp.o"
+  "CMakeFiles/Flowent.dir/Solver.cpp.o"
   "CMakeFiles/Flowent.dir/algo.cpp.o"
   "CMakeFiles/Flowent.dir/main.cpp.o"
   "CMakeFiles/Flowent.dir/setup.cpp.o"
