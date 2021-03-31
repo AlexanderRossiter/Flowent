@@ -43,9 +43,9 @@ int main(int argc, char **argv) {
 
     Solver solver(g, gas, sp);
 
-    for (Block& b : solver.g.get_blocks()) {
-        std::cout << b.ist << " " << b.ien << " " << b.jst << " " << b.jen << " " << b.kst << " " << b.ken << std::endl;
-    }
+//    for (Block& b : solver.g.get_blocks()) {
+//        std::cout << b.ist << " " << b.ien << " " << b.jst << " " << b.jen << " " << b.kst << " " << b.ken << std::endl;
+//    }
 
     BasicGuess ig(gas, 0.4, 1E5, 300, 0, 0);
     ig.generate_guess(solver.g);
