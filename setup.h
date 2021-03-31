@@ -9,8 +9,8 @@
 #include "Grid/Grid.h"
 #include "util.h"
 #include "Grid/Patch.h"
-#include "Gas.h"
-#include "SolutionParameters.h"
+#include "Solving/Gas.h"
+#include "Solving/SolutionParameters.h"
 
 
 namespace setup {

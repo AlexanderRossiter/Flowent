@@ -15,18 +15,26 @@ Block::Block(vector3d<float> x_, vector3d<float> y_,
     nj = x_[0].size();
     nk = x_[0][0].size();
 
-    // Array initialisation.
+    // Array initialisation. A +2 cell 'halo' is put around the 3d block, this allows easy patching.
+    // Geometry
     x.resize(boost::extents[ni+2][nj+2][nk+2]);
     y.resize(boost::extents[ni+2][nj+2][nk+2]);
     z.resize(boost::extents[ni+2][nj+2][nk+2]);
     isWall.resize(boost::extents[ni + 2][nj + 2][nk + 2]);
     geom.resize(boost::extents[ni+2][nj+2][nk+2]);
     volume.resize(boost::extents[ni+2][nj+2][nk+2]);
+    // Primary flow variables
     ro.resize(boost::extents[ni+2][nj+2][nk+2]);
     rovx.resize(boost::extents[ni+2][nj+2][nk+2]);
     rovy.resize(boost::extents[ni+2][nj+2][nk+2]);
     rovz.resize(boost::extents[ni+2][nj+2][nk+2]);
     roe.resize(boost::extents[ni+2][nj+2][nk+2]);
+    // Secondary flow variables
+    pstat.resize(boost::extents[ni+2][nj+2][nk+2]);
+    hstag.resize(boost::extents[ni+2][nj+2][nk+2]);
+    vx.resize(boost::extents[ni+2][nj+2][nk+2]);
+    vy.resize(boost::extents[ni+2][nj+2][nk+2]);
+    vz.resize(boost::extents[ni+2][nj+2][nk+2]);
 
     // Set the array bounds assuming that we have a halo all around.
     ist = 1;

@@ -6,18 +6,18 @@
 #define FLOWENT_SOLVER_H
 
 
-#include "Grid/Grid.h"
+#include "../Grid/Grid.h"
 #include "Gas.h"
 #include "SolutionParameters.h"
 
 class Solver {
 private:
-    Grid g;
     Gas gas;
     SolutionParameters sp;
 public:
     Solver(Grid& g_, Gas& gas_, SolutionParameters& sp_): g{std::move(g_)}, gas{gas_}, sp{sp_} {};
     ~Solver(){};
+    Grid g;
 };
 
 

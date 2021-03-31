@@ -2,7 +2,8 @@
 #include "Grid/Grid.h"
 #include "setup.h"
 #include "GridWriter.h"
-#include "Solver.h"
+#include "Solving/Solver.h"
+#include "Solving/InitialGuess.h"
 
 int main(int argc, char **argv) {
 
@@ -33,16 +34,26 @@ int main(int argc, char **argv) {
     g.calculate_grid_geometries();
 
     // Find where the walls are, i.e. where there are no patches.
+    // Also change the iteration extent of the grid so that we deal
+    // with periodic patches appropriately.
     std::cout << "Initialising walls...";
     g.initialise_walls();
+    g.move_block_iteration_extent_for_periodic_patches();
     std::cout << " Done." << std::endl;
 
-    Solver flowent(g, gas, sp);
+    Solver solver(g, gas, sp);
+
+    for (Block& b : solver.g.get_blocks()) {
+        std::cout << b.ist << " " << b.ien << " " << b.jst << " " << b.jen << " " << b.kst << " " << b.ken << std::endl;
+    }
+
+    BasicGuess ig(gas, 0.4, 1E5, 300, 0, 0);
+    ig.generate_guess(solver.g);
 
 
-//    GridWriter gw(g);
-//    std::string str("/Users/ADR/Documents/Programming/Python/flowent_test_case/gridout.flwnt");
-//    gw.write_grid(str);
+    GridWriter gw(solver.g);
+    std::string str(directory + "gridout.flwnt");
+    gw.write_grid(str);
 
 }
 

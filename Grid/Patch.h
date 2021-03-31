@@ -8,6 +8,7 @@
 #include <utility>
 #include <vector>
 #include <string>
+#include "Block.h"
 
 class Grid;
 
@@ -52,48 +53,60 @@ struct InletConds {
 };
 
 struct Patch {
-    Patch(){};
-    virtual ~Patch(){};
+public:
     int bid;
+    int face;
+
     Extent extent{};
-    Patch(int bid, Extent extent) : bid{bid}, extent{extent} {};
     virtual void apply(Grid& g)=0;
     virtual std::string to_string()=0;
+    virtual void alter_block_iteration_extent(Block& b)=0;
     void shift_patch_extent(int ishift, int jshift, int kshift);
+    void find_face();
+
+    Patch()=default;
+    virtual ~Patch()=default;
+    Patch(int bid, Extent extent) : bid{bid}, extent{extent} {find_face();};
 };
 
 struct PeriodicPatch: Patch {
-    PeriodicPatch(){};
-    ~PeriodicPatch(){};
+public:
+    PeriodicPatch()=default;
+    ~PeriodicPatch() override = default;
     PeriodicPatch(int bid, Extent extent, int nxbid, NextDir nextDir_) : Patch(bid, extent), nxbid{nxbid}, nextDir{std::move(nextDir_)}{};
 
     int nxbid;
     NextDir nextDir{};
 
     void apply(Grid& g) override;
+    void alter_block_iteration_extent(Block& b) override;
     std::string to_string() override;
 
 };
 
 struct InletPatch: Patch {
-    InletPatch(){};
-    ~InletPatch(){};
+public:
+    InletPatch()=default;
+    ~InletPatch() override = default;
     InletPatch(int bid, Extent extent, InletConds conditions_) : Patch(bid, extent), conditions{conditions_}{};
 
     InletConds conditions{};
 
+    void alter_block_iteration_extent(Block& b) override {};
     void apply(Grid& g) override;
     std::string to_string() override;
 
 };
 
 struct ExitPatch: Patch {
-    ExitPatch(){};
-    ~ExitPatch(){};
+public:
+    ExitPatch()=default;
+    ~ExitPatch() override = default;
     ExitPatch(int bid, Extent extent, float p_exit) : Patch(bid, extent), p_exit{p_exit} {};
 
     float p_exit;
 
+    void alter_block_iteration_extent(Block& b) override {};
     void apply(Grid& g) override;
     std::string to_string() override;
 };

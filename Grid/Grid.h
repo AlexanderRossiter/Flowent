@@ -10,6 +10,7 @@
 #include "Block.h"
 #include "../util.h"
 #include <iostream>
+#include <memory>
 #include "cell_face_relation.h"
 #include "Patch.h"
 
@@ -37,6 +38,7 @@ public:
     void calculate_grid_geometries();
     void initialise_walls();
     void move_patches_to_halo_grid();
+    void move_block_iteration_extent_for_periodic_patches();
 
 };
 

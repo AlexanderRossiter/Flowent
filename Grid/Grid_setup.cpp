@@ -218,5 +218,11 @@ void Grid::initialise_walls() {
     }
 }
 
+void Grid::move_block_iteration_extent_for_periodic_patches() {
+    for (auto& p : patches) {
+        p->alter_block_iteration_extent(get_block_by_id(p->bid));
+    }
+}
+
 
 

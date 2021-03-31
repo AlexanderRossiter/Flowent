@@ -26,12 +26,19 @@ public:
     vector3d<Cell>  geom;
     vector3d<bool>  isWall;
 
-    // Flow variables.
+    // Primary flow variables (conserved eqns).
     vector3d<float> ro;
     vector3d<float> rovx;
     vector3d<float> rovy;
     vector3d<float> rovz;
     vector3d<float> roe;
+
+    // Secondary flow variables.
+    vector3d<float> pstat;
+    vector3d<float> hstag;
+    vector3d<float> vx; // Not sure if the memory overhead of saving these is worth the computational saving.
+    vector3d<float> vy;
+    vector3d<float> vz;
 
     int id;
 
