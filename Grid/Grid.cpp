@@ -16,7 +16,16 @@ Block& Grid::get_block_by_id(int desired_bid) {
             return b;
         }
     }
-    throw std::exception() ;
+    throw std::exception();
+}
+
+std::unique_ptr<Patch>& Grid::get_patch_by_id(int pid) {
+    for (auto& p : patches) {
+        if (p->pid == pid) {
+            return p;
+        }
+    }
+    throw std::exception();
 }
 
 std::vector<Block>& Grid::get_blocks() {

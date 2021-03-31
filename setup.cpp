@@ -81,29 +81,33 @@ void setup::read_patches(Grid& g, std::string& fname) {
         // Get block patch belongs to.
         int bid = std::stoi(patch_str_vec[1]);
 
+        // Get the id of this patch.
+        int pid = std::stoi(patch_str_vec[2]);
+
         // Get the patch extents.
-        Extent extent = {std::stoi(patch_str_vec[2]),
-                  std::stoi(patch_str_vec[3]),
+        Extent extent = {std::stoi(patch_str_vec[3]),
                   std::stoi(patch_str_vec[4]),
                   std::stoi(patch_str_vec[5]),
                   std::stoi(patch_str_vec[6]),
-                  std::stoi(patch_str_vec[7])};
+                  std::stoi(patch_str_vec[7]),
+                  std::stoi(patch_str_vec[8])};
 
         switch (kind) {
             case 'P': {
-                NextDir nextDir = {patch_str_vec[9], patch_str_vec[10], patch_str_vec[11]};
+                NextDir nextDir = {patch_str_vec[10], patch_str_vec[11], patch_str_vec[12]};
                 int nxbid = std::stoi(patch_str_vec[8]);
-                g.get_patches().push_back(std::make_unique<PeriodicPatch>(bid, extent, nxbid, nextDir));
+                int nxpid = std::stoi(patch_str_vec[9]);
+                g.get_patches().push_back(std::make_unique<PeriodicPatch>(bid, pid, extent, nxbid, nxpid, nextDir));
                 break;
             }
             case 'I': {
                 InletConds inletConds = {std::stof(patch_str_vec[8]), std::stof(patch_str_vec[9]), std::stof(patch_str_vec[10]),
                               std::stof(patch_str_vec[11])};
-                g.get_patches().push_back(std::make_unique<InletPatch>(bid, extent, inletConds));
+                g.get_patches().push_back(std::make_unique<InletPatch>(bid, pid, extent, inletConds));
                 break;
             }
             case 'E': {
-                g.get_patches().push_back(std::make_unique<ExitPatch>(bid, extent, std::stof(patch_str_vec[8])));
+                g.get_patches().push_back(std::make_unique<ExitPatch>(bid, pid, extent, std::stof(patch_str_vec[8])));
                 break;
             }
             default:

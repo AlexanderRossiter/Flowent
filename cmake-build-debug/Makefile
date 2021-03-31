@@ -143,33 +143,6 @@ Flowent/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/build
 .PHONY : Flowent/fast
 
-Gas.o: Gas.cpp.o
-
-.PHONY : Gas.o
-
-# target to build an object file
-Gas.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/Gas.cpp.o
-.PHONY : Gas.cpp.o
-
-Gas.i: Gas.cpp.i
-
-.PHONY : Gas.i
-
-# target to preprocess a source file
-Gas.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/Gas.cpp.i
-.PHONY : Gas.cpp.i
-
-Gas.s: Gas.cpp.s
-
-.PHONY : Gas.s
-
-# target to generate assembly for a file
-Gas.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/Gas.cpp.s
-.PHONY : Gas.cpp.s
-
 Grid/Block.o: Grid/Block.cpp.o
 
 .PHONY : Grid/Block.o
@@ -359,32 +332,86 @@ GridWriter.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/GridWriter.cpp.s
 .PHONY : GridWriter.cpp.s
 
-Solver.o: Solver.cpp.o
+Solving/Gas.o: Solving/Gas.cpp.o
 
-.PHONY : Solver.o
+.PHONY : Solving/Gas.o
 
 # target to build an object file
-Solver.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/Solver.cpp.o
-.PHONY : Solver.cpp.o
+Solving/Gas.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/Solving/Gas.cpp.o
+.PHONY : Solving/Gas.cpp.o
 
-Solver.i: Solver.cpp.i
+Solving/Gas.i: Solving/Gas.cpp.i
 
-.PHONY : Solver.i
+.PHONY : Solving/Gas.i
 
 # target to preprocess a source file
-Solver.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/Solver.cpp.i
-.PHONY : Solver.cpp.i
+Solving/Gas.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/Solving/Gas.cpp.i
+.PHONY : Solving/Gas.cpp.i
 
-Solver.s: Solver.cpp.s
+Solving/Gas.s: Solving/Gas.cpp.s
 
-.PHONY : Solver.s
+.PHONY : Solving/Gas.s
 
 # target to generate assembly for a file
-Solver.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/Solver.cpp.s
-.PHONY : Solver.cpp.s
+Solving/Gas.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/Solving/Gas.cpp.s
+.PHONY : Solving/Gas.cpp.s
+
+Solving/InitialGuess.o: Solving/InitialGuess.cpp.o
+
+.PHONY : Solving/InitialGuess.o
+
+# target to build an object file
+Solving/InitialGuess.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/Solving/InitialGuess.cpp.o
+.PHONY : Solving/InitialGuess.cpp.o
+
+Solving/InitialGuess.i: Solving/InitialGuess.cpp.i
+
+.PHONY : Solving/InitialGuess.i
+
+# target to preprocess a source file
+Solving/InitialGuess.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/Solving/InitialGuess.cpp.i
+.PHONY : Solving/InitialGuess.cpp.i
+
+Solving/InitialGuess.s: Solving/InitialGuess.cpp.s
+
+.PHONY : Solving/InitialGuess.s
+
+# target to generate assembly for a file
+Solving/InitialGuess.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/Solving/InitialGuess.cpp.s
+.PHONY : Solving/InitialGuess.cpp.s
+
+Solving/Solver.o: Solving/Solver.cpp.o
+
+.PHONY : Solving/Solver.o
+
+# target to build an object file
+Solving/Solver.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/Solving/Solver.cpp.o
+.PHONY : Solving/Solver.cpp.o
+
+Solving/Solver.i: Solving/Solver.cpp.i
+
+.PHONY : Solving/Solver.i
+
+# target to preprocess a source file
+Solving/Solver.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/Solving/Solver.cpp.i
+.PHONY : Solving/Solver.cpp.i
+
+Solving/Solver.s: Solving/Solver.cpp.s
+
+.PHONY : Solving/Solver.s
+
+# target to generate assembly for a file
+Solving/Solver.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/Solving/Solver.cpp.s
+.PHONY : Solving/Solver.cpp.s
 
 algo.o: algo.cpp.o
 
@@ -412,6 +439,33 @@ algo.s: algo.cpp.s
 algo.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/algo.cpp.s
 .PHONY : algo.cpp.s
+
+compressible_flow_functions.o: compressible_flow_functions.cpp.o
+
+.PHONY : compressible_flow_functions.o
+
+# target to build an object file
+compressible_flow_functions.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/compressible_flow_functions.cpp.o
+.PHONY : compressible_flow_functions.cpp.o
+
+compressible_flow_functions.i: compressible_flow_functions.cpp.i
+
+.PHONY : compressible_flow_functions.i
+
+# target to preprocess a source file
+compressible_flow_functions.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/compressible_flow_functions.cpp.i
+.PHONY : compressible_flow_functions.cpp.i
+
+compressible_flow_functions.s: compressible_flow_functions.cpp.s
+
+.PHONY : compressible_flow_functions.s
+
+# target to generate assembly for a file
+compressible_flow_functions.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/compressible_flow_functions.cpp.s
+.PHONY : compressible_flow_functions.cpp.s
 
 main.o: main.cpp.o
 
@@ -503,9 +557,6 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... Flowent"
-	@echo "... Gas.o"
-	@echo "... Gas.i"
-	@echo "... Gas.s"
 	@echo "... Grid/Block.o"
 	@echo "... Grid/Block.i"
 	@echo "... Grid/Block.s"
@@ -527,12 +578,21 @@ help:
 	@echo "... GridWriter.o"
 	@echo "... GridWriter.i"
 	@echo "... GridWriter.s"
-	@echo "... Solver.o"
-	@echo "... Solver.i"
-	@echo "... Solver.s"
+	@echo "... Solving/Gas.o"
+	@echo "... Solving/Gas.i"
+	@echo "... Solving/Gas.s"
+	@echo "... Solving/InitialGuess.o"
+	@echo "... Solving/InitialGuess.i"
+	@echo "... Solving/InitialGuess.s"
+	@echo "... Solving/Solver.o"
+	@echo "... Solving/Solver.i"
+	@echo "... Solving/Solver.s"
 	@echo "... algo.o"
 	@echo "... algo.i"
 	@echo "... algo.s"
+	@echo "... compressible_flow_functions.o"
+	@echo "... compressible_flow_functions.i"
+	@echo "... compressible_flow_functions.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

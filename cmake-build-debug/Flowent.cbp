@@ -82,12 +82,6 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/Users/ADR/CLionProjects/Flowent/Gas.cpp">
-			<Option target="Flowent"/>
-		</Unit>
-		<Unit filename="/Users/ADR/CLionProjects/Flowent/Gas.h">
-			<Option target="Flowent"/>
-		</Unit>
 		<Unit filename="/Users/ADR/CLionProjects/Flowent/Grid/Block.cpp">
 			<Option target="Flowent"/>
 		</Unit>
@@ -127,19 +121,37 @@
 		<Unit filename="/Users/ADR/CLionProjects/Flowent/GridWriter.h">
 			<Option target="Flowent"/>
 		</Unit>
-		<Unit filename="/Users/ADR/CLionProjects/Flowent/SolutionParameters.h">
+		<Unit filename="/Users/ADR/CLionProjects/Flowent/Solving/Gas.cpp">
 			<Option target="Flowent"/>
 		</Unit>
-		<Unit filename="/Users/ADR/CLionProjects/Flowent/Solver.cpp">
+		<Unit filename="/Users/ADR/CLionProjects/Flowent/Solving/Gas.h">
 			<Option target="Flowent"/>
 		</Unit>
-		<Unit filename="/Users/ADR/CLionProjects/Flowent/Solver.h">
+		<Unit filename="/Users/ADR/CLionProjects/Flowent/Solving/InitialGuess.cpp">
+			<Option target="Flowent"/>
+		</Unit>
+		<Unit filename="/Users/ADR/CLionProjects/Flowent/Solving/InitialGuess.h">
+			<Option target="Flowent"/>
+		</Unit>
+		<Unit filename="/Users/ADR/CLionProjects/Flowent/Solving/SolutionParameters.h">
+			<Option target="Flowent"/>
+		</Unit>
+		<Unit filename="/Users/ADR/CLionProjects/Flowent/Solving/Solver.cpp">
+			<Option target="Flowent"/>
+		</Unit>
+		<Unit filename="/Users/ADR/CLionProjects/Flowent/Solving/Solver.h">
 			<Option target="Flowent"/>
 		</Unit>
 		<Unit filename="/Users/ADR/CLionProjects/Flowent/algo.cpp">
 			<Option target="Flowent"/>
 		</Unit>
 		<Unit filename="/Users/ADR/CLionProjects/Flowent/algo.h">
+			<Option target="Flowent"/>
+		</Unit>
+		<Unit filename="/Users/ADR/CLionProjects/Flowent/compressible_flow_functions.cpp">
+			<Option target="Flowent"/>
+		</Unit>
+		<Unit filename="/Users/ADR/CLionProjects/Flowent/compressible_flow_functions.h">
 			<Option target="Flowent"/>
 		</Unit>
 		<Unit filename="/Users/ADR/CLionProjects/Flowent/main.cpp">

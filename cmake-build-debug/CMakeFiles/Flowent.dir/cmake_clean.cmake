@@ -1,5 +1,4 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/Flowent.dir/Gas.cpp.o"
   "CMakeFiles/Flowent.dir/Grid/Block.cpp.o"
   "CMakeFiles/Flowent.dir/Grid/Cell.cpp.o"
   "CMakeFiles/Flowent.dir/Grid/Grid.cpp.o"
@@ -7,8 +6,11 @@ file(REMOVE_RECURSE
   "CMakeFiles/Flowent.dir/Grid/Patch.cpp.o"
   "CMakeFiles/Flowent.dir/Grid/cell_face_relation.cpp.o"
   "CMakeFiles/Flowent.dir/GridWriter.cpp.o"
-  "CMakeFiles/Flowent.dir/Solver.cpp.o"
+  "CMakeFiles/Flowent.dir/Solving/Gas.cpp.o"
+  "CMakeFiles/Flowent.dir/Solving/InitialGuess.cpp.o"
+  "CMakeFiles/Flowent.dir/Solving/Solver.cpp.o"
   "CMakeFiles/Flowent.dir/algo.cpp.o"
+  "CMakeFiles/Flowent.dir/compressible_flow_functions.cpp.o"
   "CMakeFiles/Flowent.dir/main.cpp.o"
   "CMakeFiles/Flowent.dir/setup.cpp.o"
   "CMakeFiles/Flowent.dir/util.cpp.o"

@@ -4,7 +4,6 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/Users/ADR/CLionProjects/Flowent/Gas.cpp" "/Users/ADR/CLionProjects/Flowent/cmake-build-debug/CMakeFiles/Flowent.dir/Gas.cpp.o"
   "/Users/ADR/CLionProjects/Flowent/Grid/Block.cpp" "/Users/ADR/CLionProjects/Flowent/cmake-build-debug/CMakeFiles/Flowent.dir/Grid/Block.cpp.o"
   "/Users/ADR/CLionProjects/Flowent/Grid/Cell.cpp" "/Users/ADR/CLionProjects/Flowent/cmake-build-debug/CMakeFiles/Flowent.dir/Grid/Cell.cpp.o"
   "/Users/ADR/CLionProjects/Flowent/Grid/Grid.cpp" "/Users/ADR/CLionProjects/Flowent/cmake-build-debug/CMakeFiles/Flowent.dir/Grid/Grid.cpp.o"
@@ -12,8 +11,11 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/Users/ADR/CLionProjects/Flowent/Grid/Patch.cpp" "/Users/ADR/CLionProjects/Flowent/cmake-build-debug/CMakeFiles/Flowent.dir/Grid/Patch.cpp.o"
   "/Users/ADR/CLionProjects/Flowent/Grid/cell_face_relation.cpp" "/Users/ADR/CLionProjects/Flowent/cmake-build-debug/CMakeFiles/Flowent.dir/Grid/cell_face_relation.cpp.o"
   "/Users/ADR/CLionProjects/Flowent/GridWriter.cpp" "/Users/ADR/CLionProjects/Flowent/cmake-build-debug/CMakeFiles/Flowent.dir/GridWriter.cpp.o"
-  "/Users/ADR/CLionProjects/Flowent/Solver.cpp" "/Users/ADR/CLionProjects/Flowent/cmake-build-debug/CMakeFiles/Flowent.dir/Solver.cpp.o"
+  "/Users/ADR/CLionProjects/Flowent/Solving/Gas.cpp" "/Users/ADR/CLionProjects/Flowent/cmake-build-debug/CMakeFiles/Flowent.dir/Solving/Gas.cpp.o"
+  "/Users/ADR/CLionProjects/Flowent/Solving/InitialGuess.cpp" "/Users/ADR/CLionProjects/Flowent/cmake-build-debug/CMakeFiles/Flowent.dir/Solving/InitialGuess.cpp.o"
+  "/Users/ADR/CLionProjects/Flowent/Solving/Solver.cpp" "/Users/ADR/CLionProjects/Flowent/cmake-build-debug/CMakeFiles/Flowent.dir/Solving/Solver.cpp.o"
   "/Users/ADR/CLionProjects/Flowent/algo.cpp" "/Users/ADR/CLionProjects/Flowent/cmake-build-debug/CMakeFiles/Flowent.dir/algo.cpp.o"
+  "/Users/ADR/CLionProjects/Flowent/compressible_flow_functions.cpp" "/Users/ADR/CLionProjects/Flowent/cmake-build-debug/CMakeFiles/Flowent.dir/compressible_flow_functions.cpp.o"
   "/Users/ADR/CLionProjects/Flowent/main.cpp" "/Users/ADR/CLionProjects/Flowent/cmake-build-debug/CMakeFiles/Flowent.dir/main.cpp.o"
   "/Users/ADR/CLionProjects/Flowent/setup.cpp" "/Users/ADR/CLionProjects/Flowent/cmake-build-debug/CMakeFiles/Flowent.dir/setup.cpp.o"
   "/Users/ADR/CLionProjects/Flowent/util.cpp" "/Users/ADR/CLionProjects/Flowent/cmake-build-debug/CMakeFiles/Flowent.dir/util.cpp.o"

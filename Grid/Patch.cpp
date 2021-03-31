@@ -4,9 +4,20 @@
 
 #include <stdexcept>
 #include "Patch.h"
+#include "Grid.h"
 
 void PeriodicPatch::apply(Grid &g) {
-
+    Block& b1 = g.get_block_by_id(bid);
+    std::unique_ptr<Patch>& nxp = g.get_patch_by_id(nxpid);
+    Block& b2 = g.get_block_by_id(nxbid);
+    for (int i = 0; i < extent.ien-extent.ist; i++) {
+        for (int j = 0; j < extent.jen-extent.jst; j++) {
+            for (int k = 0; k < extent.ken-extent.kst; k++) {
+                // next i = +i, next j = +j, next k = +k
+                b1.ro[i+extent.ist][j+extent.jst][k+extent.kst] = b2.ro[i+nxp->extent.ist][j+nxp->extent.jst][k+nxp->extent.kst];
+            }
+        }
+    }
 }
 
 std::string PeriodicPatch::to_string() {
@@ -38,7 +49,15 @@ void PeriodicPatch::alter_block_iteration_extent(Block &b) {
 }
 
 void ExitPatch::apply(Grid &g) {
-
+    // Set the static pressure on the exit face to p_down.
+    Block& b = g.get_block_by_id(bid);
+    for (int i = extent.ist; i < extent.ien; i++) {
+        for (int j = extent.jst; j < extent.jen; j++) {
+            for (int k = extent.kst; k < extent.ken; k++) {
+                b.pstat[i][j][k] = p_exit;
+            }
+        }
+    }
 }
 
 std::string ExitPatch::to_string() {

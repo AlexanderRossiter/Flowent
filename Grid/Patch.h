@@ -55,6 +55,7 @@ struct InletConds {
 struct Patch {
 public:
     int bid;
+    int pid;
     int face;
 
     Extent extent{};
@@ -66,16 +67,17 @@ public:
 
     Patch()=default;
     virtual ~Patch()=default;
-    Patch(int bid, Extent extent) : bid{bid}, extent{extent} {find_face();};
+    Patch(int bid, int pid, Extent extent) : bid{bid}, pid{pid}, extent{extent} {find_face();};
 };
 
 struct PeriodicPatch: Patch {
 public:
     PeriodicPatch()=default;
     ~PeriodicPatch() override = default;
-    PeriodicPatch(int bid, Extent extent, int nxbid, NextDir nextDir_) : Patch(bid, extent), nxbid{nxbid}, nextDir{std::move(nextDir_)}{};
+    PeriodicPatch(int bid, int pid, Extent extent, int nxbid, int nxpid, NextDir nextDir_) : Patch(bid, pid, extent), nxbid{nxbid}, nxpid{nxpid}, nextDir{std::move(nextDir_)}{};
 
     int nxbid;
+    int nxpid;
     NextDir nextDir{};
 
     void apply(Grid& g) override;
@@ -88,7 +90,7 @@ struct InletPatch: Patch {
 public:
     InletPatch()=default;
     ~InletPatch() override = default;
-    InletPatch(int bid, Extent extent, InletConds conditions_) : Patch(bid, extent), conditions{conditions_}{};
+    InletPatch(int bid, int pid, Extent extent, InletConds conditions_) : Patch(bid, pid, extent), conditions{conditions_}{};
 
     InletConds conditions{};
 
@@ -102,7 +104,7 @@ struct ExitPatch: Patch {
 public:
     ExitPatch()=default;
     ~ExitPatch() override = default;
-    ExitPatch(int bid, Extent extent, float p_exit) : Patch(bid, extent), p_exit{p_exit} {};
+    ExitPatch(int bid, int pid, Extent extent, float p_exit) : Patch(bid, pid, extent), p_exit{p_exit} {};
 
     float p_exit;
 
