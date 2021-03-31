@@ -4,12 +4,12 @@
 
 #include <stdexcept>
 #include "Patch.h"
-#include "Grid.h"
+#include "../Solving/Solver.h"
+void PeriodicPatch::apply(Solver& solver) {
+    Block& b1 = solver.g.get_block_by_id(bid);
+    std::unique_ptr<Patch>& nxp = solver.g.get_patch_by_id(nxpid);
+    Block& b2 = solver.g.get_block_by_id(nxbid);
 
-void PeriodicPatch::apply(Grid &g) {
-    Block& b1 = g.get_block_by_id(bid);
-    std::unique_ptr<Patch>& nxp = g.get_patch_by_id(nxpid);
-    Block& b2 = g.get_block_by_id(nxbid);
     for (int i = 0; i < extent.ien-extent.ist; i++) {
         for (int j = 0; j < extent.jen-extent.jst; j++) {
             for (int k = 0; k < extent.ken-extent.kst; k++) {
@@ -48,9 +48,9 @@ void PeriodicPatch::alter_block_iteration_extent(Block &b) {
     }
 }
 
-void ExitPatch::apply(Grid &g) {
+void ExitPatch::apply(Solver& solver) {
     // Set the static pressure on the exit face to p_down.
-    Block& b = g.get_block_by_id(bid);
+    Block& b = solver.g.get_block_by_id(bid);
     for (int i = extent.ist; i < extent.ien; i++) {
         for (int j = extent.jst; j < extent.jen; j++) {
             for (int k = extent.kst; k < extent.ken; k++) {
@@ -65,8 +65,47 @@ std::string ExitPatch::to_string() {
     return str;
 }
 
-void InletPatch::apply(Grid &g) {
+void InletPatch::apply(Solver& solver) {
+    Block& b = solver.g.get_block_by_id(bid);
+    for (int i = extent.ist; i < extent.ien; i++) {
+        for (int j = extent.jst; j < extent.jen; j++) {
+            for (int k = extent.kst; k < extent.ken; k++) {
+                //std::cout << i << " " << j << " " << k << std::endl;
+                // Stagnation density.
+                float ro_stag = conditions.Po / solver.gas.R / conditions.To;
+                float ro_new = b.ro[i][j][k];
 
+                // If this is the first iteration we don't have a ro_(n-1) so we just use the
+                // current ro.
+                if (solver.nstep > 0) {
+                    ro_new = rfin * b.ro[i][j][k] + (1-rfin) * ro_nm1;
+                }
+                ro_nm1 = b.ro[i][j][k];
+
+                // If our static density is greater than stagnation density
+                // set it to be just less. This avoids needless NaNs during
+                // transients.
+                if (ro_new > ro_stag) {
+                    ro_new = 0.9999f * ro_stag;
+                }
+                // Calculate the secondary variables.
+                float tstat = conditions.To * pow(ro_new / ro_stag, solver.gas.ga-1);
+                float vel = sqrt(2*solver.gas.cv*(conditions.To-tstat));
+                float E = solver.gas.cv*tstat + 0.5f*vel*vel;
+                b.vx[i][j][k] = vel * cos(conditions.yaw*M_PI/180) * cos(conditions.pitch*M_PI/180);
+                b.vy[i][j][k] = vel * sin(conditions.yaw*M_PI/180);
+                b.vz[i][j][k] = vel * cos(conditions.yaw*M_PI/180) * sin(conditions.pitch*M_PI/180);
+
+                // Update the primary variables.
+                b.ro[i][j][k] = ro_new;
+                b.rovx[i][j][k] = b.ro[i][j][k]*b.vx[i][j][k];
+                b.rovy[i][j][k] = b.ro[i][j][k]*b.vy[i][j][k];
+                b.rovz[i][j][k] = b.ro[i][j][k]*b.vz[i][j][k];
+                b.roe[i][j][k]  = b.ro[i][j][k]*E;
+
+            }
+        }
+    }
 }
 
 std::string InletPatch::to_string() {

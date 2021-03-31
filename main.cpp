@@ -41,6 +41,10 @@ int main(int argc, char **argv) {
     g.move_block_iteration_extent_for_periodic_patches();
     std::cout << " Done." << std::endl;
 
+    for (auto& p : g.get_patches()) {
+        std::cout << p->to_string() << std::endl;
+    }
+
     Solver solver(g, gas, sp);
 
 //    for (Block& b : solver.g.get_blocks()) {
@@ -49,6 +53,8 @@ int main(int argc, char **argv) {
 
     BasicGuess ig(gas, 0.4, 1E5, 300, 0, 0);
     ig.generate_guess(solver.g);
+
+    solver.apply_boundary_conditions();
 
 
     GridWriter gw(solver.g);

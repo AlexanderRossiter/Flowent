@@ -1762,6 +1762,9 @@ CMakeFiles/Flowent.dir/Grid/Patch.cpp.o
  /Users/ADR/CLionProjects/Flowent/Grid/Patch.cpp
  /Users/ADR/CLionProjects/Flowent/Grid/Patch.h
  /Users/ADR/CLionProjects/Flowent/Grid/cell_face_relation.h
+ /Users/ADR/CLionProjects/Flowent/Solving/Gas.h
+ /Users/ADR/CLionProjects/Flowent/Solving/SolutionParameters.h
+ /Users/ADR/CLionProjects/Flowent/Solving/Solver.h
  /Users/ADR/CLionProjects/Flowent/typedefinitions.h
  /Users/ADR/CLionProjects/Flowent/util.h
  /usr/local/boost_1_75_0/boost/array.hpp

@@ -1761,6 +1761,9 @@ CMakeFiles/Flowent.dir/Grid/Patch.cpp.o: ../Grid/Grid.h
 CMakeFiles/Flowent.dir/Grid/Patch.cpp.o: ../Grid/Patch.cpp
 CMakeFiles/Flowent.dir/Grid/Patch.cpp.o: ../Grid/Patch.h
 CMakeFiles/Flowent.dir/Grid/Patch.cpp.o: ../Grid/cell_face_relation.h
+CMakeFiles/Flowent.dir/Grid/Patch.cpp.o: ../Solving/Gas.h
+CMakeFiles/Flowent.dir/Grid/Patch.cpp.o: ../Solving/SolutionParameters.h
+CMakeFiles/Flowent.dir/Grid/Patch.cpp.o: ../Solving/Solver.h
 CMakeFiles/Flowent.dir/Grid/Patch.cpp.o: ../typedefinitions.h
 CMakeFiles/Flowent.dir/Grid/Patch.cpp.o: ../util.h
 CMakeFiles/Flowent.dir/Grid/Patch.cpp.o: /usr/local/boost_1_75_0/boost/array.hpp

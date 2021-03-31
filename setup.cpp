@@ -94,16 +94,17 @@ void setup::read_patches(Grid& g, std::string& fname) {
 
         switch (kind) {
             case 'P': {
-                NextDir nextDir = {patch_str_vec[10], patch_str_vec[11], patch_str_vec[12]};
-                int nxbid = std::stoi(patch_str_vec[8]);
-                int nxpid = std::stoi(patch_str_vec[9]);
+                NextDir nextDir = {patch_str_vec[11], patch_str_vec[12], patch_str_vec[13]};
+                int nxbid = std::stoi(patch_str_vec[9]);
+                int nxpid = std::stoi(patch_str_vec[10]);
                 g.get_patches().push_back(std::make_unique<PeriodicPatch>(bid, pid, extent, nxbid, nxpid, nextDir));
                 break;
             }
             case 'I': {
-                InletConds inletConds = {std::stof(patch_str_vec[8]), std::stof(patch_str_vec[9]), std::stof(patch_str_vec[10]),
-                              std::stof(patch_str_vec[11])};
-                g.get_patches().push_back(std::make_unique<InletPatch>(bid, pid, extent, inletConds));
+                InletConds inletConds = {std::stof(patch_str_vec[9]), std::stof(patch_str_vec[10]), std::stof(patch_str_vec[11]),
+                              std::stof(patch_str_vec[12])};
+                float rfin = std::stof(patch_str_vec[13]);
+                g.get_patches().push_back(std::make_unique<InletPatch>(bid, pid, extent, inletConds, rfin));
                 break;
             }
             case 'E': {

@@ -10,7 +10,7 @@
 #include <string>
 #include "Block.h"
 
-class Grid;
+class Solver;
 
 struct Extent {
     int ist;
@@ -59,7 +59,7 @@ public:
     int face;
 
     Extent extent{};
-    virtual void apply(Grid& g)=0;
+    virtual void apply(Solver& solver)=0;
     virtual std::string to_string()=0;
     virtual void alter_block_iteration_extent(Block& b)=0;
     void shift_patch_extent(int ishift, int jshift, int kshift);
@@ -80,7 +80,7 @@ public:
     int nxpid;
     NextDir nextDir{};
 
-    void apply(Grid& g) override;
+    void apply(Solver& solver) override;
     void alter_block_iteration_extent(Block& b) override;
     std::string to_string() override;
 
@@ -90,12 +90,14 @@ struct InletPatch: Patch {
 public:
     InletPatch()=default;
     ~InletPatch() override = default;
-    InletPatch(int bid, int pid, Extent extent, InletConds conditions_) : Patch(bid, pid, extent), conditions{conditions_}{};
+    InletPatch(int bid, int pid, Extent extent, InletConds conditions_, float rfin) : Patch(bid, pid, extent), conditions{conditions_}, rfin{rfin}{};
 
     InletConds conditions{};
+    float rfin;
+    float ro_nm1=0;
 
     void alter_block_iteration_extent(Block& b) override {};
-    void apply(Grid& g) override;
+    void apply(Solver& solver) override;
     std::string to_string() override;
 
 };
@@ -109,7 +111,7 @@ public:
     float p_exit;
 
     void alter_block_iteration_extent(Block& b) override {};
-    void apply(Grid& g) override;
+    void apply(Solver& solver) override;
     std::string to_string() override;
 };
 #endif //FLOWENT_PATCH_H

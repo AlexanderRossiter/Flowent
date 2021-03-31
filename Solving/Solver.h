@@ -12,12 +12,15 @@
 
 class Solver {
 private:
-    Gas gas;
     SolutionParameters sp;
 public:
     Solver(Grid& g_, Gas& gas_, SolutionParameters& sp_): g{std::move(g_)}, gas{gas_}, sp{sp_} {};
     ~Solver(){};
     Grid g;
+    Gas gas;
+    int nstep=0;
+    void apply_boundary_conditions();
+
 };
 
 
