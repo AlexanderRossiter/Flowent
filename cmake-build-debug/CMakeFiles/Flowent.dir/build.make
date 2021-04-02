@@ -77,240 +77,225 @@ include CMakeFiles/Flowent.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/Flowent.dir/flags.make
 
-CMakeFiles/Flowent.dir/main.cpp.o: CMakeFiles/Flowent.dir/flags.make
-CMakeFiles/Flowent.dir/main.cpp.o: ../main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ADR/CLionProjects/Flowent/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Flowent.dir/main.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Flowent.dir/main.cpp.o -c /Users/ADR/CLionProjects/Flowent/main.cpp
+CMakeFiles/Flowent.dir/src/main.cpp.o: CMakeFiles/Flowent.dir/flags.make
+CMakeFiles/Flowent.dir/src/main.cpp.o: ../src/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ADR/CLionProjects/Flowent/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Flowent.dir/src/main.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Flowent.dir/src/main.cpp.o -c /Users/ADR/CLionProjects/Flowent/src/main.cpp
 
-CMakeFiles/Flowent.dir/main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Flowent.dir/main.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ADR/CLionProjects/Flowent/main.cpp > CMakeFiles/Flowent.dir/main.cpp.i
+CMakeFiles/Flowent.dir/src/main.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Flowent.dir/src/main.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ADR/CLionProjects/Flowent/src/main.cpp > CMakeFiles/Flowent.dir/src/main.cpp.i
 
-CMakeFiles/Flowent.dir/main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Flowent.dir/main.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ADR/CLionProjects/Flowent/main.cpp -o CMakeFiles/Flowent.dir/main.cpp.s
+CMakeFiles/Flowent.dir/src/main.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Flowent.dir/src/main.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ADR/CLionProjects/Flowent/src/main.cpp -o CMakeFiles/Flowent.dir/src/main.cpp.s
 
-CMakeFiles/Flowent.dir/Grid/Block.cpp.o: CMakeFiles/Flowent.dir/flags.make
-CMakeFiles/Flowent.dir/Grid/Block.cpp.o: ../Grid/Block.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ADR/CLionProjects/Flowent/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Flowent.dir/Grid/Block.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Flowent.dir/Grid/Block.cpp.o -c /Users/ADR/CLionProjects/Flowent/Grid/Block.cpp
+CMakeFiles/Flowent.dir/src/Grid/Block.cpp.o: CMakeFiles/Flowent.dir/flags.make
+CMakeFiles/Flowent.dir/src/Grid/Block.cpp.o: ../src/Grid/Block.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ADR/CLionProjects/Flowent/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Flowent.dir/src/Grid/Block.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Flowent.dir/src/Grid/Block.cpp.o -c /Users/ADR/CLionProjects/Flowent/src/Grid/Block.cpp
 
-CMakeFiles/Flowent.dir/Grid/Block.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Flowent.dir/Grid/Block.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ADR/CLionProjects/Flowent/Grid/Block.cpp > CMakeFiles/Flowent.dir/Grid/Block.cpp.i
+CMakeFiles/Flowent.dir/src/Grid/Block.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Flowent.dir/src/Grid/Block.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ADR/CLionProjects/Flowent/src/Grid/Block.cpp > CMakeFiles/Flowent.dir/src/Grid/Block.cpp.i
 
-CMakeFiles/Flowent.dir/Grid/Block.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Flowent.dir/Grid/Block.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ADR/CLionProjects/Flowent/Grid/Block.cpp -o CMakeFiles/Flowent.dir/Grid/Block.cpp.s
+CMakeFiles/Flowent.dir/src/Grid/Block.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Flowent.dir/src/Grid/Block.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ADR/CLionProjects/Flowent/src/Grid/Block.cpp -o CMakeFiles/Flowent.dir/src/Grid/Block.cpp.s
 
-CMakeFiles/Flowent.dir/Solving/Gas.cpp.o: CMakeFiles/Flowent.dir/flags.make
-CMakeFiles/Flowent.dir/Solving/Gas.cpp.o: ../Solving/Gas.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ADR/CLionProjects/Flowent/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Flowent.dir/Solving/Gas.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Flowent.dir/Solving/Gas.cpp.o -c /Users/ADR/CLionProjects/Flowent/Solving/Gas.cpp
+CMakeFiles/Flowent.dir/src/Solving/Gas.cpp.o: CMakeFiles/Flowent.dir/flags.make
+CMakeFiles/Flowent.dir/src/Solving/Gas.cpp.o: ../src/Solving/Gas.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ADR/CLionProjects/Flowent/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Flowent.dir/src/Solving/Gas.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Flowent.dir/src/Solving/Gas.cpp.o -c /Users/ADR/CLionProjects/Flowent/src/Solving/Gas.cpp
 
-CMakeFiles/Flowent.dir/Solving/Gas.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Flowent.dir/Solving/Gas.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ADR/CLionProjects/Flowent/Solving/Gas.cpp > CMakeFiles/Flowent.dir/Solving/Gas.cpp.i
+CMakeFiles/Flowent.dir/src/Solving/Gas.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Flowent.dir/src/Solving/Gas.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ADR/CLionProjects/Flowent/src/Solving/Gas.cpp > CMakeFiles/Flowent.dir/src/Solving/Gas.cpp.i
 
-CMakeFiles/Flowent.dir/Solving/Gas.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Flowent.dir/Solving/Gas.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ADR/CLionProjects/Flowent/Solving/Gas.cpp -o CMakeFiles/Flowent.dir/Solving/Gas.cpp.s
+CMakeFiles/Flowent.dir/src/Solving/Gas.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Flowent.dir/src/Solving/Gas.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ADR/CLionProjects/Flowent/src/Solving/Gas.cpp -o CMakeFiles/Flowent.dir/src/Solving/Gas.cpp.s
 
-CMakeFiles/Flowent.dir/algo.cpp.o: CMakeFiles/Flowent.dir/flags.make
-CMakeFiles/Flowent.dir/algo.cpp.o: ../algo.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ADR/CLionProjects/Flowent/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Flowent.dir/algo.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Flowent.dir/algo.cpp.o -c /Users/ADR/CLionProjects/Flowent/algo.cpp
+CMakeFiles/Flowent.dir/src/util/setup.cpp.o: CMakeFiles/Flowent.dir/flags.make
+CMakeFiles/Flowent.dir/src/util/setup.cpp.o: ../src/util/setup.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ADR/CLionProjects/Flowent/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Flowent.dir/src/util/setup.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Flowent.dir/src/util/setup.cpp.o -c /Users/ADR/CLionProjects/Flowent/src/util/setup.cpp
 
-CMakeFiles/Flowent.dir/algo.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Flowent.dir/algo.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ADR/CLionProjects/Flowent/algo.cpp > CMakeFiles/Flowent.dir/algo.cpp.i
+CMakeFiles/Flowent.dir/src/util/setup.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Flowent.dir/src/util/setup.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ADR/CLionProjects/Flowent/src/util/setup.cpp > CMakeFiles/Flowent.dir/src/util/setup.cpp.i
 
-CMakeFiles/Flowent.dir/algo.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Flowent.dir/algo.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ADR/CLionProjects/Flowent/algo.cpp -o CMakeFiles/Flowent.dir/algo.cpp.s
+CMakeFiles/Flowent.dir/src/util/setup.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Flowent.dir/src/util/setup.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ADR/CLionProjects/Flowent/src/util/setup.cpp -o CMakeFiles/Flowent.dir/src/util/setup.cpp.s
 
-CMakeFiles/Flowent.dir/setup.cpp.o: CMakeFiles/Flowent.dir/flags.make
-CMakeFiles/Flowent.dir/setup.cpp.o: ../setup.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ADR/CLionProjects/Flowent/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/Flowent.dir/setup.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Flowent.dir/setup.cpp.o -c /Users/ADR/CLionProjects/Flowent/setup.cpp
+CMakeFiles/Flowent.dir/src/Grid/Grid.cpp.o: CMakeFiles/Flowent.dir/flags.make
+CMakeFiles/Flowent.dir/src/Grid/Grid.cpp.o: ../src/Grid/Grid.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ADR/CLionProjects/Flowent/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/Flowent.dir/src/Grid/Grid.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Flowent.dir/src/Grid/Grid.cpp.o -c /Users/ADR/CLionProjects/Flowent/src/Grid/Grid.cpp
 
-CMakeFiles/Flowent.dir/setup.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Flowent.dir/setup.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ADR/CLionProjects/Flowent/setup.cpp > CMakeFiles/Flowent.dir/setup.cpp.i
+CMakeFiles/Flowent.dir/src/Grid/Grid.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Flowent.dir/src/Grid/Grid.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ADR/CLionProjects/Flowent/src/Grid/Grid.cpp > CMakeFiles/Flowent.dir/src/Grid/Grid.cpp.i
 
-CMakeFiles/Flowent.dir/setup.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Flowent.dir/setup.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ADR/CLionProjects/Flowent/setup.cpp -o CMakeFiles/Flowent.dir/setup.cpp.s
+CMakeFiles/Flowent.dir/src/Grid/Grid.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Flowent.dir/src/Grid/Grid.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ADR/CLionProjects/Flowent/src/Grid/Grid.cpp -o CMakeFiles/Flowent.dir/src/Grid/Grid.cpp.s
 
-CMakeFiles/Flowent.dir/Grid/Grid.cpp.o: CMakeFiles/Flowent.dir/flags.make
-CMakeFiles/Flowent.dir/Grid/Grid.cpp.o: ../Grid/Grid.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ADR/CLionProjects/Flowent/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/Flowent.dir/Grid/Grid.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Flowent.dir/Grid/Grid.cpp.o -c /Users/ADR/CLionProjects/Flowent/Grid/Grid.cpp
+CMakeFiles/Flowent.dir/src/Grid/Cell.cpp.o: CMakeFiles/Flowent.dir/flags.make
+CMakeFiles/Flowent.dir/src/Grid/Cell.cpp.o: ../src/Grid/Cell.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ADR/CLionProjects/Flowent/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/Flowent.dir/src/Grid/Cell.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Flowent.dir/src/Grid/Cell.cpp.o -c /Users/ADR/CLionProjects/Flowent/src/Grid/Cell.cpp
 
-CMakeFiles/Flowent.dir/Grid/Grid.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Flowent.dir/Grid/Grid.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ADR/CLionProjects/Flowent/Grid/Grid.cpp > CMakeFiles/Flowent.dir/Grid/Grid.cpp.i
+CMakeFiles/Flowent.dir/src/Grid/Cell.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Flowent.dir/src/Grid/Cell.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ADR/CLionProjects/Flowent/src/Grid/Cell.cpp > CMakeFiles/Flowent.dir/src/Grid/Cell.cpp.i
 
-CMakeFiles/Flowent.dir/Grid/Grid.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Flowent.dir/Grid/Grid.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ADR/CLionProjects/Flowent/Grid/Grid.cpp -o CMakeFiles/Flowent.dir/Grid/Grid.cpp.s
+CMakeFiles/Flowent.dir/src/Grid/Cell.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Flowent.dir/src/Grid/Cell.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ADR/CLionProjects/Flowent/src/Grid/Cell.cpp -o CMakeFiles/Flowent.dir/src/Grid/Cell.cpp.s
 
-CMakeFiles/Flowent.dir/Grid/Cell.cpp.o: CMakeFiles/Flowent.dir/flags.make
-CMakeFiles/Flowent.dir/Grid/Cell.cpp.o: ../Grid/Cell.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ADR/CLionProjects/Flowent/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/Flowent.dir/Grid/Cell.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Flowent.dir/Grid/Cell.cpp.o -c /Users/ADR/CLionProjects/Flowent/Grid/Cell.cpp
+CMakeFiles/Flowent.dir/src/util/util.cpp.o: CMakeFiles/Flowent.dir/flags.make
+CMakeFiles/Flowent.dir/src/util/util.cpp.o: ../src/util/util.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ADR/CLionProjects/Flowent/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/Flowent.dir/src/util/util.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Flowent.dir/src/util/util.cpp.o -c /Users/ADR/CLionProjects/Flowent/src/util/util.cpp
 
-CMakeFiles/Flowent.dir/Grid/Cell.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Flowent.dir/Grid/Cell.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ADR/CLionProjects/Flowent/Grid/Cell.cpp > CMakeFiles/Flowent.dir/Grid/Cell.cpp.i
+CMakeFiles/Flowent.dir/src/util/util.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Flowent.dir/src/util/util.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ADR/CLionProjects/Flowent/src/util/util.cpp > CMakeFiles/Flowent.dir/src/util/util.cpp.i
 
-CMakeFiles/Flowent.dir/Grid/Cell.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Flowent.dir/Grid/Cell.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ADR/CLionProjects/Flowent/Grid/Cell.cpp -o CMakeFiles/Flowent.dir/Grid/Cell.cpp.s
+CMakeFiles/Flowent.dir/src/util/util.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Flowent.dir/src/util/util.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ADR/CLionProjects/Flowent/src/util/util.cpp -o CMakeFiles/Flowent.dir/src/util/util.cpp.s
 
-CMakeFiles/Flowent.dir/util.cpp.o: CMakeFiles/Flowent.dir/flags.make
-CMakeFiles/Flowent.dir/util.cpp.o: ../util.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ADR/CLionProjects/Flowent/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/Flowent.dir/util.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Flowent.dir/util.cpp.o -c /Users/ADR/CLionProjects/Flowent/util.cpp
+CMakeFiles/Flowent.dir/src/Grid/Grid_setup.cpp.o: CMakeFiles/Flowent.dir/flags.make
+CMakeFiles/Flowent.dir/src/Grid/Grid_setup.cpp.o: ../src/Grid/Grid_setup.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ADR/CLionProjects/Flowent/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/Flowent.dir/src/Grid/Grid_setup.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Flowent.dir/src/Grid/Grid_setup.cpp.o -c /Users/ADR/CLionProjects/Flowent/src/Grid/Grid_setup.cpp
 
-CMakeFiles/Flowent.dir/util.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Flowent.dir/util.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ADR/CLionProjects/Flowent/util.cpp > CMakeFiles/Flowent.dir/util.cpp.i
+CMakeFiles/Flowent.dir/src/Grid/Grid_setup.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Flowent.dir/src/Grid/Grid_setup.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ADR/CLionProjects/Flowent/src/Grid/Grid_setup.cpp > CMakeFiles/Flowent.dir/src/Grid/Grid_setup.cpp.i
 
-CMakeFiles/Flowent.dir/util.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Flowent.dir/util.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ADR/CLionProjects/Flowent/util.cpp -o CMakeFiles/Flowent.dir/util.cpp.s
+CMakeFiles/Flowent.dir/src/Grid/Grid_setup.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Flowent.dir/src/Grid/Grid_setup.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ADR/CLionProjects/Flowent/src/Grid/Grid_setup.cpp -o CMakeFiles/Flowent.dir/src/Grid/Grid_setup.cpp.s
 
-CMakeFiles/Flowent.dir/Grid/Grid_setup.cpp.o: CMakeFiles/Flowent.dir/flags.make
-CMakeFiles/Flowent.dir/Grid/Grid_setup.cpp.o: ../Grid/Grid_setup.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ADR/CLionProjects/Flowent/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/Flowent.dir/Grid/Grid_setup.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Flowent.dir/Grid/Grid_setup.cpp.o -c /Users/ADR/CLionProjects/Flowent/Grid/Grid_setup.cpp
+CMakeFiles/Flowent.dir/src/Grid/cell_face_relation.cpp.o: CMakeFiles/Flowent.dir/flags.make
+CMakeFiles/Flowent.dir/src/Grid/cell_face_relation.cpp.o: ../src/Grid/cell_face_relation.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ADR/CLionProjects/Flowent/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/Flowent.dir/src/Grid/cell_face_relation.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Flowent.dir/src/Grid/cell_face_relation.cpp.o -c /Users/ADR/CLionProjects/Flowent/src/Grid/cell_face_relation.cpp
 
-CMakeFiles/Flowent.dir/Grid/Grid_setup.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Flowent.dir/Grid/Grid_setup.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ADR/CLionProjects/Flowent/Grid/Grid_setup.cpp > CMakeFiles/Flowent.dir/Grid/Grid_setup.cpp.i
+CMakeFiles/Flowent.dir/src/Grid/cell_face_relation.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Flowent.dir/src/Grid/cell_face_relation.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ADR/CLionProjects/Flowent/src/Grid/cell_face_relation.cpp > CMakeFiles/Flowent.dir/src/Grid/cell_face_relation.cpp.i
 
-CMakeFiles/Flowent.dir/Grid/Grid_setup.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Flowent.dir/Grid/Grid_setup.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ADR/CLionProjects/Flowent/Grid/Grid_setup.cpp -o CMakeFiles/Flowent.dir/Grid/Grid_setup.cpp.s
+CMakeFiles/Flowent.dir/src/Grid/cell_face_relation.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Flowent.dir/src/Grid/cell_face_relation.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ADR/CLionProjects/Flowent/src/Grid/cell_face_relation.cpp -o CMakeFiles/Flowent.dir/src/Grid/cell_face_relation.cpp.s
 
-CMakeFiles/Flowent.dir/Grid/cell_face_relation.cpp.o: CMakeFiles/Flowent.dir/flags.make
-CMakeFiles/Flowent.dir/Grid/cell_face_relation.cpp.o: ../Grid/cell_face_relation.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ADR/CLionProjects/Flowent/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/Flowent.dir/Grid/cell_face_relation.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Flowent.dir/Grid/cell_face_relation.cpp.o -c /Users/ADR/CLionProjects/Flowent/Grid/cell_face_relation.cpp
+CMakeFiles/Flowent.dir/src/Grid/Patch.cpp.o: CMakeFiles/Flowent.dir/flags.make
+CMakeFiles/Flowent.dir/src/Grid/Patch.cpp.o: ../src/Grid/Patch.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ADR/CLionProjects/Flowent/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/Flowent.dir/src/Grid/Patch.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Flowent.dir/src/Grid/Patch.cpp.o -c /Users/ADR/CLionProjects/Flowent/src/Grid/Patch.cpp
 
-CMakeFiles/Flowent.dir/Grid/cell_face_relation.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Flowent.dir/Grid/cell_face_relation.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ADR/CLionProjects/Flowent/Grid/cell_face_relation.cpp > CMakeFiles/Flowent.dir/Grid/cell_face_relation.cpp.i
+CMakeFiles/Flowent.dir/src/Grid/Patch.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Flowent.dir/src/Grid/Patch.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ADR/CLionProjects/Flowent/src/Grid/Patch.cpp > CMakeFiles/Flowent.dir/src/Grid/Patch.cpp.i
 
-CMakeFiles/Flowent.dir/Grid/cell_face_relation.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Flowent.dir/Grid/cell_face_relation.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ADR/CLionProjects/Flowent/Grid/cell_face_relation.cpp -o CMakeFiles/Flowent.dir/Grid/cell_face_relation.cpp.s
+CMakeFiles/Flowent.dir/src/Grid/Patch.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Flowent.dir/src/Grid/Patch.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ADR/CLionProjects/Flowent/src/Grid/Patch.cpp -o CMakeFiles/Flowent.dir/src/Grid/Patch.cpp.s
 
-CMakeFiles/Flowent.dir/Grid/Patch.cpp.o: CMakeFiles/Flowent.dir/flags.make
-CMakeFiles/Flowent.dir/Grid/Patch.cpp.o: ../Grid/Patch.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ADR/CLionProjects/Flowent/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/Flowent.dir/Grid/Patch.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Flowent.dir/Grid/Patch.cpp.o -c /Users/ADR/CLionProjects/Flowent/Grid/Patch.cpp
+CMakeFiles/Flowent.dir/src/util/GridWriter.cpp.o: CMakeFiles/Flowent.dir/flags.make
+CMakeFiles/Flowent.dir/src/util/GridWriter.cpp.o: ../src/util/GridWriter.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ADR/CLionProjects/Flowent/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/Flowent.dir/src/util/GridWriter.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Flowent.dir/src/util/GridWriter.cpp.o -c /Users/ADR/CLionProjects/Flowent/src/util/GridWriter.cpp
 
-CMakeFiles/Flowent.dir/Grid/Patch.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Flowent.dir/Grid/Patch.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ADR/CLionProjects/Flowent/Grid/Patch.cpp > CMakeFiles/Flowent.dir/Grid/Patch.cpp.i
+CMakeFiles/Flowent.dir/src/util/GridWriter.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Flowent.dir/src/util/GridWriter.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ADR/CLionProjects/Flowent/src/util/GridWriter.cpp > CMakeFiles/Flowent.dir/src/util/GridWriter.cpp.i
 
-CMakeFiles/Flowent.dir/Grid/Patch.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Flowent.dir/Grid/Patch.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ADR/CLionProjects/Flowent/Grid/Patch.cpp -o CMakeFiles/Flowent.dir/Grid/Patch.cpp.s
+CMakeFiles/Flowent.dir/src/util/GridWriter.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Flowent.dir/src/util/GridWriter.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ADR/CLionProjects/Flowent/src/util/GridWriter.cpp -o CMakeFiles/Flowent.dir/src/util/GridWriter.cpp.s
 
-CMakeFiles/Flowent.dir/GridWriter.cpp.o: CMakeFiles/Flowent.dir/flags.make
-CMakeFiles/Flowent.dir/GridWriter.cpp.o: ../GridWriter.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ADR/CLionProjects/Flowent/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/Flowent.dir/GridWriter.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Flowent.dir/GridWriter.cpp.o -c /Users/ADR/CLionProjects/Flowent/GridWriter.cpp
+CMakeFiles/Flowent.dir/src/Solving/Solver.cpp.o: CMakeFiles/Flowent.dir/flags.make
+CMakeFiles/Flowent.dir/src/Solving/Solver.cpp.o: ../src/Solving/Solver.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ADR/CLionProjects/Flowent/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/Flowent.dir/src/Solving/Solver.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Flowent.dir/src/Solving/Solver.cpp.o -c /Users/ADR/CLionProjects/Flowent/src/Solving/Solver.cpp
 
-CMakeFiles/Flowent.dir/GridWriter.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Flowent.dir/GridWriter.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ADR/CLionProjects/Flowent/GridWriter.cpp > CMakeFiles/Flowent.dir/GridWriter.cpp.i
+CMakeFiles/Flowent.dir/src/Solving/Solver.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Flowent.dir/src/Solving/Solver.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ADR/CLionProjects/Flowent/src/Solving/Solver.cpp > CMakeFiles/Flowent.dir/src/Solving/Solver.cpp.i
 
-CMakeFiles/Flowent.dir/GridWriter.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Flowent.dir/GridWriter.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ADR/CLionProjects/Flowent/GridWriter.cpp -o CMakeFiles/Flowent.dir/GridWriter.cpp.s
+CMakeFiles/Flowent.dir/src/Solving/Solver.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Flowent.dir/src/Solving/Solver.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ADR/CLionProjects/Flowent/src/Solving/Solver.cpp -o CMakeFiles/Flowent.dir/src/Solving/Solver.cpp.s
 
-CMakeFiles/Flowent.dir/Solving/Solver.cpp.o: CMakeFiles/Flowent.dir/flags.make
-CMakeFiles/Flowent.dir/Solving/Solver.cpp.o: ../Solving/Solver.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ADR/CLionProjects/Flowent/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/Flowent.dir/Solving/Solver.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Flowent.dir/Solving/Solver.cpp.o -c /Users/ADR/CLionProjects/Flowent/Solving/Solver.cpp
+CMakeFiles/Flowent.dir/src/Solving/InitialGuess.cpp.o: CMakeFiles/Flowent.dir/flags.make
+CMakeFiles/Flowent.dir/src/Solving/InitialGuess.cpp.o: ../src/Solving/InitialGuess.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ADR/CLionProjects/Flowent/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/Flowent.dir/src/Solving/InitialGuess.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Flowent.dir/src/Solving/InitialGuess.cpp.o -c /Users/ADR/CLionProjects/Flowent/src/Solving/InitialGuess.cpp
 
-CMakeFiles/Flowent.dir/Solving/Solver.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Flowent.dir/Solving/Solver.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ADR/CLionProjects/Flowent/Solving/Solver.cpp > CMakeFiles/Flowent.dir/Solving/Solver.cpp.i
+CMakeFiles/Flowent.dir/src/Solving/InitialGuess.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Flowent.dir/src/Solving/InitialGuess.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ADR/CLionProjects/Flowent/src/Solving/InitialGuess.cpp > CMakeFiles/Flowent.dir/src/Solving/InitialGuess.cpp.i
 
-CMakeFiles/Flowent.dir/Solving/Solver.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Flowent.dir/Solving/Solver.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ADR/CLionProjects/Flowent/Solving/Solver.cpp -o CMakeFiles/Flowent.dir/Solving/Solver.cpp.s
+CMakeFiles/Flowent.dir/src/Solving/InitialGuess.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Flowent.dir/src/Solving/InitialGuess.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ADR/CLionProjects/Flowent/src/Solving/InitialGuess.cpp -o CMakeFiles/Flowent.dir/src/Solving/InitialGuess.cpp.s
 
-CMakeFiles/Flowent.dir/Solving/InitialGuess.cpp.o: CMakeFiles/Flowent.dir/flags.make
-CMakeFiles/Flowent.dir/Solving/InitialGuess.cpp.o: ../Solving/InitialGuess.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ADR/CLionProjects/Flowent/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/Flowent.dir/Solving/InitialGuess.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Flowent.dir/Solving/InitialGuess.cpp.o -c /Users/ADR/CLionProjects/Flowent/Solving/InitialGuess.cpp
+CMakeFiles/Flowent.dir/src/util/compressible_flow_functions.cpp.o: CMakeFiles/Flowent.dir/flags.make
+CMakeFiles/Flowent.dir/src/util/compressible_flow_functions.cpp.o: ../src/util/compressible_flow_functions.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ADR/CLionProjects/Flowent/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/Flowent.dir/src/util/compressible_flow_functions.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Flowent.dir/src/util/compressible_flow_functions.cpp.o -c /Users/ADR/CLionProjects/Flowent/src/util/compressible_flow_functions.cpp
 
-CMakeFiles/Flowent.dir/Solving/InitialGuess.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Flowent.dir/Solving/InitialGuess.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ADR/CLionProjects/Flowent/Solving/InitialGuess.cpp > CMakeFiles/Flowent.dir/Solving/InitialGuess.cpp.i
+CMakeFiles/Flowent.dir/src/util/compressible_flow_functions.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Flowent.dir/src/util/compressible_flow_functions.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ADR/CLionProjects/Flowent/src/util/compressible_flow_functions.cpp > CMakeFiles/Flowent.dir/src/util/compressible_flow_functions.cpp.i
 
-CMakeFiles/Flowent.dir/Solving/InitialGuess.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Flowent.dir/Solving/InitialGuess.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ADR/CLionProjects/Flowent/Solving/InitialGuess.cpp -o CMakeFiles/Flowent.dir/Solving/InitialGuess.cpp.s
-
-CMakeFiles/Flowent.dir/compressible_flow_functions.cpp.o: CMakeFiles/Flowent.dir/flags.make
-CMakeFiles/Flowent.dir/compressible_flow_functions.cpp.o: ../compressible_flow_functions.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ADR/CLionProjects/Flowent/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/Flowent.dir/compressible_flow_functions.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Flowent.dir/compressible_flow_functions.cpp.o -c /Users/ADR/CLionProjects/Flowent/compressible_flow_functions.cpp
-
-CMakeFiles/Flowent.dir/compressible_flow_functions.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Flowent.dir/compressible_flow_functions.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ADR/CLionProjects/Flowent/compressible_flow_functions.cpp > CMakeFiles/Flowent.dir/compressible_flow_functions.cpp.i
-
-CMakeFiles/Flowent.dir/compressible_flow_functions.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Flowent.dir/compressible_flow_functions.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ADR/CLionProjects/Flowent/compressible_flow_functions.cpp -o CMakeFiles/Flowent.dir/compressible_flow_functions.cpp.s
+CMakeFiles/Flowent.dir/src/util/compressible_flow_functions.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Flowent.dir/src/util/compressible_flow_functions.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ADR/CLionProjects/Flowent/src/util/compressible_flow_functions.cpp -o CMakeFiles/Flowent.dir/src/util/compressible_flow_functions.cpp.s
 
 # Object files for target Flowent
 Flowent_OBJECTS = \
-"CMakeFiles/Flowent.dir/main.cpp.o" \
-"CMakeFiles/Flowent.dir/Grid/Block.cpp.o" \
-"CMakeFiles/Flowent.dir/Solving/Gas.cpp.o" \
-"CMakeFiles/Flowent.dir/algo.cpp.o" \
-"CMakeFiles/Flowent.dir/setup.cpp.o" \
-"CMakeFiles/Flowent.dir/Grid/Grid.cpp.o" \
-"CMakeFiles/Flowent.dir/Grid/Cell.cpp.o" \
-"CMakeFiles/Flowent.dir/util.cpp.o" \
-"CMakeFiles/Flowent.dir/Grid/Grid_setup.cpp.o" \
-"CMakeFiles/Flowent.dir/Grid/cell_face_relation.cpp.o" \
-"CMakeFiles/Flowent.dir/Grid/Patch.cpp.o" \
-"CMakeFiles/Flowent.dir/GridWriter.cpp.o" \
-"CMakeFiles/Flowent.dir/Solving/Solver.cpp.o" \
-"CMakeFiles/Flowent.dir/Solving/InitialGuess.cpp.o" \
-"CMakeFiles/Flowent.dir/compressible_flow_functions.cpp.o"
+"CMakeFiles/Flowent.dir/src/main.cpp.o" \
+"CMakeFiles/Flowent.dir/src/Grid/Block.cpp.o" \
+"CMakeFiles/Flowent.dir/src/Solving/Gas.cpp.o" \
+"CMakeFiles/Flowent.dir/src/util/setup.cpp.o" \
+"CMakeFiles/Flowent.dir/src/Grid/Grid.cpp.o" \
+"CMakeFiles/Flowent.dir/src/Grid/Cell.cpp.o" \
+"CMakeFiles/Flowent.dir/src/util/util.cpp.o" \
+"CMakeFiles/Flowent.dir/src/Grid/Grid_setup.cpp.o" \
+"CMakeFiles/Flowent.dir/src/Grid/cell_face_relation.cpp.o" \
+"CMakeFiles/Flowent.dir/src/Grid/Patch.cpp.o" \
+"CMakeFiles/Flowent.dir/src/util/GridWriter.cpp.o" \
+"CMakeFiles/Flowent.dir/src/Solving/Solver.cpp.o" \
+"CMakeFiles/Flowent.dir/src/Solving/InitialGuess.cpp.o" \
+"CMakeFiles/Flowent.dir/src/util/compressible_flow_functions.cpp.o"
 
 # External object files for target Flowent
 Flowent_EXTERNAL_OBJECTS =
 
-Flowent: CMakeFiles/Flowent.dir/main.cpp.o
-Flowent: CMakeFiles/Flowent.dir/Grid/Block.cpp.o
-Flowent: CMakeFiles/Flowent.dir/Solving/Gas.cpp.o
-Flowent: CMakeFiles/Flowent.dir/algo.cpp.o
-Flowent: CMakeFiles/Flowent.dir/setup.cpp.o
-Flowent: CMakeFiles/Flowent.dir/Grid/Grid.cpp.o
-Flowent: CMakeFiles/Flowent.dir/Grid/Cell.cpp.o
-Flowent: CMakeFiles/Flowent.dir/util.cpp.o
-Flowent: CMakeFiles/Flowent.dir/Grid/Grid_setup.cpp.o
-Flowent: CMakeFiles/Flowent.dir/Grid/cell_face_relation.cpp.o
-Flowent: CMakeFiles/Flowent.dir/Grid/Patch.cpp.o
-Flowent: CMakeFiles/Flowent.dir/GridWriter.cpp.o
-Flowent: CMakeFiles/Flowent.dir/Solving/Solver.cpp.o
-Flowent: CMakeFiles/Flowent.dir/Solving/InitialGuess.cpp.o
-Flowent: CMakeFiles/Flowent.dir/compressible_flow_functions.cpp.o
+Flowent: CMakeFiles/Flowent.dir/src/main.cpp.o
+Flowent: CMakeFiles/Flowent.dir/src/Grid/Block.cpp.o
+Flowent: CMakeFiles/Flowent.dir/src/Solving/Gas.cpp.o
+Flowent: CMakeFiles/Flowent.dir/src/util/setup.cpp.o
+Flowent: CMakeFiles/Flowent.dir/src/Grid/Grid.cpp.o
+Flowent: CMakeFiles/Flowent.dir/src/Grid/Cell.cpp.o
+Flowent: CMakeFiles/Flowent.dir/src/util/util.cpp.o
+Flowent: CMakeFiles/Flowent.dir/src/Grid/Grid_setup.cpp.o
+Flowent: CMakeFiles/Flowent.dir/src/Grid/cell_face_relation.cpp.o
+Flowent: CMakeFiles/Flowent.dir/src/Grid/Patch.cpp.o
+Flowent: CMakeFiles/Flowent.dir/src/util/GridWriter.cpp.o
+Flowent: CMakeFiles/Flowent.dir/src/Solving/Solver.cpp.o
+Flowent: CMakeFiles/Flowent.dir/src/Solving/InitialGuess.cpp.o
+Flowent: CMakeFiles/Flowent.dir/src/util/compressible_flow_functions.cpp.o
 Flowent: CMakeFiles/Flowent.dir/build.make
 Flowent: CMakeFiles/Flowent.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/ADR/CLionProjects/Flowent/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Linking CXX executable Flowent"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/ADR/CLionProjects/Flowent/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Linking CXX executable Flowent"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Flowent.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

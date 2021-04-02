@@ -143,410 +143,383 @@ Flowent/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/build
 .PHONY : Flowent/fast
 
-Grid/Block.o: Grid/Block.cpp.o
+src/Grid/Block.o: src/Grid/Block.cpp.o
 
-.PHONY : Grid/Block.o
-
-# target to build an object file
-Grid/Block.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/Grid/Block.cpp.o
-.PHONY : Grid/Block.cpp.o
-
-Grid/Block.i: Grid/Block.cpp.i
-
-.PHONY : Grid/Block.i
-
-# target to preprocess a source file
-Grid/Block.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/Grid/Block.cpp.i
-.PHONY : Grid/Block.cpp.i
-
-Grid/Block.s: Grid/Block.cpp.s
-
-.PHONY : Grid/Block.s
-
-# target to generate assembly for a file
-Grid/Block.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/Grid/Block.cpp.s
-.PHONY : Grid/Block.cpp.s
-
-Grid/Cell.o: Grid/Cell.cpp.o
-
-.PHONY : Grid/Cell.o
+.PHONY : src/Grid/Block.o
 
 # target to build an object file
-Grid/Cell.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/Grid/Cell.cpp.o
-.PHONY : Grid/Cell.cpp.o
+src/Grid/Block.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/src/Grid/Block.cpp.o
+.PHONY : src/Grid/Block.cpp.o
 
-Grid/Cell.i: Grid/Cell.cpp.i
+src/Grid/Block.i: src/Grid/Block.cpp.i
 
-.PHONY : Grid/Cell.i
+.PHONY : src/Grid/Block.i
 
 # target to preprocess a source file
-Grid/Cell.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/Grid/Cell.cpp.i
-.PHONY : Grid/Cell.cpp.i
+src/Grid/Block.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/src/Grid/Block.cpp.i
+.PHONY : src/Grid/Block.cpp.i
 
-Grid/Cell.s: Grid/Cell.cpp.s
+src/Grid/Block.s: src/Grid/Block.cpp.s
 
-.PHONY : Grid/Cell.s
+.PHONY : src/Grid/Block.s
 
 # target to generate assembly for a file
-Grid/Cell.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/Grid/Cell.cpp.s
-.PHONY : Grid/Cell.cpp.s
+src/Grid/Block.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/src/Grid/Block.cpp.s
+.PHONY : src/Grid/Block.cpp.s
 
-Grid/Grid.o: Grid/Grid.cpp.o
+src/Grid/Cell.o: src/Grid/Cell.cpp.o
 
-.PHONY : Grid/Grid.o
+.PHONY : src/Grid/Cell.o
 
 # target to build an object file
-Grid/Grid.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/Grid/Grid.cpp.o
-.PHONY : Grid/Grid.cpp.o
+src/Grid/Cell.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/src/Grid/Cell.cpp.o
+.PHONY : src/Grid/Cell.cpp.o
 
-Grid/Grid.i: Grid/Grid.cpp.i
+src/Grid/Cell.i: src/Grid/Cell.cpp.i
 
-.PHONY : Grid/Grid.i
+.PHONY : src/Grid/Cell.i
 
 # target to preprocess a source file
-Grid/Grid.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/Grid/Grid.cpp.i
-.PHONY : Grid/Grid.cpp.i
+src/Grid/Cell.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/src/Grid/Cell.cpp.i
+.PHONY : src/Grid/Cell.cpp.i
 
-Grid/Grid.s: Grid/Grid.cpp.s
+src/Grid/Cell.s: src/Grid/Cell.cpp.s
 
-.PHONY : Grid/Grid.s
+.PHONY : src/Grid/Cell.s
 
 # target to generate assembly for a file
-Grid/Grid.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/Grid/Grid.cpp.s
-.PHONY : Grid/Grid.cpp.s
+src/Grid/Cell.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/src/Grid/Cell.cpp.s
+.PHONY : src/Grid/Cell.cpp.s
 
-Grid/Grid_setup.o: Grid/Grid_setup.cpp.o
+src/Grid/Grid.o: src/Grid/Grid.cpp.o
 
-.PHONY : Grid/Grid_setup.o
+.PHONY : src/Grid/Grid.o
 
 # target to build an object file
-Grid/Grid_setup.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/Grid/Grid_setup.cpp.o
-.PHONY : Grid/Grid_setup.cpp.o
+src/Grid/Grid.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/src/Grid/Grid.cpp.o
+.PHONY : src/Grid/Grid.cpp.o
 
-Grid/Grid_setup.i: Grid/Grid_setup.cpp.i
+src/Grid/Grid.i: src/Grid/Grid.cpp.i
 
-.PHONY : Grid/Grid_setup.i
+.PHONY : src/Grid/Grid.i
 
 # target to preprocess a source file
-Grid/Grid_setup.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/Grid/Grid_setup.cpp.i
-.PHONY : Grid/Grid_setup.cpp.i
+src/Grid/Grid.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/src/Grid/Grid.cpp.i
+.PHONY : src/Grid/Grid.cpp.i
 
-Grid/Grid_setup.s: Grid/Grid_setup.cpp.s
+src/Grid/Grid.s: src/Grid/Grid.cpp.s
 
-.PHONY : Grid/Grid_setup.s
+.PHONY : src/Grid/Grid.s
 
 # target to generate assembly for a file
-Grid/Grid_setup.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/Grid/Grid_setup.cpp.s
-.PHONY : Grid/Grid_setup.cpp.s
+src/Grid/Grid.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/src/Grid/Grid.cpp.s
+.PHONY : src/Grid/Grid.cpp.s
 
-Grid/Patch.o: Grid/Patch.cpp.o
+src/Grid/Grid_setup.o: src/Grid/Grid_setup.cpp.o
 
-.PHONY : Grid/Patch.o
+.PHONY : src/Grid/Grid_setup.o
 
 # target to build an object file
-Grid/Patch.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/Grid/Patch.cpp.o
-.PHONY : Grid/Patch.cpp.o
+src/Grid/Grid_setup.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/src/Grid/Grid_setup.cpp.o
+.PHONY : src/Grid/Grid_setup.cpp.o
 
-Grid/Patch.i: Grid/Patch.cpp.i
+src/Grid/Grid_setup.i: src/Grid/Grid_setup.cpp.i
 
-.PHONY : Grid/Patch.i
+.PHONY : src/Grid/Grid_setup.i
 
 # target to preprocess a source file
-Grid/Patch.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/Grid/Patch.cpp.i
-.PHONY : Grid/Patch.cpp.i
+src/Grid/Grid_setup.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/src/Grid/Grid_setup.cpp.i
+.PHONY : src/Grid/Grid_setup.cpp.i
 
-Grid/Patch.s: Grid/Patch.cpp.s
+src/Grid/Grid_setup.s: src/Grid/Grid_setup.cpp.s
 
-.PHONY : Grid/Patch.s
+.PHONY : src/Grid/Grid_setup.s
 
 # target to generate assembly for a file
-Grid/Patch.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/Grid/Patch.cpp.s
-.PHONY : Grid/Patch.cpp.s
+src/Grid/Grid_setup.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/src/Grid/Grid_setup.cpp.s
+.PHONY : src/Grid/Grid_setup.cpp.s
 
-Grid/cell_face_relation.o: Grid/cell_face_relation.cpp.o
+src/Grid/Patch.o: src/Grid/Patch.cpp.o
 
-.PHONY : Grid/cell_face_relation.o
+.PHONY : src/Grid/Patch.o
 
 # target to build an object file
-Grid/cell_face_relation.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/Grid/cell_face_relation.cpp.o
-.PHONY : Grid/cell_face_relation.cpp.o
+src/Grid/Patch.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/src/Grid/Patch.cpp.o
+.PHONY : src/Grid/Patch.cpp.o
 
-Grid/cell_face_relation.i: Grid/cell_face_relation.cpp.i
+src/Grid/Patch.i: src/Grid/Patch.cpp.i
 
-.PHONY : Grid/cell_face_relation.i
+.PHONY : src/Grid/Patch.i
 
 # target to preprocess a source file
-Grid/cell_face_relation.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/Grid/cell_face_relation.cpp.i
-.PHONY : Grid/cell_face_relation.cpp.i
+src/Grid/Patch.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/src/Grid/Patch.cpp.i
+.PHONY : src/Grid/Patch.cpp.i
 
-Grid/cell_face_relation.s: Grid/cell_face_relation.cpp.s
+src/Grid/Patch.s: src/Grid/Patch.cpp.s
 
-.PHONY : Grid/cell_face_relation.s
+.PHONY : src/Grid/Patch.s
 
 # target to generate assembly for a file
-Grid/cell_face_relation.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/Grid/cell_face_relation.cpp.s
-.PHONY : Grid/cell_face_relation.cpp.s
+src/Grid/Patch.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/src/Grid/Patch.cpp.s
+.PHONY : src/Grid/Patch.cpp.s
 
-GridWriter.o: GridWriter.cpp.o
+src/Grid/cell_face_relation.o: src/Grid/cell_face_relation.cpp.o
 
-.PHONY : GridWriter.o
+.PHONY : src/Grid/cell_face_relation.o
 
 # target to build an object file
-GridWriter.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/GridWriter.cpp.o
-.PHONY : GridWriter.cpp.o
+src/Grid/cell_face_relation.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/src/Grid/cell_face_relation.cpp.o
+.PHONY : src/Grid/cell_face_relation.cpp.o
 
-GridWriter.i: GridWriter.cpp.i
+src/Grid/cell_face_relation.i: src/Grid/cell_face_relation.cpp.i
 
-.PHONY : GridWriter.i
+.PHONY : src/Grid/cell_face_relation.i
 
 # target to preprocess a source file
-GridWriter.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/GridWriter.cpp.i
-.PHONY : GridWriter.cpp.i
+src/Grid/cell_face_relation.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/src/Grid/cell_face_relation.cpp.i
+.PHONY : src/Grid/cell_face_relation.cpp.i
 
-GridWriter.s: GridWriter.cpp.s
+src/Grid/cell_face_relation.s: src/Grid/cell_face_relation.cpp.s
 
-.PHONY : GridWriter.s
+.PHONY : src/Grid/cell_face_relation.s
 
 # target to generate assembly for a file
-GridWriter.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/GridWriter.cpp.s
-.PHONY : GridWriter.cpp.s
+src/Grid/cell_face_relation.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/src/Grid/cell_face_relation.cpp.s
+.PHONY : src/Grid/cell_face_relation.cpp.s
 
-Solving/Gas.o: Solving/Gas.cpp.o
+src/Solving/Gas.o: src/Solving/Gas.cpp.o
 
-.PHONY : Solving/Gas.o
+.PHONY : src/Solving/Gas.o
 
 # target to build an object file
-Solving/Gas.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/Solving/Gas.cpp.o
-.PHONY : Solving/Gas.cpp.o
+src/Solving/Gas.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/src/Solving/Gas.cpp.o
+.PHONY : src/Solving/Gas.cpp.o
 
-Solving/Gas.i: Solving/Gas.cpp.i
+src/Solving/Gas.i: src/Solving/Gas.cpp.i
 
-.PHONY : Solving/Gas.i
+.PHONY : src/Solving/Gas.i
 
 # target to preprocess a source file
-Solving/Gas.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/Solving/Gas.cpp.i
-.PHONY : Solving/Gas.cpp.i
+src/Solving/Gas.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/src/Solving/Gas.cpp.i
+.PHONY : src/Solving/Gas.cpp.i
 
-Solving/Gas.s: Solving/Gas.cpp.s
+src/Solving/Gas.s: src/Solving/Gas.cpp.s
 
-.PHONY : Solving/Gas.s
+.PHONY : src/Solving/Gas.s
 
 # target to generate assembly for a file
-Solving/Gas.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/Solving/Gas.cpp.s
-.PHONY : Solving/Gas.cpp.s
+src/Solving/Gas.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/src/Solving/Gas.cpp.s
+.PHONY : src/Solving/Gas.cpp.s
 
-Solving/InitialGuess.o: Solving/InitialGuess.cpp.o
+src/Solving/InitialGuess.o: src/Solving/InitialGuess.cpp.o
 
-.PHONY : Solving/InitialGuess.o
+.PHONY : src/Solving/InitialGuess.o
 
 # target to build an object file
-Solving/InitialGuess.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/Solving/InitialGuess.cpp.o
-.PHONY : Solving/InitialGuess.cpp.o
+src/Solving/InitialGuess.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/src/Solving/InitialGuess.cpp.o
+.PHONY : src/Solving/InitialGuess.cpp.o
 
-Solving/InitialGuess.i: Solving/InitialGuess.cpp.i
+src/Solving/InitialGuess.i: src/Solving/InitialGuess.cpp.i
 
-.PHONY : Solving/InitialGuess.i
+.PHONY : src/Solving/InitialGuess.i
 
 # target to preprocess a source file
-Solving/InitialGuess.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/Solving/InitialGuess.cpp.i
-.PHONY : Solving/InitialGuess.cpp.i
+src/Solving/InitialGuess.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/src/Solving/InitialGuess.cpp.i
+.PHONY : src/Solving/InitialGuess.cpp.i
 
-Solving/InitialGuess.s: Solving/InitialGuess.cpp.s
+src/Solving/InitialGuess.s: src/Solving/InitialGuess.cpp.s
 
-.PHONY : Solving/InitialGuess.s
+.PHONY : src/Solving/InitialGuess.s
 
 # target to generate assembly for a file
-Solving/InitialGuess.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/Solving/InitialGuess.cpp.s
-.PHONY : Solving/InitialGuess.cpp.s
+src/Solving/InitialGuess.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/src/Solving/InitialGuess.cpp.s
+.PHONY : src/Solving/InitialGuess.cpp.s
 
-Solving/Solver.o: Solving/Solver.cpp.o
+src/Solving/Solver.o: src/Solving/Solver.cpp.o
 
-.PHONY : Solving/Solver.o
+.PHONY : src/Solving/Solver.o
 
 # target to build an object file
-Solving/Solver.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/Solving/Solver.cpp.o
-.PHONY : Solving/Solver.cpp.o
+src/Solving/Solver.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/src/Solving/Solver.cpp.o
+.PHONY : src/Solving/Solver.cpp.o
 
-Solving/Solver.i: Solving/Solver.cpp.i
+src/Solving/Solver.i: src/Solving/Solver.cpp.i
 
-.PHONY : Solving/Solver.i
+.PHONY : src/Solving/Solver.i
 
 # target to preprocess a source file
-Solving/Solver.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/Solving/Solver.cpp.i
-.PHONY : Solving/Solver.cpp.i
+src/Solving/Solver.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/src/Solving/Solver.cpp.i
+.PHONY : src/Solving/Solver.cpp.i
 
-Solving/Solver.s: Solving/Solver.cpp.s
+src/Solving/Solver.s: src/Solving/Solver.cpp.s
 
-.PHONY : Solving/Solver.s
+.PHONY : src/Solving/Solver.s
 
 # target to generate assembly for a file
-Solving/Solver.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/Solving/Solver.cpp.s
-.PHONY : Solving/Solver.cpp.s
+src/Solving/Solver.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/src/Solving/Solver.cpp.s
+.PHONY : src/Solving/Solver.cpp.s
 
-algo.o: algo.cpp.o
+src/main.o: src/main.cpp.o
 
-.PHONY : algo.o
+.PHONY : src/main.o
 
 # target to build an object file
-algo.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/algo.cpp.o
-.PHONY : algo.cpp.o
+src/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/src/main.cpp.o
+.PHONY : src/main.cpp.o
 
-algo.i: algo.cpp.i
+src/main.i: src/main.cpp.i
 
-.PHONY : algo.i
+.PHONY : src/main.i
 
 # target to preprocess a source file
-algo.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/algo.cpp.i
-.PHONY : algo.cpp.i
+src/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/src/main.cpp.i
+.PHONY : src/main.cpp.i
 
-algo.s: algo.cpp.s
+src/main.s: src/main.cpp.s
 
-.PHONY : algo.s
+.PHONY : src/main.s
 
 # target to generate assembly for a file
-algo.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/algo.cpp.s
-.PHONY : algo.cpp.s
+src/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/src/main.cpp.s
+.PHONY : src/main.cpp.s
 
-compressible_flow_functions.o: compressible_flow_functions.cpp.o
+src/util/GridWriter.o: src/util/GridWriter.cpp.o
 
-.PHONY : compressible_flow_functions.o
+.PHONY : src/util/GridWriter.o
 
 # target to build an object file
-compressible_flow_functions.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/compressible_flow_functions.cpp.o
-.PHONY : compressible_flow_functions.cpp.o
+src/util/GridWriter.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/src/util/GridWriter.cpp.o
+.PHONY : src/util/GridWriter.cpp.o
 
-compressible_flow_functions.i: compressible_flow_functions.cpp.i
+src/util/GridWriter.i: src/util/GridWriter.cpp.i
 
-.PHONY : compressible_flow_functions.i
+.PHONY : src/util/GridWriter.i
 
 # target to preprocess a source file
-compressible_flow_functions.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/compressible_flow_functions.cpp.i
-.PHONY : compressible_flow_functions.cpp.i
+src/util/GridWriter.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/src/util/GridWriter.cpp.i
+.PHONY : src/util/GridWriter.cpp.i
 
-compressible_flow_functions.s: compressible_flow_functions.cpp.s
+src/util/GridWriter.s: src/util/GridWriter.cpp.s
 
-.PHONY : compressible_flow_functions.s
+.PHONY : src/util/GridWriter.s
 
 # target to generate assembly for a file
-compressible_flow_functions.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/compressible_flow_functions.cpp.s
-.PHONY : compressible_flow_functions.cpp.s
+src/util/GridWriter.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/src/util/GridWriter.cpp.s
+.PHONY : src/util/GridWriter.cpp.s
 
-main.o: main.cpp.o
+src/util/compressible_flow_functions.o: src/util/compressible_flow_functions.cpp.o
 
-.PHONY : main.o
+.PHONY : src/util/compressible_flow_functions.o
 
 # target to build an object file
-main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/main.cpp.o
-.PHONY : main.cpp.o
+src/util/compressible_flow_functions.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/src/util/compressible_flow_functions.cpp.o
+.PHONY : src/util/compressible_flow_functions.cpp.o
 
-main.i: main.cpp.i
+src/util/compressible_flow_functions.i: src/util/compressible_flow_functions.cpp.i
 
-.PHONY : main.i
+.PHONY : src/util/compressible_flow_functions.i
 
 # target to preprocess a source file
-main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/main.cpp.i
-.PHONY : main.cpp.i
+src/util/compressible_flow_functions.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/src/util/compressible_flow_functions.cpp.i
+.PHONY : src/util/compressible_flow_functions.cpp.i
 
-main.s: main.cpp.s
+src/util/compressible_flow_functions.s: src/util/compressible_flow_functions.cpp.s
 
-.PHONY : main.s
+.PHONY : src/util/compressible_flow_functions.s
 
 # target to generate assembly for a file
-main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/main.cpp.s
-.PHONY : main.cpp.s
+src/util/compressible_flow_functions.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/src/util/compressible_flow_functions.cpp.s
+.PHONY : src/util/compressible_flow_functions.cpp.s
 
-setup.o: setup.cpp.o
+src/util/setup.o: src/util/setup.cpp.o
 
-.PHONY : setup.o
+.PHONY : src/util/setup.o
 
 # target to build an object file
-setup.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/setup.cpp.o
-.PHONY : setup.cpp.o
+src/util/setup.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/src/util/setup.cpp.o
+.PHONY : src/util/setup.cpp.o
 
-setup.i: setup.cpp.i
+src/util/setup.i: src/util/setup.cpp.i
 
-.PHONY : setup.i
+.PHONY : src/util/setup.i
 
 # target to preprocess a source file
-setup.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/setup.cpp.i
-.PHONY : setup.cpp.i
+src/util/setup.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/src/util/setup.cpp.i
+.PHONY : src/util/setup.cpp.i
 
-setup.s: setup.cpp.s
+src/util/setup.s: src/util/setup.cpp.s
 
-.PHONY : setup.s
+.PHONY : src/util/setup.s
 
 # target to generate assembly for a file
-setup.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/setup.cpp.s
-.PHONY : setup.cpp.s
+src/util/setup.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/src/util/setup.cpp.s
+.PHONY : src/util/setup.cpp.s
 
-util.o: util.cpp.o
+src/util/util.o: src/util/util.cpp.o
 
-.PHONY : util.o
+.PHONY : src/util/util.o
 
 # target to build an object file
-util.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/util.cpp.o
-.PHONY : util.cpp.o
+src/util/util.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/src/util/util.cpp.o
+.PHONY : src/util/util.cpp.o
 
-util.i: util.cpp.i
+src/util/util.i: src/util/util.cpp.i
 
-.PHONY : util.i
+.PHONY : src/util/util.i
 
 # target to preprocess a source file
-util.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/util.cpp.i
-.PHONY : util.cpp.i
+src/util/util.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/src/util/util.cpp.i
+.PHONY : src/util/util.cpp.i
 
-util.s: util.cpp.s
+src/util/util.s: src/util/util.cpp.s
 
-.PHONY : util.s
+.PHONY : src/util/util.s
 
 # target to generate assembly for a file
-util.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/util.cpp.s
-.PHONY : util.cpp.s
+src/util/util.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/src/util/util.cpp.s
+.PHONY : src/util/util.cpp.s
 
 # Help Target
 help:
@@ -557,51 +530,48 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... Flowent"
-	@echo "... Grid/Block.o"
-	@echo "... Grid/Block.i"
-	@echo "... Grid/Block.s"
-	@echo "... Grid/Cell.o"
-	@echo "... Grid/Cell.i"
-	@echo "... Grid/Cell.s"
-	@echo "... Grid/Grid.o"
-	@echo "... Grid/Grid.i"
-	@echo "... Grid/Grid.s"
-	@echo "... Grid/Grid_setup.o"
-	@echo "... Grid/Grid_setup.i"
-	@echo "... Grid/Grid_setup.s"
-	@echo "... Grid/Patch.o"
-	@echo "... Grid/Patch.i"
-	@echo "... Grid/Patch.s"
-	@echo "... Grid/cell_face_relation.o"
-	@echo "... Grid/cell_face_relation.i"
-	@echo "... Grid/cell_face_relation.s"
-	@echo "... GridWriter.o"
-	@echo "... GridWriter.i"
-	@echo "... GridWriter.s"
-	@echo "... Solving/Gas.o"
-	@echo "... Solving/Gas.i"
-	@echo "... Solving/Gas.s"
-	@echo "... Solving/InitialGuess.o"
-	@echo "... Solving/InitialGuess.i"
-	@echo "... Solving/InitialGuess.s"
-	@echo "... Solving/Solver.o"
-	@echo "... Solving/Solver.i"
-	@echo "... Solving/Solver.s"
-	@echo "... algo.o"
-	@echo "... algo.i"
-	@echo "... algo.s"
-	@echo "... compressible_flow_functions.o"
-	@echo "... compressible_flow_functions.i"
-	@echo "... compressible_flow_functions.s"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
-	@echo "... setup.o"
-	@echo "... setup.i"
-	@echo "... setup.s"
-	@echo "... util.o"
-	@echo "... util.i"
-	@echo "... util.s"
+	@echo "... src/Grid/Block.o"
+	@echo "... src/Grid/Block.i"
+	@echo "... src/Grid/Block.s"
+	@echo "... src/Grid/Cell.o"
+	@echo "... src/Grid/Cell.i"
+	@echo "... src/Grid/Cell.s"
+	@echo "... src/Grid/Grid.o"
+	@echo "... src/Grid/Grid.i"
+	@echo "... src/Grid/Grid.s"
+	@echo "... src/Grid/Grid_setup.o"
+	@echo "... src/Grid/Grid_setup.i"
+	@echo "... src/Grid/Grid_setup.s"
+	@echo "... src/Grid/Patch.o"
+	@echo "... src/Grid/Patch.i"
+	@echo "... src/Grid/Patch.s"
+	@echo "... src/Grid/cell_face_relation.o"
+	@echo "... src/Grid/cell_face_relation.i"
+	@echo "... src/Grid/cell_face_relation.s"
+	@echo "... src/Solving/Gas.o"
+	@echo "... src/Solving/Gas.i"
+	@echo "... src/Solving/Gas.s"
+	@echo "... src/Solving/InitialGuess.o"
+	@echo "... src/Solving/InitialGuess.i"
+	@echo "... src/Solving/InitialGuess.s"
+	@echo "... src/Solving/Solver.o"
+	@echo "... src/Solving/Solver.i"
+	@echo "... src/Solving/Solver.s"
+	@echo "... src/main.o"
+	@echo "... src/main.i"
+	@echo "... src/main.s"
+	@echo "... src/util/GridWriter.o"
+	@echo "... src/util/GridWriter.i"
+	@echo "... src/util/GridWriter.s"
+	@echo "... src/util/compressible_flow_functions.o"
+	@echo "... src/util/compressible_flow_functions.i"
+	@echo "... src/util/compressible_flow_functions.s"
+	@echo "... src/util/setup.o"
+	@echo "... src/util/setup.i"
+	@echo "... src/util/setup.s"
+	@echo "... src/util/util.o"
+	@echo "... src/util/util.i"
+	@echo "... src/util/util.s"
 .PHONY : help
 
 

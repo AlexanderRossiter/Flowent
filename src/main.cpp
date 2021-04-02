@@ -1,14 +1,14 @@
 #include <iostream>
 #include "Grid/Grid.h"
-#include "setup.h"
-#include "GridWriter.h"
+#include "util/setup.h"
+#include "util/GridWriter.h"
 #include "Solving/Solver.h"
 #include "Solving/InitialGuess.h"
 
 int main(int argc, char **argv) {
 
     // Hard coded test cases for testing.
-    std::string directory = "../test_cases/";
+    std::string directory = "../resources/test_cases/";
     std::string tc = "gaussian_bump";
     std::string gasStr = "air";
 

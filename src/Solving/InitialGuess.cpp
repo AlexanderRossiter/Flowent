@@ -3,7 +3,7 @@
 //
 
 #include "InitialGuess.h"
-#include "../compressible_flow_functions.h"
+#include "../util/compressible_flow_functions.h"
 
 void BasicGuess::generate_guess(Grid &g) {
     float p_po = cff::fp(Mach, gas.ga);

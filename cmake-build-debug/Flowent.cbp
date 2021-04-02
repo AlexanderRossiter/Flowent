@@ -82,94 +82,88 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/Users/ADR/CLionProjects/Flowent/Grid/Block.cpp">
+		<Unit filename="/Users/ADR/CLionProjects/Flowent/src/Grid/Block.cpp">
 			<Option target="Flowent"/>
 		</Unit>
-		<Unit filename="/Users/ADR/CLionProjects/Flowent/Grid/Block.h">
+		<Unit filename="/Users/ADR/CLionProjects/Flowent/src/Grid/Block.h">
 			<Option target="Flowent"/>
 		</Unit>
-		<Unit filename="/Users/ADR/CLionProjects/Flowent/Grid/Cell.cpp">
+		<Unit filename="/Users/ADR/CLionProjects/Flowent/src/Grid/Cell.cpp">
 			<Option target="Flowent"/>
 		</Unit>
-		<Unit filename="/Users/ADR/CLionProjects/Flowent/Grid/Cell.h">
+		<Unit filename="/Users/ADR/CLionProjects/Flowent/src/Grid/Cell.h">
 			<Option target="Flowent"/>
 		</Unit>
-		<Unit filename="/Users/ADR/CLionProjects/Flowent/Grid/Grid.cpp">
+		<Unit filename="/Users/ADR/CLionProjects/Flowent/src/Grid/Grid.cpp">
 			<Option target="Flowent"/>
 		</Unit>
-		<Unit filename="/Users/ADR/CLionProjects/Flowent/Grid/Grid.h">
+		<Unit filename="/Users/ADR/CLionProjects/Flowent/src/Grid/Grid.h">
 			<Option target="Flowent"/>
 		</Unit>
-		<Unit filename="/Users/ADR/CLionProjects/Flowent/Grid/Grid_setup.cpp">
+		<Unit filename="/Users/ADR/CLionProjects/Flowent/src/Grid/Grid_setup.cpp">
 			<Option target="Flowent"/>
 		</Unit>
-		<Unit filename="/Users/ADR/CLionProjects/Flowent/Grid/Patch.cpp">
+		<Unit filename="/Users/ADR/CLionProjects/Flowent/src/Grid/Patch.cpp">
 			<Option target="Flowent"/>
 		</Unit>
-		<Unit filename="/Users/ADR/CLionProjects/Flowent/Grid/Patch.h">
+		<Unit filename="/Users/ADR/CLionProjects/Flowent/src/Grid/Patch.h">
 			<Option target="Flowent"/>
 		</Unit>
-		<Unit filename="/Users/ADR/CLionProjects/Flowent/Grid/cell_face_relation.cpp">
+		<Unit filename="/Users/ADR/CLionProjects/Flowent/src/Grid/cell_face_relation.cpp">
 			<Option target="Flowent"/>
 		</Unit>
-		<Unit filename="/Users/ADR/CLionProjects/Flowent/Grid/cell_face_relation.h">
+		<Unit filename="/Users/ADR/CLionProjects/Flowent/src/Grid/cell_face_relation.h">
 			<Option target="Flowent"/>
 		</Unit>
-		<Unit filename="/Users/ADR/CLionProjects/Flowent/GridWriter.cpp">
+		<Unit filename="/Users/ADR/CLionProjects/Flowent/src/Solving/Gas.cpp">
 			<Option target="Flowent"/>
 		</Unit>
-		<Unit filename="/Users/ADR/CLionProjects/Flowent/GridWriter.h">
+		<Unit filename="/Users/ADR/CLionProjects/Flowent/src/Solving/Gas.h">
 			<Option target="Flowent"/>
 		</Unit>
-		<Unit filename="/Users/ADR/CLionProjects/Flowent/Solving/Gas.cpp">
+		<Unit filename="/Users/ADR/CLionProjects/Flowent/src/Solving/InitialGuess.cpp">
 			<Option target="Flowent"/>
 		</Unit>
-		<Unit filename="/Users/ADR/CLionProjects/Flowent/Solving/Gas.h">
+		<Unit filename="/Users/ADR/CLionProjects/Flowent/src/Solving/InitialGuess.h">
 			<Option target="Flowent"/>
 		</Unit>
-		<Unit filename="/Users/ADR/CLionProjects/Flowent/Solving/InitialGuess.cpp">
+		<Unit filename="/Users/ADR/CLionProjects/Flowent/src/Solving/SolutionParameters.h">
 			<Option target="Flowent"/>
 		</Unit>
-		<Unit filename="/Users/ADR/CLionProjects/Flowent/Solving/InitialGuess.h">
+		<Unit filename="/Users/ADR/CLionProjects/Flowent/src/Solving/Solver.cpp">
 			<Option target="Flowent"/>
 		</Unit>
-		<Unit filename="/Users/ADR/CLionProjects/Flowent/Solving/SolutionParameters.h">
+		<Unit filename="/Users/ADR/CLionProjects/Flowent/src/Solving/Solver.h">
 			<Option target="Flowent"/>
 		</Unit>
-		<Unit filename="/Users/ADR/CLionProjects/Flowent/Solving/Solver.cpp">
+		<Unit filename="/Users/ADR/CLionProjects/Flowent/src/main.cpp">
 			<Option target="Flowent"/>
 		</Unit>
-		<Unit filename="/Users/ADR/CLionProjects/Flowent/Solving/Solver.h">
+		<Unit filename="/Users/ADR/CLionProjects/Flowent/src/util/GridWriter.cpp">
 			<Option target="Flowent"/>
 		</Unit>
-		<Unit filename="/Users/ADR/CLionProjects/Flowent/algo.cpp">
+		<Unit filename="/Users/ADR/CLionProjects/Flowent/src/util/GridWriter.h">
 			<Option target="Flowent"/>
 		</Unit>
-		<Unit filename="/Users/ADR/CLionProjects/Flowent/algo.h">
+		<Unit filename="/Users/ADR/CLionProjects/Flowent/src/util/compressible_flow_functions.cpp">
 			<Option target="Flowent"/>
 		</Unit>
-		<Unit filename="/Users/ADR/CLionProjects/Flowent/compressible_flow_functions.cpp">
+		<Unit filename="/Users/ADR/CLionProjects/Flowent/src/util/compressible_flow_functions.h">
 			<Option target="Flowent"/>
 		</Unit>
-		<Unit filename="/Users/ADR/CLionProjects/Flowent/compressible_flow_functions.h">
+		<Unit filename="/Users/ADR/CLionProjects/Flowent/src/util/setup.cpp">
 			<Option target="Flowent"/>
 		</Unit>
-		<Unit filename="/Users/ADR/CLionProjects/Flowent/main.cpp">
+		<Unit filename="/Users/ADR/CLionProjects/Flowent/src/util/setup.h">
 			<Option target="Flowent"/>
 		</Unit>
-		<Unit filename="/Users/ADR/CLionProjects/Flowent/setup.cpp">
+		<Unit filename="/Users/ADR/CLionProjects/Flowent/src/util/typedefinitions.h">
 			<Option target="Flowent"/>
 		</Unit>
-		<Unit filename="/Users/ADR/CLionProjects/Flowent/setup.h">
+		<Unit filename="/Users/ADR/CLionProjects/Flowent/src/util/util.cpp">
 			<Option target="Flowent"/>
 		</Unit>
-		<Unit filename="/Users/ADR/CLionProjects/Flowent/typedefinitions.h">
-			<Option target="Flowent"/>
-		</Unit>
-		<Unit filename="/Users/ADR/CLionProjects/Flowent/util.cpp">
-			<Option target="Flowent"/>
-		</Unit>
-		<Unit filename="/Users/ADR/CLionProjects/Flowent/util.h">
+		<Unit filename="/Users/ADR/CLionProjects/Flowent/src/util/util.h">
 			<Option target="Flowent"/>
 		</Unit>
 		<Unit filename="/Users/ADR/CLionProjects/Flowent/CMakeLists.txt">

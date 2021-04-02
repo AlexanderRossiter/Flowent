@@ -9,7 +9,7 @@
 #include <vector>
 #include <map>
 #include "Cell.h"
-#include "../typedefinitions.h"
+#include "../util/typedefinitions.h"
 
 class Block {
 

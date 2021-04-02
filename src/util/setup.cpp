@@ -8,7 +8,6 @@
 #include "setup.h"
 #include "util.h"
 
-
 Grid setup::read_grid_testcase(std::string& testcase) {
     std::ifstream file(testcase + ".grid");
     if (file.fail()) {
@@ -52,7 +51,7 @@ Grid setup::read_grid_testcase(std::string& testcase) {
     }
     Grid g;
     g.add_block(Block(x, y, z));
-    str = "test_cases/" + testcase;
+    str = testcase;
     read_patches(g, str);
 
     return g;
@@ -60,7 +59,7 @@ Grid setup::read_grid_testcase(std::string& testcase) {
 
 void setup::read_patches(Grid& g, std::string& fname) {
     // Open the patch file.
-    std::ifstream file("../" + fname + ".patch");
+    std::ifstream file( fname + ".patch");
     if (file.fail()) {
         std::cout << "Failed to open patch file." << std::endl;
         throw std::exception();

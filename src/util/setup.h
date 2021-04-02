@@ -6,11 +6,11 @@
 #define FLOWENT_SETUP_H
 
 #include <string>
-#include "Grid/Grid.h"
+#include "../Grid/Grid.h"
 #include "util.h"
-#include "Grid/Patch.h"
-#include "Solving/Gas.h"
-#include "Solving/SolutionParameters.h"
+#include "../Grid/Patch.h"
+#include "../Solving/Gas.h"
+#include "../Solving/SolutionParameters.h"
 
 
 namespace setup {

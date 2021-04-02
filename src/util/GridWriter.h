@@ -8,7 +8,7 @@
 #include <string>
 #include <iostream>
 #include <fstream>
-#include "Grid/Grid.h"
+#include "../Grid/Grid.h"
 
 
 class GridWriter {

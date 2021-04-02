@@ -8,7 +8,7 @@
 
 #include <vector>
 #include "Block.h"
-#include "../util.h"
+#include "../util/util.h"
 #include <iostream>
 #include <memory>
 #include "cell_face_relation.h"
