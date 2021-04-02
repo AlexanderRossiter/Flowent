@@ -14,8 +14,8 @@ public:
     float cv;
 
     Gas(float cp_, float R_, float ga_): cp{cp_}, R{R_}, ga{ga_} {cv = cp / ga;};
-    Gas(){};
-    ~Gas(){};
+    Gas()=default;
+    ~Gas()=default;
 };
 
 

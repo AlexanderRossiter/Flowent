@@ -14,7 +14,13 @@ void PeriodicPatch::apply(Solver& solver) {
         for (int j = 0; j < extent.jen-extent.jst; j++) {
             for (int k = 0; k < extent.ken-extent.kst; k++) {
                 // next i = +i, next j = +j, next k = +k
-                b1.ro[i+extent.ist][j+extent.jst][k+extent.kst] = b2.ro[i+nxp->extent.ist][j+nxp->extent.jst][k+nxp->extent.kst];
+                // Loop over variables
+                for (auto& [key, val]: b1.primary_vars) {
+                    b1.primary_vars[key][i+extent.ist][j+extent.jst][k+extent.kst] = b2.primary_vars[key][i+nxp->extent.ist][j+nxp->extent.jst][k+nxp->extent.kst];
+                }
+                for (auto& [key, val]: b1.secondary_vars) {
+                    b1.secondary_vars[key][i+extent.ist][j+extent.jst][k+extent.kst] = b2.secondary_vars[key][i+nxp->extent.ist][j+nxp->extent.jst][k+nxp->extent.kst];
+                }
             }
         }
     }
@@ -54,7 +60,7 @@ void ExitPatch::apply(Solver& solver) {
     for (int i = extent.ist; i < extent.ien; i++) {
         for (int j = extent.jst; j < extent.jen; j++) {
             for (int k = extent.kst; k < extent.ken; k++) {
-                b.pstat[i][j][k] = p_exit;
+                b.secondary_vars["pstat"][i][j][k] = p_exit;
             }
         }
     }
@@ -73,14 +79,14 @@ void InletPatch::apply(Solver& solver) {
                 //std::cout << i << " " << j << " " << k << std::endl;
                 // Stagnation density.
                 float ro_stag = conditions.Po / solver.gas.R / conditions.To;
-                float ro_new = b.ro[i][j][k];
+                float ro_new = b.primary_vars["ro"][i][j][k];
 
                 // If this is the first iteration we don't have a ro_(n-1) so we just use the
                 // current ro.
                 if (solver.nstep > 0) {
-                    ro_new = rfin * b.ro[i][j][k] + (1-rfin) * ro_nm1;
+                    ro_new = rfin * b.primary_vars["ro"][i][j][k] + (1-rfin) * ro_nm1;
                 }
-                ro_nm1 = b.ro[i][j][k];
+                ro_nm1 = b.primary_vars["ro"][i][j][k];
 
                 // If our static density is greater than stagnation density
                 // set it to be just less. This avoids needless NaNs during
@@ -92,16 +98,16 @@ void InletPatch::apply(Solver& solver) {
                 float tstat = conditions.To * pow(ro_new / ro_stag, solver.gas.ga-1);
                 float vel = sqrt(2*solver.gas.cv*(conditions.To-tstat));
                 float E = solver.gas.cv*tstat + 0.5f*vel*vel;
-                b.vx[i][j][k] = vel * cos(conditions.yaw*M_PI/180) * cos(conditions.pitch*M_PI/180);
-                b.vy[i][j][k] = vel * sin(conditions.yaw*M_PI/180);
-                b.vz[i][j][k] = vel * cos(conditions.yaw*M_PI/180) * sin(conditions.pitch*M_PI/180);
+                b.secondary_vars["vx"][i][j][k] = vel * cos(conditions.yaw*M_PI/180) * cos(conditions.pitch*M_PI/180);
+                b.secondary_vars["vy"][i][j][k] = vel * sin(conditions.yaw*M_PI/180);
+                b.secondary_vars["vz"][i][j][k] = vel * cos(conditions.yaw*M_PI/180) * sin(conditions.pitch*M_PI/180);
 
                 // Update the primary variables.
-                b.ro[i][j][k] = ro_new;
-                b.rovx[i][j][k] = b.ro[i][j][k]*b.vx[i][j][k];
-                b.rovy[i][j][k] = b.ro[i][j][k]*b.vy[i][j][k];
-                b.rovz[i][j][k] = b.ro[i][j][k]*b.vz[i][j][k];
-                b.roe[i][j][k]  = b.ro[i][j][k]*E;
+                b.primary_vars["ro"][i][j][k] = ro_new;
+                b.primary_vars["rovx"][i][j][k] = b.primary_vars["ro"][i][j][k]*b.secondary_vars["vx"][i][j][k];
+                b.primary_vars["rovy"][i][j][k] = b.primary_vars["ro"][i][j][k]*b.secondary_vars["vy"][i][j][k];
+                b.primary_vars["rovz"][i][j][k] = b.primary_vars["ro"][i][j][k]*b.secondary_vars["vz"][i][j][k];
+                b.primary_vars["roe"][i][j][k]  = b.primary_vars["ro"][i][j][k]*E;
 
             }
         }

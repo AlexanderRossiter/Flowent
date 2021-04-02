@@ -7,6 +7,7 @@
 
 
 #include <vector>
+#include <map>
 #include "Cell.h"
 #include "../typedefinitions.h"
 
@@ -27,19 +28,18 @@ public:
     vector3d<bool>  isWall;
 
     // Primary flow variables (conserved eqns).
-    vector3d<float> ro;
-    vector3d<float> rovx;
-    vector3d<float> rovy;
-    vector3d<float> rovz;
-    vector3d<float> roe;
+    std::map<std::string, vector3d<float>> primary_vars = {{"ro", vector3d<float>()},
+                                                           {"rovx", vector3d<float>()},
+                                                           {"rovy", vector3d<float>()},
+                                                           {"rovz", vector3d<float>()},
+                                                           {"roe", vector3d<float>()}};
 
     // Secondary flow variables.
-    vector3d<float> pstat;
-    vector3d<float> hstag;
-    vector3d<float> vx; // Not sure if the memory overhead of saving these is worth the computational saving.
-    vector3d<float> vy;
-    vector3d<float> vz;
-
+    std::map<std::string, vector3d<float>> secondary_vars = {{"pstat", vector3d<float>()},
+                                                             {"hstag", vector3d<float>()},
+                                                             {"vx", vector3d<float>()},
+                                                             {"vy", vector3d<float>()},
+                                                             {"vz", vector3d<float>()}};
     int id;
 
     int ni;

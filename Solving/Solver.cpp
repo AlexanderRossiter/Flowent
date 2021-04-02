@@ -16,13 +16,15 @@ void Solver::set_secondary_variables() {
         for (int i = b.ist; i < b.ien; i++) {
             for (int j = b.jst; j < b.jen; j++) {
                 for (int k = b.kst; k < b.ken; k++) {
-                    b.vx[i][j][k] = b.rovx[i][j][k] / b.ro[i][j][k];
-                    b.vy[i][j][k] = b.rovy[i][j][k] / b.ro[i][j][k];
-                    b.vz[i][j][k] = b.rovz[i][j][k] / b.ro[i][j][k];
+                    b.secondary_vars["vx"][i][j][k] = b.primary_vars["rovx"][i][j][k] / b.primary_vars["ro"][i][j][k];
+                    b.secondary_vars["vy"][i][j][k] = b.primary_vars["rovy"][i][j][k] / b.primary_vars["ro"][i][j][k];
+                    b.secondary_vars["vz"][i][j][k] = b.primary_vars["rovz"][i][j][k] / b.primary_vars["ro"][i][j][k];
 
-                    float velSq = b.vx[i][j][k]*b.vx[i][j][k] + b.vy[i][j][k]*b.vy[i][j][k] + b.vz[i][j][k]*b.vz[i][j][k];
-                    b.pstat[i][j][k] = (gas.ga-1) * (b.roe[i][j][k] - 0.5f*b.ro[i][j][k]*velSq);
-                    b.hstag[i][j][k] = (b.roe[i][j][k] + b.pstat[i][j][k]) / b.ro[i][j][k];
+                    float velSq = b.secondary_vars["vx"][i][j][k]*b.secondary_vars["vx"][i][j][k] +
+                            b.secondary_vars["vy"][i][j][k]*b.secondary_vars["vy"][i][j][k] +
+                            b.secondary_vars["vz"][i][j][k]*b.secondary_vars["vz"][i][j][k];
+                    b.secondary_vars["pstat"][i][j][k] = (gas.ga-1) * (b.primary_vars["roe"][i][j][k] - 0.5f*b.primary_vars["ro"][i][j][k]*velSq);
+                    b.secondary_vars["hstag"][i][j][k] = (b.primary_vars["roe"][i][j][k] + b.secondary_vars["pstat"][i][j][k]) / b.primary_vars["ro"][i][j][k];
                 }
             }
         }

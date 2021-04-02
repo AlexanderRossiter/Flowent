@@ -15,15 +15,15 @@ void BasicGuess::generate_guess(Grid &g) {
         for (int i = b.ist; i < b.ien; i++) {
             for (int j = b.jst; j < b.jen; j++) {
                 for (int k = b.kst; k < b.ken; k++) {
-                    b.pstat[i][j][k] = p_po * po;
-                    b.vx[i][j][k] = vel * cos(yaw*M_PI/180) * cos(pitch*M_PI/180);
-                    b.vy[i][j][k] = vel * sin(yaw*M_PI/180);
-                    b.vz[i][j][k] = vel * cos(yaw*M_PI/180) * sin(pitch*M_PI/180);
-                    b.ro[i][j][k] = ro;
-                    b.rovx[i][j][k] = b.vx[i][j][k] * ro;
-                    b.rovy[i][j][k] = b.vy[i][j][k] * ro;
-                    b.rovz[i][j][k] = b.vz[i][j][k] * ro;
-                    b.roe[i][j][k] = ro * (gas.cv * tstat + 0.5*vel*vel);
+                    b.secondary_vars["pstat"][i][j][k] = p_po * po;
+                    b.secondary_vars["vx"][i][j][k] = vel * cos(yaw*M_PI/180) * cos(pitch*M_PI/180);
+                    b.secondary_vars["vy"][i][j][k] = vel * sin(yaw*M_PI/180);
+                    b.secondary_vars["vz"][i][j][k] = vel * cos(yaw*M_PI/180) * sin(pitch*M_PI/180);
+                    b.primary_vars["ro"][i][j][k] = ro;
+                    b.primary_vars["rovx"][i][j][k] = b.secondary_vars["vx"][i][j][k] * ro;
+                    b.primary_vars["rovy"][i][j][k] = b.secondary_vars["vy"][i][j][k] * ro;
+                    b.primary_vars["rovz"][i][j][k] = b.secondary_vars["vz"][i][j][k] * ro;
+                    b.primary_vars["roe"][i][j][k] = ro * (gas.cv * tstat + 0.5*vel*vel);
                 }
             }
         }

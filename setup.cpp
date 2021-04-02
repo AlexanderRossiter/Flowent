@@ -108,7 +108,7 @@ void setup::read_patches(Grid& g, std::string& fname) {
                 break;
             }
             case 'E': {
-                g.get_patches().push_back(std::make_unique<ExitPatch>(bid, pid, extent, std::stof(patch_str_vec[8])));
+                g.get_patches().push_back(std::make_unique<ExitPatch>(bid, pid, extent, std::stof(patch_str_vec[9])));
                 break;
             }
             default:
@@ -126,19 +126,21 @@ Gas setup::read_gas(std::string& gasName) {
     buffer << file.rdbuf();
 
     std::vector<std::string> gasPropStr = util::str_split(buffer.str(), "\n");
-    Gas gas;
 
+    float cp, R, ga;
     for (std::string& str : gasPropStr) {
         if (str.find("cp") != std::string::npos) {
-            gas.cp = std::stof(util::str_split(str, " ")[1]);
+            cp = std::stof(util::str_split(str, " ")[1]);
         } else if (str.find("R") != std::string::npos) {
-            gas.R = std::stof(util::str_split(str, " ")[1]);
+            R = std::stof(util::str_split(str, " ")[1]);
         } else if (str.find("ga") != std::string::npos) {
-            gas.ga = std::stof(util::str_split(str, " ")[1]);
+            ga = std::stof(util::str_split(str, " ")[1]);
         } else {
             throw std::invalid_argument("Invalid gas property.");
         }
     }
+
+    Gas gas(cp, R, ga);
 
     return gas;
 

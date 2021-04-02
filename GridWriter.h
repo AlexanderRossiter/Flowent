@@ -17,7 +17,7 @@ private:
 
 public:
     GridWriter(Grid& g_): g{std::move(g_)}{};
-    ~GridWriter(){};
+    ~GridWriter()=default;
 
     void write_grid(std::string& fname);
     void write_solution(std::string& fname);

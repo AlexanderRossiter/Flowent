@@ -6,14 +6,10 @@
 
 #IncludeRegexTransform: 
 
-/Users/ADR/CLionProjects/Flowent/Grid/Block.cpp
-iostream
--
-Block.h
-/Users/ADR/CLionProjects/Flowent/Grid/Block.h
-
 /Users/ADR/CLionProjects/Flowent/Grid/Block.h
 vector
+-
+map
 -
 Cell.h
 /Users/ADR/CLionProjects/Flowent/Grid/Cell.h
@@ -23,10 +19,6 @@ Cell.h
 /Users/ADR/CLionProjects/Flowent/Grid/Cell.h
 vector
 -
-
-/Users/ADR/CLionProjects/Flowent/Grid/Grid.cpp
-Grid.h
-/Users/ADR/CLionProjects/Flowent/Grid/Grid.h
 
 /Users/ADR/CLionProjects/Flowent/Grid/Grid.h
 vector
@@ -43,10 +35,6 @@ cell_face_relation.h
 /Users/ADR/CLionProjects/Flowent/Grid/cell_face_relation.h
 Patch.h
 /Users/ADR/CLionProjects/Flowent/Grid/Patch.h
-
-/Users/ADR/CLionProjects/Flowent/Grid/Grid_setup.cpp
-Grid.h
-/Users/ADR/CLionProjects/Flowent/Grid/Grid.h
 
 /Users/ADR/CLionProjects/Flowent/Grid/Patch.cpp
 stdexcept
@@ -70,10 +58,6 @@ Block.h
 vector
 -
 
-/Users/ADR/CLionProjects/Flowent/GridWriter.cpp
-GridWriter.h
-/Users/ADR/CLionProjects/Flowent/GridWriter.h
-
 /Users/ADR/CLionProjects/Flowent/GridWriter.h
 string
 -
@@ -83,6 +67,10 @@ fstream
 -
 Grid/Grid.h
 /Users/ADR/CLionProjects/Flowent/Grid/Grid.h
+
+/Users/ADR/CLionProjects/Flowent/Solving/Gas.cpp
+Gas.h
+/Users/ADR/CLionProjects/Flowent/Solving/Gas.h
 
 /Users/ADR/CLionProjects/Flowent/Solving/Gas.h
 
