@@ -31,7 +31,6 @@ Block::Block(vector3d<float> x_, vector3d<float> y_,
     for (auto& entry : secondary_vars) {
         entry.second.resize(boost::extents[ni+2][nj+2][nk+2]);
     }
-    std::cout << "(" << primary_vars["ro"].shape()[0] << ", " << primary_vars["ro"].shape()[1] << ", " << primary_vars["ro"].shape()[2] << ")\n";
     // Set the array bounds assuming that we have a halo all around.
     ist = 1;
     ien = ni+1;
