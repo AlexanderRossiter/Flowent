@@ -54,8 +54,8 @@ public:
     int ken;
 
     Block(vector3d<float> x_, vector3d<float> y_, vector3d<float> z_);
-    Block(){};
-    ~Block(){};
+    Block()=default;
+    ~Block()=default;
     void set_block_id(int id_);
 
 };

@@ -6,6 +6,12 @@
 
 #IncludeRegexTransform: 
 
+/Users/ADR/CLionProjects/Flowent/Grid/Block.cpp
+iostream
+-
+Block.h
+/Users/ADR/CLionProjects/Flowent/Grid/Block.h
+
 /Users/ADR/CLionProjects/Flowent/Grid/Block.h
 vector
 -
@@ -17,6 +23,10 @@ Cell.h
 /Users/ADR/CLionProjects/Flowent/Grid/Cell.h
 vector
 -
+
+/Users/ADR/CLionProjects/Flowent/Grid/Grid.cpp
+Grid.h
+/Users/ADR/CLionProjects/Flowent/Grid/Grid.h
 
 /Users/ADR/CLionProjects/Flowent/Grid/Grid.h
 vector
@@ -34,6 +44,18 @@ cell_face_relation.h
 Patch.h
 /Users/ADR/CLionProjects/Flowent/Grid/Patch.h
 
+/Users/ADR/CLionProjects/Flowent/Grid/Grid_setup.cpp
+Grid.h
+/Users/ADR/CLionProjects/Flowent/Grid/Grid.h
+
+/Users/ADR/CLionProjects/Flowent/Grid/Patch.cpp
+stdexcept
+-
+Patch.h
+/Users/ADR/CLionProjects/Flowent/Grid/Patch.h
+../Solving/Solver.h
+/Users/ADR/CLionProjects/Flowent/Solving/Solver.h
+
 /Users/ADR/CLionProjects/Flowent/Grid/Patch.h
 utility
 -
@@ -48,6 +70,32 @@ Block.h
 vector
 -
 
+/Users/ADR/CLionProjects/Flowent/GridWriter.cpp
+GridWriter.h
+/Users/ADR/CLionProjects/Flowent/GridWriter.h
+
+/Users/ADR/CLionProjects/Flowent/GridWriter.h
+string
+-
+iostream
+-
+fstream
+-
+Grid/Grid.h
+/Users/ADR/CLionProjects/Flowent/Grid/Grid.h
+
+/Users/ADR/CLionProjects/Flowent/Solving/Gas.h
+
+/Users/ADR/CLionProjects/Flowent/Solving/InitialGuess.cpp
+InitialGuess.h
+/Users/ADR/CLionProjects/Flowent/Solving/InitialGuess.h
+../compressible_flow_functions.h
+/Users/ADR/CLionProjects/Flowent/compressible_flow_functions.h
+
+/Users/ADR/CLionProjects/Flowent/Solving/InitialGuess.h
+../Grid/Grid.h
+/Users/ADR/CLionProjects/Flowent/Grid/Grid.h
+Gas.h
 /Users/ADR/CLionProjects/Flowent/Solving/Gas.h
 
 /Users/ADR/CLionProjects/Flowent/Solving/SolutionParameters.h
@@ -62,6 +110,50 @@ Solver.h
 Gas.h
 /Users/ADR/CLionProjects/Flowent/Solving/Gas.h
 SolutionParameters.h
+/Users/ADR/CLionProjects/Flowent/Solving/SolutionParameters.h
+
+/Users/ADR/CLionProjects/Flowent/compressible_flow_functions.h
+math.h
+/Users/ADR/CLionProjects/Flowent/math.h
+
+/Users/ADR/CLionProjects/Flowent/main.cpp
+iostream
+-
+Grid/Grid.h
+/Users/ADR/CLionProjects/Flowent/Grid/Grid.h
+setup.h
+/Users/ADR/CLionProjects/Flowent/setup.h
+GridWriter.h
+/Users/ADR/CLionProjects/Flowent/GridWriter.h
+Solving/Solver.h
+/Users/ADR/CLionProjects/Flowent/Solving/Solver.h
+Solving/InitialGuess.h
+/Users/ADR/CLionProjects/Flowent/Solving/InitialGuess.h
+
+/Users/ADR/CLionProjects/Flowent/setup.cpp
+fstream
+-
+regex
+-
+iostream
+-
+setup.h
+/Users/ADR/CLionProjects/Flowent/setup.h
+util.h
+/Users/ADR/CLionProjects/Flowent/util.h
+
+/Users/ADR/CLionProjects/Flowent/setup.h
+string
+-
+Grid/Grid.h
+/Users/ADR/CLionProjects/Flowent/Grid/Grid.h
+util.h
+/Users/ADR/CLionProjects/Flowent/util.h
+Grid/Patch.h
+/Users/ADR/CLionProjects/Flowent/Grid/Patch.h
+Solving/Gas.h
+/Users/ADR/CLionProjects/Flowent/Solving/Gas.h
+Solving/SolutionParameters.h
 /Users/ADR/CLionProjects/Flowent/Solving/SolutionParameters.h
 
 /Users/ADR/CLionProjects/Flowent/typedefinitions.h

@@ -20,6 +20,7 @@ public:
     Gas gas;
     int nstep=0;
     void apply_boundary_conditions();
+    void set_secondary_variables();
 
 };
 
