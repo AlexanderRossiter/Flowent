@@ -119,10 +119,10 @@ std::vector<std::vector<int>> Grid::get_vertex_ijk_vectors(int faceId, int i, in
     std::vector<int> v3;
     std::vector<int> v4;
 
-    v1 = {face_verts[faceId][0][0] + i, face_verts[faceId][0][1] + j, face_verts[faceId][0][2] + k};
-    v2 = {face_verts[faceId][2][0] + i, face_verts[faceId][2][1] + j, face_verts[faceId][2][2] + k};
-    v3 = {face_verts[faceId][3][0] + i, face_verts[faceId][3][1] + j, face_verts[faceId][3][2] + k};
-    v4 = {face_verts[faceId][1][0] + i, face_verts[faceId][1][1] + j, face_verts[faceId][1][2] + k};
+    v1 = {facegeom::face_verts[faceId][0][0] + i, facegeom::face_verts[faceId][0][1] + j, facegeom::face_verts[faceId][0][2] + k};
+    v2 = {facegeom::face_verts[faceId][2][0] + i, facegeom::face_verts[faceId][2][1] + j, facegeom::face_verts[faceId][2][2] + k};
+    v3 = {facegeom::face_verts[faceId][3][0] + i, facegeom::face_verts[faceId][3][1] + j, facegeom::face_verts[faceId][3][2] + k};
+    v4 = {facegeom::face_verts[faceId][1][0] + i, facegeom::face_verts[faceId][1][1] + j, facegeom::face_verts[faceId][1][2] + k};
 
     return std::vector<std::vector<int>> {v1,v2,v3,v4};
 }
@@ -134,6 +134,8 @@ void Grid::calculate_block_volumes(Block& b) {
     std::vector<float> r_star(3);
 
     const std::vector<std::vector<int>> index_offsets = {{1,0,0},{0,1,0}, {0,0,1}};
+
+    b.minV = 1E5;
 
     for (int i = b.ist; i < b.ien-1; i++) {
         for (int j = b.jst; j < b.jen-1; j++) {
@@ -153,6 +155,10 @@ void Grid::calculate_block_volumes(Block& b) {
                     r_star = util::vector_subtr(r, ro);
                     v -= util::vector_dot(r_star, b.geom[i+index_offsets[faceId][0]][j+index_offsets[faceId][1]][k+index_offsets[faceId][2]].S[faceId]) * b.geom[i+index_offsets[faceId][0]][j+index_offsets[faceId][1]][k+index_offsets[faceId][2]].A[faceId];
                 }
+
+
+
+
 //                // Faces stored in adjacent cells. These vectors point in the wrong direction
 //                // for this cell, so must subtract.
 //                // i-face: stored in i+1th cell.
@@ -172,6 +178,7 @@ void Grid::calculate_block_volumes(Block& b) {
 //                v -= util::vector_dot(r_star, b.geom[i][j][k+1].S[faceId]) * b.geom[i][j][k+1].A[faceId];
 
                 b.volume[i][j][k] = 0.333333333f * v;
+                b.minV = b.volume[i][j][k] < b.minV ? b.volume[i][j][k] : b.minV;
                 if (v < 0) {
                     std::cout << "NEGATIVE VOLUME FOUND AT (b, i, j, k) = " << b.id << " " << i << " " << j << " " << k << std::endl;
                 }
@@ -179,6 +186,7 @@ void Grid::calculate_block_volumes(Block& b) {
             }
         }
     }
+    find_grid_min_volume();
 }
 
 std::vector<float> Grid::get_face_midpoint_vector(int faceId, int i, int j, int k, Block& b) {

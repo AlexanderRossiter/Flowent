@@ -28,8 +28,10 @@ private:
     void calculate_block_volumes(Block& b);
     static std::vector<std::vector<int>> get_vertex_ijk_vectors(int faceId, int i, int j, int k);
     std::vector<float> get_face_midpoint_vector(int faceId, int i, int j, int k, Block& b);
+    void find_grid_min_volume();
 
 public:
+    float minV;
     int nb;
     void add_block(Block b);
     Block& get_block_by_id(int bid);

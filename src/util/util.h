@@ -7,6 +7,7 @@
 #include <vector>
 #include <string>
 #include <sstream>
+#include "../Grid/Block.h"
 
 namespace util {
     struct point {
@@ -15,7 +16,8 @@ namespace util {
             float z;
     };
     std::vector<std::string> str_split(const std::string& inputString, const std::string& delimiter);
-
+    float calculate_face_average(vector3d<float>& arr, int& faceId, int& i, int& j, int& k);
+    bool at_least_two(bool a, bool b, bool c, bool d);
 
         template<typename T>
     std::vector<T> vector_add(std::vector<T> a, std::vector<T> b) {

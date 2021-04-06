@@ -36,6 +36,14 @@ cell_face_relation.h
 Patch.h
 /Users/ADR/CLionProjects/Flowent/src/Grid/Patch.h
 
+/Users/ADR/CLionProjects/Flowent/src/Grid/Patch.cpp
+stdexcept
+-
+Patch.h
+/Users/ADR/CLionProjects/Flowent/src/Grid/Patch.h
+../Solving/Solver.h
+/Users/ADR/CLionProjects/Flowent/src/Solving/Solver.h
+
 /Users/ADR/CLionProjects/Flowent/src/Grid/Patch.h
 utility
 -
@@ -54,30 +62,12 @@ vector
 
 /Users/ADR/CLionProjects/Flowent/src/Solving/SolutionParameters.h
 
-/Users/ADR/CLionProjects/Flowent/src/util/setup.cpp
-fstream
--
-regex
--
-iostream
--
-setup.h
-/Users/ADR/CLionProjects/Flowent/src/util/setup.h
-util.h
-/Users/ADR/CLionProjects/Flowent/src/util/util.h
-
-/Users/ADR/CLionProjects/Flowent/src/util/setup.h
-string
--
+/Users/ADR/CLionProjects/Flowent/src/Solving/Solver.h
 ../Grid/Grid.h
 /Users/ADR/CLionProjects/Flowent/src/Grid/Grid.h
-util.h
-/Users/ADR/CLionProjects/Flowent/src/util/util.h
-../Grid/Patch.h
-/Users/ADR/CLionProjects/Flowent/src/Grid/Patch.h
-../Solving/Gas.h
+Gas.h
 /Users/ADR/CLionProjects/Flowent/src/Solving/Gas.h
-../Solving/SolutionParameters.h
+SolutionParameters.h
 /Users/ADR/CLionProjects/Flowent/src/Solving/SolutionParameters.h
 
 /Users/ADR/CLionProjects/Flowent/src/util/typedefinitions.h
@@ -91,6 +81,8 @@ string
 -
 sstream
 -
+../Grid/Block.h
+/Users/ADR/CLionProjects/Flowent/src/Grid/Block.h
 
 /usr/local/boost_1_75_0/boost/array.hpp
 boost/detail/workaround.hpp

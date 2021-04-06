@@ -27,6 +27,8 @@ public:
     vector3d<Cell>  geom;
     vector3d<bool>  isWall;
 
+    float minV;
+
     // Primary flow variables (conserved eqns).
     std::map<std::string, vector3d<float>> primary_vars = {{"ro", vector3d<float>()},
                                                            {"rovx", vector3d<float>()},
@@ -40,6 +42,21 @@ public:
                                                              {"vx", vector3d<float>()},
                                                              {"vy", vector3d<float>()},
                                                              {"vz", vector3d<float>()}};
+
+    // Convective fluxes.
+    std::map<std::string, vectornd<float, 4>> c_fluxes = {{"mass", vectornd<float, 4>()},
+                                                         {"vx", vectornd<float, 4>()},
+                                                         {"vy", vectornd<float, 4>()},
+                                                         {"vz", vectornd<float, 4>()},
+                                                         {"hstag", vectornd<float, 4>()}};
+
+    // Residuals
+    std::map<std::string, vector3d<float>> residuals = {{"ro", vector3d<float>()},
+                                                           {"rovx", vector3d<float>()},
+                                                           {"rovy", vector3d<float>()},
+                                                           {"rovz", vector3d<float>()},
+                                                           {"roe", vector3d<float>()}};
+
     int id;
 
     int ni;

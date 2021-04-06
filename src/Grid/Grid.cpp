@@ -35,3 +35,9 @@ std::vector<Block>& Grid::get_blocks() {
 std::vector<std::unique_ptr<Patch>>& Grid::get_patches() {
     return patches;
 }
+
+void Grid::find_grid_min_volume() {
+    minV = 1E5;
+    for (Block& b : get_blocks())
+        minV = b.minV < minV ? b.minV : minV;
+}

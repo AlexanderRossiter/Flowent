@@ -31,6 +31,14 @@ Block::Block(vector3d<float> x_, vector3d<float> y_,
     for (auto& entry : secondary_vars) {
         entry.second.resize(boost::extents[ni+2][nj+2][nk+2]);
     }
+    // Convective fluxes
+    for (auto& entry : c_fluxes) {
+        entry.second.resize(boost::extents[3][ni+2][nj+2][nk+2]); // we have flux through each face of cell.
+    }
+    // Residuals
+    for (auto& entry : residuals) {
+        entry.second.resize(boost::extents[ni+2][nj+2][nk+2]); // we have flux through each face of cell.
+    }
     // Set the array bounds assuming that we have a halo all around.
     ist = 1;
     ien = ni+1;

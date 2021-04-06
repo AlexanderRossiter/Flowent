@@ -21,6 +21,11 @@ void PeriodicPatch::apply(Solver& solver) {
                 for (auto& [key, val]: b1.secondary_vars) {
                     b1.secondary_vars[key][i+extent.ist][j+extent.jst][k+extent.kst] = b2.secondary_vars[key][i+nxp->extent.ist][j+nxp->extent.jst][k+nxp->extent.kst];
                 }
+                for (auto& [key, val]: b1.c_fluxes) {
+                    for (int faceId=0; faceId < 3; faceId++)
+                        b1.c_fluxes[key][faceId][i+extent.ist][j+extent.jst][k+extent.kst] = b2.c_fluxes[key][faceId][i+nxp->extent.ist][j+nxp->extent.jst][k+nxp->extent.kst];
+                }
+
             }
         }
     }
@@ -76,7 +81,6 @@ void InletPatch::apply(Solver& solver) {
     for (int i = extent.ist; i < extent.ien; i++) {
         for (int j = extent.jst; j < extent.jen; j++) {
             for (int k = extent.kst; k < extent.ken; k++) {
-                //std::cout << i << " " << j << " " << k << std::endl;
                 // Stagnation density.
                 float ro_stag = conditions.Po / solver.gas.R / conditions.To;
                 float ro_new = b.primary_vars["ro"][i][j][k];
