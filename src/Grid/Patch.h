@@ -11,6 +11,7 @@
 #include "Block.h"
 
 class Solver;
+class Grid;
 
 struct Extent {
     int ist;
@@ -61,7 +62,7 @@ public:
     Extent extent{};
     virtual void apply(Solver& solver)=0;
     virtual std::string to_string()=0;
-    virtual void alter_block_iteration_extent(Block& b)=0;
+    virtual void alter_block_iteration_extent(Grid& g)=0;
     void shift_patch_extent(int ishift, int jshift, int kshift);
     void find_face();
 
@@ -81,7 +82,7 @@ public:
     NextDir nextDir{};
 
     void apply(Solver& solver) override;
-    void alter_block_iteration_extent(Block& b) override;
+    void alter_block_iteration_extent(Grid& g) override;
     std::string to_string() override;
 
 };
@@ -90,13 +91,14 @@ struct InletPatch: Patch {
 public:
     InletPatch()=default;
     ~InletPatch() override = default;
-    InletPatch(int bid, int pid, Extent extent, InletConds conditions_, float rfin) : Patch(bid, pid, extent), conditions{conditions_}, rfin{rfin}{};
+    InletPatch(int bid, int pid, Extent extent, InletConds conditions_, float rfin) : Patch(bid, pid, extent),
+    conditions{conditions_}, rfin{rfin}{ro_nm1.resize(boost::extents[extent.ien-extent.ist+2][extent.jen-extent.jst+2][extent.ken-extent.kst+2]);};
 
     InletConds conditions{};
     float rfin;
-    float ro_nm1=0;
+    vector3d<float> ro_nm1;
 
-    void alter_block_iteration_extent(Block& b) override {};
+    void alter_block_iteration_extent(Grid& g) override {};
     void apply(Solver& solver) override;
     std::string to_string() override;
 
@@ -110,7 +112,7 @@ public:
 
     float p_exit;
 
-    void alter_block_iteration_extent(Block& b) override {};
+    void alter_block_iteration_extent(Grid& g) override {};
     void apply(Solver& solver) override;
     std::string to_string() override;
 };

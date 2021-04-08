@@ -22,7 +22,7 @@ public:
     int nstep=0;
     float delta_t;
     void apply_boundary_conditions();
-    void set_secondary_variables();
+    void set_secondary_variables(Block& b);
     void set_convective_fluxes(Block& b, int faceId, Extent& extent);
     void sum_convective_fluxes(Block &b, vector3d<float>& phi, vectornd<float, 4>& flux, vector3d<float>& residual);
     void run_iteration();
@@ -30,6 +30,7 @@ public:
     void set_wall_bconds(Block& b);
     void run_nsteps(int nsteps);
     void smooth(Block& b, vector3d<float>& phi);
+    void test_for_nans(Block& b);
 
 };
 

@@ -36,25 +36,41 @@ std::string PeriodicPatch::to_string() {
     return str;
 }
 
-void PeriodicPatch::alter_block_iteration_extent(Block &b) {
+void PeriodicPatch::alter_block_iteration_extent(Grid& g) {
+    // This only works for standard periodic patches atm, i.e. nexti=+I, nextj=+J, nextk=+K
+    Block& b1 = g.get_block_by_id(bid);
+    Block& b2 = g.get_block_by_id(nxbid);
+    std::unique_ptr<Patch>& p2 = g.get_patch_by_id(nxpid);
     switch (face) {
         case 0:
-            b.ist = 0;
+            b1.ist = 0;
             break;
         case 1:
-            b.jst = 0;
+            b1.jst = 0;
             break;
         case 2:
-            b.kst = 0;
+            b1.kst = 0;
+            for (int i = b1.ist; i < b1.ien; i++) {
+                for (int j = b1.jst; j < b1.jen; j++) {
+                    b1.volume[i][j][0] = b2.volume[i][j][p2->extent.kst-1];
+                    b1.geom[i][j][0] = b2.geom[i][j][p2->extent.kst-1];
+                }
+            }
             break;
         case 3:
-            b.ien += 1;
+            b1.ien += 1;
             break;
         case 4:
-            b.jen += 1;
+            b1.jen += 1;
             break;
         case 5:
-            b.ken += 1;
+            b1.ken += 1;
+            for (int i = b1.ist; i < b1.ien; i++) {
+                for (int j = b1.jst; j < b1.jen; j++) {
+                    b1.volume[i][j][b1.ken-2] = b2.volume[i][j][p2->extent.kst];
+                    b1.geom[i][j][b1.ken-2]   = b2.geom[i][j][p2->extent.kst];
+                }
+            }
             break;
     }
 }
@@ -88,9 +104,10 @@ void InletPatch::apply(Solver& solver) {
                 // If this is the first iteration we don't have a ro_(n-1) so we just use the
                 // current ro.
                 if (solver.nstep > 0) {
-                    ro_new = rfin * b.primary_vars["ro"][i][j][k] + (1-rfin) * ro_nm1;
+                    ro_new = rfin * b.primary_vars["ro"][i][j][k] + (1-rfin) * ro_nm1[i][j][k];
                 }
-                ro_nm1 = b.primary_vars["ro"][i][j][k];
+                ro_nm1[i][j][k] = b.primary_vars["ro"][i][j][k];
+
 
                 // If our static density is greater than stagnation density
                 // set it to be just less. This avoids needless NaNs during
@@ -100,7 +117,7 @@ void InletPatch::apply(Solver& solver) {
                 }
                 // Calculate the secondary variables.
                 float tstat = conditions.To * pow(ro_new / ro_stag, solver.gas.ga-1);
-                float vel = sqrt(2*solver.gas.cv*(conditions.To-tstat));
+                float vel = sqrt(2*solver.gas.cp*(conditions.To-tstat));
                 float E = solver.gas.cv*tstat + 0.5f*vel*vel;
                 b.secondary_vars["vx"][i][j][k] = vel * cos(conditions.yaw*M_PI/180) * cos(conditions.pitch*M_PI/180);
                 b.secondary_vars["vy"][i][j][k] = vel * sin(conditions.yaw*M_PI/180);

@@ -36,14 +36,6 @@ cell_face_relation.h
 Patch.h
 /Users/ADR/CLionProjects/Flowent/src/Grid/Patch.h
 
-/Users/ADR/CLionProjects/Flowent/src/Grid/Patch.cpp
-stdexcept
--
-Patch.h
-/Users/ADR/CLionProjects/Flowent/src/Grid/Patch.h
-../Solving/Solver.h
-/Users/ADR/CLionProjects/Flowent/src/Solving/Solver.h
-
 /Users/ADR/CLionProjects/Flowent/src/Grid/Patch.h
 utility
 -
@@ -61,6 +53,10 @@ vector
 /Users/ADR/CLionProjects/Flowent/src/Solving/Gas.h
 
 /Users/ADR/CLionProjects/Flowent/src/Solving/SolutionParameters.h
+
+/Users/ADR/CLionProjects/Flowent/src/Solving/Solver.cpp
+Solver.h
+/Users/ADR/CLionProjects/Flowent/src/Solving/Solver.h
 
 /Users/ADR/CLionProjects/Flowent/src/Solving/Solver.h
 ../Grid/Grid.h

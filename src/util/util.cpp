@@ -37,3 +37,15 @@ float util::calculate_face_average(vector3d<float>& arr, int& faceId, int& i, in
 bool util::at_least_two(bool a, bool b, bool c, bool d) {
     return (a && b) || (a && c) || (a && d) || (b && c) || (b && d) || (c && d);
 }
+
+void util::copy_grid_flow_variables(Block& b1, Block& b2, int i, int j, int k, int i2, int j2, int k2) {
+    for (auto& entry : b1.primary_vars) {
+        entry.second[i][j][k] = b2.primary_vars[entry.first][i2][j2][k2];
+    }
+    for (auto& entry : b1.secondary_vars) {
+        entry.second[i][j][k] = b2.secondary_vars[entry.first][i2][j2][k2];
+    }
+    for (auto& entry : b1.c_fluxes) {
+        entry.second[i][j][k] = b2.c_fluxes[entry.first][i2][j2][k2];
+    }
+}

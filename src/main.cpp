@@ -49,7 +49,7 @@ int main(int argc, char **argv) {
     ig.generate_guess(g);
 
     Solver solver(g, gas, sp);
-    solver.run_nsteps(10);
+    solver.run_nsteps(sp.nstep);
 
     GridWriter gw(solver.g);
     std::string str(directory + "gridout.flwnt");
