@@ -3,6 +3,7 @@
 //
 
 #include "Solver.h"
+#include <cmath>
 
 void Solver::run_nsteps(int nsteps) {
     Solver::set_timestep(300);
@@ -11,7 +12,7 @@ void Solver::run_nsteps(int nsteps) {
         run_iteration();
         if (nstep % 5 == 0) {
             std::cout << "TIME STEP NUMBER: " << nstep << std::endl;
-            std::cout << "DelRo " << g.get_block_by_id(0).residuals["ro"][2][2][2] << std::endl;
+            std::cout << "DelRo " << g.get_block_by_id(0).residuals["ro"][10][1][1] << std::endl;
         }
         nstep++;
     }
@@ -43,11 +44,10 @@ void Solver::run_iteration() {
 
         Solver::set_wall_bconds(b);
 
-        //std::cout << b.c_fluxes["mass"][0][50][1][2] << std::endl;
+        std::cout << b.c_fluxes["mass"][0][2][14][1] << std::endl;
         //std::cout << b.secondary_vars["pstat"][49][1][2]<< std::endl;
 
 //        std::cout << b.primary_vars["ro"][1][20][2] << std::endl;
-
 
         Solver::sum_convective_fluxes(b, b.primary_vars["ro"],   b.c_fluxes["mass"],  b.residuals["ro"]);
         Solver::sum_convective_fluxes(b, b.primary_vars["rovx"], b.c_fluxes["vx"],    b.residuals["rovx"]);
@@ -79,8 +79,10 @@ void Solver::test_for_nans(Block& b) {
     for (int i = b.ist; i < b.ien; i++) {
         for (int j = b.jst; j < b.jen; j++) {
             for (int k = b.kst; k < b.ken; k++) {
-                if (isnan(b.c_fluxes["mass"][0][i][j][k])) {
-                    std::cout << "NAN at (i,j,k) = (" << i << ", " << j << ", " << k << ")" << std::endl;
+                for (auto &entry : b.primary_vars) {
+                    if (std::isnan(entry.second[i][j][k])) {
+                        std::cout << "NAN in " << entry.first << " at (i,j,k) = (" << i << ", " << j << ", " << k << ")" << std::endl;
+                    }
                 }
             }
         }
@@ -135,19 +137,6 @@ void Solver::set_convective_fluxes(Block& b, int faceId, Extent& extent) {
             s_var = b.secondary_vars[entry.first];
             notMass = true;
         }
-        float fac=0.0f;
-        int coordDir=0;
-        if (entry.first == "vx") {
-            fac=1.;
-            coordDir=0;
-        } else if (entry.first == "vy") {
-            fac=1.;
-            coordDir=1;
-        }
-        if (entry.first == "vz") {
-            fac=1.;
-            coordDir=2;
-        }
 
         for (int i = extent.ist; i < extent.ien; i++) {
             for (int j = extent.jst; j < extent.jen; j++) {
@@ -165,9 +154,7 @@ void Solver::set_convective_fluxes(Block& b, int faceId, Extent& extent) {
                     float face_avg_rovy = util::calculate_face_average(rovy, faceId, i, j, k);
                     float face_avg_rovz = util::calculate_face_average(rovz, faceId, i, j, k);
 
-
                     // Sum the x,y,z  components of the flux through the i-face for this cell.
-//                    std::cout << i << " " << j << " " << k << " " << b.geom[i][j][k].Ax[faceId] << std::endl;
                     entry.second[faceId][i][j][k] += face_avg_secondary * face_avg_rovx * b.geom[i][j][k].Ax[faceId];
                     entry.second[faceId][i][j][k] += face_avg_secondary * face_avg_rovy * b.geom[i][j][k].Ay[faceId];
                     entry.second[faceId][i][j][k] += face_avg_secondary * face_avg_rovz * b.geom[i][j][k].Az[faceId];
@@ -175,26 +162,24 @@ void Solver::set_convective_fluxes(Block& b, int faceId, Extent& extent) {
                     //std::cout << entry.first << " " << entry.second[faceId][i][j][k] << " " << b.geom[i][j][k].A[0] << " " << i << " " << j << " " << k << std::endl;
                     // If this is momentum flux we also include the relevant PdA term.
                     if (entry.first == "vx") {
-                        entry.second[faceId][i][j][k] += fac * util::calculate_face_average(pstat, faceId, i, j, k) * b.geom[i][j][k].Ax[faceId];
+                        entry.second[faceId][i][j][k] += util::calculate_face_average(pstat, faceId, i, j, k) * b.geom[i][j][k].Ax[faceId];
                     } else if (entry.first == "vy") {
-                        entry.second[faceId][i][j][k] += fac * util::calculate_face_average(pstat, faceId, i, j, k) * b.geom[i][j][k].Ay[faceId];
+                        entry.second[faceId][i][j][k] += util::calculate_face_average(pstat, faceId, i, j, k) * b.geom[i][j][k].Ay[faceId];
                     } else if( entry.first == "vz") {
-                        entry.second[faceId][i][j][k] += fac * util::calculate_face_average(pstat, faceId, i, j, k) * b.geom[i][j][k].Az[faceId];
+                        entry.second[faceId][i][j][k] += util::calculate_face_average(pstat, faceId, i, j, k) * b.geom[i][j][k].Az[faceId];
                     }
 
                 }
             }
         }
     }
-
-
-
 }
 
 void Solver::set_timestep(float tstag) {
     float a_sound = sqrt(gas.ga * gas.R * tstag);
     float U = a_sound;
-    delta_t = sp.cfl * sqrt(g.minV) / (U + a_sound);
+    delta_t = sp.cfl * cbrt(g.minV) / (U + a_sound);
+    std::cout << delta_t << std::endl;
 }
 
 
@@ -207,8 +192,10 @@ void Solver::sum_convective_fluxes(Block &b, vector3d<float>& phi, vectornd<floa
     for (int i = b.ist; i < b.ien-1; i++) {
         for (int j = b.jst; j < b.jen-1; j++) {
             for (int k = b.kst; k < b.ken-1; k++) {
-                delta_phi[i][j][k] = delta_t / g.minV * (flux[0][i][j][k]-flux[0][i+1][j][k] +
+                delta_phi[i][j][k] = delta_t / b.volume[i][j][k] * (flux[0][i][j][k]-flux[0][i+1][j][k] +
                         flux[1][i][j][k]-flux[1][i][j+1][k] + flux[2][i][j][k]-flux[2][i][j][k+1]);
+
+                delta_phi[i][j][k] = 2.f*delta_phi[i][j][k] - residual[i][j][k]; // SCREE
             }
         }
     }
@@ -252,13 +239,13 @@ void Solver::sum_convective_fluxes(Block &b, vector3d<float>& phi, vectornd<floa
     for (int i = b.ist+1; i < b.ien-1; i++) {
         phi[i][b.jst][b.kst]   += 0.5f * (delta_phi[i][b.jst][b.kst] + delta_phi[i-1][b.jst][b.kst]);
         phi[i][b.jen-1][b.kst] += 0.5f * (delta_phi[i][b.jen-2][b.kst] + delta_phi[i-1][b.jen-2][b.kst]);
-        phi[i][b.jst][b.ken-1]   += 0.5f * (delta_phi[i][b.jst][b.ken-2] + delta_phi[i-1][b.jst][b.ken-1]);
+        phi[i][b.jst][b.ken-1]   += 0.5f * (delta_phi[i][b.jst][b.ken-2] + delta_phi[i-1][b.jst][b.ken-2]);
         phi[i][b.jen-1][b.ken-1] += 0.5f * (delta_phi[i][b.jen-2][b.ken-2] + delta_phi[i-1][b.jen-2][b.ken-2]);
     }
 
     // i=const k lines
     for (int k = b.kst+1; k < b.ken-1; k++) {
-        phi[b.ist][b.jst][k]   += 0.5f * (delta_phi[b.ist][b.jst][b.kst] + delta_phi[b.ist][b.jst][k-1]);
+        phi[b.ist][b.jst][k]   += 0.5f * (delta_phi[b.ist][b.jst][k] + delta_phi[b.ist][b.jst][k-1]);
         phi[b.ist][b.jen-1][k] += 0.5f * (delta_phi[b.ist][b.jen-2][k] + delta_phi[b.ist][b.jen-2][k-1]);
         phi[b.ien-1][b.jst][k]   += 0.5f * (delta_phi[b.ien-2][b.jst][k] + delta_phi[b.ien-2][b.jst][k-1]);
         phi[b.ien-1][b.jen-1][k] += 0.5f * (delta_phi[b.ien-2][b.jen-2][k] + delta_phi[b.ien-2][b.jen-2][k-1]);
@@ -268,8 +255,8 @@ void Solver::sum_convective_fluxes(Block &b, vector3d<float>& phi, vectornd<floa
     for (int j = b.jst+1; j < b.jen-1; j++) {
         phi[b.ist][j][b.kst]   += 0.5f * (delta_phi[b.ist][j][b.kst] + delta_phi[b.ist][j-1][b.kst]);
         phi[b.ist][j][b.ken-1] += 0.5f * (delta_phi[b.ist][j][b.ken-2] + delta_phi[b.ist][j-1][b.ken-2]);
-        phi[b.ien-1][j][b.kst]   += 0.5f * (delta_phi[b.ien-2][j][b.kst] + delta_phi[b.ien-1][j-1][b.kst]);
-        phi[b.ien-1][j][b.ken-1] += 0.5f * (delta_phi[b.ien-2][j][b.ken-2] + delta_phi[b.ien-1][j-1][b.ken-2]);
+        phi[b.ien-1][j][b.kst]   += 0.5f * (delta_phi[b.ien-2][j][b.kst] + delta_phi[b.ien-2][j-1][b.kst]);
+        phi[b.ien-1][j][b.ken-1] += 0.5f * (delta_phi[b.ien-2][j][b.ken-2] + delta_phi[b.ien-2][j-1][b.ken-2]);
     }
 
 
@@ -277,9 +264,9 @@ void Solver::sum_convective_fluxes(Block &b, vector3d<float>& phi, vectornd<floa
     // Eight Corners
     phi[b.ist][b.jst][b.kst] += delta_phi[b.ist][b.jst][b.kst];
 
-    phi[b.ist][b.jen][b.kst] += delta_phi[b.ist][b.jen-2][b.kst];
+    phi[b.ist][b.jen-1][b.kst] += delta_phi[b.ist][b.jen-2][b.kst];
 
-    phi[b.ist][b.jst][b.ken-1] += delta_phi[b.ist][b.jst][b.ken -2];
+    phi[b.ist][b.jst][b.ken-1] += delta_phi[b.ist][b.jst][b.ken-2];
 
     phi[b.ien-1][b.jst][b.kst] += delta_phi[b.ien-2][b.jst][b.kst];
 
@@ -419,7 +406,7 @@ void Solver::smooth(Block& b, vector3d<float>& phi) {
         }
     }
 
-    // j=const
+    // k=const
     for (int i = b.ist; i < b.ien; i++) {
         for (int j = b.jst; j < b.jen; j++) {
             int ip1 = i==b.jen-1 ? i : i+1;

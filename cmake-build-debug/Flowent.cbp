@@ -8,165 +8,165 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/Users/ADR/CLionProjects/Flowent/cmake-build-debug"/>
+				<Option working_dir="C:/Users/adr39/Documents/Flowent/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/ADR/CLionProjects/Flowent/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/ADR/CLionProjects/Flowent/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/ADR/CLionProjects/Flowent/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/ADR/CLionProjects/Flowent/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="rebuild_cache">
-				<Option working_dir="/Users/ADR/CLionProjects/Flowent/cmake-build-debug"/>
-				<Option type="4"/>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/ADR/CLionProjects/Flowent/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/ADR/CLionProjects/Flowent/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/ADR/CLionProjects/Flowent/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/ADR/CLionProjects/Flowent/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="edit_cache">
-				<Option working_dir="/Users/ADR/CLionProjects/Flowent/cmake-build-debug"/>
-				<Option type="4"/>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/ADR/CLionProjects/Flowent/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/ADR/CLionProjects/Flowent/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/ADR/CLionProjects/Flowent/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/ADR/CLionProjects/Flowent/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/adr39/Documents/Flowent/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/adr39/Documents/Flowent/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/adr39/Documents/Flowent/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/adr39/Documents/Flowent/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="Flowent">
-				<Option output="/Users/ADR/CLionProjects/Flowent/cmake-build-debug/Flowent" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/ADR/CLionProjects/Flowent/cmake-build-debug"/>
+				<Option output="C:/Users/adr39/Documents/Flowent/cmake-build-debug/Flowent.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/adr39/Documents/Flowent/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/usr/local/boost_1_75_0"/>
-					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/11.0.3/include"/>
-					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
-					<Add directory="/System/Library/Frameworks"/>
-					<Add directory="/Library/Frameworks"/>
+					<Add directory="C:/Program Files/boost/boost_1_75_0"/>
+					<Add directory="C:/Program Files/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++"/>
+					<Add directory="C:/Program Files/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="C:/Program Files/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward"/>
+					<Add directory="C:/Program Files/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include"/>
+					<Add directory="C:/Program Files/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed"/>
+					<Add directory="C:/Program Files/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/../../../../x86_64-w64-mingw32/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/ADR/CLionProjects/Flowent/cmake-build-debug/Makefile&quot;  VERBOSE=1 Flowent"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/ADR/CLionProjects/Flowent/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/ADR/CLionProjects/Flowent/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/ADR/CLionProjects/Flowent/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/adr39/Documents/Flowent/cmake-build-debug/Makefile&quot;  VERBOSE=1 Flowent"/>
+					<CompileFile command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/adr39/Documents/Flowent/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/adr39/Documents/Flowent/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/adr39/Documents/Flowent/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="Flowent/fast">
-				<Option output="/Users/ADR/CLionProjects/Flowent/cmake-build-debug/Flowent" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/ADR/CLionProjects/Flowent/cmake-build-debug"/>
+				<Option output="C:/Users/adr39/Documents/Flowent/cmake-build-debug/Flowent.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/adr39/Documents/Flowent/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/usr/local/boost_1_75_0"/>
-					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/11.0.3/include"/>
-					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
-					<Add directory="/System/Library/Frameworks"/>
-					<Add directory="/Library/Frameworks"/>
+					<Add directory="C:/Program Files/boost/boost_1_75_0"/>
+					<Add directory="C:/Program Files/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++"/>
+					<Add directory="C:/Program Files/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="C:/Program Files/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward"/>
+					<Add directory="C:/Program Files/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include"/>
+					<Add directory="C:/Program Files/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed"/>
+					<Add directory="C:/Program Files/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/../../../../x86_64-w64-mingw32/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/ADR/CLionProjects/Flowent/cmake-build-debug/Makefile&quot;  VERBOSE=1 Flowent/fast"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/ADR/CLionProjects/Flowent/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/ADR/CLionProjects/Flowent/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/ADR/CLionProjects/Flowent/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/adr39/Documents/Flowent/cmake-build-debug/Makefile&quot;  VERBOSE=1 Flowent/fast"/>
+					<CompileFile command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/adr39/Documents/Flowent/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/adr39/Documents/Flowent/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/adr39/Documents/Flowent/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="C:/Users/adr39/Documents/Flowent/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/adr39/Documents/Flowent/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/adr39/Documents/Flowent/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/adr39/Documents/Flowent/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/adr39/Documents/Flowent/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="C:/Users/adr39/Documents/Flowent/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/adr39/Documents/Flowent/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/adr39/Documents/Flowent/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/adr39/Documents/Flowent/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/adr39/Documents/Flowent/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/Users/ADR/CLionProjects/Flowent/src/Grid/Block.cpp">
+		<Unit filename="C:/Users/adr39/Documents/Flowent/src/Grid/Block.cpp">
 			<Option target="Flowent"/>
 		</Unit>
-		<Unit filename="/Users/ADR/CLionProjects/Flowent/src/Grid/Block.h">
+		<Unit filename="C:/Users/adr39/Documents/Flowent/src/Grid/Block.h">
 			<Option target="Flowent"/>
 		</Unit>
-		<Unit filename="/Users/ADR/CLionProjects/Flowent/src/Grid/Cell.cpp">
+		<Unit filename="C:/Users/adr39/Documents/Flowent/src/Grid/Cell.cpp">
 			<Option target="Flowent"/>
 		</Unit>
-		<Unit filename="/Users/ADR/CLionProjects/Flowent/src/Grid/Cell.h">
+		<Unit filename="C:/Users/adr39/Documents/Flowent/src/Grid/Cell.h">
 			<Option target="Flowent"/>
 		</Unit>
-		<Unit filename="/Users/ADR/CLionProjects/Flowent/src/Grid/Grid.cpp">
+		<Unit filename="C:/Users/adr39/Documents/Flowent/src/Grid/Grid.cpp">
 			<Option target="Flowent"/>
 		</Unit>
-		<Unit filename="/Users/ADR/CLionProjects/Flowent/src/Grid/Grid.h">
+		<Unit filename="C:/Users/adr39/Documents/Flowent/src/Grid/Grid.h">
 			<Option target="Flowent"/>
 		</Unit>
-		<Unit filename="/Users/ADR/CLionProjects/Flowent/src/Grid/Grid_setup.cpp">
+		<Unit filename="C:/Users/adr39/Documents/Flowent/src/Grid/Grid_setup.cpp">
 			<Option target="Flowent"/>
 		</Unit>
-		<Unit filename="/Users/ADR/CLionProjects/Flowent/src/Grid/Patch.cpp">
+		<Unit filename="C:/Users/adr39/Documents/Flowent/src/Grid/Patch.cpp">
 			<Option target="Flowent"/>
 		</Unit>
-		<Unit filename="/Users/ADR/CLionProjects/Flowent/src/Grid/Patch.h">
+		<Unit filename="C:/Users/adr39/Documents/Flowent/src/Grid/Patch.h">
 			<Option target="Flowent"/>
 		</Unit>
-		<Unit filename="/Users/ADR/CLionProjects/Flowent/src/Grid/cell_face_relation.cpp">
+		<Unit filename="C:/Users/adr39/Documents/Flowent/src/Grid/cell_face_relation.cpp">
 			<Option target="Flowent"/>
 		</Unit>
-		<Unit filename="/Users/ADR/CLionProjects/Flowent/src/Grid/cell_face_relation.h">
+		<Unit filename="C:/Users/adr39/Documents/Flowent/src/Grid/cell_face_relation.h">
 			<Option target="Flowent"/>
 		</Unit>
-		<Unit filename="/Users/ADR/CLionProjects/Flowent/src/Solving/Gas.cpp">
+		<Unit filename="C:/Users/adr39/Documents/Flowent/src/Solving/Gas.cpp">
 			<Option target="Flowent"/>
 		</Unit>
-		<Unit filename="/Users/ADR/CLionProjects/Flowent/src/Solving/Gas.h">
+		<Unit filename="C:/Users/adr39/Documents/Flowent/src/Solving/Gas.h">
 			<Option target="Flowent"/>
 		</Unit>
-		<Unit filename="/Users/ADR/CLionProjects/Flowent/src/Solving/InitialGuess.cpp">
+		<Unit filename="C:/Users/adr39/Documents/Flowent/src/Solving/InitialGuess.cpp">
 			<Option target="Flowent"/>
 		</Unit>
-		<Unit filename="/Users/ADR/CLionProjects/Flowent/src/Solving/InitialGuess.h">
+		<Unit filename="C:/Users/adr39/Documents/Flowent/src/Solving/InitialGuess.h">
 			<Option target="Flowent"/>
 		</Unit>
-		<Unit filename="/Users/ADR/CLionProjects/Flowent/src/Solving/SolutionParameters.h">
+		<Unit filename="C:/Users/adr39/Documents/Flowent/src/Solving/SolutionParameters.h">
 			<Option target="Flowent"/>
 		</Unit>
-		<Unit filename="/Users/ADR/CLionProjects/Flowent/src/Solving/Solver.cpp">
+		<Unit filename="C:/Users/adr39/Documents/Flowent/src/Solving/Solver.cpp">
 			<Option target="Flowent"/>
 		</Unit>
-		<Unit filename="/Users/ADR/CLionProjects/Flowent/src/Solving/Solver.h">
+		<Unit filename="C:/Users/adr39/Documents/Flowent/src/Solving/Solver.h">
 			<Option target="Flowent"/>
 		</Unit>
-		<Unit filename="/Users/ADR/CLionProjects/Flowent/src/main.cpp">
+		<Unit filename="C:/Users/adr39/Documents/Flowent/src/main.cpp">
 			<Option target="Flowent"/>
 		</Unit>
-		<Unit filename="/Users/ADR/CLionProjects/Flowent/src/util/GridWriter.cpp">
+		<Unit filename="C:/Users/adr39/Documents/Flowent/src/util/GridWriter.cpp">
 			<Option target="Flowent"/>
 		</Unit>
-		<Unit filename="/Users/ADR/CLionProjects/Flowent/src/util/GridWriter.h">
+		<Unit filename="C:/Users/adr39/Documents/Flowent/src/util/GridWriter.h">
 			<Option target="Flowent"/>
 		</Unit>
-		<Unit filename="/Users/ADR/CLionProjects/Flowent/src/util/compressible_flow_functions.cpp">
+		<Unit filename="C:/Users/adr39/Documents/Flowent/src/util/compressible_flow_functions.cpp">
 			<Option target="Flowent"/>
 		</Unit>
-		<Unit filename="/Users/ADR/CLionProjects/Flowent/src/util/compressible_flow_functions.h">
+		<Unit filename="C:/Users/adr39/Documents/Flowent/src/util/compressible_flow_functions.h">
 			<Option target="Flowent"/>
 		</Unit>
-		<Unit filename="/Users/ADR/CLionProjects/Flowent/src/util/setup.cpp">
+		<Unit filename="C:/Users/adr39/Documents/Flowent/src/util/setup.cpp">
 			<Option target="Flowent"/>
 		</Unit>
-		<Unit filename="/Users/ADR/CLionProjects/Flowent/src/util/setup.h">
+		<Unit filename="C:/Users/adr39/Documents/Flowent/src/util/setup.h">
 			<Option target="Flowent"/>
 		</Unit>
-		<Unit filename="/Users/ADR/CLionProjects/Flowent/src/util/typedefinitions.h">
+		<Unit filename="C:/Users/adr39/Documents/Flowent/src/util/typedefinitions.h">
 			<Option target="Flowent"/>
 		</Unit>
-		<Unit filename="/Users/ADR/CLionProjects/Flowent/src/util/util.cpp">
+		<Unit filename="C:/Users/adr39/Documents/Flowent/src/util/util.cpp">
 			<Option target="Flowent"/>
 		</Unit>
-		<Unit filename="/Users/ADR/CLionProjects/Flowent/src/util/util.h">
+		<Unit filename="C:/Users/adr39/Documents/Flowent/src/util/util.h">
 			<Option target="Flowent"/>
 		</Unit>
-		<Unit filename="/Users/ADR/CLionProjects/Flowent/CMakeLists.txt">
+		<Unit filename="C:/Users/adr39/Documents/Flowent/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

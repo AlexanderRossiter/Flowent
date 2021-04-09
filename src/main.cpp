@@ -45,7 +45,7 @@ int main(int argc, char **argv) {
         std::cout << p->to_string() << std::endl;
     }
 
-    BasicGuess ig(gas, 0.4, 1E5, 300, 0, 0);
+    BasicGuess ig(gas, 0.6, 0.9995E5, 300, 0, 0);
     ig.generate_guess(g);
 
     Solver solver(g, gas, sp);
