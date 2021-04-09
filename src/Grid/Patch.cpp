@@ -108,13 +108,13 @@ void InletPatch::apply(Solver& solver) {
                 }
                 ro_nm1[i][j][k] = b.primary_vars["ro"][i][j][k];
 
-
                 // If our static density is greater than stagnation density
                 // set it to be just less. This avoids needless NaNs during
                 // transients.
                 if (ro_new > ro_stag) {
                     ro_new = 0.9999f * ro_stag;
                 }
+
                 // Calculate the secondary variables.
                 float tstat = conditions.To * pow(ro_new / ro_stag, solver.gas.ga-1);
                 float vel = sqrt(2*solver.gas.cp*(conditions.To-tstat));
@@ -122,7 +122,6 @@ void InletPatch::apply(Solver& solver) {
                 b.secondary_vars["vx"][i][j][k] = vel * cos(conditions.yaw*M_PI/180) * cos(conditions.pitch*M_PI/180);
                 b.secondary_vars["vy"][i][j][k] = vel * sin(conditions.yaw*M_PI/180);
                 b.secondary_vars["vz"][i][j][k] = vel * cos(conditions.yaw*M_PI/180) * sin(conditions.pitch*M_PI/180);
-
                 // Update the primary variables.
                 b.primary_vars["ro"][i][j][k] = ro_new;
                 b.primary_vars["rovx"][i][j][k] = b.primary_vars["ro"][i][j][k]*b.secondary_vars["vx"][i][j][k];
