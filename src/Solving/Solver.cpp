@@ -194,7 +194,7 @@ void Solver::set_convective_fluxes(Block& b, int faceId, Extent& extent) {
 void Solver::set_timestep(float tstag) {
     float a_sound = sqrt(gas.ga * gas.R * tstag);
     float U = a_sound;
-    delta_t = sp.cfl * sqrt(g.minV) / (U + a_sound);
+    delta_t = sp.cfl * cbrt(g.minV) / (U + a_sound);
 }
 
 
