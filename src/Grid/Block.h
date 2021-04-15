@@ -14,48 +14,48 @@
 class Block {
 
 private:
-    void fill_geometry_arrays(vector3d<float>& x_, vector3d<float>& y_,
-            vector3d<float>& z_);
+    void fill_geometry_arrays(vector3d<double>& x_, vector3d<double>& y_,
+            vector3d<double>& z_);
     void initialise_walls();
 
 public:
     // Grid properties.
-    vector3d<float> x;
-    vector3d<float> y;
-    vector3d<float> z;
-    vector3d<float> volume;
+    vector3d<double> x;
+    vector3d<double> y;
+    vector3d<double> z;
+    vector3d<double> volume;
     vector3d<Cell>  geom;
-    vector3d<bool>  isWall;
+    vector3d<double>  isWall;
 
-    float minV;
+    double minV;
 
     // Primary flow variables (conserved eqns).
-    std::map<std::string, vector3d<float>> primary_vars = {{"ro", vector3d<float>()},
-                                                           {"rovx", vector3d<float>()},
-                                                           {"rovy", vector3d<float>()},
-                                                           {"rovz", vector3d<float>()},
-                                                           {"roe", vector3d<float>()}};
+    std::map<std::string, vector3d<double>> primary_vars = {{"ro", vector3d<double>()},
+                                                           {"rovx", vector3d<double>()},
+                                                           {"rovy", vector3d<double>()},
+                                                           {"rovz", vector3d<double>()},
+                                                           {"roe", vector3d<double>()}};
 
     // Secondary flow variables.
-    std::map<std::string, vector3d<float>> secondary_vars = {{"pstat", vector3d<float>()},
-                                                             {"hstag", vector3d<float>()},
-                                                             {"vx", vector3d<float>()},
-                                                             {"vy", vector3d<float>()},
-                                                             {"vz", vector3d<float>()}};
+    std::map<std::string, vector3d<double>> secondary_vars = {{"pstat", vector3d<double>()},
+                                                             {"hstag", vector3d<double>()},
+                                                             {"vx", vector3d<double>()},
+                                                             {"vy", vector3d<double>()},
+                                                             {"vz", vector3d<double>()}};
 
     // Convective fluxes.
-    std::map<std::string, vectornd<float, 4>> c_fluxes = {{"mass", vectornd<float, 4>()},
-                                                         {"vx", vectornd<float, 4>()},
-                                                         {"vy", vectornd<float, 4>()},
-                                                         {"vz", vectornd<float, 4>()},
-                                                         {"hstag", vectornd<float, 4>()}};
+    std::map<std::string, vectornd<double, 4>> c_fluxes = {{"mass", vectornd<double, 4>()},
+                                                         {"vx", vectornd<double, 4>()},
+                                                         {"vy", vectornd<double, 4>()},
+                                                         {"vz", vectornd<double, 4>()},
+                                                         {"hstag", vectornd<double, 4>()}};
 
     // Residuals
-    std::map<std::string, vector3d<float>> residuals = {{"ro", vector3d<float>()},
-                                                           {"rovx", vector3d<float>()},
-                                                           {"rovy", vector3d<float>()},
-                                                           {"rovz", vector3d<float>()},
-                                                           {"roe", vector3d<float>()}};
+    std::map<std::string, vector3d<double>> residuals = {{"ro", vector3d<double>()},
+                                                           {"rovx", vector3d<double>()},
+                                                           {"rovy", vector3d<double>()},
+                                                           {"rovz", vector3d<double>()},
+                                                           {"roe", vector3d<double>()}};
 
     int id;
 
@@ -70,7 +70,7 @@ public:
     int kst;
     int ken;
 
-    Block(vector3d<float> x_, vector3d<float> y_, vector3d<float> z_);
+    Block(vector3d<double> x_, vector3d<double> y_, vector3d<double> z_);
     Block()=default;
     ~Block()=default;
     void set_block_id(int id_);

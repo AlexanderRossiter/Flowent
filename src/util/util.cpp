@@ -26,7 +26,7 @@ std::vector<std::string> util::str_split(const std::string& inputString, const s
     return splitString;
 }
 
-float util::calculate_face_average(vector3d<float>& arr, int& faceId, int& i, int& j, int& k) {
+double util::calculate_face_average(vector3d<double>& arr, int& faceId, int& i, int& j, int& k) {
     const std::vector<std::vector<int>> & idx = facegeom::face_verts[faceId]; // Switching this to a reference made it much faster :o
     return 0.25f * (arr[idx[0][0]+i][idx[0][1]+j][idx[0][2]+k]
                     + arr[idx[1][0]+i][idx[1][1]+j][idx[1][2]+k]

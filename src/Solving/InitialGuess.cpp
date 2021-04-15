@@ -6,19 +6,19 @@
 #include "../util/compressible_flow_functions.h"
 
 void BasicGuess::generate_guess(Grid &g) {
-    float p_po = cff::fp(Mach, gas.ga);
-    float tstat = pow(p_po, (gas.ga-1)/gas.ga)*to;
-    float vel = sqrt(2*gas.cp*(to-tstat));
-    float ro = p_po * po / gas.R / tstat;
+    double p_po = cff::fp(Mach, gas.ga);
+    double tstat = pow(p_po, (gas.ga-1)/gas.ga)*to;
+    double vel = sqrt(2*gas.cp*(to-tstat));
+    double ro = p_po * po / gas.R / tstat;
 
     for (Block& b : g.get_blocks()) {
         for (int i = b.ist; i < b.ien; i++) {
             for (int j = b.jst; j < b.jen; j++) {
                 for (int k = b.kst; k < b.ken; k++) {
                     b.secondary_vars["pstat"][i][j][k] = p_po * po;
-                    float tmp_yaw;
+                    double tmp_yaw;
                     if (i < b.ien - 1 && k > b.kst && k < b.ken-1) {
-                        tmp_yaw = acos((b.y[i+1][j][k] - b.y[i][j][k]) / (b.x[i+1][j][k] - b.x[i][j][k])) * 180 / M_PI;
+                        tmp_yaw = atan((b.y[i+1][j][k] - b.y[i][j][k]) / (b.x[i+1][j][k] - b.x[i][j][k])) * 180 / M_PI;
                     } else{
                         tmp_yaw = 0;
                     }
@@ -34,4 +34,8 @@ void BasicGuess::generate_guess(Grid &g) {
             }
         }
     }
+}
+
+void UpperLowerWalls::generate_guess(Grid &g) {
+
 }

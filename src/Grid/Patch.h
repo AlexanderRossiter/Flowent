@@ -41,10 +41,10 @@ struct NextDir {
 };
 
 struct InletConds {
-    float Po;
-    float To;
-    float yaw;
-    float pitch;
+    double Po;
+    double To;
+    double yaw;
+    double pitch;
     [[nodiscard]] std::string to_string() const{
         return "Po: " + std::to_string(Po) + " To: "
         + std::to_string(To) + " Yaw: "
@@ -91,11 +91,11 @@ struct InletPatch: Patch {
 public:
     InletPatch()=default;
     ~InletPatch() override = default;
-    InletPatch(int bid, int pid, Extent extent, InletConds conditions_, float rfin) : Patch(bid, pid, extent),
+    InletPatch(int bid, int pid, Extent extent, InletConds conditions_, double rfin) : Patch(bid, pid, extent),
     conditions{conditions_}, rfin{rfin}{ro_nm1.resize(boost::extents[extent.ien-extent.ist+2][extent.jen-extent.jst+2][extent.ken-extent.kst+2]);};
 
     InletConds conditions{};
-    float rfin;
+    double rfin;
     vector3d<float> ro_nm1;
 
     void alter_block_iteration_extent(Grid& g) override {};
@@ -108,9 +108,9 @@ struct ExitPatch: Patch {
 public:
     ExitPatch()=default;
     ~ExitPatch() override = default;
-    ExitPatch(int bid, int pid, Extent extent, float p_exit) : Patch(bid, pid, extent), p_exit{p_exit} {};
+    ExitPatch(int bid, int pid, Extent extent, double p_exit) : Patch(bid, pid, extent), p_exit{p_exit} {};
 
-    float p_exit;
+    double p_exit;
 
     void alter_block_iteration_extent(Grid& g) override {};
     void apply(Solver& solver) override;

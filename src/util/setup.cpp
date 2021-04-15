@@ -32,9 +32,9 @@ Grid setup::read_grid_testcase(std::string& testcase) {
     //std::cout << ni << ", " << nj << ", " << nk << std::endl;
 
     // Initialise x, y, z
-    vector3d<float> x(boost::extents[ni][nj][nk]);
-    vector3d<float> y(boost::extents[ni][nj][nk]);
-    vector3d<float> z(boost::extents[ni][nj][nk]);
+    vector3d<double> x(boost::extents[ni][nj][nk]);
+    vector3d<double> y(boost::extents[ni][nj][nk]);
+    vector3d<double> z(boost::extents[ni][nj][nk]);
 
     for (int i = 0; i < ni; i++) {
         for (int j = 0; j < nj; j++) {
@@ -126,7 +126,7 @@ Gas setup::read_gas(std::string& gasName) {
 
     std::vector<std::string> gasPropStr = util::str_split(buffer.str(), "\n");
 
-    float cp, R, ga;
+    double cp, R, ga;
     for (std::string& str : gasPropStr) {
         if (str.find("cp") != std::string::npos) {
             cp = std::stof(util::str_split(str, " ")[1]);

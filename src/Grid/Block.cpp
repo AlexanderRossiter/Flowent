@@ -5,8 +5,8 @@
 #include <iostream>
 #include "Block.h"
 
-Block::Block(vector3d<float> x_, vector3d<float> y_,
-             vector3d<float> z_) {
+Block::Block(vector3d<double> x_, vector3d<double> y_,
+             vector3d<double> z_) {
 
     id = -1;
 
@@ -53,8 +53,8 @@ Block::Block(vector3d<float> x_, vector3d<float> y_,
 
 }
 
-void Block::fill_geometry_arrays(vector3d<float>& x_, vector3d<float>& y_,
-                                 vector3d<float>& z_) {
+void Block::fill_geometry_arrays(vector3d<double>& x_, vector3d<double>& y_,
+                                 vector3d<double>& z_) {
     for (int i = ist; i < ien; i++) {
         for (int j = jst; j < jen; j++) {
             for (int k = kst; k < ken; k++) {

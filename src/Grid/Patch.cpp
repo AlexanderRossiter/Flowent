@@ -22,8 +22,14 @@ void PeriodicPatch::apply(Solver& solver) {
                     b1.secondary_vars[key][i+extent.ist][j+extent.jst][k+extent.kst] = b2.secondary_vars[key][i+nxp->extent.ist][j+nxp->extent.jst][k+nxp->extent.kst];
                 }
                 for (auto& [key, val]: b1.c_fluxes) {
-                    for (int faceId=0; faceId < 3; faceId++)
+                    for (int faceId=0; faceId < 3; faceId++){
                         b1.c_fluxes[key][faceId][i+extent.ist][j+extent.jst][k+extent.kst] = b2.c_fluxes[key][faceId][i+nxp->extent.ist][j+nxp->extent.jst][k+nxp->extent.kst];
+                        if (face == 2) {
+                            b1.c_fluxes[key][faceId][i+extent.ist][j+extent.jst][k+extent.kst-1] = b2.c_fluxes[key][faceId][i+nxp->extent.ist][j+nxp->extent.jst][k+nxp->extent.kst-1];
+                        } else if (face == 5) {
+                            b1.c_fluxes[key][faceId][i+extent.ist][j+extent.jst][k+extent.kst+1] = b2.c_fluxes[key][faceId][i+nxp->extent.ist][j+nxp->extent.jst][k+nxp->extent.kst];
+                        }
+                    }
                 }
 
             }
@@ -98,8 +104,8 @@ void InletPatch::apply(Solver& solver) {
         for (int j = extent.jst; j < extent.jen; j++) {
             for (int k = extent.kst; k < extent.ken; k++) {
                 // Stagnation density.
-                float ro_stag = conditions.Po / solver.gas.R / conditions.To;
-                float ro_new = b.primary_vars["ro"][i][j][k];
+                double ro_stag = conditions.Po / solver.gas.R / conditions.To;
+                double ro_new = b.primary_vars["ro"][i][j][k];
 
                 // If this is the first iteration we don't have a ro_(n-1) so we just use the
                 // current ro.
@@ -116,14 +122,14 @@ void InletPatch::apply(Solver& solver) {
                 }
 
                 // Calculate the secondary variables.
-                float tstat = conditions.To * pow(ro_new / ro_stag, solver.gas.ga-1);
-                float vel = sqrt(2*solver.gas.cp*(conditions.To-tstat));
-                float E = solver.gas.cv*tstat + 0.5f*vel*vel;
+                double tstat = conditions.To * pow(ro_new / ro_stag, solver.gas.ga-1);
+                double vel = sqrt(2*solver.gas.cp*(conditions.To-tstat));
+                double E = solver.gas.cv*tstat + 0.5f*vel*vel;
                 b.secondary_vars["vx"][i][j][k] = vel * cos(conditions.yaw*M_PI/180) * cos(conditions.pitch*M_PI/180);
                 b.secondary_vars["vy"][i][j][k] = vel * sin(conditions.yaw*M_PI/180);
                 b.secondary_vars["vz"][i][j][k] = vel * cos(conditions.yaw*M_PI/180) * sin(conditions.pitch*M_PI/180);
                 // Update the primary variables.
-                b.primary_vars["ro"][i][j][k] = ro_new;
+                b.primary_vars["ro"][i][j][k]   = ro_new;
                 b.primary_vars["rovx"][i][j][k] = b.primary_vars["ro"][i][j][k]*b.secondary_vars["vx"][i][j][k];
                 b.primary_vars["rovy"][i][j][k] = b.primary_vars["ro"][i][j][k]*b.secondary_vars["vy"][i][j][k];
                 b.primary_vars["rovz"][i][j][k] = b.primary_vars["ro"][i][j][k]*b.secondary_vars["vz"][i][j][k];

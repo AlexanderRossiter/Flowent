@@ -27,16 +27,33 @@ public:
     BasicGuess()=default;
     ~BasicGuess()=default;
 
-    BasicGuess(Gas& gas, float Mach_, float po_, float to_, float yaw_, float pitch_): InitialGuess(gas), Mach{Mach_}, po{po_}, to{to_}, yaw{yaw_}, pitch{pitch_} {};
+    BasicGuess(Gas& gas, double Mach_, double po_, double to_, double yaw_, double pitch_): InitialGuess(gas), Mach{Mach_}, po{po_}, to{to_}, yaw{yaw_}, pitch{pitch_} {};
 
     void generate_guess(Grid& g) override;
 
 private:
-    float Mach;
-    float po; // stag p
-    float to; // stag T
-    float yaw;
-    float pitch;
+    double Mach;
+    double po; // stag p
+    double to; // stag T
+    double yaw;
+    double pitch;
+};
+
+class UpperLowerWalls: InitialGuess {
+public:
+    UpperLowerWalls()=default;
+    ~UpperLowerWalls()=default;
+
+    UpperLowerWalls(Gas& gas, double po_, double to_, double yaw_, double pitch_, double pdown_): InitialGuess(gas), pdown{pdown_}, po{po_}, to{to_}, yaw{yaw_}, pitch{pitch_} {};
+
+    void generate_guess(Grid& g) override;
+
+private:
+    double pdown;
+    double po; // stag p
+    double to; // stag T
+    double yaw;
+    double pitch;
 };
 
 

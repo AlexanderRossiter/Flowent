@@ -11,12 +11,12 @@
 
 namespace util {
     struct point {
-            float x;
-            float y;
-            float z;
+        double x;
+        double y;
+        double z;
     };
     std::vector<std::string> str_split(const std::string& inputString, const std::string& delimiter);
-    float calculate_face_average(vector3d<float>& arr, int& faceId, int& i, int& j, int& k);
+    double calculate_face_average(vector3d<double>& arr, int& faceId, int& i, int& j, int& k);
     bool at_least_two(bool a, bool b, bool c, bool d);
     void copy_grid_flow_variables(Block& b1, Block& b2, int i, int j, int k, int i2, int j2, int k2);
 

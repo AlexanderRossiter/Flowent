@@ -7,8 +7,8 @@
 
 
 struct SolutionParameters {
-    float cfl;
-    float sfin;
+    double cfl;
+    double sfin;
     int nstep;
 };
 

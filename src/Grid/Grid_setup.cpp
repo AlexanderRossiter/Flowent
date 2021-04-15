@@ -20,7 +20,7 @@ void Grid::calculate_grid_geometries() {
 }
 
 void Grid::calculate_block_face_vectors(Block& b) {
-    std::vector<std::vector<float>> sijk(3, std::vector<float>(3));
+    std::vector<std::vector<double>> sijk(3, std::vector<double>(3));
 
     std::vector<std::vector<int>> vertex_ijk;
     for (int i = b.ist; i < b.ien-1; i++) {
@@ -86,24 +86,24 @@ void Grid::calculate_block_face_vectors(Block& b) {
     }
 }
 
-std::vector<float> Grid::calculate_face_vector(std::vector<int>& v1, std::vector<int>& v2,
+std::vector<double> Grid::calculate_face_vector(std::vector<int>& v1, std::vector<int>& v2,
                                                 std::vector<int>& v3, std::vector<int>& v4,
                                                 Block& b) {
     // Calculates the cross product of the two diagonal vectors of the control volume.
     // Magnitude of the resulting vector is the Area of the face, the vector points
     // normal to the face.
-    float delXa = b.x[v2[0]][v2[1]][v2[2]] - b.x[v1[0]][v1[1]][v1[2]];
-    float delXb = b.x[v4[0]][v4[1]][v4[2]] - b.x[v3[0]][v3[1]][v3[2]];
+    double delXa = b.x[v2[0]][v2[1]][v2[2]] - b.x[v1[0]][v1[1]][v1[2]];
+    double delXb = b.x[v4[0]][v4[1]][v4[2]] - b.x[v3[0]][v3[1]][v3[2]];
 
-    float delYa = b.y[v2[0]][v2[1]][v2[2]] - b.y[v1[0]][v1[1]][v1[2]];
-    float delYb = b.y[v4[0]][v4[1]][v4[2]] - b.y[v3[0]][v3[1]][v3[2]];
+    double delYa = b.y[v2[0]][v2[1]][v2[2]] - b.y[v1[0]][v1[1]][v1[2]];
+    double delYb = b.y[v4[0]][v4[1]][v4[2]] - b.y[v3[0]][v3[1]][v3[2]];
 
-    float delZa = b.z[v2[0]][v2[1]][v2[2]] - b.z[v1[0]][v1[1]][v1[2]];
-    float delZb = b.z[v4[0]][v4[1]][v4[2]] - b.z[v3[0]][v3[1]][v3[2]];
+    double delZa = b.z[v2[0]][v2[1]][v2[2]] - b.z[v1[0]][v1[1]][v1[2]];
+    double delZb = b.z[v4[0]][v4[1]][v4[2]] - b.z[v3[0]][v3[1]][v3[2]];
 
-    std::vector<float> s1 = {0.5f * (delZa*delYb - delYa*delZb),
-                             0.5f * (delXa*delZb - delZa*delXb),
-                             0.5f * (delYa*delXb - delXa*delYb)};
+    std::vector<double> s1 = {0.5 * (delZa*delYb - delYa*delZb),
+                              0.5 * (delXa*delZb - delZa*delXb),
+                              0.5 * (delYa*delXb - delXa*delYb)};
     return s1;
 }
 
@@ -128,10 +128,10 @@ std::vector<std::vector<int>> Grid::get_vertex_ijk_vectors(int faceId, int i, in
 }
 
 void Grid::calculate_block_volumes(Block& b) {
-    float v;
-    std::vector<float> r;
-    std::vector<float> ro(3);
-    std::vector<float> r_star(3);
+    double v;
+    std::vector<double> r;
+    std::vector<double> ro(3);
+    std::vector<double> r_star(3);
 
     const std::vector<std::vector<int>> index_offsets = {{1,0,0},{0,1,0}, {0,0,1}};
 
@@ -189,10 +189,10 @@ void Grid::calculate_block_volumes(Block& b) {
     find_grid_min_volume();
 }
 
-std::vector<float> Grid::get_face_midpoint_vector(int faceId, int i, int j, int k, Block& b) {
+std::vector<double> Grid::get_face_midpoint_vector(int faceId, int i, int j, int k, Block& b) {
     // Returns a vector for the midpoint of the current face.
 
-    std::vector<float> r(3); // Initialises to 0.
+    std::vector<double> r(3); // Initialises to 0.
     std::vector<std::vector<int>> face_verts_ijk = get_vertex_ijk_vectors(faceId, i, j, k);
 
     for (std::vector<int> vert : face_verts_ijk) {
@@ -200,7 +200,7 @@ std::vector<float> Grid::get_face_midpoint_vector(int faceId, int i, int j, int 
         r[1] += b.y[vert[0]][vert[1]][vert[2]];
         r[2] += b.z[vert[0]][vert[1]][vert[2]];
     }
-    for (float& f : r) {f *= 0.25f;}
+    for (double& f : r) {f *= 0.25;}
     return r;
 }
 

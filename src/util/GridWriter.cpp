@@ -16,8 +16,8 @@ void GridWriter::write_grid(std::string& fname) {
                 for (int k = 1; k < b.nk+1; k++) {
                     //std::cout << b.primary_vars["roe"][i][j][k] << std::endl;
                     file << std::setprecision(10) << b.x[i][j][k] << " " << b.y[i][j][k] << " " << b.z[i][j][k] << " "
-                    << b.volume[i][j][k] << " " << b.geom[i][j][k].A[0] << " " << b.geom[i][j][k].A[1]
-                    << " " << b.geom[i][j][k].A[2] << " " << b.isWall[i][j][k] << " " << b.primary_vars["ro"][i][j][k]
+                    << b.volume[i][j][k] << " " << b.geom[i][j][k].Ax[1] << " " << b.geom[i][j][k].Ay[1]
+                    << " " << b.geom[i][j][k].Az[1] << " " << b.isWall[i][j][k] << " " << b.primary_vars["ro"][i][j][k]
                     << " " << b.primary_vars["rovx"][i][j][k] << " " << b.primary_vars["rovy"][i][j][k] << " " << b.primary_vars["rovz"][i][j][k] << " "
                     << b.primary_vars["roe"][i][j][k] << std::endl;
                 }

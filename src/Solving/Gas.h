@@ -8,12 +8,12 @@
 
 class Gas {
 public:
-    float cp;
-    float R;
-    float ga;
-    float cv;
+    double cp;
+    double R;
+    double ga;
+    double cv;
 
-    Gas(float cp_, float R_, float ga_): cp{cp_}, R{R_}, ga{ga_} {cv = cp / ga;};
+    Gas(double cp_, double R_, double ga_): cp{cp_}, R{R_}, ga{ga_} {cv = cp / ga;};
     Gas()=default;
     ~Gas()=default;
 };

@@ -6,7 +6,7 @@
 #define FLOWENT_COMPRESSIBLE_FLOW_FUNCTIONS_H
 #include "math.h"
 namespace cff {
-    float fMp(float p_po, float ga=1.4);
-    float fp(float M, float ga=1.4);
+    float fMp(double p_po, double ga=1.4);
+    float fp(double M, double ga=1.4);
 }
 #endif //FLOWENT_COMPRESSIBLE_FLOW_FUNCTIONS_H

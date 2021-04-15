@@ -20,17 +20,22 @@ public:
     Grid g;
     Gas gas;
     int nstep=0;
-    float delta_t;
+    double delta_t;
     void apply_boundary_conditions();
     void set_secondary_variables(Block& b);
     void set_convective_fluxes(Block& b, int faceId, Extent& extent);
-    void sum_convective_fluxes(Block &b, vector3d<float>& phi, vectornd<float, 4>& flux, vector3d<float>& residual);
+    void set_convective_fluxes_2(Block& b, vectornd<double,4>& flux, std::string varName, int faceId, Extent& extent);
+    void set_mass_fluxes(Block& b, int faceId, Extent& extent);
+    void sum_convective_fluxes(Block &b, vector3d<double>& phi, vectornd<double, 4>& flux, vector3d<double>& residual);
     void run_iteration();
-    void set_timestep(float tstag);
+    void set_timestep(double tstag);
     void set_wall_bconds(Block& b);
     void run_nsteps(int nsteps);
-    void smooth(Block& b, vector3d<float>& phi);
+    void smooth(Block& b, vector3d<double>& phi);
     void test_for_nans(Block& b);
+    void print_flux(vectornd<double, 4> var, int faceId, int k=1);
+    void print_var(vector3d<double> var, int k=1);
+    void print_Ax(vector3d<Cell> var, int k);
 
 };
 
