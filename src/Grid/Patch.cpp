@@ -9,7 +9,6 @@ void PeriodicPatch::apply(Solver& solver) {
     Block& b1 = solver.g.get_block_by_id(bid);
     std::unique_ptr<Patch>& nxp = solver.g.get_patch_by_id(nxpid, nxbid);
     Block& b2 = solver.g.get_block_by_id(nxbid);
-
     for (int i = 0; i < extent.ien-extent.ist; i++) {
         for (int j = 0; j < extent.jen-extent.jst; j++) {
             for (int k = 0; k < extent.ken-extent.kst; k++) {
@@ -155,6 +154,7 @@ std::string ExitPatch::to_string() {
 }
 
 void InletPatch::apply(Solver& solver) {
+
     Block& b = solver.g.get_block_by_id(bid);
     for (int i = extent.ist; i < extent.ien; i++) {
         for (int j = extent.jst; j < extent.jen; j++) {

@@ -26,7 +26,7 @@ int main(int argc, char **argv) {
 
     // Read grid data
     std::cout << "Reading grid...";
-    Grid g = setup::read_grid_testcase(fullpath);
+    Grid g = setup::read_grid(fullpath);
     std::cout << " Done." << std::endl;
     g.move_patches_to_halo_grid();
 
@@ -41,12 +41,13 @@ int main(int argc, char **argv) {
     //g.move_block_iteration_extent_for_periodic_patches();
     std::cout << " Done." << std::endl;
 
+    // Print out patch details.
     for (auto& p : g.get_patches()) {
         std::cout << p->to_string() << std::endl;
     }
 
-    for (Block& b : g.get_blocks()) {
-        std::cout << b.kst << " " << b.ken << std::endl;
+    for (auto & b : g.get_blocks()) {
+        std::cout << b.id << " " << b.ni << std::endl;
     }
 
     // Hard coded guess currently.

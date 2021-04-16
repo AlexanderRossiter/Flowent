@@ -8,6 +8,65 @@
 #include "setup.h"
 #include "util.h"
 
+Grid setup::read_grid(std::string& fname) {
+    std::ifstream file(fname + ".grid");
+    if (file.fail()) {
+        std::cout << "Failed to open grid file." << std::endl;
+        throw std::exception();
+    }
+
+    std::string str;
+    const std::regex r("([+-]?[0-9]*([.][0-9]+)?), ([+-]?[0-9]*([.][0-9]+)?), ([+-]?[0-9]*([.][0-9]+)?)");
+    std::smatch m;
+
+    // Initialise grid.
+    Grid g;
+
+    // Get number of blocks.
+    std::getline(file, str);
+    int nb = std::stoi(str);
+
+    for (int n = 0; n < nb; n++) {
+        int id = -1;
+        int ni = -1;
+        int nj = -1;
+        int nk = -1;
+        // Get first line which contains grid size.
+        std::getline(file, str);
+        std::vector<std::string> tmp = util::str_split(str, ", ");
+        id = std::stoi(tmp[0]);
+        ni = std::stoi(tmp[1]);
+        nj = std::stoi(tmp[2]);
+        nk = std::stoi(tmp[3]);
+
+        //std::cout << ni << ", " << nj << ", " << nk << std::endl;
+
+        // Initialise x, y, z
+        vector3d<double> x(boost::extents[ni][nj][nk]);
+        vector3d<double> y(boost::extents[ni][nj][nk]);
+        vector3d<double> z(boost::extents[ni][nj][nk]);
+
+        for (int i = 0; i < ni; i++) {
+            for (int j = 0; j < nj; j++) {
+                for (int k = 0; k < nk; k++) {
+                    std::getline(file, str);
+                    if (std::regex_match(str, m, r)) {
+                        x[i][j][k] = std::stof(m[1]);
+                        y[i][j][k] = std::stof(m[3]);
+                        z[i][j][k] = std::stof(m[5]);
+                        //std::cout << x[i][j][k] << ", " << y[i][j][k] << ", " << z[i][j][k] << std::endl;
+                    }
+                }
+            }
+        }
+
+        g.add_block(Block(x, y, z), id);
+    }
+    read_patches(g, fname);
+
+    return g;
+}
+
 Grid setup::read_grid_testcase(std::string& testcase) {
     std::ifstream file(testcase + ".grid");
     if (file.fail()) {
@@ -50,7 +109,7 @@ Grid setup::read_grid_testcase(std::string& testcase) {
         }
     }
     Grid g;
-    g.add_block(Block(x, y, z));
+    g.add_block(Block(x, y, z), 0);
     str = testcase;
     read_patches(g, str);
 

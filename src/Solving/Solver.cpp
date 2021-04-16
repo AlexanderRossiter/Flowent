@@ -18,6 +18,7 @@ void Solver::run_nsteps(int nsteps) {
                 b.calc_average_residual();
                 std::cout << "Block " << b.id << " - DelRoAvg: " << b.del_ro_avg << std::endl;
             }
+            std::cout << "\n";
         }
         nstep++;
     }

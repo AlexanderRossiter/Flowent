@@ -7,6 +7,7 @@
 void GridWriter::write_grid(std::string& fname) {
     std::ofstream file;
     file.open(fname);
+    file << g.nb << std::endl;
     for (Block& b : g.get_blocks()) {
         file << "Block " << b.id << std::endl;
         file << b.ni << " " << b.nj << " " << b.nk << std::endl;
