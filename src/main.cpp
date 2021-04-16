@@ -9,7 +9,7 @@ int main(int argc, char **argv) {
 
     // Hard coded test cases for testing.
     std::string directory = "../resources/test_cases/";
-    std::string tc = "wedge";
+    std::string tc = "gaussian_bump";
     std::string gasStr = "air";
 
     std::string fullpath = directory + tc;
@@ -38,15 +38,19 @@ int main(int argc, char **argv) {
     // with periodic patches appropriately.
     std::cout << "Initialising walls...";
     g.initialise_walls();
-    g.move_block_iteration_extent_for_periodic_patches();
+    //g.move_block_iteration_extent_for_periodic_patches();
     std::cout << " Done." << std::endl;
 
     for (auto& p : g.get_patches()) {
         std::cout << p->to_string() << std::endl;
     }
 
+    for (Block& b : g.get_blocks()) {
+        std::cout << b.kst << " " << b.ken << std::endl;
+    }
+
     // Hard coded guess currently.
-    BasicGuess ig(gas, 1.6, 0.9995E5, 300, 0, 0);
+    BasicGuess ig(gas, 0.6, 0.9995E5, 300, 0, 0);
     ig.generate_guess(g);
 
     // Run the program

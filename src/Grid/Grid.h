@@ -35,7 +35,7 @@ public:
     int nb;
     void add_block(Block b);
     Block& get_block_by_id(int bid);
-    std::unique_ptr<Patch>& get_patch_by_id(int pid);
+    std::unique_ptr<Patch>& get_patch_by_id(int pid, int bid);
     std::vector<Block>&  get_blocks();
     std::vector<std::unique_ptr<Patch>>& get_patches();
     void calculate_grid_geometries();

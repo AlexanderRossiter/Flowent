@@ -77,10 +77,13 @@ public:
     int kst;
     int ken;
 
+    double del_ro_avg;
+
     Block(vector3d<double> x_, vector3d<double> y_, vector3d<double> z_);
     Block()=default;
     ~Block()=default;
     void set_block_id(int id_);
+    void calc_average_residual();
 
 };
 

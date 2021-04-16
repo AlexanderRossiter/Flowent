@@ -104,3 +104,17 @@ void Block::initialise_walls() {
     }
 
 }
+
+void Block::calc_average_residual() {
+    del_ro_avg = 0;
+    int count=0;
+    for (int i = ist; i < ien; i++) {
+        for (int j = jst; j < jen; j++) {
+            for (int k = kst; k < ken; k++) {
+                del_ro_avg += residuals["ro"][i][j][k];
+                count += 1;
+            }
+        }
+    }
+    del_ro_avg /= (1.0*count);
+}

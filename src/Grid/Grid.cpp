@@ -19,9 +19,9 @@ Block& Grid::get_block_by_id(int desired_bid) {
     throw std::exception();
 }
 
-std::unique_ptr<Patch>& Grid::get_patch_by_id(int pid) {
+std::unique_ptr<Patch>& Grid::get_patch_by_id(int pid, int bid) {
     for (auto& p : patches) {
-        if (p->pid == pid) {
+        if (p->pid == pid && p->bid == bid) {
             return p;
         }
     }

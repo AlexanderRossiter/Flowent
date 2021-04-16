@@ -7,30 +7,61 @@
 #include "../Solving/Solver.h"
 void PeriodicPatch::apply(Solver& solver) {
     Block& b1 = solver.g.get_block_by_id(bid);
-    std::unique_ptr<Patch>& nxp = solver.g.get_patch_by_id(nxpid);
+    std::unique_ptr<Patch>& nxp = solver.g.get_patch_by_id(nxpid, nxbid);
     Block& b2 = solver.g.get_block_by_id(nxbid);
 
     for (int i = 0; i < extent.ien-extent.ist; i++) {
         for (int j = 0; j < extent.jen-extent.jst; j++) {
             for (int k = 0; k < extent.ken-extent.kst; k++) {
-                // next i = +i, next j = +j, next k = +k
-                // Loop over variables
+                // Sort out periodic patches.
+
+                int pi = i+extent.ist;
+                int pj = j+extent.jst;
+                int pk = k+extent.kst;
+
+                int nxpi;
+                int nxpj;
+                int nxpk;
+
+                if      (nextDir.nexti=="+I") nxpi = nxp->extent.ist   + i;
+                else if (nextDir.nexti=="-I") nxpi = nxp->extent.ien-1 - i;
+                else if (nextDir.nexti=="+J") nxpj = nxp->extent.jst   + i;
+                else if (nextDir.nexti=="-J") nxpj = nxp->extent.jen-1 - i;
+                else if (nextDir.nexti=="+K") nxpk = nxp->extent.kst   + i;
+                else if (nextDir.nexti=="-K") nxpk = nxp->extent.ken-1 - i;
+
+                if      (nextDir.nextj=="+I") nxpi = nxp->extent.ist   + j;
+                else if (nextDir.nextj=="-I") nxpi = nxp->extent.ien-1 - j;
+                else if (nextDir.nextj=="+J") nxpj = nxp->extent.jst   + j;
+                else if (nextDir.nextj=="-J") nxpj = nxp->extent.jen-1 - j;
+                else if (nextDir.nextj=="+K") nxpk = nxp->extent.kst   + j;
+                else if (nextDir.nextj=="-K") nxpk = nxp->extent.ken-1 - j;
+
+                if      (nextDir.nextk=="+I") nxpi = nxp->extent.ist   + k;
+                else if (nextDir.nextk=="-I") nxpi = nxp->extent.ien-1 - k;
+                else if (nextDir.nextk=="+J") nxpj = nxp->extent.jst   + k;
+                else if (nextDir.nextk=="-J") nxpj = nxp->extent.jen-1 - k;
+                else if (nextDir.nextk=="+K") nxpk = nxp->extent.kst   + k;
+                else if (nextDir.nextk=="-K") nxpk = nxp->extent.ken-1 - k;
+
                 for (auto& [key, val]: b1.primary_vars) {
-                    b1.primary_vars[key][i+extent.ist][j+extent.jst][k+extent.kst] = b2.primary_vars[key][i+nxp->extent.ist][j+nxp->extent.jst][k+nxp->extent.kst];
+                    b1.primary_vars[key][pi][pj][pk] = 0.5*(b1.primary_vars[key][pi][pj][pk]+b2.primary_vars[key][nxpi][nxpj][nxpk]);
                 }
+
                 for (auto& [key, val]: b1.secondary_vars) {
-                    b1.secondary_vars[key][i+extent.ist][j+extent.jst][k+extent.kst] = b2.secondary_vars[key][i+nxp->extent.ist][j+nxp->extent.jst][k+nxp->extent.kst];
+                    b1.secondary_vars[key][pi][pj][pk] = 0.5*(b1.secondary_vars[key][pi][pj][pk]+b2.secondary_vars[key][nxpi][nxpj][nxpk]);
                 }
-                for (auto& [key, val]: b1.c_fluxes) {
-                    for (int faceId=0; faceId < 3; faceId++){
-                        b1.c_fluxes[key][faceId][i+extent.ist][j+extent.jst][k+extent.kst] = b2.c_fluxes[key][faceId][i+nxp->extent.ist][j+nxp->extent.jst][k+nxp->extent.kst];
-                        if (face == 2) {
-                            b1.c_fluxes[key][faceId][i+extent.ist][j+extent.jst][k+extent.kst-1] = b2.c_fluxes[key][faceId][i+nxp->extent.ist][j+nxp->extent.jst][k+nxp->extent.kst-1];
-                        } else if (face == 5) {
-                            b1.c_fluxes[key][faceId][i+extent.ist][j+extent.jst][k+extent.kst+1] = b2.c_fluxes[key][faceId][i+nxp->extent.ist][j+nxp->extent.jst][k+nxp->extent.kst];
-                        }
-                    }
-                }
+// This sets the fluxes to be periodic, I don't think we need it though.
+//                for (auto& [key, val]: b1.c_fluxes) {
+//                    for (int faceId=0; faceId < 3; faceId++){
+//                        b1.c_fluxes[key][faceId][i+extent.ist][j+extent.jst][k+extent.kst] = b2.c_fluxes[key][faceId][i+nxp->extent.ist][j+nxp->extent.jst][k+nxp->extent.kst];
+//                        if (face == 2) {
+//                            b1.c_fluxes[key][faceId][i+extent.ist][j+extent.jst][k+extent.kst-1] = b2.c_fluxes[key][faceId][i+nxp->extent.ist][j+nxp->extent.jst][k+nxp->extent.kst-1];
+//                        } else if (face == 5) {
+//                            b1.c_fluxes[key][faceId][i+extent.ist][j+extent.jst][k+extent.kst+1] = b2.c_fluxes[key][faceId][i+nxp->extent.ist][j+nxp->extent.jst][k+nxp->extent.kst+1];
+//                        }
+//                    }
+//                }
 
             }
         }

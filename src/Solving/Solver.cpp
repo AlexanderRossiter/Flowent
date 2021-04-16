@@ -10,23 +10,26 @@ void Solver::run_nsteps(int nsteps) {
     Solver::set_timestep(300);
 
     while (nstep < nsteps) {
+        // Set the secondary variables for the first iteration.
         run_iteration();
         if (nstep % 50 == 0) {
             std::cout << "TIME STEP NUMBER: " << nstep << std::endl;
-            std::cout << "DelRo " << g.get_block_by_id(0).residuals["ro"][10][1][1] << std::endl;
+            for (Block& b : g.get_blocks()) {
+                b.calc_average_residual();
+                std::cout << "Block " << b.id << " - DelRoAvg: " << b.del_ro_avg << std::endl;
+            }
         }
         nstep++;
     }
 }
 
 void Solver::run_iteration() {
-
-
     // Set the fluxes through the ijk faces in the domain.
     Extent e{};
     for (Block& b : g.get_blocks()) {
         Solver::set_secondary_variables(b);
         Solver::apply_boundary_conditions();
+
 
         e = {b.ist, b.ien, b.jst, b.jen-1, b.kst, b.ken-1};
         Solver::set_mass_fluxes(b, 0, e);
@@ -62,12 +65,12 @@ void Solver::run_iteration() {
         Solver::set_convective_fluxes(b, b.c_fluxes["vy"], "vy", 2, e);
         Solver::set_convective_fluxes(b, b.c_fluxes["vz"], "vz", 2, e);
 
-        Solver::apply_boundary_conditions();
+        //Solver::apply_boundary_conditions();
 
 
 //        Solver::print_flux(b.c_fluxes["vy"], 1, 4);
 //        Solver::print_flux(b.c_fluxes["mass"], 0, 3);
-//        Solver::print_flux(b.c_fluxes["mass"], 0, 2);
+//        Solver::print_flux(b.c_fluxes["mass"], 2, 0);
 
 
         Solver::sum_convective_fluxes(b, b.primary_vars["ro"],   b.c_fluxes["mass"],  b.residuals["ro"]);
@@ -76,21 +79,12 @@ void Solver::run_iteration() {
         Solver::sum_convective_fluxes(b, b.primary_vars["rovz"], b.c_fluxes["vz"],    b.residuals["rovz"]);
         Solver::sum_convective_fluxes(b, b.primary_vars["roe"],  b.c_fluxes["hstag"], b.residuals["roe"]);
 
-//
-//        Solver::print_var(b.secondary_vars["hstag"], 1);
-
-//        smooth(b, b.primary_vars["ro"]);
-//        smooth(b, b.primary_vars["rovx"]);
-//        smooth(b, b.primary_vars["rovy"]);
-//        smooth(b, b.primary_vars["rovz"]);
-//        smooth(b, b.primary_vars["roe"]);
 
         smooth_defcorr(b, b.primary_vars["ro"], b.corr_primary_vars["ro"]);
         smooth_defcorr(b, b.primary_vars["rovx"], b.corr_primary_vars["rovx"]);
         smooth_defcorr(b, b.primary_vars["rovy"], b.corr_primary_vars["rovy"]);
         smooth_defcorr(b, b.primary_vars["rovz"], b.corr_primary_vars["rovz"]);
         smooth_defcorr(b, b.primary_vars["roe"], b.corr_primary_vars["roe"]);
-        //test_for_nans(b);
 
 
 
