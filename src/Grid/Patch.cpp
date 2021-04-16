@@ -77,7 +77,7 @@ void PeriodicPatch::alter_block_iteration_extent(Grid& g) {
     // Should be able to remove this now.
     Block &b1 = g.get_block_by_id(bid);
     Block &b2 = g.get_block_by_id(nxbid);
-    std::unique_ptr<Patch> &p2 = g.get_patch_by_id(nxpid);
+    std::unique_ptr<Patch> &p2 = g.get_patch_by_id(nxpid, nxbid);
     switch (face) {
         case 0:
             b1.ist = 0;
