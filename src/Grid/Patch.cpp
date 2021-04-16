@@ -74,7 +74,7 @@ std::string PeriodicPatch::to_string() {
 }
 
 void PeriodicPatch::alter_block_iteration_extent(Grid& g) {
-    // This only works for standard periodic patches atm, i.e. nexti=+I, nextj=+J, nextk=+K
+    // Should be able to remove this now.
     Block &b1 = g.get_block_by_id(bid);
     Block &b2 = g.get_block_by_id(nxbid);
     std::unique_ptr<Patch> &p2 = g.get_patch_by_id(nxpid);
