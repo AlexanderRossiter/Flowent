@@ -42,25 +42,25 @@ void Solver::run_iteration() {
         // I-faces
         //std::cout << "I-faces" << std::endl;
         e = {b.ist, b.ien, b.jst, b.jen-1, b.kst, b.ken-1};
-        Solver::set_convective_fluxes_2(b, b.c_fluxes["hstag"], "hstag", 0, e);
-        Solver::set_convective_fluxes_2(b, b.c_fluxes["vx"], "vx", 0, e);
-        Solver::set_convective_fluxes_2(b, b.c_fluxes["vy"], "vy", 0, e);
-        Solver::set_convective_fluxes_2(b, b.c_fluxes["vz"], "vz", 0, e);
+        Solver::set_convective_fluxes(b, b.c_fluxes["hstag"], "hstag", 0, e);
+        Solver::set_convective_fluxes(b, b.c_fluxes["vx"], "vx", 0, e);
+        Solver::set_convective_fluxes(b, b.c_fluxes["vy"], "vy", 0, e);
+        Solver::set_convective_fluxes(b, b.c_fluxes["vz"], "vz", 0, e);
 
         // J-faces
         //std::cout << "J-faces" << std::endl;
         e = {b.ist, b.ien-1, b.jst, b.jen, b.kst, b.ken-1};
-        Solver::set_convective_fluxes_2(b, b.c_fluxes["hstag"], "hstag", 1, e);
-        Solver::set_convective_fluxes_2(b, b.c_fluxes["vx"], "vx", 1, e);
-        Solver::set_convective_fluxes_2(b, b.c_fluxes["vy"], "vy", 1, e);
-        Solver::set_convective_fluxes_2(b, b.c_fluxes["vz"], "vz", 1, e);
+        Solver::set_convective_fluxes(b, b.c_fluxes["hstag"], "hstag", 1, e);
+        Solver::set_convective_fluxes(b, b.c_fluxes["vx"], "vx", 1, e);
+        Solver::set_convective_fluxes(b, b.c_fluxes["vy"], "vy", 1, e);
+        Solver::set_convective_fluxes(b, b.c_fluxes["vz"], "vz", 1, e);
         // K-faces
         //std::cout << "K-faces" << std::endl;
         e = {b.ist, b.ien-1, b.jst, b.jen-1, b.kst, b.ken};
-        Solver::set_convective_fluxes_2(b, b.c_fluxes["hstag"], "hstag", 2, e);
-        Solver::set_convective_fluxes_2(b, b.c_fluxes["vx"], "vx", 2, e);
-        Solver::set_convective_fluxes_2(b, b.c_fluxes["vy"], "vy", 2, e);
-        Solver::set_convective_fluxes_2(b, b.c_fluxes["vz"], "vz", 2, e);
+        Solver::set_convective_fluxes(b, b.c_fluxes["hstag"], "hstag", 2, e);
+        Solver::set_convective_fluxes(b, b.c_fluxes["vx"], "vx", 2, e);
+        Solver::set_convective_fluxes(b, b.c_fluxes["vy"], "vy", 2, e);
+        Solver::set_convective_fluxes(b, b.c_fluxes["vz"], "vz", 2, e);
 
         Solver::apply_boundary_conditions();
 
@@ -78,13 +78,18 @@ void Solver::run_iteration() {
 
 //
 //        Solver::print_var(b.secondary_vars["hstag"], 1);
-//        Solver::print_var(b.primary_vars["rovx"], 2);
 
-        smooth(b, b.primary_vars["ro"]);
-        smooth(b, b.primary_vars["rovx"]);
-        smooth(b, b.primary_vars["rovy"]);
-        smooth(b, b.primary_vars["rovz"]);
-        smooth(b, b.primary_vars["roe"]);
+//        smooth(b, b.primary_vars["ro"]);
+//        smooth(b, b.primary_vars["rovx"]);
+//        smooth(b, b.primary_vars["rovy"]);
+//        smooth(b, b.primary_vars["rovz"]);
+//        smooth(b, b.primary_vars["roe"]);
+
+        smooth_defcorr(b, b.primary_vars["ro"], b.corr_primary_vars["ro"]);
+        smooth_defcorr(b, b.primary_vars["rovx"], b.corr_primary_vars["rovx"]);
+        smooth_defcorr(b, b.primary_vars["rovy"], b.corr_primary_vars["rovy"]);
+        smooth_defcorr(b, b.primary_vars["rovz"], b.corr_primary_vars["rovz"]);
+        smooth_defcorr(b, b.primary_vars["roe"], b.corr_primary_vars["roe"]);
         //test_for_nans(b);
 
 
@@ -114,7 +119,7 @@ void Solver::test_for_nans(Block& b) {
     }
 }
 
-void Solver::set_secondary_variables(Block& b) {
+void Solver::set_secondary_variables(Block& b) const {
     //std::cout << "Setting secondary variables\n";
     vector3d<double>& ro = b.primary_vars["ro"];
     vector3d<double>& rovx = b.primary_vars["rovx"];
@@ -147,60 +152,6 @@ void Solver::set_secondary_variables(Block& b) {
 
 }
 
-void Solver::set_convective_fluxes(Block& b, int faceId, Extent& extent) {
-    // Assign these by reference here so we don't have to do many map lookups.
-    vector3d<double>& rovx = b.primary_vars["rovx"];
-    vector3d<double>& rovy = b.primary_vars["rovy"];
-    vector3d<double>& rovz = b.primary_vars["rovz"];
-    vector3d<double>& pstat = b.secondary_vars["pstat"];
-    vector3d<double> s_var(boost::extents[b.ni+2][b.nj+2][b.nk+2]);
-
-
-    for (auto& entry : b.c_fluxes) {
-        bool notMass = false;
-        if (entry.first != "mass") {
-            s_var = b.secondary_vars[entry.first];
-            notMass = true;
-        }
-
-        for (int i = extent.ist; i < extent.ien; i++) {
-            for (int j = extent.jst; j < extent.jen; j++) {
-                for (int k = extent.kst; k < extent.ken; k++) {
-
-                    // Make sure the flux begins at 0.
-                    entry.second[faceId][i][j][k]=0;
-
-                    // Calculate the average value on this face
-                    double face_avg_secondary = 1;
-                    if (notMass) {
-                        face_avg_secondary = util::calculate_face_average(s_var, faceId, i, j, k);
-                    }
-                    double face_avg_rovx = util::calculate_face_average(rovx, faceId, i, j, k);
-                    double face_avg_rovy = util::calculate_face_average(rovy, faceId, i, j, k);
-                    double face_avg_rovz = util::calculate_face_average(rovz, faceId, i, j, k);
-
-                    // Sum the x,y,z  components of the flux through the i-face for this cell.
-                    entry.second[faceId][i][j][k] += face_avg_secondary * face_avg_rovx * b.geom[i][j][k].Ax[faceId];
-                    entry.second[faceId][i][j][k] += face_avg_secondary * face_avg_rovy * b.geom[i][j][k].Ay[faceId];
-                    entry.second[faceId][i][j][k] += face_avg_secondary * face_avg_rovz * b.geom[i][j][k].Az[faceId];
-
-                    //std::cout << entry.first << " " << entry.second[faceId][i][j][k] << " " << b.geom[i][j][k].A[0] << " " << i << " " << j << " " << k << std::endl;
-                    // If this is momentum flux we also include the relevant PdA term.
-                    if (entry.first == "vx") {
-                        entry.second[faceId][i][j][k] += util::calculate_face_average(pstat, faceId, i, j, k) * b.geom[i][j][k].Ax[faceId];
-                    } else if (entry.first == "vy") {
-                        entry.second[faceId][i][j][k] += util::calculate_face_average(pstat, faceId, i, j, k) * b.geom[i][j][k].Ay[faceId];
-                    } else if( entry.first == "vz") {
-                        entry.second[faceId][i][j][k] += util::calculate_face_average(pstat, faceId, i, j, k) * b.geom[i][j][k].Az[faceId];
-                    }
-
-
-                }
-            }
-        }
-    }
-}
-
 void Solver::set_mass_fluxes(Block& b, int faceId, Extent& extent) {
     // Assign these by reference here so we don't have to do many map lookups.
     vector3d<double>& rovx = b.primary_vars["rovx"];
@@ -230,7 +181,7 @@ void Solver::set_mass_fluxes(Block& b, int faceId, Extent& extent) {
     }
 }
 
-void Solver::set_convective_fluxes_2(Block& b, vectornd<double,4>& flux, std::string varName, int faceId, Extent& extent) {
+void Solver::set_convective_fluxes(Block& b, vectornd<double,4>& flux, std::string varName, int faceId, Extent& extent) {
     // Assign these by reference here so we don't have to do many map lookups.
     vector3d<double>& vx = b.secondary_vars["vx"];
     vector3d<double>& vy = b.secondary_vars["vy"];
@@ -273,19 +224,22 @@ void Solver::set_timestep(double tstag) {
 }
 
 
-void Solver::sum_convective_fluxes(Block &b, vector3d<double>& phi, vectornd<double, 4>& flux, vector3d<double>& residual) {
+void Solver::sum_convective_fluxes(Block &b, vector3d<double>& phi, vectornd<double, 4>& flux, vector3d<double>& residual) const {
     //std::cout << "Summing fluxes\n";
 
     // First, calculate the change in the variable over the timestep dt.
     // Loop over the cells
     vector3d<double> delta_phi(boost::extents[b.ni+2][b.nj+2][b.nk+2]);
+    vector3d<double> store(boost::extents[b.ni+2][b.nj+2][b.nk+2]);
     for (int i = b.ist; i < b.ien-1; i++) {
         for (int j = b.jst; j < b.jen-1; j++) {
             for (int k = b.kst; k < b.ken-1; k++) {
-                delta_phi[i][j][k] = -delta_t / b.volume[i][j][k] * (flux[0][i][j][k]-flux[0][i+1][j][k] +
+                store[i][j][k] = -delta_t / b.volume[i][j][k] * (flux[0][i][j][k]-flux[0][i+1][j][k] +
                         flux[1][i][j][k]-flux[1][i][j+1][k] + flux[2][i][j][k]-flux[2][i][j][k+1]);
-//                std::cout << delta_phi[i][j][k] << std::endl;
-                //delta_phi[i][j][k] = 2.f*delta_phi[i][j][k] - residual[i][j][k]; // SCREE
+
+                // Inclusion of a second order time derivative.
+                delta_phi[i][j][k] = store[i][j][k] + sp.facsec*(store[i][j][k] - residual[i][j][k]);
+                residual[i][j][k] = store[i][j][k];
             }
         }
     }
@@ -368,13 +322,13 @@ void Solver::sum_convective_fluxes(Block &b, vector3d<double>& phi, vectornd<dou
     phi[b.ien-1][b.jen-1][b.ken-1] += delta_phi[b.ien-2][b.jen-2][b.ken-2];
 
 
-    for (int i = b.ist; i < b.ien-1; i++) {
-        for (int j = b.jst; j < b.jen - 1; j++) {
-            for (int k = b.kst; k < b.ken - 1; k++) {
-                residual[i][j][k] = delta_phi[i][j][k];
-            }
-        }
-    }
+//    for (int i = b.ist; i < b.ien-1; i++) {
+//        for (int j = b.jst; j < b.jen - 1; j++) {
+//            for (int k = b.kst; k < b.ken - 1; k++) {
+//                residual[i][j][k] = delta_phi[i][j][k];
+//            }
+//        }
+//    }
 
 }
 
@@ -398,88 +352,36 @@ void Solver::set_wall_bconds(Block& b) {
         }
     }
 
-            // j=const
-            for (int i = b.ist; i < b.ien - 1; i++) {
-                for (int k = b.kst; k < b.ken - 1; k++) {
-                    if (b.isWall[i][b.jst][k] || b.isWall[i + 1][b.jst][k] ||
-                        b.isWall[i][b.jst][k + 1] || b.isWall[i + 1][b.jst][k + 1]) {
-                        b.c_fluxes["mass"][1][i][b.jst][k] = 0;
-                    }
-
-                    if (b.isWall[i][b.jen - 1][k] || b.isWall[i + 1][b.jen - 1][k] ||
-                        b.isWall[i][b.jen - 1][k + 1] || b.isWall[i + 1][b.jen - 1][k + 1]) {
-                        b.c_fluxes["mass"][1][i][b.jen - 1][k] = 0;
-
-                    }
-                }
+    // j=const
+    for (int i = b.ist; i < b.ien - 1; i++) {
+        for (int k = b.kst; k < b.ken - 1; k++) {
+            if (b.isWall[i][b.jst][k] || b.isWall[i + 1][b.jst][k] ||
+                b.isWall[i][b.jst][k + 1] || b.isWall[i + 1][b.jst][k + 1]) {
+                b.c_fluxes["mass"][1][i][b.jst][k] = 0;
             }
 
-            // k=const
-            for (int i = b.ist; i < b.ien - 1; i++) {
-                for (int j = b.jst; j < b.jen - 1; j++) {
-                    if (b.isWall[i][j][b.kst] || b.isWall[i][j + 1][b.kst] ||
-                        b.isWall[i + 1][j][b.kst] || b.isWall[i + 1][j + 1][b.kst]) {
-                        b.c_fluxes["mass"][2][i][j][b.kst] = 0;
-                    }
+            if (b.isWall[i][b.jen - 1][k] || b.isWall[i + 1][b.jen - 1][k] ||
+                b.isWall[i][b.jen - 1][k + 1] || b.isWall[i + 1][b.jen - 1][k + 1]) {
+                b.c_fluxes["mass"][1][i][b.jen - 1][k] = 0;
 
-                    if (b.isWall[i][j][b.ken - 1] || b.isWall[i][j + 1][b.ken - 1] ||
-                        b.isWall[i + 1][j][b.ken - 1] || b.isWall[i + 1][j + 1][b.ken - 1]) {
-                        b.c_fluxes["mass"][2][i][j][b.ken - 1] = 0;
-                    }
-                }
+            }
+        }
+    }
+
+    // k=const
+    for (int i = b.ist; i < b.ien - 1; i++) {
+        for (int j = b.jst; j < b.jen - 1; j++) {
+            if (b.isWall[i][j][b.kst] || b.isWall[i][j + 1][b.kst] ||
+                b.isWall[i + 1][j][b.kst] || b.isWall[i + 1][j + 1][b.kst]) {
+                b.c_fluxes["mass"][2][i][j][b.kst] = 0;
             }
 
-//    // i=const
-//    for (int j=b.jst; j < b.jen-1; j++) {
-//        for (int k=b.kst; k < b.ken-1; k++) {
-//            if (util::at_least_two(b.isWall[b.ist][j][k], b.isWall[b.ist][j+1][k],
-//                                    b.isWall[b.ist][j][k+1], b.isWall[b.ist][j+1][k+1])) {
-//                for (auto& entry : b.c_fluxes)
-//                    entry.second[0][b.ist][j][k] = 0;
-//            }
-//
-//            if (util::at_least_two(b.isWall[b.ien-1][j][k], b.isWall[b.ien-1][j+1][k],
-//                                   b.isWall[b.ien-1][j][k+1], b.isWall[b.ien-1][j+1][k+1])) {
-//                for (auto& entry : b.c_fluxes)
-//                    entry.second[0][b.ien-1][j][k] = 0;
-//            }
-//        }
-//    }
-//
-//    // j=const
-//    for (int i=b.ist; i < b.ien-1; i++) {
-//        for (int k=b.kst; k < b.ken-1; k++) {
-//            if (util::at_least_two(b.isWall[i][b.jst][k], b.isWall[i+1][b.jst][k],
-//                                   b.isWall[i][b.jst][k+1], b.isWall[i+1][b.jst][k+1])) {
-//                for (auto& entry : b.c_fluxes)
-//                    entry.second[1][i][b.jst][k] = 0;
-//            }
-//
-//            if (util::at_least_two(b.isWall[i][b.jen-1][k], b.isWall[i+1][b.jen-1][k],
-//                                   b.isWall[i][b.jen-1][k+1], b.isWall[i+1][b.jen-1][k+1])) {
-//                for (auto& entry : b.c_fluxes) {
-//                    entry.second[1][i][b.jen - 1][k] = 0;
-//                }
-//            }
-//        }
-//    }
-//
-//    // k=const
-//    for (int i=b.ist; i < b.ien-1; i++) {
-//        for (int j=b.jst; j < b.jen-1; j++) {
-//            if (util::at_least_two(b.isWall[i][j][b.kst], b.isWall[i][j+1][b.kst],
-//                                   b.isWall[i+1][j][b.kst], b.isWall[i+1][j+1][b.kst])) {
-//                for (auto& entry : b.c_fluxes)
-//                    entry.second[2][i][j][b.kst] = 0;
-//            }
-//
-//            if (util::at_least_two(b.isWall[i][j][b.ken-1], b.isWall[i][j+1][b.ken-1],
-//                                   b.isWall[i+1][j][b.ken-1], b.isWall[i+1][j+1][b.ken-1])) {
-//                for (auto& entry : b.c_fluxes)
-//                    entry.second[2][i][j][b.ken-1] = 0;
-//            }
-//        }
-//    }
+            if (b.isWall[i][j][b.ken - 1] || b.isWall[i][j + 1][b.ken - 1] ||
+                b.isWall[i + 1][j][b.ken - 1] || b.isWall[i + 1][j + 1][b.ken - 1]) {
+                b.c_fluxes["mass"][2][i][j][b.ken - 1] = 0;
+            }
+        }
+    }
 }
 
 void Solver::smooth(Block& b, vector3d<double>& phi) {
@@ -561,6 +463,124 @@ void Solver::smooth(Block& b, vector3d<double>& phi) {
                    0.2f*phi[i][jp1][b.ken-1] + 0.2f*phi[i][jm1][b.ken-1] +
                    0.4f*phi[i][j][b.ken-2] - 0.2f*phi[i][j][b.ken-3]);
             store[i][j][b.ken-1] = sfm1*phi[i][j][b.ken-1] + sp.sfin*avg;
+
+        }
+    }
+
+    for (int i = b.ist; i < b.ien; i++) {
+        for (int j = b.jst; j < b.jen; j++) {
+            for (int k = b.kst; k < b.ken; k++) {
+                phi[i][j][k] = store[i][j][k];
+            }
+        }
+    }
+
+}
+
+void Solver::smooth_defcorr(Block& b, vector3d<double>& phi, vector3d<double>& corr_phi) {
+
+    // We make all the chages to variable store, this way we don't smooth with
+    // smoothed values.
+    vector3d<double> store(boost::extents[b.ni+2][b.nj+2][b.nk+2]);
+    double sfm1 = 1-sp.sfin;
+    double corr_new;
+    double cf = 0.99;
+    double cfm1 = 1-cf;
+
+    // Start with internal nodes
+    for (int i = b.ist+1; i < b.ien-1; i++) {
+        for (int j = b.jst+1; j < b.jen-1; j++) {
+            for (int k = b.kst+1; k < b.ken-1; k++) {
+                double avg = 0.1666667f * (phi[i+1][j][k]+phi[i-1][j][k]
+                                           +phi[i][j+1][k]+phi[i][j-1][k]
+                                           +phi[i][j][k+1]+phi[i][j][k-1]);
+
+                corr_new = sp.fcorr * (phi[i][j][k] - avg);
+                corr_phi[i][j][k] = cf*corr_phi[i][j][k] + cfm1*corr_new;
+                store[i][j][k]    = sfm1*phi[i][j][k] + sp.sfin*(avg+corr_phi[i][j][k]);
+            }
+        }
+    }
+
+    // i=const
+    for (int j = b.jst; j < b.jen; j++) {
+        for (int k = b.kst; k < b.ken; k++) {
+            int jp1 = j==b.jen-1 ? j : j+1;
+            int kp1 = k==b.ken-1 ? k : k+1;
+            int jm1 = j==b.jst ? j : j-1;
+            int km1 = k==b.kst ? k : k-1;
+
+            double avg = (0.2f*phi[b.ist][jp1][k] + 0.2f*phi[b.ist][jm1][k] +
+                          0.2f*phi[b.ist][j][kp1] + 0.2f*phi[b.ist][j][km1] +
+                          0.4f*phi[b.ist+1][j][k] - 0.2f*phi[b.ist+2][j][k]);
+
+            corr_new = sp.fcorr * (phi[b.ist][j][k] - avg);
+            corr_phi[b.ist][j][k] = cf * corr_phi[b.ist][j][k] + cfm1 * corr_new;
+
+            store[b.ist][j][k] = sfm1*phi[b.ist][j][k] + sp.sfin*(avg+corr_phi[b.ist][j][k]);
+
+            avg = (0.2f*phi[b.ien-1][jp1][k] + 0.2f*phi[b.ien-1][jm1][k] +
+                   0.2f*phi[b.ien-1][j][kp1] + 0.2f*phi[b.ien-1][j][km1] +
+                   0.4f*phi[b.ien-2][j][k] - 0.2f*phi[b.ien-3][j][k]);
+
+            corr_new = sp.fcorr * (phi[b.ien-1][j][k] - avg);
+            corr_phi[b.ien-1][j][k] = cf * corr_phi[b.ien - 1][j][k] + cfm1 * corr_new;
+            store[b.ien-1][j][k] = sfm1*phi[b.ien-1][j][k] + sp.sfin*(avg+corr_phi[b.ien-1][j][k]);
+
+        }
+    }
+
+    // j=const
+    for (int i = b.ist; i < b.ien; i++) {
+        for (int k = b.kst; k < b.ken; k++) {
+            int ip1 = i==b.ien-1 ? i : i+1;
+            int kp1 = k==b.ken-1 ? k : k+1;
+            int im1 = i==b.ist   ? i : i-1;
+            int km1 = k==b.kst   ? k : k-1;
+
+            double avg = (0.2f*phi[ip1][b.jst][k] + 0.2f*phi[im1][b.jst][k] +
+                          0.2f*phi[i][b.jst][kp1] + 0.2f*phi[i][b.jst][km1] +
+                          0.4f*phi[i][b.jst+1][k] - 0.2f*phi[i][b.jst+2][k]);
+            corr_new = sp.fcorr * (phi[i][b.jst][k] - avg);
+            corr_phi[i][b.jst][k] = cf * corr_phi[i][b.jst][k] + cfm1 * corr_new;
+
+            store[i][b.jst][k] = sfm1*phi[i][b.jst][k] + sp.sfin*(avg+corr_phi[i][b.jst][k]);
+
+            avg = (0.2f*phi[ip1][b.jen-1][k] + 0.2f*phi[im1][b.jen-1][k] +
+                   0.2f*phi[i][b.jen-1][kp1] + 0.2f*phi[i][b.jen-1][km1] +
+                   0.4f*phi[i][b.jen-2][k] - 0.2f*phi[i][b.jen-3][k]);
+
+            corr_new = sp.fcorr * (phi[i][b.jen-1][k] - avg);
+            corr_phi[i][b.jen-1][k] = cf * corr_phi[i][b.jen - 1][k] + cfm1 * corr_new;
+
+            store[i][b.jen-1][k] = sfm1*phi[i][b.jen-1][k] + sp.sfin*(avg+corr_phi[i][b.jen-1][k]);
+
+        }
+    }
+
+    // k=const
+    for (int i = b.ist; i < b.ien; i++) {
+        for (int j = b.jst; j < b.jen; j++) {
+            int ip1 = i==b.ien-1 ? i : i+1;
+            int jp1 = j==b.jen-1 ? j : j+1;
+            int im1 = i==b.ist   ? i : i-1;
+            int jm1 = j==b.jst   ? j : j-1;
+
+            double avg = (0.2f*phi[ip1][j][b.kst] + 0.2f*phi[im1][j][b.kst] +
+                          0.2f*phi[i][jp1][b.kst] + 0.2f*phi[i][jm1][b.kst] +
+                          0.4f*phi[i][j][b.kst+1] - 0.2f*phi[i][j][b.kst+2]);
+
+            corr_new = sp.fcorr * (phi[i][j][b.kst] - avg);
+            corr_phi[i][j][b.kst] = cf * corr_phi[i][j][b.kst] + cfm1 * corr_new;
+            store[i][j][b.kst] = sfm1*phi[i][j][b.kst] + sp.sfin*(avg+corr_phi[i][j][b.kst]);
+
+            avg = (0.2f*phi[ip1][j][b.ken-1] + 0.2f*phi[im1][j][b.ken-1] +
+                   0.2f*phi[i][jp1][b.ken-1] + 0.2f*phi[i][jm1][b.ken-1] +
+                   0.4f*phi[i][j][b.ken-2] - 0.2f*phi[i][j][b.ken-3]);
+
+            corr_new = sp.fcorr * (phi[i][j][b.ken-1] - avg);
+            corr_phi[i][j][b.ken-1] = cf*corr_phi[i][j][b.ken-1] + cfm1*corr_new;
+            store[i][j][b.ken-1] = sfm1*phi[i][j][b.ken-1] + sp.sfin*(avg+corr_phi[i][j][b.ken-1]);
 
         }
     }

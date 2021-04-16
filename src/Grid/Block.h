@@ -57,6 +57,13 @@ public:
                                                            {"rovz", vector3d<double>()},
                                                            {"roe", vector3d<double>()}};
 
+    // Deferred correction variables
+    std::map<std::string, vector3d<double>> corr_primary_vars = {{"ro", vector3d<double>()},
+                                                            {"rovx", vector3d<double>()},
+                                                            {"rovy", vector3d<double>()},
+                                                            {"rovz", vector3d<double>()},
+                                                            {"roe", vector3d<double>()}};
+
     int id;
 
     int ni;

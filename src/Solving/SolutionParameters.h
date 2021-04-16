@@ -9,6 +9,8 @@
 struct SolutionParameters {
     double cfl;
     double sfin;
+    double fcorr;
+    double facsec;
     int nstep;
 };
 

@@ -153,7 +153,9 @@ SolutionParameters setup::read_solution_params(std::string& directory) {
     std::vector<std::string> solnPropStr = util::str_split(buffer.str(), " ");
     SolutionParameters sf {std::stof(solnPropStr[0]),
                            std::stof(solnPropStr[1]),
-                           std::stoi(solnPropStr[2])};
+                           std::stof(solnPropStr[2]),
+                           std::stof(solnPropStr[3]),
+                           std::stoi(solnPropStr[4])};
 
     return sf;
 }

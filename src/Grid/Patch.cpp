@@ -44,41 +44,66 @@ std::string PeriodicPatch::to_string() {
 
 void PeriodicPatch::alter_block_iteration_extent(Grid& g) {
     // This only works for standard periodic patches atm, i.e. nexti=+I, nextj=+J, nextk=+K
-    Block& b1 = g.get_block_by_id(bid);
-    Block& b2 = g.get_block_by_id(nxbid);
-    std::unique_ptr<Patch>& p2 = g.get_patch_by_id(nxpid);
+    Block &b1 = g.get_block_by_id(bid);
+    Block &b2 = g.get_block_by_id(nxbid);
+    std::unique_ptr<Patch> &p2 = g.get_patch_by_id(nxpid);
     switch (face) {
         case 0:
             b1.ist = 0;
+            for (int j = b1.jst; j < b1.jen; j++) {
+                for (int k = b1.kst; k < b1.ken; k++) {
+                    b1.volume[0][j][k] = b2.volume[p2->extent.ist-1][j][k];
+                    b1.geom[0][j][k] = b2.geom[p2->extent.ist-1][j][k];
+                }
+            }
             break;
         case 1:
             b1.jst = 0;
+            for (int i = b1.ist; i < b1.ien; i++) {
+                for (int k = b1.kst; k < b1.ken; k++) {
+                    b1.volume[i][0][k] = b2.volume[i][p2->extent.jst-1][k];
+                    b1.geom[i][0][k] = b2.geom[i][p2->extent.jst-1][k];
+                }
+            }
             break;
         case 2:
             b1.kst = 0;
             for (int i = b1.ist; i < b1.ien; i++) {
                 for (int j = b1.jst; j < b1.jen; j++) {
-                    b1.volume[i][j][0] = b2.volume[i][j][p2->extent.kst-1];
-                    b1.geom[i][j][0] = b2.geom[i][j][p2->extent.kst-1];
+                    b1.volume[i][j][0] = b2.volume[i][j][p2->extent.kst - 1];
+                    b1.geom[i][j][0] = b2.geom[i][j][p2->extent.kst - 1];
                 }
             }
             break;
         case 3:
             b1.ien += 1;
+            for (int j = b1.jst; j < b1.jen; j++) {
+                for (int k = b1.kst; k < b1.ken; k++) {
+                    b1.volume[b1.ien-2][j][k] = b2.volume[p2->extent.ist][j][k];
+                    b1.geom[b1.ien-2][j][k] = b2.geom[p2->extent.ist][j][k];
+                }
+            }
             break;
         case 4:
             b1.jen += 1;
+            for (int i = b1.ist; i < b1.ien; i++) {
+                for (int k = b1.kst; k < b1.ken; k++) {
+                    b1.volume[i][b1.jen-2][k] = b2.volume[i][p2->extent.jst][k];
+                    b1.geom[i][b1.jen-2][k] = b2.geom[i][p2->extent.jst][k];
+                }
+            }
             break;
         case 5:
             b1.ken += 1;
             for (int i = b1.ist; i < b1.ien; i++) {
                 for (int j = b1.jst; j < b1.jen; j++) {
-                    b1.volume[i][j][b1.ken-2] = b2.volume[i][j][p2->extent.kst];
-                    b1.geom[i][j][b1.ken-2]   = b2.geom[i][j][p2->extent.kst];
+                    b1.volume[i][j][b1.ken - 2] = b2.volume[i][j][p2->extent.kst];
+                    b1.geom[i][j][b1.ken - 2] = b2.geom[i][j][p2->extent.kst];
                 }
             }
             break;
     }
+
 }
 
 void ExitPatch::apply(Solver& solver) {

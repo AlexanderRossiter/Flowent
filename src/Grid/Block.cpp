@@ -39,6 +39,10 @@ Block::Block(vector3d<double> x_, vector3d<double> y_,
     for (auto& entry : residuals) {
         entry.second.resize(boost::extents[ni+2][nj+2][nk+2]); // we have flux through each face of cell.
     }
+    // Corr primary vars
+    for (auto& entry : corr_primary_vars) {
+        entry.second.resize(boost::extents[ni+2][nj+2][nk+2]);
+    }
     // Set the array bounds assuming that we have a halo all around.
     ist = 1;
     ien = ni+1;

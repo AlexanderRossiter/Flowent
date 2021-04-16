@@ -9,7 +9,7 @@ int main(int argc, char **argv) {
 
     // Hard coded test cases for testing.
     std::string directory = "../resources/test_cases/";
-    std::string tc = "gaussian_bump";
+    std::string tc = "wedge";
     std::string gasStr = "air";
 
     std::string fullpath = directory + tc;
@@ -45,12 +45,15 @@ int main(int argc, char **argv) {
         std::cout << p->to_string() << std::endl;
     }
 
-    BasicGuess ig(gas, 0.487, 0.9995E5, 300, 0, 0);
+    // Hard coded guess currently.
+    BasicGuess ig(gas, 1.6, 0.9995E5, 300, 0, 0);
     ig.generate_guess(g);
 
+    // Run the program
     Solver solver(g, gas, sp);
     solver.run_nsteps(sp.nstep);
 
+    // Write the solution
     GridWriter gw(solver.g);
     std::string str(directory + "gridout.flwnt");
     gw.write_grid(str);
