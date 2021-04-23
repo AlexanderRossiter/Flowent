@@ -50,12 +50,13 @@ Grid setup::read_grid(std::string& fname) {
             for (int j = 0; j < nj; j++) {
                 for (int k = 0; k < nk; k++) {
                     std::getline(file, str);
-                    if (std::regex_match(str, m, r)) {
-                        x[i][j][k] = std::stof(m[1]);
-                        y[i][j][k] = std::stof(m[3]);
-                        z[i][j][k] = std::stof(m[5]);
-                        //std::cout << x[i][j][k] << ", " << y[i][j][k] << ", " << z[i][j][k] << std::endl;
-                    }
+                    tmp = util::str_split(str, ", ");
+//                    if (std::regex_match(str, m, r)) {
+                        x[i][j][k] = std::stof(tmp[0]);
+                        y[i][j][k] = std::stof(tmp[1]);
+                        z[i][j][k] = std::stof(tmp[2]);
+//                        std::cout << x[i][j][k] << ", " << y[i][j][k] << ", " << z[i][j][k] << std::endl;
+                    //}
                 }
             }
         }

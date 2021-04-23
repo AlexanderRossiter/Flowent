@@ -18,9 +18,9 @@ void PeriodicPatch::apply(Solver& solver) {
                 int pj = j+extent.jst;
                 int pk = k+extent.kst;
 
-                int nxpi;
-                int nxpj;
-                int nxpk;
+                int nxpi = nxp->extent.ist   + i;
+                int nxpj = nxp->extent.jst   + j;
+                int nxpk = nxp->extent.kst   + k;
 
                 if      (nextDir.nexti=="+I") nxpi = nxp->extent.ist   + i;
                 else if (nextDir.nexti=="-I") nxpi = nxp->extent.ien-1 - i;
@@ -45,11 +45,15 @@ void PeriodicPatch::apply(Solver& solver) {
 
                 for (auto& [key, val]: b1.primary_vars) {
                     b1.primary_vars[key][pi][pj][pk] = 0.5*(b1.primary_vars[key][pi][pj][pk]+b2.primary_vars[key][nxpi][nxpj][nxpk]);
+                    b2.primary_vars[key][nxpi][nxpj][nxpk] = b1.primary_vars[key][pi][pj][pk];
                 }
 
                 for (auto& [key, val]: b1.secondary_vars) {
                     b1.secondary_vars[key][pi][pj][pk] = 0.5*(b1.secondary_vars[key][pi][pj][pk]+b2.secondary_vars[key][nxpi][nxpj][nxpk]);
+                    b2.secondary_vars[key][nxpi][nxpj][nxpk] = b1.secondary_vars[key][pi][pj][pk];
+
                 }
+
 // This sets the fluxes to be periodic, I don't think we need it though.
 //                for (auto& [key, val]: b1.c_fluxes) {
 //                    for (int faceId=0; faceId < 3; faceId++){
@@ -68,7 +72,7 @@ void PeriodicPatch::apply(Solver& solver) {
 }
 
 std::string PeriodicPatch::to_string() {
-    std::string str(std::string("Periodic: bid: ") + std::to_string(bid) + std::string(", nxbid: ") + std::to_string(nxbid) + std::string(", ") + extent.to_string() + std::string(", ") + nextDir.to_string());
+    std::string str(std::string("Periodic: bid: ") + std::to_string(bid) + std::string(", pid: ") + std::to_string(pid) + std::string(", nxbid: ") + std::to_string(nxbid)+ std::string(", nxpid: ") + std::to_string(nxpid) + std::string(", ") + extent.to_string() + std::string(", ") + nextDir.to_string());
     return str;
 }
 
@@ -149,7 +153,7 @@ void ExitPatch::apply(Solver& solver) {
 }
 
 std::string ExitPatch::to_string() {
-    std::string str(std::string("Exit: bid: ") + std::to_string(bid) + std::string(" ") + extent.to_string() + std::string(" p_exit: ") + std::to_string(p_exit));
+    std::string str(std::string("Exit: bid: ") + std::to_string(bid) + std::string(", pid: ") + std::to_string(pid) + std::string(" ") + extent.to_string() + std::string(" p_exit: ") + std::to_string(p_exit));
     return str;
 }
 
@@ -197,7 +201,7 @@ void InletPatch::apply(Solver& solver) {
 }
 
 std::string InletPatch::to_string() {
-    std::string str(std::string("Inlet: bid: ") + std::to_string(bid) + std::string(" ") + extent.to_string() + std::string(" ") + conditions.to_string());
+    std::string str(std::string("Inlet: bid: ") + std::to_string(bid) + std::string(", pid: ") + std::to_string(pid) + std::string(" ") + extent.to_string() + std::string(" ") + conditions.to_string());
     return str;
 }
 

@@ -16,16 +16,6 @@ Cell.h
 ../util/typedefinitions.h
 /Users/ADR/CLionProjects/Flowent/src/util/typedefinitions.h
 
-/Users/ADR/CLionProjects/Flowent/src/Grid/Cell.cpp
-Cell.h
-/Users/ADR/CLionProjects/Flowent/src/Grid/Cell.h
-../util/util.h
-/Users/ADR/CLionProjects/Flowent/src/util/util.h
-cmath
--
-utility
--
-
 /Users/ADR/CLionProjects/Flowent/src/Grid/Cell.h
 vector
 -

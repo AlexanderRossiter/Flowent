@@ -9,7 +9,7 @@ int main(int argc, char **argv) {
 
     // Hard coded test cases for testing.
     std::string directory = "../resources/test_cases/";
-    std::string tc = "gaussian_bump";
+    std::string tc = "Nash_Rig";
     std::string gasStr = "air";
 
     std::string fullpath = directory + tc;
@@ -44,10 +44,6 @@ int main(int argc, char **argv) {
     // Print out patch details.
     for (auto& p : g.get_patches()) {
         std::cout << p->to_string() << std::endl;
-    }
-
-    for (auto & b : g.get_blocks()) {
-        std::cout << b.id << " " << b.ni << std::endl;
     }
 
     // Hard coded guess currently.

@@ -12,7 +12,7 @@ void Solver::run_nsteps(int nsteps) {
     while (nstep < nsteps) {
         // Set the secondary variables for the first iteration.
         run_iteration();
-        if (nstep % 50 == 0) {
+        if (nstep % 5 == 0) {
             std::cout << "TIME STEP NUMBER: " << nstep << std::endl;
             for (Block& b : g.get_blocks()) {
                 b.calc_average_residual();
@@ -27,6 +27,7 @@ void Solver::run_nsteps(int nsteps) {
 void Solver::run_iteration() {
     // Set the fluxes through the ijk faces in the domain.
     Extent e{};
+    // Multithread
     for (Block& b : g.get_blocks()) {
         Solver::set_secondary_variables(b);
         Solver::apply_boundary_conditions();
@@ -96,6 +97,7 @@ void Solver::apply_boundary_conditions() {
     //std::cout << "Applying patch boundary conditions.\n";
     //Apply the patch boundary conditions.
     for (auto& p : g.get_patches()) {
+        //std::cout << p->to_string() << std::endl;
         p->apply(*this);
     }
 }
@@ -178,9 +180,9 @@ void Solver::set_mass_fluxes(Block& b, int faceId, Extent& extent) {
 
 void Solver::set_convective_fluxes(Block& b, vectornd<double,4>& flux, std::string varName, int faceId, Extent& extent) {
     // Assign these by reference here so we don't have to do many map lookups.
-    vector3d<double>& vx = b.secondary_vars["vx"];
-    vector3d<double>& vy = b.secondary_vars["vy"];
-    vector3d<double>& vz = b.secondary_vars["vz"];
+//    vector3d<double>& vx = b.secondary_vars["vx"];
+//    vector3d<double>& vy = b.secondary_vars["vy"];
+//    vector3d<double>& vz = b.secondary_vars["vz"];
     vector3d<double>& pstat = b.secondary_vars["pstat"];
     vector3d<double>& s_var = b.secondary_vars[varName];
     vectornd<double, 4>& mdot = b.c_fluxes["mass"];
