@@ -50,21 +50,25 @@ Block.h
 vector
 -
 
-/Users/ADR/CLionProjects/Flowent/src/util/GridWriter.cpp
-GridWriter.h
-/Users/ADR/CLionProjects/Flowent/src/util/GridWriter.h
+/Users/ADR/CLionProjects/Flowent/src/Solving/Gas.h
 
-/Users/ADR/CLionProjects/Flowent/src/util/GridWriter.h
-string
+/Users/ADR/CLionProjects/Flowent/src/Solving/SolutionParameters.h
+
+/Users/ADR/CLionProjects/Flowent/src/Solving/Solver.cpp
+Solver.h
+/Users/ADR/CLionProjects/Flowent/src/Solving/Solver.h
+cmath
 -
-iostream
--
-fstream
--
-../Grid/Grid.h
-/Users/ADR/CLionProjects/Flowent/src/Grid/Grid.h
 iomanip
 -
+
+/Users/ADR/CLionProjects/Flowent/src/Solving/Solver.h
+../Grid/Grid.h
+/Users/ADR/CLionProjects/Flowent/src/Grid/Grid.h
+Gas.h
+/Users/ADR/CLionProjects/Flowent/src/Solving/Gas.h
+SolutionParameters.h
+/Users/ADR/CLionProjects/Flowent/src/Solving/SolutionParameters.h
 
 /Users/ADR/CLionProjects/Flowent/src/util/typedefinitions.h
 boost/multi_array.hpp
