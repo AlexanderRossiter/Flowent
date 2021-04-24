@@ -5,6 +5,7 @@
 #include "Solver.h"
 #include <cmath>
 #include <iomanip>
+#include <thread>
 
 void Solver::run_nsteps(int nsteps) {
     Solver::set_timestep(300);
@@ -26,71 +27,75 @@ void Solver::run_nsteps(int nsteps) {
 
 void Solver::run_iteration() {
     // Set the fluxes through the ijk faces in the domain.
-    Extent e{};
     // Multithread
     for (Block& b : g.get_blocks()) {
         Solver::set_secondary_variables(b);
-        Solver::apply_boundary_conditions();
-
-
-        e = {b.ist, b.ien, b.jst, b.jen-1, b.kst, b.ken-1};
-        Solver::set_mass_fluxes(b, 0, e);
-
-        e = {b.ist, b.ien-1, b.jst, b.jen, b.kst, b.ken-1};
-        Solver::set_mass_fluxes(b, 1, e);
-
-        e = {b.ist, b.ien-1, b.jst, b.jen-1, b.kst, b.ken};
-        Solver::set_mass_fluxes(b, 2, e);
-        Solver::set_wall_bconds(b);
-
-
-        // I-faces
-        //std::cout << "I-faces" << std::endl;
-        e = {b.ist, b.ien, b.jst, b.jen-1, b.kst, b.ken-1};
-        Solver::set_convective_fluxes(b, b.c_fluxes["hstag"], "hstag", 0, e);
-        Solver::set_convective_fluxes(b, b.c_fluxes["vx"], "vx", 0, e);
-        Solver::set_convective_fluxes(b, b.c_fluxes["vy"], "vy", 0, e);
-        Solver::set_convective_fluxes(b, b.c_fluxes["vz"], "vz", 0, e);
-
-        // J-faces
-        //std::cout << "J-faces" << std::endl;
-        e = {b.ist, b.ien-1, b.jst, b.jen, b.kst, b.ken-1};
-        Solver::set_convective_fluxes(b, b.c_fluxes["hstag"], "hstag", 1, e);
-        Solver::set_convective_fluxes(b, b.c_fluxes["vx"], "vx", 1, e);
-        Solver::set_convective_fluxes(b, b.c_fluxes["vy"], "vy", 1, e);
-        Solver::set_convective_fluxes(b, b.c_fluxes["vz"], "vz", 1, e);
-        // K-faces
-        //std::cout << "K-faces" << std::endl;
-        e = {b.ist, b.ien-1, b.jst, b.jen-1, b.kst, b.ken};
-        Solver::set_convective_fluxes(b, b.c_fluxes["hstag"], "hstag", 2, e);
-        Solver::set_convective_fluxes(b, b.c_fluxes["vx"], "vx", 2, e);
-        Solver::set_convective_fluxes(b, b.c_fluxes["vy"], "vy", 2, e);
-        Solver::set_convective_fluxes(b, b.c_fluxes["vz"], "vz", 2, e);
-
-        //Solver::apply_boundary_conditions();
-
-
-//        Solver::print_flux(b.c_fluxes["vy"], 1, 4);
-//        Solver::print_flux(b.c_fluxes["mass"], 0, 3);
-//        Solver::print_flux(b.c_fluxes["mass"], 2, 0);
-
-
-        Solver::sum_convective_fluxes(b, b.primary_vars["ro"],   b.c_fluxes["mass"],  b.residuals["ro"]);
-        Solver::sum_convective_fluxes(b, b.primary_vars["rovx"], b.c_fluxes["vx"],    b.residuals["rovx"]);
-        Solver::sum_convective_fluxes(b, b.primary_vars["rovy"], b.c_fluxes["vy"],    b.residuals["rovy"]);
-        Solver::sum_convective_fluxes(b, b.primary_vars["rovz"], b.c_fluxes["vz"],    b.residuals["rovz"]);
-        Solver::sum_convective_fluxes(b, b.primary_vars["roe"],  b.c_fluxes["hstag"], b.residuals["roe"]);
-
-
-        smooth_defcorr(b, b.primary_vars["ro"], b.corr_primary_vars["ro"]);
-        smooth_defcorr(b, b.primary_vars["rovx"], b.corr_primary_vars["rovx"]);
-        smooth_defcorr(b, b.primary_vars["rovy"], b.corr_primary_vars["rovy"]);
-        smooth_defcorr(b, b.primary_vars["rovz"], b.corr_primary_vars["rovz"]);
-        smooth_defcorr(b, b.primary_vars["roe"], b.corr_primary_vars["roe"]);
-
-
-
     }
+    Solver::apply_boundary_conditions();
+
+    std::vector<std::thread> threads;
+    for (Block& b : g.get_blocks()) {
+        std::thread t(calculate_block, std::ref(b), std::ref(sp), delta_t);
+        threads.push_back(std::move(t));
+    }
+
+    for (std::thread &thr : threads) {
+        if (thr.joinable()) {
+            thr.join();
+        }
+    }
+}
+
+void Solver::calculate_block(Block& b, SolutionParameters& sp, double delta_t) {
+    Extent e{};
+
+    e = {b.ist, b.ien, b.jst, b.jen-1, b.kst, b.ken-1};
+    Solver::set_mass_fluxes(b, 0, e);
+
+    e = {b.ist, b.ien-1, b.jst, b.jen, b.kst, b.ken-1};
+    Solver::set_mass_fluxes(b, 1, e);
+
+    e = {b.ist, b.ien-1, b.jst, b.jen-1, b.kst, b.ken};
+    Solver::set_mass_fluxes(b, 2, e);
+    Solver::set_wall_bconds(b);
+
+
+    // I-faces
+    //std::cout << "I-faces" << std::endl;
+    e = {b.ist, b.ien, b.jst, b.jen-1, b.kst, b.ken-1};
+    Solver::set_convective_fluxes(b, b.c_fluxes["hstag"], "hstag", 0, e);
+    Solver::set_convective_fluxes(b, b.c_fluxes["vx"], "vx", 0, e);
+    Solver::set_convective_fluxes(b, b.c_fluxes["vy"], "vy", 0, e);
+    Solver::set_convective_fluxes(b, b.c_fluxes["vz"], "vz", 0, e);
+
+    // J-faces
+    //std::cout << "J-faces" << std::endl;
+    e = {b.ist, b.ien-1, b.jst, b.jen, b.kst, b.ken-1};
+    Solver::set_convective_fluxes(b, b.c_fluxes["hstag"], "hstag", 1, e);
+    Solver::set_convective_fluxes(b, b.c_fluxes["vx"], "vx", 1, e);
+    Solver::set_convective_fluxes(b, b.c_fluxes["vy"], "vy", 1, e);
+    Solver::set_convective_fluxes(b, b.c_fluxes["vz"], "vz", 1, e);
+    // K-faces
+    //std::cout << "K-faces" << std::endl;
+    e = {b.ist, b.ien-1, b.jst, b.jen-1, b.kst, b.ken};
+    Solver::set_convective_fluxes(b, b.c_fluxes["hstag"], "hstag", 2, e);
+    Solver::set_convective_fluxes(b, b.c_fluxes["vx"], "vx", 2, e);
+    Solver::set_convective_fluxes(b, b.c_fluxes["vy"], "vy", 2, e);
+    Solver::set_convective_fluxes(b, b.c_fluxes["vz"], "vz", 2, e);
+
+
+    Solver::sum_convective_fluxes(b, b.primary_vars["ro"],   b.c_fluxes["mass"],  b.residuals["ro"], sp, delta_t);
+    Solver::sum_convective_fluxes(b, b.primary_vars["rovx"], b.c_fluxes["vx"],    b.residuals["rovx"], sp, delta_t);
+    Solver::sum_convective_fluxes(b, b.primary_vars["rovy"], b.c_fluxes["vy"],    b.residuals["rovy"], sp, delta_t);
+    Solver::sum_convective_fluxes(b, b.primary_vars["rovz"], b.c_fluxes["vz"],    b.residuals["rovz"], sp, delta_t);
+    Solver::sum_convective_fluxes(b, b.primary_vars["roe"],  b.c_fluxes["hstag"], b.residuals["roe"], sp, delta_t);
+
+
+    smooth_defcorr(b, b.primary_vars["ro"], b.corr_primary_vars["ro"], sp);
+    smooth_defcorr(b, b.primary_vars["rovx"], b.corr_primary_vars["rovx"], sp);
+    smooth_defcorr(b, b.primary_vars["rovy"], b.corr_primary_vars["rovy"], sp);
+    smooth_defcorr(b, b.primary_vars["rovz"], b.corr_primary_vars["rovz"], sp);
+    smooth_defcorr(b, b.primary_vars["roe"], b.corr_primary_vars["roe"], sp);
 }
 
 void Solver::apply_boundary_conditions() {
@@ -221,7 +226,7 @@ void Solver::set_timestep(double tstag) {
 }
 
 
-void Solver::sum_convective_fluxes(Block &b, vector3d<double>& phi, vectornd<double, 4>& flux, vector3d<double>& residual) const {
+void Solver::sum_convective_fluxes(Block &b, vector3d<double>& phi, vectornd<double, 4>& flux, vector3d<double>& residual, SolutionParameters& sp, double delta_t) {
     //std::cout << "Summing fluxes\n";
 
     // First, calculate the change in the variable over the timestep dt.
@@ -474,7 +479,7 @@ void Solver::smooth(Block& b, vector3d<double>& phi) {
 
 }
 
-void Solver::smooth_defcorr(Block& b, vector3d<double>& phi, vector3d<double>& corr_phi) {
+void Solver::smooth_defcorr(Block& b, vector3d<double>& phi, vector3d<double>& corr_phi, SolutionParameters& sp) {
 
     // We make all the chages to variable store, this way we don't smooth with
     // smoothed values.

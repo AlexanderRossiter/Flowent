@@ -25,13 +25,14 @@ public:
     void set_secondary_variables(Block& b) const;
     static void set_convective_fluxes(Block& b, vectornd<double,4>& flux, std::string varName, int faceId, Extent& extent);
     static void set_mass_fluxes(Block& b, int faceId, Extent& extent);
-    void sum_convective_fluxes(Block &b, vector3d<double>& phi, vectornd<double, 4>& flux, vector3d<double>& residual) const;
+    static void sum_convective_fluxes(Block &b, vector3d<double>& phi, vectornd<double, 4>& flux, vector3d<double>& residual, SolutionParameters& sp, double delta_t);
     void run_iteration();
+    static void calculate_block(Block& b, SolutionParameters& sp, double delta_t);
     void set_timestep(double tstag);
     static void set_wall_bconds(Block& b);
     void run_nsteps(int nsteps);
     void smooth(Block& b, vector3d<double>& phi);
-    void smooth_defcorr(Block& b, vector3d<double>& phi, vector3d<double>& corr_phi);
+    static void smooth_defcorr(Block& b, vector3d<double>& phi, vector3d<double>& corr_phi, SolutionParameters& sp);
     void test_for_nans(Block& b);
     void print_flux(vectornd<double, 4> var, int faceId, int k=1);
     void print_var(vector3d<double> var, int k=1);

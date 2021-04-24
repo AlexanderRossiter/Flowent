@@ -36,6 +36,14 @@ cell_face_relation.h
 Patch.h
 /Users/ADR/CLionProjects/Flowent/src/Grid/Patch.h
 
+/Users/ADR/CLionProjects/Flowent/src/Grid/Patch.cpp
+stdexcept
+-
+Patch.h
+/Users/ADR/CLionProjects/Flowent/src/Grid/Patch.h
+../Solving/Solver.h
+/Users/ADR/CLionProjects/Flowent/src/Solving/Solver.h
+
 /Users/ADR/CLionProjects/Flowent/src/Grid/Patch.h
 utility
 -
@@ -60,6 +68,8 @@ Solver.h
 cmath
 -
 iomanip
+-
+thread
 -
 
 /Users/ADR/CLionProjects/Flowent/src/Solving/Solver.h
