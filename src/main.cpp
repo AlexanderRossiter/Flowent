@@ -47,7 +47,7 @@ int main(int argc, char **argv) {
     }
 
     // Hard coded guess currently.
-    BasicGuess ig(gas, 0.6, 0.9995E5, 300, 0, 0);
+    BasicGuess ig(gas, 0.6, 48289, 300, 0, 0);
     ig.generate_guess(g);
 
     // Run the program

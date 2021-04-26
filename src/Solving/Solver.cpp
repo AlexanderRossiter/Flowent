@@ -44,6 +44,8 @@ void Solver::run_iteration() {
             thr.join();
         }
     }
+
+
 }
 
 void Solver::calculate_block(Block& b, SolutionParameters& sp, double delta_t) {
@@ -61,7 +63,6 @@ void Solver::calculate_block(Block& b, SolutionParameters& sp, double delta_t) {
 
 
     // I-faces
-    //std::cout << "I-faces" << std::endl;
     e = {b.ist, b.ien, b.jst, b.jen-1, b.kst, b.ken-1};
     Solver::set_convective_fluxes(b, b.c_fluxes["hstag"], "hstag", 0, e);
     Solver::set_convective_fluxes(b, b.c_fluxes["vx"], "vx", 0, e);
@@ -69,14 +70,13 @@ void Solver::calculate_block(Block& b, SolutionParameters& sp, double delta_t) {
     Solver::set_convective_fluxes(b, b.c_fluxes["vz"], "vz", 0, e);
 
     // J-faces
-    //std::cout << "J-faces" << std::endl;
     e = {b.ist, b.ien-1, b.jst, b.jen, b.kst, b.ken-1};
     Solver::set_convective_fluxes(b, b.c_fluxes["hstag"], "hstag", 1, e);
     Solver::set_convective_fluxes(b, b.c_fluxes["vx"], "vx", 1, e);
     Solver::set_convective_fluxes(b, b.c_fluxes["vy"], "vy", 1, e);
     Solver::set_convective_fluxes(b, b.c_fluxes["vz"], "vz", 1, e);
+
     // K-faces
-    //std::cout << "K-faces" << std::endl;
     e = {b.ist, b.ien-1, b.jst, b.jen-1, b.kst, b.ken};
     Solver::set_convective_fluxes(b, b.c_fluxes["hstag"], "hstag", 2, e);
     Solver::set_convective_fluxes(b, b.c_fluxes["vx"], "vx", 2, e);
@@ -91,11 +91,11 @@ void Solver::calculate_block(Block& b, SolutionParameters& sp, double delta_t) {
     Solver::sum_convective_fluxes(b, b.primary_vars["roe"],  b.c_fluxes["hstag"], b.residuals["roe"], sp, delta_t);
 
 
-    smooth_defcorr(b, b.primary_vars["ro"], b.corr_primary_vars["ro"], sp);
-    smooth_defcorr(b, b.primary_vars["rovx"], b.corr_primary_vars["rovx"], sp);
-    smooth_defcorr(b, b.primary_vars["rovy"], b.corr_primary_vars["rovy"], sp);
-    smooth_defcorr(b, b.primary_vars["rovz"], b.corr_primary_vars["rovz"], sp);
-    smooth_defcorr(b, b.primary_vars["roe"], b.corr_primary_vars["roe"], sp);
+    Solver::smooth_defcorr(b, b.primary_vars["ro"], b.corr_primary_vars["ro"], sp);
+    Solver::smooth_defcorr(b, b.primary_vars["rovx"], b.corr_primary_vars["rovx"], sp);
+    Solver::smooth_defcorr(b, b.primary_vars["rovy"], b.corr_primary_vars["rovy"], sp);
+    Solver::smooth_defcorr(b, b.primary_vars["rovz"], b.corr_primary_vars["rovz"], sp);
+    Solver::smooth_defcorr(b, b.primary_vars["roe"], b.corr_primary_vars["roe"], sp);
 }
 
 void Solver::apply_boundary_conditions() {
