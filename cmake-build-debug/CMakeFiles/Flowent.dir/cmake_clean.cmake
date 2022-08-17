@@ -5,6 +5,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/Flowent.dir/src/Grid/Grid_setup.cpp.o"
   "CMakeFiles/Flowent.dir/src/Grid/Patch.cpp.o"
   "CMakeFiles/Flowent.dir/src/Grid/cell_face_relation.cpp.o"
+  "CMakeFiles/Flowent.dir/src/Menu.cpp.o"
   "CMakeFiles/Flowent.dir/src/Solving/Gas.cpp.o"
   "CMakeFiles/Flowent.dir/src/Solving/InitialGuess.cpp.o"
   "CMakeFiles/Flowent.dir/src/Solving/Solver.cpp.o"

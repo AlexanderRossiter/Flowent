@@ -305,6 +305,33 @@ src/Grid/cell_face_relation.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/src/Grid/cell_face_relation.cpp.s
 .PHONY : src/Grid/cell_face_relation.cpp.s
 
+src/Menu.o: src/Menu.cpp.o
+
+.PHONY : src/Menu.o
+
+# target to build an object file
+src/Menu.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/src/Menu.cpp.o
+.PHONY : src/Menu.cpp.o
+
+src/Menu.i: src/Menu.cpp.i
+
+.PHONY : src/Menu.i
+
+# target to preprocess a source file
+src/Menu.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/src/Menu.cpp.i
+.PHONY : src/Menu.cpp.i
+
+src/Menu.s: src/Menu.cpp.s
+
+.PHONY : src/Menu.s
+
+# target to generate assembly for a file
+src/Menu.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Flowent.dir/build.make CMakeFiles/Flowent.dir/src/Menu.cpp.s
+.PHONY : src/Menu.cpp.s
+
 src/Solving/Gas.o: src/Solving/Gas.cpp.o
 
 .PHONY : src/Solving/Gas.o
@@ -548,6 +575,9 @@ help:
 	@echo "... src/Grid/cell_face_relation.o"
 	@echo "... src/Grid/cell_face_relation.i"
 	@echo "... src/Grid/cell_face_relation.s"
+	@echo "... src/Menu.o"
+	@echo "... src/Menu.i"
+	@echo "... src/Menu.s"
 	@echo "... src/Solving/Gas.o"
 	@echo "... src/Solving/Gas.i"
 	@echo "... src/Solving/Gas.s"

@@ -115,6 +115,12 @@
 		<Unit filename="/Users/ADR/CLionProjects/Flowent/src/Grid/cell_face_relation.h">
 			<Option target="Flowent"/>
 		</Unit>
+		<Unit filename="/Users/ADR/CLionProjects/Flowent/src/Menu.cpp">
+			<Option target="Flowent"/>
+		</Unit>
+		<Unit filename="/Users/ADR/CLionProjects/Flowent/src/Menu.h">
+			<Option target="Flowent"/>
+		</Unit>
 		<Unit filename="/Users/ADR/CLionProjects/Flowent/src/Solving/Gas.cpp">
 			<Option target="Flowent"/>
 		</Unit>

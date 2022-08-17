@@ -388,7 +388,7 @@ void Solver::set_wall_bconds(Block& b) {
 
 void Solver::smooth(Block& b, vector3d<double>& phi) {
 
-    // We make all the chages to variable store, this way we don't smooth with
+    // We make all the changes to variable store, this way we don't smooth with
     // smoothed values.
     vector3d<double> store(boost::extents[b.ni+2][b.nj+2][b.nk+2]);
     double sfm1 = 1-sp.sfin;
