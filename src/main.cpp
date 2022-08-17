@@ -9,7 +9,7 @@ int main(int argc, char **argv) {
 
     // Hard coded test cases for testing.
     std::string directory = "../resources/test_cases/";
-    std::string tc = "Nash_Rig";
+    std::string tc = "gaussian_bump";
     std::string gasStr = "air";
 
     std::string fullpath = directory + tc;

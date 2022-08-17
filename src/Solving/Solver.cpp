@@ -17,7 +17,7 @@ void Solver::run_nsteps(int nsteps) {
             std::cout << "TIME STEP NUMBER: " << nstep << std::endl;
             for (Block& b : g.get_blocks()) {
                 b.calc_average_residual();
-                std::cout << "Block " << b.id << " - DelRoAvg: " << b.del_ro_avg << std::endl;
+                std::cout << "Block" << std::setw(5) << b.id << " - DelRoAvg: " << b.del_ro_avg << std::endl;
             }
             std::cout << "\n";
         }

@@ -60,16 +60,6 @@ Gas.h
 
 /Users/ADR/CLionProjects/Flowent/src/Solving/SolutionParameters.h
 
-/Users/ADR/CLionProjects/Flowent/src/Solving/Solver.cpp
-Solver.h
-/Users/ADR/CLionProjects/Flowent/src/Solving/Solver.h
-cmath
--
-iomanip
--
-thread
--
-
 /Users/ADR/CLionProjects/Flowent/src/Solving/Solver.h
 ../Grid/Grid.h
 /Users/ADR/CLionProjects/Flowent/src/Grid/Grid.h
