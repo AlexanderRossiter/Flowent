@@ -2925,6 +2925,9 @@ CMakeFiles/Flowent.dir/src/Grid/Patch.cpp.o
 CMakeFiles/Flowent.dir/src/Grid/cell_face_relation.cpp.o
  /Users/ADR/CLionProjects/Flowent/src/Grid/cell_face_relation.cpp
  /Users/ADR/CLionProjects/Flowent/src/Grid/cell_face_relation.h
+CMakeFiles/Flowent.dir/src/Menu.cpp.o
+ /Users/ADR/CLionProjects/Flowent/src/Menu.cpp
+ /Users/ADR/CLionProjects/Flowent/src/Menu.h
 CMakeFiles/Flowent.dir/src/Solving/Gas.cpp.o
  /Users/ADR/CLionProjects/Flowent/src/Solving/Gas.cpp
  /Users/ADR/CLionProjects/Flowent/src/Solving/Gas.h
@@ -4110,6 +4113,7 @@ CMakeFiles/Flowent.dir/src/main.cpp.o
  /Users/ADR/CLionProjects/Flowent/src/Grid/Grid.h
  /Users/ADR/CLionProjects/Flowent/src/Grid/Patch.h
  /Users/ADR/CLionProjects/Flowent/src/Grid/cell_face_relation.h
+ /Users/ADR/CLionProjects/Flowent/src/Menu.h
  /Users/ADR/CLionProjects/Flowent/src/Solving/Gas.h
  /Users/ADR/CLionProjects/Flowent/src/Solving/InitialGuess.h
  /Users/ADR/CLionProjects/Flowent/src/Solving/SolutionParameters.h

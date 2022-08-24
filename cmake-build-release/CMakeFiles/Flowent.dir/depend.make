@@ -2925,6 +2925,9 @@ CMakeFiles/Flowent.dir/src/Grid/Patch.cpp.o: /usr/local/boost_1_75_0/boost/versi
 CMakeFiles/Flowent.dir/src/Grid/cell_face_relation.cpp.o: ../src/Grid/cell_face_relation.cpp
 CMakeFiles/Flowent.dir/src/Grid/cell_face_relation.cpp.o: ../src/Grid/cell_face_relation.h
 
+CMakeFiles/Flowent.dir/src/Menu.cpp.o: ../src/Menu.cpp
+CMakeFiles/Flowent.dir/src/Menu.cpp.o: ../src/Menu.h
+
 CMakeFiles/Flowent.dir/src/Solving/Gas.cpp.o: ../src/Solving/Gas.cpp
 CMakeFiles/Flowent.dir/src/Solving/Gas.cpp.o: ../src/Solving/Gas.h
 
@@ -4109,6 +4112,7 @@ CMakeFiles/Flowent.dir/src/main.cpp.o: ../src/Grid/Cell.h
 CMakeFiles/Flowent.dir/src/main.cpp.o: ../src/Grid/Grid.h
 CMakeFiles/Flowent.dir/src/main.cpp.o: ../src/Grid/Patch.h
 CMakeFiles/Flowent.dir/src/main.cpp.o: ../src/Grid/cell_face_relation.h
+CMakeFiles/Flowent.dir/src/main.cpp.o: ../src/Menu.h
 CMakeFiles/Flowent.dir/src/main.cpp.o: ../src/Solving/Gas.h
 CMakeFiles/Flowent.dir/src/main.cpp.o: ../src/Solving/InitialGuess.h
 CMakeFiles/Flowent.dir/src/main.cpp.o: ../src/Solving/SolutionParameters.h

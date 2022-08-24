@@ -12,13 +12,6 @@ int main(int argc, char **argv) {
     menu.starting_menu();
     std::string fullpath = menu.directory + menu.case_name;
 
-//    // Hard coded test cases for testing.
-//    std::string directory = "../resources/test_cases/";
-//    std::string tc = "gaussian_bump";
-//    std::string gasStr = "air";
-//
-//    std::string fullpath = directory + tc;
-
     // Read in gas properties.
     std::cout << "Reading gas properties...";
     Gas gas = setup::read_gas(menu.gas_string);
