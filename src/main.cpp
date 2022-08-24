@@ -36,7 +36,7 @@ int main(int argc, char **argv) {
     // with periodic patches appropriately.
     std::cout << "Initialising walls...";
     g.initialise_walls();
-    //g.move_block_iteration_extent_for_periodic_patches();
+    // g.move_block_iteration_extent_for_periodic_patches();
     std::cout << " Done." << std::endl;
 
     // Print out patch details.

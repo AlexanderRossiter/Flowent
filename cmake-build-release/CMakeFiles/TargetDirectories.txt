@@ -1,3 +1,0 @@
-/Users/ADR/CLionProjects/Flowent/cmake-build-release/CMakeFiles/rebuild_cache.dir
-/Users/ADR/CLionProjects/Flowent/cmake-build-release/CMakeFiles/edit_cache.dir
-/Users/ADR/CLionProjects/Flowent/cmake-build-release/CMakeFiles/Flowent.dir

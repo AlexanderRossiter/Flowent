@@ -1,4 +1,0 @@
-/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS=-O3 -G "CodeBlocks - Unix Makefiles" /Users/ADR/CLionProjects/Flowent
--- Configuring done
--- Generating done
--- Build files have been written to: /Users/ADR/CLionProjects/Flowent/cmake-build-release
