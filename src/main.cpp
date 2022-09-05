@@ -4,7 +4,7 @@
 #include "util/GridWriter.h"
 #include "Solving/Solver.h"
 #include "Solving/InitialGuess.h"
-#include "Menu.h"
+#include "util/Menu.h"
 
 int main(int argc, char **argv) {
 

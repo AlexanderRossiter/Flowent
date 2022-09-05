@@ -76,7 +76,7 @@ void Menu::own_case_menu() {
 
 void Menu::initial_guess_menu() {
     std::string usr_in;
-    std::cout << "Use own yes? y/n" << std::endl;
+    std::cout << "Use own guess? y/n" << std::endl;
     std::cin >> usr_in;
 
     if (usr_in == "y") {
