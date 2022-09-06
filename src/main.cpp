@@ -44,7 +44,7 @@ int main(int argc, char **argv) {
         std::cout << p->to_string() << std::endl;
     }
 
-    // Hard coded guess currently.
+    // Initial guess.
     BasicGuess ig(gas, menu.ig_M, menu.ig_Po, menu.ig_To, menu.ig_yaw, menu.ig_pitch);
     ig.generate_guess(g);
 
