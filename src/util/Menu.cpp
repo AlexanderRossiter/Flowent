@@ -40,7 +40,7 @@ void Menu::starting_menu() {
 }
 
 void Menu::test_case_menu() {
-    std::cout << "Test cases: \n(1) Gaussian bump.\n(2) naca-2412.\n(3) Nozzle\n(4) Wedge\n(5) Nash" << std::endl;
+    std::cout << "Test cases: \n(1) Gaussian bump.\n(2) naca-2412.\n(3) Wedge\n(4) Nash" << std::endl;
 
     int usr_in;
     std::cin >> usr_in;
@@ -54,12 +54,9 @@ void Menu::test_case_menu() {
             case_name = "naca-2412";
             break;
         case (3):
-            case_name = "nozzle";
-            break;
-        case (4):
             case_name = "wedge";
             break;
-        case (5):
+        case (4):
             case_name = "Nash_Rig";
             break;
         default:
