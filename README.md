@@ -4,6 +4,8 @@ Flowent is a program that solves the [Euler equations](https://en.wikipedia.org/
 
 The [finite volume method](https://en.wikipedia.org/wiki/Finite_volume_method) is used for spatial accuracy and the [Adams-Bashforth](https://en.wikipedia.org/wiki/Linear_multistep_method#Two-step_Adams%E2%80%93Bashforth) method is used for time-stepping. 
 
+Uses the Boost library for arrays.
+
 ## Input
 Input is supplied via three files: xxx.grid, xxx.patch and solnparams.flwntparam. These files specify the grid, grid patching (connectivity, inlet and outlet planes) and solution calculation parameters respectively. 
 
