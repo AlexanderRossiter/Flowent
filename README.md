@@ -18,4 +18,5 @@ Four test cases are supplied, these take the form of:
 
 ## Output
 The data is output into a text file. The primary flow variables can be used to analyse the converged flow solution. An example of the output from a run of test case 4 is shown below.
+
 <img src="resources/images/nash.png" width="600">
