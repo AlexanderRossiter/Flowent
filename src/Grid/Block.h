@@ -26,6 +26,9 @@ public:
     vector3d<double> volume;
     vector3d<Cell>  geom;
     vector3d<double>  isWall;
+    // Temp vars for summing the fluxes.
+    vector3d<double> delta_phi;
+    vector3d<double> store;
 
     double minV;
 

@@ -23,6 +23,8 @@ Block::Block(vector3d<double> x_, vector3d<double> y_,
     isWall.resize(boost::extents[ni + 2][nj + 2][nk + 2]);
     geom.resize(boost::extents[ni+2][nj+2][nk+2]);
     volume.resize(boost::extents[ni+2][nj+2][nk+2]);
+    delta_phi.resize(boost::extents[ni+2][nj+2][nk+2]);
+    store.resize(boost::extents[ni+2][nj+2][nk+2]);
     // Primary flow variables
     for (auto& entry : primary_vars) {
         entry.second.resize(boost::extents[ni+2][nj+2][nk+2]);

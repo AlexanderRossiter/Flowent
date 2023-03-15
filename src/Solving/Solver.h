@@ -16,13 +16,13 @@ private:
 
     double delta_t;
 
+    void run_iteration();
+
     void apply_boundary_conditions();
     void set_secondary_variables(Block& b) const;
     static void set_convective_fluxes(Block& b, vectornd<double,4>& flux, std::string varName, int faceId, Extent& extent);
     static void set_mass_fluxes(Block& b, int faceId, Extent& extent);
     static void sum_convective_fluxes(Block &b, vector3d<double>& phi, vectornd<double, 4>& flux, vector3d<double>& residual, SolutionParameters& sp, double delta_t);
-
-    void run_iteration();
 
     static void calculate_block(Block& b, SolutionParameters& sp, double delta_t);
 
@@ -42,6 +42,7 @@ public:
 
     void run_nsteps(int nsteps);
 
+    // Debugging functions
     void test_for_nans(Block& b);
     void print_flux(vectornd<double, 4> var, int faceId, int k=1);
     void print_var(vector3d<double> var, int k=1);

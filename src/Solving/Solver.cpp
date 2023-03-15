@@ -123,15 +123,15 @@ void Solver::test_for_nans(Block& b) {
 
 void Solver::set_secondary_variables(Block& b) const {
     //std::cout << "Setting secondary variables\n";
-    vector3d<double>& ro = b.primary_vars["ro"];
-    vector3d<double>& rovx = b.primary_vars["rovx"];
-    vector3d<double>& rovy = b.primary_vars["rovy"];
-    vector3d<double>& rovz = b.primary_vars["rovz"];
-    vector3d<double>& roe = b.primary_vars["roe"];
+    vector3d<double>& ro    = b.primary_vars["ro"];
+    vector3d<double>& rovx  = b.primary_vars["rovx"];
+    vector3d<double>& rovy  = b.primary_vars["rovy"];
+    vector3d<double>& rovz  = b.primary_vars["rovz"];
+    vector3d<double>& roe   = b.primary_vars["roe"];
     vector3d<double>& pstat = b.secondary_vars["pstat"];
-    vector3d<double>& vx = b.secondary_vars["vx"];
-    vector3d<double>& vy = b.secondary_vars["vy"];
-    vector3d<double>& vz = b.secondary_vars["vz"];
+    vector3d<double>& vx    = b.secondary_vars["vx"];
+    vector3d<double>& vy    = b.secondary_vars["vy"];
+    vector3d<double>& vz    = b.secondary_vars["vz"];
     vector3d<double>& hstag = b.secondary_vars["hstag"];
 
         for (int i = b.ist; i < b.ien; i++) {
@@ -155,10 +155,9 @@ void Solver::set_secondary_variables(Block& b) const {
 }
 
 void Solver::set_mass_fluxes(Block& b, int faceId, Extent& extent) {
-    // Assign these by reference here so we don't have to do many map lookups.
-    vector3d<double>& rovx = b.primary_vars["rovx"];
-    vector3d<double>& rovy = b.primary_vars["rovy"];
-    vector3d<double>& rovz = b.primary_vars["rovz"];
+    vector3d<double>& rovx   = b.primary_vars["rovx"];
+    vector3d<double>& rovy   = b.primary_vars["rovy"];
+    vector3d<double>& rovz   = b.primary_vars["rovz"];
     vectornd<double,4>& flux = b.c_fluxes["mass"];
 
     for (int i = extent.ist; i < extent.ien; i++) {
@@ -188,8 +187,8 @@ void Solver::set_convective_fluxes(Block& b, vectornd<double,4>& flux, std::stri
 //    vector3d<double>& vx = b.secondary_vars["vx"];
 //    vector3d<double>& vy = b.secondary_vars["vy"];
 //    vector3d<double>& vz = b.secondary_vars["vz"];
-    vector3d<double>& pstat = b.secondary_vars["pstat"];
-    vector3d<double>& s_var = b.secondary_vars[varName];
+    vector3d<double>& pstat   = b.secondary_vars["pstat"];
+    vector3d<double>& s_var   = b.secondary_vars[varName];
     vectornd<double, 4>& mdot = b.c_fluxes["mass"];
 
     for (int i = extent.ist; i < extent.ien; i++) {
@@ -231,17 +230,17 @@ void Solver::sum_convective_fluxes(Block &b, vector3d<double>& phi, vectornd<dou
 
     // First, calculate the change in the variable over the timestep dt.
     // Loop over the cells
-    vector3d<double> delta_phi(boost::extents[b.ni+2][b.nj+2][b.nk+2]);
-    vector3d<double> store(boost::extents[b.ni+2][b.nj+2][b.nk+2]);
+    // vector3d<double> delta_phi(boost::extents[b.ni+2][b.nj+2][b.nk+2]);
+    // vector3d<double> store(boost::extents[b.ni+2][b.nj+2][b.nk+2]);
     for (int i = b.ist; i < b.ien-1; i++) {
         for (int j = b.jst; j < b.jen-1; j++) {
             for (int k = b.kst; k < b.ken-1; k++) {
-                store[i][j][k] = -delta_t / b.volume[i][j][k] * (flux[0][i][j][k]-flux[0][i+1][j][k] +
+                b.store[i][j][k] = -delta_t / b.volume[i][j][k] * (flux[0][i][j][k]-flux[0][i+1][j][k] +
                         flux[1][i][j][k]-flux[1][i][j+1][k] + flux[2][i][j][k]-flux[2][i][j][k+1]);
 
                 // Inclusion of a second order time derivative.
-                delta_phi[i][j][k] = store[i][j][k] + sp.facsec*(store[i][j][k] - residual[i][j][k]);
-                residual[i][j][k] = store[i][j][k];
+                b.delta_phi[i][j][k] = b.store[i][j][k] + sp.facsec*(b.store[i][j][k] - residual[i][j][k]);
+                residual[i][j][k] = b.store[i][j][k];
             }
         }
     }
@@ -251,8 +250,8 @@ void Solver::sum_convective_fluxes(Block &b, vector3d<double>& phi, vectornd<dou
     for (int i = b.ist+1; i < b.ien-1; i++) {
         for (int j = b.jst+1; j < b.jen-1; j++) {
             for (int k = b.kst+1; k < b.ken-1; k++) {
-                phi[i][j][k] += 0.125f * (delta_phi[i][j][k] + delta_phi[i-1][j][k] + delta_phi[i-1][j-1][k] + delta_phi[i][j-1][k] +
-                        delta_phi[i][j][k-1] + delta_phi[i-1][j][k-1] + delta_phi[i-1][j-1][k-1] + delta_phi[i][j-1][k-1]);
+                phi[i][j][k] += 0.125f * (b.delta_phi[i][j][k] + b.delta_phi[i-1][j][k] + b.delta_phi[i-1][j-1][k] + b.delta_phi[i][j-1][k] +
+                        b.delta_phi[i][j][k-1] + b.delta_phi[i-1][j][k-1] + b.delta_phi[i-1][j-1][k-1] + b.delta_phi[i][j-1][k-1]);
             }
         }
     }
@@ -260,74 +259,74 @@ void Solver::sum_convective_fluxes(Block &b, vector3d<double>& phi, vectornd<dou
     // j=const boundaries
     for (int i = b.ist+1; i < b.ien-1; i++) {
         for (int k = b.kst+1; k < b.ken-1; k++) {
-            phi[i][b.jst][k]   += 0.25f * (delta_phi[i][b.jst][k] + delta_phi[i-1][b.jst][k] + delta_phi[i][b.jst][k-1] + delta_phi[i-1][b.jst][k-1]);
-            phi[i][b.jen-1][k] += 0.25f * (delta_phi[i][b.jen-2][k] + delta_phi[i-1][b.jen-2][k] + delta_phi[i][b.jen-2][k-1] + delta_phi[i-1][b.jen-2][k-1]);
+            phi[i][b.jst][k]   += 0.25f * (b.delta_phi[i][b.jst][k] + b.delta_phi[i-1][b.jst][k] + b.delta_phi[i][b.jst][k-1] + b.delta_phi[i-1][b.jst][k-1]);
+            phi[i][b.jen-1][k] += 0.25f * (b.delta_phi[i][b.jen-2][k] + b.delta_phi[i-1][b.jen-2][k] + b.delta_phi[i][b.jen-2][k-1] + b.delta_phi[i-1][b.jen-2][k-1]);
         }
     }
 
     // k=const boundaries
     for (int i = b.ist+1; i < b.ien-1; i++) {
         for (int j = b.jst+1; j < b.jen-1; j++) {
-            phi[i][j][b.kst]   += 0.25f * (delta_phi[i][j][b.kst] + delta_phi[i-1][j][b.kst] + delta_phi[i][j-1][b.kst] + delta_phi[i-1][j-1][b.kst]);
-            phi[i][j][b.ken-1] += 0.25f * (delta_phi[i][j][b.ken-2] + delta_phi[i-1][j][b.ken-2] + delta_phi[i][j-1][b.ken-2] + delta_phi[i-1][j-1][b.ken-2]);
+            phi[i][j][b.kst]   += 0.25f * (b.delta_phi[i][j][b.kst] + b.delta_phi[i-1][j][b.kst] + b.delta_phi[i][j-1][b.kst] + b.delta_phi[i-1][j-1][b.kst]);
+            phi[i][j][b.ken-1] += 0.25f * (b.delta_phi[i][j][b.ken-2] + b.delta_phi[i-1][j][b.ken-2] + b.delta_phi[i][j-1][b.ken-2] + b.delta_phi[i-1][j-1][b.ken-2]);
         }
     }
 
     // i=const boundaries
     for (int j = b.jst+1; j < b.jen-1; j++) {
         for (int k = b.kst+1; k < b.ken-1; k++) {
-            phi[b.ist][j][k]   += 0.25f * (delta_phi[b.ist][j][k] + delta_phi[b.ist][j-1][k] + delta_phi[b.ist][j][k-1] + delta_phi[b.ist][j-1][k-1]);
-            phi[b.ien-1][j][k] += 0.25f * (delta_phi[b.ien-2][j][k] + delta_phi[b.ien-2][j-1][k] + delta_phi[b.ien-2][j][k-1] + delta_phi[b.ien-2][j-1][k-1]);
+            phi[b.ist][j][k]   += 0.25f * (b.delta_phi[b.ist][j][k] + b.delta_phi[b.ist][j-1][k] + b.delta_phi[b.ist][j][k-1] + b.delta_phi[b.ist][j-1][k-1]);
+            phi[b.ien-1][j][k] += 0.25f * (b.delta_phi[b.ien-2][j][k] + b.delta_phi[b.ien-2][j-1][k] + b.delta_phi[b.ien-2][j][k-1] + b.delta_phi[b.ien-2][j-1][k-1]);
         }
     }
 
     // j=const i lines
     for (int i = b.ist+1; i < b.ien-1; i++) {
-        phi[i][b.jst][b.kst]     += 0.5f * (delta_phi[i][b.jst][b.kst] + delta_phi[i-1][b.jst][b.kst]);
-        phi[i][b.jen-1][b.kst]   += 0.5f * (delta_phi[i][b.jen-2][b.kst] + delta_phi[i-1][b.jen-2][b.kst]);
-        phi[i][b.jst][b.ken-1]   += 0.5f * (delta_phi[i][b.jst][b.ken-2] + delta_phi[i-1][b.jst][b.ken-2]);
-        phi[i][b.jen-1][b.ken-1] += 0.5f * (delta_phi[i][b.jen-2][b.ken-2] + delta_phi[i-1][b.jen-2][b.ken-2]);
+        phi[i][b.jst][b.kst]     += 0.5f * (b.delta_phi[i][b.jst][b.kst] + b.delta_phi[i-1][b.jst][b.kst]);
+        phi[i][b.jen-1][b.kst]   += 0.5f * (b.delta_phi[i][b.jen-2][b.kst] + b.delta_phi[i-1][b.jen-2][b.kst]);
+        phi[i][b.jst][b.ken-1]   += 0.5f * (b.delta_phi[i][b.jst][b.ken-2] + b.delta_phi[i-1][b.jst][b.ken-2]);
+        phi[i][b.jen-1][b.ken-1] += 0.5f * (b.delta_phi[i][b.jen-2][b.ken-2] + b.delta_phi[i-1][b.jen-2][b.ken-2]);
     }
 
 
     // i=const k lines
     for (int k = b.kst+1; k < b.ken-1; k++) {
-        phi[b.ist][b.jst][k]     += 0.5f * (delta_phi[b.ist][b.jst][k] + delta_phi[b.ist][b.jst][k-1]);
-        phi[b.ist][b.jen-1][k]   += 0.5f * (delta_phi[b.ist][b.jen-2][k] + delta_phi[b.ist][b.jen-2][k-1]);
-        phi[b.ien-1][b.jst][k]   += 0.5f * (delta_phi[b.ien-2][b.jst][k] + delta_phi[b.ien-2][b.jst][k-1]);
-        phi[b.ien-1][b.jen-1][k] += 0.5f * (delta_phi[b.ien-2][b.jen-2][k] + delta_phi[b.ien-2][b.jen-2][k-1]);
+        phi[b.ist][b.jst][k]     += 0.5f * (b.delta_phi[b.ist][b.jst][k] + b.delta_phi[b.ist][b.jst][k-1]);
+        phi[b.ist][b.jen-1][k]   += 0.5f * (b.delta_phi[b.ist][b.jen-2][k] + b.delta_phi[b.ist][b.jen-2][k-1]);
+        phi[b.ien-1][b.jst][k]   += 0.5f * (b.delta_phi[b.ien-2][b.jst][k] + b.delta_phi[b.ien-2][b.jst][k-1]);
+        phi[b.ien-1][b.jen-1][k] += 0.5f * (b.delta_phi[b.ien-2][b.jen-2][k] + b.delta_phi[b.ien-2][b.jen-2][k-1]);
     }
 
     // k=const j lines
     for (int j = b.jst+1; j < b.jen-1; j++) {
-        phi[b.ist][j][b.kst]     += 0.5f * (delta_phi[b.ist][j][b.kst] + delta_phi[b.ist][j-1][b.kst]);
-        phi[b.ist][j][b.ken-1]   += 0.5f * (delta_phi[b.ist][j][b.ken-2] + delta_phi[b.ist][j-1][b.ken-2]);
-        phi[b.ien-1][j][b.kst]   += 0.5f * (delta_phi[b.ien-2][j][b.kst] + delta_phi[b.ien-2][j-1][b.kst]);
-        phi[b.ien-1][j][b.ken-1] += 0.5f * (delta_phi[b.ien-2][j][b.ken-2] + delta_phi[b.ien-2][j-1][b.ken-2]);
+        phi[b.ist][j][b.kst]     += 0.5f * (b.delta_phi[b.ist][j][b.kst] + b.delta_phi[b.ist][j-1][b.kst]);
+        phi[b.ist][j][b.ken-1]   += 0.5f * (b.delta_phi[b.ist][j][b.ken-2] + b.delta_phi[b.ist][j-1][b.ken-2]);
+        phi[b.ien-1][j][b.kst]   += 0.5f * (b.delta_phi[b.ien-2][j][b.kst] + b.delta_phi[b.ien-2][j-1][b.kst]);
+        phi[b.ien-1][j][b.ken-1] += 0.5f * (b.delta_phi[b.ien-2][j][b.ken-2] + b.delta_phi[b.ien-2][j-1][b.ken-2]);
     }
 
     // Eight Corners
-    phi[b.ist][b.jst][b.kst]       += delta_phi[b.ist][b.jst][b.kst];
+    phi[b.ist][b.jst][b.kst]       += b.delta_phi[b.ist][b.jst][b.kst];
 
-    phi[b.ist][b.jen-1][b.kst]     += delta_phi[b.ist][b.jen-2][b.kst];
+    phi[b.ist][b.jen-1][b.kst]     += b.delta_phi[b.ist][b.jen-2][b.kst];
 
-    phi[b.ist][b.jst][b.ken-1]     += delta_phi[b.ist][b.jst][b.ken-2];
+    phi[b.ist][b.jst][b.ken-1]     += b.delta_phi[b.ist][b.jst][b.ken-2];
 
-    phi[b.ien-1][b.jst][b.kst]     += delta_phi[b.ien-2][b.jst][b.kst];
+    phi[b.ien-1][b.jst][b.kst]     += b.delta_phi[b.ien-2][b.jst][b.kst];
 
-    phi[b.ien-1][b.jen-1][b.kst]   += delta_phi[b.ien-2][b.jen-2][b.kst];
+    phi[b.ien-1][b.jen-1][b.kst]   += b.delta_phi[b.ien-2][b.jen-2][b.kst];
 
-    phi[b.ien-1][b.jst][b.ken-1]   += delta_phi[b.ien-2][b.jst][b.ken-2];
+    phi[b.ien-1][b.jst][b.ken-1]   += b.delta_phi[b.ien-2][b.jst][b.ken-2];
 
-    phi[b.ist][b.jen-1][b.ken-1]   += delta_phi[b.ist][b.jen-2][b.ken-2];
+    phi[b.ist][b.jen-1][b.ken-1]   += b.delta_phi[b.ist][b.jen-2][b.ken-2];
 
-    phi[b.ien-1][b.jen-1][b.ken-1] += delta_phi[b.ien-2][b.jen-2][b.ken-2];
+    phi[b.ien-1][b.jen-1][b.ken-1] += b.delta_phi[b.ien-2][b.jen-2][b.ken-2];
 
 
 //    for (int i = b.ist; i < b.ien-1; i++) {
 //        for (int j = b.jst; j < b.jen - 1; j++) {
 //            for (int k = b.kst; k < b.ken - 1; k++) {
-//                residual[i][j][k] = delta_phi[i][j][k];
+//                residual[i][j][k] = b.delta_phi[i][j][k];
 //            }
 //        }
 //    }
@@ -390,7 +389,7 @@ void Solver::smooth(Block& b, vector3d<double>& phi) {
 
     // We make all the changes to variable store, this way we don't smooth with
     // smoothed values.
-    vector3d<double> store(boost::extents[b.ni+2][b.nj+2][b.nk+2]);
+    // vector3d<double> store(boost::extents[b.ni+2][b.nj+2][b.nk+2]);
     double sfm1 = 1-sp.sfin;
 
     // Start with internal nodes
@@ -401,7 +400,7 @@ void Solver::smooth(Block& b, vector3d<double>& phi) {
                         +phi[i][j+1][k]+phi[i][j-1][k]
                         +phi[i][j][k+1]+phi[i][j][k-1]);
 
-                store[i][j][k] = sfm1*phi[i][j][k] + sp.sfin*avg;
+                b.store[i][j][k] = sfm1*phi[i][j][k] + sp.sfin*avg;
             }
         }
     }
@@ -417,12 +416,12 @@ void Solver::smooth(Block& b, vector3d<double>& phi) {
             double avg = (0.2f*phi[b.ist][jp1][k] + 0.2f*phi[b.ist][jm1][k] +
                     0.2f*phi[b.ist][j][kp1] + 0.2f*phi[b.ist][j][km1] +
                     0.4f*phi[b.ist+1][j][k] - 0.2f*phi[b.ist+2][j][k]);
-            store[b.ist][j][k] = sfm1*phi[b.ist][j][k] + sp.sfin*avg;
+            b.store[b.ist][j][k] = sfm1*phi[b.ist][j][k] + sp.sfin*avg;
 
             avg = (0.2f*phi[b.ien-1][jp1][k] + 0.2f*phi[b.ien-1][jm1][k] +
                    0.2f*phi[b.ien-1][j][kp1] + 0.2f*phi[b.ien-1][j][km1] +
                    0.4f*phi[b.ien-2][j][k] - 0.2f*phi[b.ien-3][j][k]);
-            store[b.ien-1][j][k] = sfm1*phi[b.ien-1][j][k] + sp.sfin*avg;
+            b.store[b.ien-1][j][k] = sfm1*phi[b.ien-1][j][k] + sp.sfin*avg;
 
         }
     }
@@ -438,12 +437,12 @@ void Solver::smooth(Block& b, vector3d<double>& phi) {
             double avg = (0.2f*phi[ip1][b.jst][k] + 0.2f*phi[im1][b.jst][k] +
                          0.2f*phi[i][b.jst][kp1] + 0.2f*phi[i][b.jst][km1] +
                          0.4f*phi[i][b.jst+1][k] - 0.2f*phi[i][b.jst+2][k]);
-            store[i][b.jst][k] = sfm1*phi[i][b.jst][k] + sp.sfin*avg;
+            b.store[i][b.jst][k] = sfm1*phi[i][b.jst][k] + sp.sfin*avg;
 
             avg = (0.2f*phi[ip1][b.jen-1][k] + 0.2f*phi[im1][b.jen-1][k] +
                    0.2f*phi[i][b.jen-1][kp1] + 0.2f*phi[i][b.jen-1][km1] +
                    0.4f*phi[i][b.jen-2][k] - 0.2f*phi[i][b.jen-3][k]);
-            store[i][b.jen-1][k] = sfm1*phi[i][b.jen-1][k] + sp.sfin*avg;
+            b.store[i][b.jen-1][k] = sfm1*phi[i][b.jen-1][k] + sp.sfin*avg;
 
         }
     }
@@ -459,12 +458,12 @@ void Solver::smooth(Block& b, vector3d<double>& phi) {
             double avg = (0.2f*phi[ip1][j][b.kst] + 0.2f*phi[im1][j][b.kst] +
                          0.2f*phi[i][jp1][b.kst] + 0.2f*phi[i][jm1][b.kst] +
                          0.4f*phi[i][j][b.kst+1] - 0.2f*phi[i][j][b.kst+2]);
-            store[i][j][b.kst] = sfm1*phi[i][j][b.kst] + sp.sfin*avg;
+            b.store[i][j][b.kst] = sfm1*phi[i][j][b.kst] + sp.sfin*avg;
 
             avg = (0.2f*phi[ip1][j][b.ken-1] + 0.2f*phi[im1][j][b.ken-1] +
                    0.2f*phi[i][jp1][b.ken-1] + 0.2f*phi[i][jm1][b.ken-1] +
                    0.4f*phi[i][j][b.ken-2] - 0.2f*phi[i][j][b.ken-3]);
-            store[i][j][b.ken-1] = sfm1*phi[i][j][b.ken-1] + sp.sfin*avg;
+            b.store[i][j][b.ken-1] = sfm1*phi[i][j][b.ken-1] + sp.sfin*avg;
 
         }
     }
@@ -472,7 +471,7 @@ void Solver::smooth(Block& b, vector3d<double>& phi) {
     for (int i = b.ist; i < b.ien; i++) {
         for (int j = b.jst; j < b.jen; j++) {
             for (int k = b.kst; k < b.ken; k++) {
-                phi[i][j][k] = store[i][j][k];
+                phi[i][j][k] = b.store[i][j][k];
             }
         }
     }
@@ -483,7 +482,7 @@ void Solver::smooth_defcorr(Block& b, vector3d<double>& phi, vector3d<double>& c
 
     // We make all the chages to variable store, this way we don't smooth with
     // smoothed values.
-    vector3d<double> store(boost::extents[b.ni+2][b.nj+2][b.nk+2]);
+    // vector3d<double> store(boost::extents[b.ni+2][b.nj+2][b.nk+2]);
     double sfm1 = 1-sp.sfin;
     double corr_new;
     double cf = 0.99;
@@ -499,7 +498,7 @@ void Solver::smooth_defcorr(Block& b, vector3d<double>& phi, vector3d<double>& c
 
                 corr_new = sp.fcorr * (phi[i][j][k] - avg);
                 corr_phi[i][j][k] = cf*corr_phi[i][j][k] + cfm1*corr_new;
-                store[i][j][k]    = sfm1*phi[i][j][k] + sp.sfin*(avg+corr_phi[i][j][k]);
+                b.store[i][j][k]    = sfm1*phi[i][j][k] + sp.sfin*(avg+corr_phi[i][j][k]);
             }
         }
     }
@@ -519,7 +518,7 @@ void Solver::smooth_defcorr(Block& b, vector3d<double>& phi, vector3d<double>& c
             corr_new = sp.fcorr * (phi[b.ist][j][k] - avg);
             corr_phi[b.ist][j][k] = cf * corr_phi[b.ist][j][k] + cfm1 * corr_new;
 
-            store[b.ist][j][k] = sfm1*phi[b.ist][j][k] + sp.sfin*(avg+corr_phi[b.ist][j][k]);
+            b.store[b.ist][j][k] = sfm1*phi[b.ist][j][k] + sp.sfin*(avg+corr_phi[b.ist][j][k]);
 
             avg = (0.2f*phi[b.ien-1][jp1][k] + 0.2f*phi[b.ien-1][jm1][k] +
                    0.2f*phi[b.ien-1][j][kp1] + 0.2f*phi[b.ien-1][j][km1] +
@@ -527,7 +526,7 @@ void Solver::smooth_defcorr(Block& b, vector3d<double>& phi, vector3d<double>& c
 
             corr_new = sp.fcorr * (phi[b.ien-1][j][k] - avg);
             corr_phi[b.ien-1][j][k] = cf * corr_phi[b.ien - 1][j][k] + cfm1 * corr_new;
-            store[b.ien-1][j][k] = sfm1*phi[b.ien-1][j][k] + sp.sfin*(avg+corr_phi[b.ien-1][j][k]);
+            b.store[b.ien-1][j][k] = sfm1*phi[b.ien-1][j][k] + sp.sfin*(avg+corr_phi[b.ien-1][j][k]);
 
         }
     }
@@ -546,7 +545,7 @@ void Solver::smooth_defcorr(Block& b, vector3d<double>& phi, vector3d<double>& c
             corr_new = sp.fcorr * (phi[i][b.jst][k] - avg);
             corr_phi[i][b.jst][k] = cf * corr_phi[i][b.jst][k] + cfm1 * corr_new;
 
-            store[i][b.jst][k] = sfm1*phi[i][b.jst][k] + sp.sfin*(avg+corr_phi[i][b.jst][k]);
+            b.store[i][b.jst][k] = sfm1*phi[i][b.jst][k] + sp.sfin*(avg+corr_phi[i][b.jst][k]);
 
             avg = (0.2f*phi[ip1][b.jen-1][k] + 0.2f*phi[im1][b.jen-1][k] +
                    0.2f*phi[i][b.jen-1][kp1] + 0.2f*phi[i][b.jen-1][km1] +
@@ -555,7 +554,7 @@ void Solver::smooth_defcorr(Block& b, vector3d<double>& phi, vector3d<double>& c
             corr_new = sp.fcorr * (phi[i][b.jen-1][k] - avg);
             corr_phi[i][b.jen-1][k] = cf * corr_phi[i][b.jen - 1][k] + cfm1 * corr_new;
 
-            store[i][b.jen-1][k] = sfm1*phi[i][b.jen-1][k] + sp.sfin*(avg+corr_phi[i][b.jen-1][k]);
+            b.store[i][b.jen-1][k] = sfm1*phi[i][b.jen-1][k] + sp.sfin*(avg+corr_phi[i][b.jen-1][k]);
 
         }
     }
@@ -574,7 +573,7 @@ void Solver::smooth_defcorr(Block& b, vector3d<double>& phi, vector3d<double>& c
 
             corr_new = sp.fcorr * (phi[i][j][b.kst] - avg);
             corr_phi[i][j][b.kst] = cf * corr_phi[i][j][b.kst] + cfm1 * corr_new;
-            store[i][j][b.kst] = sfm1*phi[i][j][b.kst] + sp.sfin*(avg+corr_phi[i][j][b.kst]);
+            b.store[i][j][b.kst] = sfm1*phi[i][j][b.kst] + sp.sfin*(avg+corr_phi[i][j][b.kst]);
 
             avg = (0.2f*phi[ip1][j][b.ken-1] + 0.2f*phi[im1][j][b.ken-1] +
                    0.2f*phi[i][jp1][b.ken-1] + 0.2f*phi[i][jm1][b.ken-1] +
@@ -582,7 +581,7 @@ void Solver::smooth_defcorr(Block& b, vector3d<double>& phi, vector3d<double>& c
 
             corr_new = sp.fcorr * (phi[i][j][b.ken-1] - avg);
             corr_phi[i][j][b.ken-1] = cf*corr_phi[i][j][b.ken-1] + cfm1*corr_new;
-            store[i][j][b.ken-1] = sfm1*phi[i][j][b.ken-1] + sp.sfin*(avg+corr_phi[i][j][b.ken-1]);
+            b.store[i][j][b.ken-1] = sfm1*phi[i][j][b.ken-1] + sp.sfin*(avg+corr_phi[i][j][b.ken-1]);
 
         }
     }
@@ -590,7 +589,7 @@ void Solver::smooth_defcorr(Block& b, vector3d<double>& phi, vector3d<double>& c
     for (int i = b.ist; i < b.ien; i++) {
         for (int j = b.jst; j < b.jen; j++) {
             for (int k = b.kst; k < b.ken; k++) {
-                phi[i][j][k] = store[i][j][k];
+                phi[i][j][k] = b.store[i][j][k];
             }
         }
     }
