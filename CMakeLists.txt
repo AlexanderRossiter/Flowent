@@ -7,9 +7,6 @@ include_directories("/usr/local/boost_1_81_0/")
 
 add_compile_options(-O3)
 
-include(CMakePrintHelpers)
-cmake_print_variables(CMAKE_BINARY_DIR)
-
 add_executable(Flowent src/main.cpp)
 
 add_subdirectory(./src/Grid)
