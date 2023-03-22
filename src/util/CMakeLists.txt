@@ -7,8 +7,8 @@ add_library(util STATIC
     util.cpp
 )
 
-target_include_directories(Solving PUBLIC .)
-target_link_libraries(Solving PRIVATE
-    Solver
+target_include_directories(util PUBLIC .)
+target_link_libraries(util PUBLIC
+    Solving
     Grid
 )

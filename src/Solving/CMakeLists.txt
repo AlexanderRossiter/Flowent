@@ -5,7 +5,7 @@ add_library(Solving STATIC
 )
 
 target_include_directories(Solving PUBLIC .)
-target_link_libraries(Solving PRIVATE
+target_link_libraries(Solving PUBLIC
     util
     Grid
 )

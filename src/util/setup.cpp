@@ -2,22 +2,25 @@
 // Created by Alexander Rossiter on 23/03/2021.
 //
 
-#include <fstream>
-#include <regex>
-#include <iostream>
 #include "setup.h"
 #include "util.h"
+#include <fstream>
+#include <iostream>
+#include <regex>
 
-Grid setup::read_grid(std::string& fname) {
+Grid
+setup::read_grid(std::string& fname)
+{
     std::ifstream file(fname + ".grid");
     if (file.fail()) {
         std::cout << "Failed to open grid file." << std::endl;
         throw std::exception();
     }
 
-    std::string str;
-    const std::regex r("([+-]?[0-9]*([.][0-9]+)?), ([+-]?[0-9]*([.][0-9]+)?), ([+-]?[0-9]*([.][0-9]+)?)");
-    std::smatch m;
+    std::string      str;
+    const std::regex r("([+-]?[0-9]*([.][0-9]+)?), ([+-]?[0-9]*([.][0-9]+)?), "
+                       "([+-]?[0-9]*([.][0-9]+)?)");
+    std::smatch      m;
 
     // Initialise grid.
     Grid g;
@@ -34,12 +37,12 @@ Grid setup::read_grid(std::string& fname) {
         // Get first line which contains grid size.
         std::getline(file, str);
         std::vector<std::string> tmp = util::str_split(str, ", ");
-        id = std::stoi(tmp[0]);
-        ni = std::stoi(tmp[1]);
-        nj = std::stoi(tmp[2]);
-        nk = std::stoi(tmp[3]);
+        id                           = std::stoi(tmp[0]);
+        ni                           = std::stoi(tmp[1]);
+        nj                           = std::stoi(tmp[2]);
+        nk                           = std::stoi(tmp[3]);
 
-        //std::cout << ni << ", " << nj << ", " << nk << std::endl;
+        // std::cout << ni << ", " << nj << ", " << nk << std::endl;
 
         // Initialise x, y, z
         vector3d<double> x(boost::extents[ni][nj][nk]);
@@ -51,11 +54,13 @@ Grid setup::read_grid(std::string& fname) {
                 for (int k = 0; k < nk; k++) {
                     std::getline(file, str);
                     tmp = util::str_split(str, ", ");
-//                    if (std::regex_match(str, m, r)) {
-                        x[i][j][k] = std::stof(tmp[0]);
-                        y[i][j][k] = std::stof(tmp[1]);
-                        z[i][j][k] = std::stof(tmp[2]);
-//                        std::cout << x[i][j][k] << ", " << y[i][j][k] << ", " << z[i][j][k] << std::endl;
+                    //                    if (std::regex_match(str, m, r)) {
+                    x[i][j][k] = std::stof(tmp[0]);
+                    y[i][j][k] = std::stof(tmp[1]);
+                    z[i][j][k] = std::stof(tmp[2]);
+                    //                        std::cout << x[i][j][k] << ", " <<
+                    //                        y[i][j][k] << ", " << z[i][j][k]
+                    //                        << std::endl;
                     //}
                 }
             }
@@ -68,16 +73,19 @@ Grid setup::read_grid(std::string& fname) {
     return g;
 }
 
-Grid setup::read_grid_testcase(std::string& testcase) {
+Grid
+setup::read_grid_testcase(std::string& testcase)
+{
     std::ifstream file(testcase + ".grid");
     if (file.fail()) {
         std::cout << "Failed to open grid file." << std::endl;
         throw std::exception();
     }
 
-    std::string str;
-    const std::regex r("([+-]?[0-9]*([.][0-9]+)?), ([+-]?[0-9]*([.][0-9]+)?), ([+-]?[0-9]*([.][0-9]+)?)");
-    std::smatch m;
+    std::string      str;
+    const std::regex r("([+-]?[0-9]*([.][0-9]+)?), ([+-]?[0-9]*([.][0-9]+)?), "
+                       "([+-]?[0-9]*([.][0-9]+)?)");
+    std::smatch      m;
 
     int ni = -1;
     int nj = -1;
@@ -89,7 +97,7 @@ Grid setup::read_grid_testcase(std::string& testcase) {
         nj = std::stoi(m[3]);
         nk = std::stoi(m[5]);
     }
-    //std::cout << ni << ", " << nj << ", " << nk << std::endl;
+    // std::cout << ni << ", " << nj << ", " << nk << std::endl;
 
     // Initialise x, y, z
     vector3d<double> x(boost::extents[ni][nj][nk]);
@@ -104,7 +112,8 @@ Grid setup::read_grid_testcase(std::string& testcase) {
                     x[i][j][k] = std::stof(m[1]);
                     y[i][j][k] = std::stof(m[3]);
                     z[i][j][k] = std::stof(m[5]);
-                    //std::cout << x[i][j][k] << ", " << y[i][j][k] << ", " << z[i][j][k] << std::endl;
+                    // std::cout << x[i][j][k] << ", " << y[i][j][k] << ", " <<
+                    // z[i][j][k] << std::endl;
                 }
             }
         }
@@ -117,9 +126,11 @@ Grid setup::read_grid_testcase(std::string& testcase) {
     return g;
 }
 
-void setup::read_patches(Grid& g, std::string& fname) {
+void
+setup::read_patches(Grid& g, std::string& fname)
+{
     // Open the patch file.
-    std::ifstream file( fname + ".patch");
+    std::ifstream file(fname + ".patch");
     if (file.fail()) {
         std::cout << "Failed to open patch file." << std::endl;
         throw std::exception();
@@ -127,10 +138,10 @@ void setup::read_patches(Grid& g, std::string& fname) {
 
     // Initialise storage variables.
     std::string str;
-    int nxbid;
+    int         nxbid;
 
     // Loop though lines in patch file.
-    while(std::getline(file, str)) {
+    while (std::getline(file, str)) {
         std::vector<std::string> patch_str_vec = util::str_split(str, " ");
 
         // Get patch type.
@@ -144,24 +155,21 @@ void setup::read_patches(Grid& g, std::string& fname) {
         int pid = std::stoi(patch_str_vec[2]);
 
         // Get the patch extents.
-        Extent extent = {std::stoi(patch_str_vec[3]),
-                  std::stoi(patch_str_vec[4]),
-                  std::stoi(patch_str_vec[5]),
-                  std::stoi(patch_str_vec[6]),
-                  std::stoi(patch_str_vec[7]),
-                  std::stoi(patch_str_vec[8])};
+        Extent extent = { std::stoi(patch_str_vec[3]), std::stoi(patch_str_vec[4]), std::stoi(patch_str_vec[5]),
+                          std::stoi(patch_str_vec[6]), std::stoi(patch_str_vec[7]), std::stoi(patch_str_vec[8]) };
 
         switch (kind) {
             case 'P': {
-                NextDir nextDir = {patch_str_vec[11], patch_str_vec[12], patch_str_vec[13]};
-                int nxbid = std::stoi(patch_str_vec[9]);
-                int nxpid = std::stoi(patch_str_vec[10]);
+                NextDir nextDir = { patch_str_vec[11], patch_str_vec[12], patch_str_vec[13] };
+                int     nxbid   = std::stoi(patch_str_vec[9]);
+                int     nxpid   = std::stoi(patch_str_vec[10]);
                 g.get_patches().push_back(std::make_unique<PeriodicPatch>(bid, pid, extent, nxbid, nxpid, nextDir));
                 break;
             }
             case 'I': {
-                InletConds inletConds = {std::stof(patch_str_vec[9]), std::stof(patch_str_vec[10]), std::stof(patch_str_vec[11]),
-                              std::stof(patch_str_vec[12])};
+                InletConds inletConds = {
+                    std::stof(patch_str_vec[9]), std::stof(patch_str_vec[10]), std::stof(patch_str_vec[11]), std::stof(patch_str_vec[12])
+                };
                 float rfin = std::stof(patch_str_vec[13]);
                 g.get_patches().push_back(std::make_unique<InletPatch>(bid, pid, extent, inletConds, rfin));
                 break;
@@ -174,13 +182,14 @@ void setup::read_patches(Grid& g, std::string& fname) {
                 throw std::invalid_argument("Invalid patch type.");
         }
 
-        //std::cout << util::vector_to_string(patch_str_vec) << std::endl;
+        // std::cout << util::vector_to_string(patch_str_vec) << std::endl;
     }
-
 }
 
-Gas setup::read_gas(std::string& gasName) {
-    std::ifstream file("../resources/gases/" + gasName + ".flwntgas");
+Gas
+setup::read_gas(std::string& gasName)
+{
+    std::ifstream     file("../resources/gases/" + gasName + ".flwntgas");
     std::stringstream buffer;
     buffer << file.rdbuf();
 
@@ -202,26 +211,21 @@ Gas setup::read_gas(std::string& gasName) {
     Gas gas(cp, R, ga);
 
     return gas;
-
 }
 
-SolutionParameters setup::read_solution_params(std::string& directory) {
-    std::ifstream file( directory + "solnparams.flwntparam");
+SolutionParameters
+setup::read_solution_params(std::string& directory)
+{
+    std::ifstream     file(directory + "solnparams.flwntparam");
     std::stringstream buffer;
     buffer << file.rdbuf();
 
     std::vector<std::string> solnPropStr = util::str_split(buffer.str(), " ");
-    SolutionParameters sf {std::stof(solnPropStr[0]),
+    SolutionParameters       sf{ std::stof(solnPropStr[0]),
                            std::stof(solnPropStr[1]),
                            std::stof(solnPropStr[2]),
                            std::stof(solnPropStr[3]),
-                           std::stoi(solnPropStr[4])};
+                           std::stoi(solnPropStr[4]) };
 
     return sf;
 }
-
-
-
-
-
-

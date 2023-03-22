@@ -4,13 +4,17 @@
 
 #include "Grid.h"
 
-void Grid::add_block(Block b, int id) {
+void
+Grid::add_block(Block b, int id)
+{
     blocks.push_back(b);
     nb = blocks.size();
     blocks.back().set_block_id(id);
 }
 
-Block& Grid::get_block_by_id(int desired_bid) {
+Block&
+Grid::get_block_by_id(int desired_bid)
+{
     for (Block& b : blocks) {
         if (b.id == desired_bid) {
             return b;
@@ -19,7 +23,9 @@ Block& Grid::get_block_by_id(int desired_bid) {
     throw std::exception();
 }
 
-std::unique_ptr<Patch>& Grid::get_patch_by_id(int pid, int bid) {
+std::unique_ptr<Patch>&
+Grid::get_patch_by_id(int pid, int bid)
+{
     for (auto& p : patches) {
         if (p->pid == pid && p->bid == bid) {
             return p;
@@ -28,15 +34,21 @@ std::unique_ptr<Patch>& Grid::get_patch_by_id(int pid, int bid) {
     throw std::exception();
 }
 
-std::vector<Block>& Grid::get_blocks() {
+std::vector<Block>&
+Grid::get_blocks()
+{
     return blocks;
 }
 
-std::vector<std::unique_ptr<Patch>>& Grid::get_patches() {
+std::vector<std::unique_ptr<Patch>>&
+Grid::get_patches()
+{
     return patches;
 }
 
-void Grid::find_grid_min_volume() {
+void
+Grid::find_grid_min_volume()
+{
     minV = 1E5;
     for (Block& b : get_blocks())
         minV = b.minV < minV ? b.minV : minV;

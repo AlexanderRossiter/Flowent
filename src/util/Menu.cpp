@@ -2,15 +2,17 @@
 // Created by Alexander Rossiter on 17/08/2022.
 //
 
-#include <iostream>
 #include "Menu.h"
+#include <iostream>
 
-void Menu::starting_menu() {
+void
+Menu::starting_menu()
+{
     std::cout << header << std::endl;
 
     std::cout << "Starting options: \n(1) Run test case.\n(2) Run own case." << std::endl;
 
-    int usr_in = -1;
+    int  usr_in        = -1;
     bool continue_loop = true;
 
     while (continue_loop) {
@@ -32,15 +34,15 @@ void Menu::starting_menu() {
             default:
                 break;
         }
-
     }
-
-
-
 }
 
-void Menu::test_case_menu() {
-    std::cout << "Test cases: \n(1) Gaussian bump.\n(2) naca-2412.\n(3) Wedge\n(4) Nash" << std::endl;
+void
+Menu::test_case_menu()
+{
+    std::cout << "Test cases: \n(1) Gaussian bump.\n(2) naca-2412.\n(3) "
+                 "Wedge\n(4) Nash"
+              << std::endl;
 
     int usr_in;
     std::cin >> usr_in;
@@ -65,13 +67,18 @@ void Menu::test_case_menu() {
     directory = "../resources/test_cases/";
 }
 
-void Menu::own_case_menu() {
-    std::cout << "Put your .grid and .patch file in the working directory.\nEnter case name...";
+void
+Menu::own_case_menu()
+{
+    std::cout << "Put your .grid and .patch file in the working "
+                 "directory.\nEnter case name...";
     directory = "../";
     std::cin >> case_name;
 }
 
-void Menu::initial_guess_menu() {
+void
+Menu::initial_guess_menu()
+{
     std::string usr_in;
     std::cout << "Use own guess? y/n" << std::endl;
     std::cin >> usr_in;
@@ -88,12 +95,8 @@ void Menu::initial_guess_menu() {
         std::cout << "Enter pitch guess..." << std::endl;
         std::cin >> ig_pitch;
     }
-
-
 }
 
 Menu::Menu() {}
 
-Menu::~Menu() {
-
-}
+Menu::~Menu() {}

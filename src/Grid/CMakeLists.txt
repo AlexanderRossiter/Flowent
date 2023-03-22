@@ -8,7 +8,7 @@ add_library(Grid STATIC
 )
 
 target_include_directories(Grid PUBLIC .)
-target_link_libraries(Grid PRIVATE 
+target_link_libraries(Grid PUBLIC 
     util 
     Solving
 )

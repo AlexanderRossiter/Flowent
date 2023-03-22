@@ -1,12 +1,14 @@
+#include "Grid.h"
+#include "GridWriter.h"
+#include "InitialGuess.h"
+#include "Menu.h"
+#include "Solver.h"
+#include "setup.h"
 #include <iostream>
-#include "Grid/Grid.h"
-#include "util/setup.h"
-#include "util/GridWriter.h"
-#include "Solving/Solver.h"
-#include "Solving/InitialGuess.h"
-#include "util/Menu.h"
 
-int main(int argc, char **argv) {
+int
+main(int argc, char** argv)
+{
 
     Menu menu;
     menu.starting_menu();
@@ -53,10 +55,7 @@ int main(int argc, char **argv) {
     solver.run_nsteps(sp.nstep);
 
     // Write the solution
-    GridWriter gw(solver.g);
+    GridWriter  gw(solver.g);
     std::string str(menu.directory + "gridout.flwnt");
     gw.write_grid(str);
-
 }
-
-

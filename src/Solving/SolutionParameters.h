@@ -5,14 +5,13 @@
 #ifndef FLOWENT_SOLUTIONPARAMETERS_H
 #define FLOWENT_SOLUTIONPARAMETERS_H
 
-
-struct SolutionParameters {
+struct SolutionParameters
+{
     double cfl;
     double sfin;
     double fcorr;
     double facsec;
-    int nstep;
+    int    nstep;
 };
 
-
-#endif //FLOWENT_SOLUTIONPARAMETERS_H
+#endif // FLOWENT_SOLUTIONPARAMETERS_H

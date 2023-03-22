@@ -13,9 +13,9 @@
 //   |----|
 // 4 o----o 1
 namespace facegeom {
-    static const std::vector<std::vector<std::vector<int>>> face_verts = {{{0, 0, 0}, {0, 1, 0}, {0, 1, 1}, {0, 0, 1}},
-                                                                          {{1, 0, 1}, {1, 0, 0}, {0, 0, 0}, {0, 0, 1}},
-                                                                          {{1, 0, 0}, {1, 1, 0}, {0, 1, 0}, {0, 0, 0}}};
+static const std::vector<std::vector<std::vector<int>>> face_verts = { { { 0, 0, 0 }, { 0, 1, 0 }, { 0, 1, 1 }, { 0, 0, 1 } },
+                                                                       { { 1, 0, 1 }, { 1, 0, 0 }, { 0, 0, 0 }, { 0, 0, 1 } },
+                                                                       { { 1, 0, 0 }, { 1, 1, 0 }, { 0, 1, 0 }, { 0, 0, 0 } } };
 }
 
-#endif //FLOWENT_CELL_FACE_RELATION_H
+#endif // FLOWENT_CELL_FACE_RELATION_H

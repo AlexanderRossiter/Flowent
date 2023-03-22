@@ -5,23 +5,24 @@
 #ifndef FLOWENT_GRIDWRITER_H
 #define FLOWENT_GRIDWRITER_H
 
-#include <string>
-#include <iostream>
+#include "Grid.h"
 #include <fstream>
-#include "../Grid/Grid.h"
 #include <iomanip>
+#include <iostream>
+#include <string>
 
-class GridWriter {
-private:
+class GridWriter
+{
+  private:
     Grid g;
 
-public:
-    GridWriter(Grid& g_): g{std::move(g_)}{};
-    ~GridWriter()=default;
+  public:
+    GridWriter(Grid& g_) :
+        g{ std::move(g_) } {};
+    ~GridWriter() = default;
 
     void write_grid(std::string& fname);
     void write_solution(std::string& fname);
 };
 
-
-#endif //FLOWENT_GRIDWRITER_H
+#endif // FLOWENT_GRIDWRITER_H

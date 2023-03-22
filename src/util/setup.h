@@ -5,23 +5,29 @@
 #ifndef FLOWENT_SETUP_H
 #define FLOWENT_SETUP_H
 
-#include <string>
-#include "../Grid/Grid.h"
+#include "Gas.h"
+#include "Grid.h"
+#include "Patch.h"
+#include "SolutionParameters.h"
 #include "util.h"
-#include "../Grid/Patch.h"
-#include "../Solving/Gas.h"
-#include "../Solving/SolutionParameters.h"
-
+#include <string>
 
 namespace setup {
-    struct params{};
+struct params
+{};
 
-    Grid read_grid(std::string& fname);
-    Grid read_grid_testcase(std::string& testcase);
-    params read_input_params();
-    void read_patches(Grid& g, std::string& fname);
-    Gas read_gas(std::string& gasName);
-    SolutionParameters read_solution_params(std::string& directory);
+Grid
+read_grid(std::string& fname);
+Grid
+read_grid_testcase(std::string& testcase);
+params
+read_input_params();
+void
+read_patches(Grid& g, std::string& fname);
+Gas
+read_gas(std::string& gasName);
+SolutionParameters
+read_solution_params(std::string& directory);
 }
 
-#endif //FLOWENT_SETUP_H
+#endif // FLOWENT_SETUP_H
